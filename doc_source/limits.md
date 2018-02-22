@@ -1,0 +1,90 @@
+# Limits<a name="limits"></a>
+
+AWS Step Functions places limits on the sizes of certain state machine parameters, such as the number of API actions that you can make during a certain time period or the number of state machines that you can define\. Although these limits are designed to prevent a misconfigured state machine from consuming all of the resources of the system, they aren't hard limits\.
+
+**Note**  
+If a particular stage of your state machine execution or activity execution takes too long, you can configure a state machine timeout to cause a timeout event\.
+
+
+
+## General Limits<a name="service-limits-general"></a>
+
+
+| Limit | Description | 
+| --- | --- | 
+|  State machine name  | State machine names must be 1—80 characters in length, must be unique for your account and region, and must not contain any of the following: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/step-functions/latest/dg/limits.html) Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\. | 
+
+## Limits Related to Accounts<a name="service-limits-accounts"></a>
+
+
+| Limit | Description | 
+| --- | --- | 
+|  Maximum number of activities  |  10,000  | 
+| Maximum number of state machines | 10,000 | 
+|  Maximum number of API actions  |  Beyond infrequent spikes, applications may be throttled if they make a large number of API actions in a very short period of time\.  | 
+|  Maximum request size  |  1 MB per request\. This is the total data size per Step Functions API request, including the request header and all other associated request data\.  | 
+
+## Limits Related to State Machine Executions<a name="service-limits-state-machine-executions"></a>
+
+
+****  
+
+| Limit | Description | 
+| --- | --- | 
+|  Maximum open executions  | 1,000,000 | 
+|  Maximum execution time  |  1 year  | 
+|  Maximum execution history size  | 25,000 events | 
+|  Maximum execution idle time  |  1 year \(constrained by execution time limit\)  | 
+| Maximum execution history retention time |  90 days\. After this time, you can no longer retrieve or view the execution history\.There is no further limit to the number of closed executions that Step Functions retains\.  | 
+|  Maximum executions displayed in [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/)  | The Step Functions console displays a maximum of 1,000 executions per state machine\. If you have more than 1,000 executions, use the Step Functions API actions or the AWS CLI to display all of your executions\. | 
+
+## Limits Related to Task Executions<a name="service-limits-task-executions"></a>
+
+
+| Limit | Description | 
+| --- | --- | 
+|  Maximum task execution time  |  1 year \(constrained by execution time limit\)  | 
+|  Maximum time Step Functions keeps a task in the queue  |  1 year \(constrained by execution time limit\)  | 
+|  Maximum open activities  |  1,000 per execution\. This limit includes both activities that have been scheduled and those being processed by workers\.  | 
+|  Maximum input or result data size for a task, state, or execution  |  32,768 characters\. This limit affects tasks \(activity or Lambda function\), state or execution result data, and input data when scheduling a task, entering a state, or starting an execution\.  | 
+
+## Limits Related to API Action Throttling<a name="service-limits-api-action-throttling"></a>
+
+Some Step Functions API actions are throttled using a token bucket scheme to maintain service bandwidth\.
+
+**Note**  
+Throttling limits are per account, per region\. AWS Step Functions may increase both the bucket size and refill rate at any time\. Do not rely on these throttling rates to limit your costs\.
+
+
+| API Name | Bucket Size | Refill Rate per Second | 
+| --- | --- | --- | 
+| CreateActivity | 100 | 1 | 
+| CreateStateMachine | 100 | 1 | 
+| DeleteActivity | 100 | 1 | 
+| DeleteStateMachine | 100 | 1 | 
+| DescribeActivity | 200 | 1 | 
+| DescribeExecution | 200 | 2 | 
+| DescribeStateMachine | 200 | 1 | 
+| DescribeStateMachineForExecution | 100 | 1 | 
+| GetActivityTask | 1,000 | 25 | 
+| GetExecutionHistory | 250 | 5 | 
+| ListActivities | 100 | 1 | 
+| ListExecutions | 100 | 2 | 
+| ListStateMachines | 100 | 1 | 
+| SendTaskFailure | 1,000 | 25 | 
+| SendTaskHeartbeat | 1,000 | 25 | 
+| SendTaskSuccess | 1,000 | 25 | 
+| StartExecution | 500 | 25 | 
+| StopExecution | 500 | 25 | 
+| UpdateStateMachine | 200 | 1 | 
+
+## Limits Related to State Throttling<a name="service-limits-api-state-throttling"></a>
+
+Step Functions state transitions are throttled using a token bucket scheme to maintain service bandwidth\.
+
+For more information, see the [`ExecutionThrottled` CloudWatch metric](procedure-cw-metrics.md#monitoring-using-cloudwatch-state-machine-metrics)\.
+
+
+| Service Metric | Bucket Size | Refill Rate per Second  | 
+| --- | --- | --- | 
+|  `StateTransition`  |  800  |  400  | 
