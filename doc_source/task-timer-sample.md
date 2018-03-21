@@ -1,6 +1,6 @@
 # Task Timer<a name="task-timer-sample"></a>
 
-This sample project creates an task timer\. It implements an AWS Step Functions state machine that uses Lambda function to implement a Wait state, that then that sends an Amazon Simple Notification Service Service notification\. A Wait state is a state type that waits for a trigger to perform a single unit of work\.
+This sample project creates a task timer\. It implements an AWS Step Functions state machine that uses a Lambda function to implement a Wait state, that then sends an Amazon Simple Notification Service Service notification\. A Wait state is a state type that waits for a trigger to perform a single unit of work\.
 
 This sample project creates the state machine, a Lambda function, an Amazon SNS topic, and configures the related IAM permissions\. For more information on the resources that are created with the **Task Timer** sample project, see:
 
