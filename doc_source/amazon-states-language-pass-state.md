@@ -2,7 +2,7 @@
 
 A `Pass` state \(`"Type": "Pass"`\) simply passes its input to its output, performing no work\. `Pass` states are useful when constructing and debugging state machines\.
 
-In addition to the [common state fields](amazon-states-language-states.md#amazon-states-language-common-fields), `Pass` states allow the following fields:
+In addition to the [common state fields](amazon-states-language-common-fields.md), `Pass` states allow the following fields:
 
 ** `Result` \(Optional\)**  
 Treated as the output of a virtual task to be passed on to the next state, and filtered as prescribed by the `ResultPath` field \(if present\)\.

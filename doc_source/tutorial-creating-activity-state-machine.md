@@ -1,14 +1,17 @@
 # Creating an Activity State Machine<a name="tutorial-creating-activity-state-machine"></a>
 
-You can run task code on a state machine\. This tutorial introduces you to creating an activity\-based state machine using Java and AWS Step Functions\.
+You can coordinate task code in your state machine\. This tutorial introduces you to creating an activity\-based state machine using Java and AWS Step Functions\.
 
 To complete this tutorial you'll need the following:
-
 + The [SDK for Java](https://aws.amazon.com/sdk-for-java/)\. The example activity in this tutorial is a Java application that uses the AWS SDK for Java to communicate with AWS\.
-
 + AWS credentials in the environment or in the standard AWS configuration file\. For more information, see [Set up Your AWS credentials](http://docs.aws.amazon.com/AWSSdkDocsJava/latest/DeveloperGuide/set-up-creds.html) in the *AWS SDK for Java Developer Guide*\.
 
-
+**Topics**
++ [Step 1: Creating a New Activity](#create-activity-state-machine-step-1)
++ [Step 2: Creating a State Machine](#create-activity-state-machine-step-2)
++ [Step 3: Implementing a Worker](#create-activity-state-machine-step-3)
++ [Step 4: Starting an Execution](#create-activity-state-machine-step-4)
++ [Step 5: Running and Stopping the Worker](#create-activity-state-machine-step-5)
 
 ## Step 1: Creating a New Activity<a name="create-activity-state-machine-step-1"></a>
 
@@ -41,18 +44,16 @@ Create a state machine that will determine when your activity is invoked and whe
 
 1. On the **Dashboard**, choose **Create a state machine**, select **Author from scratch**, and enter a name under **Give a name your state machine** \(for example `ActivityStateMachine)`\.
 **Note**  
-State machine names must be 1—80 characters in length, must be unique for your account and region, and must not contain any of the following:  
+State machine names must be 1–80 characters in length, must be unique for your account and region, and must not contain any of the following:  
 Whitespace
-Whitespace characters \(`? *`\)
+Wildcard characters \(`? *`\)
 Bracket characters \(`< > { } [ ]`\)
 Special characters \(`: ; , \ | ^ ~ $ # % & ` "`\)
 Control characters \(`\\u0000` \- `\\u001f` or `\\u007f` \- `\\u009f`\)\.
-Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
+Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with Amazon CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
 
 1. Create or enter an IAM role\.
-
    + To create a new IAM role for Step Functions, choose **Create a role for me**, and then choose **I acknowledge that Step Functions will create an IAM role which allows access to my Lambda functions\.**
-
    + If you have [previously created an IAM role for Step Functions](procedure-create-iam-role.md), choose **I will provide an IAM role ARN** and enter your existing **IAM role ARN**\.
 **Note**  
 If you delete the IAM role that Step Functions creates, Step Functions can't recreate it later\. Similarly, if you modify the role \(for example, by removing Step Functions from the principals in the IAM policy\), Step Functions can't restore its original settings later\. 
@@ -79,7 +80,7 @@ If you delete the IAM role that Step Functions creates, Step Functions can't rec
    This is a description of your state machine using the Amazon States Language\. It defines a single `Task` state named `getGreeting`\. For more information, see [State Machine Structure](amazon-states-language-state-machine-structure.md)\.
 
 1. Use the graph in the **Visual Workflow** pane to check that your Amazon States Language code describes your state machine correctly\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-create-state-machine-custom-preview.png)![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/)![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/)
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-create-state-machine-custom-preview.png)
 
    If you don't see the graph, choose ![\[refresh\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-getting-started-refresh.png)![\[refresh\]](http://docs.aws.amazon.com/step-functions/latest/dg/)![\[refresh\]](http://docs.aws.amazon.com/step-functions/latest/dg/) in the **Visual Workflow** pane\.
 
@@ -90,12 +91,12 @@ If you delete the IAM role that Step Functions creates, Step Functions can't rec
 ## Step 3: Implementing a Worker<a name="create-activity-state-machine-step-3"></a>
 
 Create a *worker*, a program which is responsible for the following:
-
 + Polling Step Functions for activities using the `GetActivityTask` API action\.
-
 + Performing the work of the activity using your code, \(for example, the `getGreeting()` method in the code below\)\.
-
 + Returning the results using the `SendTaskSuccess`, `SendTaskFailure`, and `SendTaskHeartbeat` API actions\.
+
+**Note**  
+For a more complete example of an activity worker, see [Example Activity Worker in Ruby](example-ruby-activity-worker.md)\. This example provides an implementation based on best practices, that can be used as a reference for your activity worker\. The code implements a consumer\-producer pattern with a configurable number of threads for pollers and activity workers\. 
 
 ### To implement the worker<a name="create-activity-state-machine-implement-worker"></a>
 
@@ -177,7 +178,7 @@ When you start the execution of the state machine, your worker polls Step Functi
 
 1. \(Optional\) To help identify your execution, you can specify an ID for it in the **Enter your execution id here** box\. If you don't enter an ID, Step Functions generates a unique ID automatically\.
 **Note**  
-Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
+Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with Amazon CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
 
 1. In the execution input area, replace the example data with the following:
 
@@ -194,7 +195,7 @@ Step Functions allows you to create state machine, execution, and activity names
 1. In the **Execution Details** section, choose **Info** to view the **Execution Status** and the **Started** and **Closed** timestamps\.
 
 1. To view the results of your execution, choose **Output**\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-console-activity-state-machine-execution-output.png)![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/)![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/)
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-console-activity-state-machine-execution-output.png)
 
 ## Step 5: Running and Stopping the Worker<a name="create-activity-state-machine-step-5"></a>
 

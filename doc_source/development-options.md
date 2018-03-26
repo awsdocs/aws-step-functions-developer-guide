@@ -27,7 +27,7 @@ You can develop state machines, workers, or state machine starters using the ser
 
 ## Development Environments<a name="development-options-environments"></a>
 
-You must set up a development environment appropriate to the programming language that you plan to use\. For example, if you intend to develop for Step Functions with Java, you should install a Java development environmen \(such as the SDK for Java\) on each of your development workstations\. If you use Eclipse IDE for Java Development, you should also install the Toolkit for Eclipse\. This Eclipse plug\-in adds features useful for AWS development\.
+You must set up a development environment appropriate to the programming language that you plan to use\. For example, if you intend to develop for Step Functions with Java, you should install a Java development environment \(such as the SDK for Java\) on each of your development workstations\. If you use Eclipse IDE for Java Development, you should also install the Toolkit for Eclipse\. This Eclipse plug\-in adds features useful for AWS development\.
 
 If your programming language requires a run\-time environment, you must set up the environment on each computer where these processes run\.
 

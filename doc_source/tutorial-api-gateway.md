@@ -4,7 +4,10 @@ You can use Amazon API Gateway to associate your AWS Step Functions APIs with me
 
 This tutorial shows you how to create an API that uses one resource and the `POST` method to communicate with the `StartExecution` API action\. You'll use the IAM console to create a role for API Gateway\. Then, you'll use the API Gateway console to create an API Gateway API, create a resource and method, and map the method to the `StartExecution` API action\. Finally, you'll deploy and test your API\. For more information about this API action, see [StartExecution](http://docs.aws.amazon.com/step-functions/latest/apireference/API_StartExecution.html) in the *AWS Step Functions API Reference*\.
 
-
+**Topics**
++ [Step 1: Creating an IAM Role for API Gateway](#api-gateway-step-1)
++ [Step 2: Creating your API Gateway API](#api-gateway-step-2)
++ [Step 3: Testing and Deploying the API Gateway API](#api-gateway-step-3)
 
 ## Step 1: Creating an IAM Role for API Gateway<a name="api-gateway-step-1"></a>
 
@@ -59,7 +62,7 @@ After you create your IAM role, you can create your custom API Gateway API\.
 1. On the **/execution Methods** page, choose **Actions**, **Create Method**\.
 
 1. From the list, choose `POST`, and then select the checkmark\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-api-gateway-create-method.png)![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/)![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/)
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-api-gateway-create-method.png)
 
 ### To configure the method<a name="api-gateway-configure-method"></a>
 
@@ -86,12 +89,12 @@ All Step Functions API actions use the HTTP `POST` method\.
    ```
    arn:aws:iam::123456789012:role/APIGatewayToStepFunctions
    ```  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-api-gateway-configure-method.png)![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/)![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/)
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-api-gateway-configure-method.png)
 
 1. Choose **Save**\.
 
    The visual mapping between API Gateway and Step Functions is displayed on the **/execution \- POST \- Method Execution** page\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-api-gateway-mapping.png)![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/)![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/)
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-api-gateway-mapping.png)
 
 ## Step 3: Testing and Deploying the API Gateway API<a name="api-gateway-step-3"></a>
 

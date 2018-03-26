@@ -2,7 +2,7 @@
 
 A `Task` state \(`"Type": "Task"`\) represents a single unit of work performed by a state machine\.
 
-In addition to the [common state fields](amazon-states-language-states.md#amazon-states-language-common-fields), `Task` states have the following fields:
+In addition to the [common state fields](amazon-states-language-common-fields.md), `Task` states have the following fields:
 
 ** `Resource` \(Required\)**  
 A URI, especially an Amazon Resource Name \(ARN\) that uniquely identifies the specific task to execute\.
@@ -49,25 +49,15 @@ arn:partition:service:region:account:task_type:name
 ```
 
 Where:
-
 +  `partition` is the AWS Step Functions partition to use, most commonly `aws`\.
-
 +  `service` indicates the AWS service used to execute the task, and is either:
-
   +  `states` for an [activity](#amazon-states-language-task-state-activity)\.
-
   +  `lambda` for a [Lambda function](#amazon-states-language-task-state-lambda)\.
-
 +  `region` is the [AWS region](http://docs.aws.amazon.com/general/latest/gr/rande.html) in which the Step Functions activity/state machine type or Lambda function has been created\.
-
 +  `account` is your AWS account id\.
-
 +  `task_type` is the type of task to run\. It will be one of the following values:
-
   +  `activity` – an [activity](#amazon-states-language-task-state-activity)\.
-
   +  `function` – a [Lambda function](#amazon-states-language-task-state-lambda)\.
-
 +  `name` is the registered resource name \(activity name or Lambda function name\)\.
 
 **Note**  
@@ -76,9 +66,7 @@ Step Functions does not support referencing ARNs across partitions \(For example
 ## Task Types<a name="task-types"></a>
 
 The following task types are supported:
-
 +  [activity](#amazon-states-language-task-state-activity) 
-
 +  [Lambda functions](#amazon-states-language-task-state-lambda) 
 
 The following sections will provide more detail about each type\.

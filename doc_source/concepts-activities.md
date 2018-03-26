@@ -2,20 +2,19 @@
 
 Activities are an AWS Step Functions concept that refers to a task to be performed by a *worker* that can be hosted on EC2, ECS, mobile devices—basically anywhere\.
 
-
+**Topics**
++ [Creating an Activity](#programming-activities-creating)
++ [Writing a Worker](#programming-activities-coding)
++ [Example Activity Worker in Ruby](example-ruby-activity-worker.md)
 
 ## Creating an Activity<a name="programming-activities-creating"></a>
 
 Activities are referred to by name\. An activity's name can be any string that adheres to the following rules:
-
 + It must be between 0 – 80 characters in length\.
-
 + It must be unique within your AWS account and region\.
 
 Activities can be created with Step Functions in any of the following ways:
-
 + Call [CreateActivity](http://docs.aws.amazon.com/step-functions/latest/apireference/API_CreateActivity.html) with the activity name\.
-
 + Using the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/)\.
 
 **Note**  

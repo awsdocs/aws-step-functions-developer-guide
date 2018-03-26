@@ -9,25 +9,16 @@ To learn more about CloudTrail, including how to configure and enable it, see th
 When CloudTrail logging is enabled in your AWS account, API actions made to specific Step Functions actions are tracked in CloudTrail log files\. Step Functions actions are written, together with other AWS service records\. CloudTrail determines when to create and write to a new file based on a time period and file size\.
 
 The following actions are supported:
-
 +  [CreateActivity](http://docs.aws.amazon.com/step-functions/latest/apireference/API_CreateActivity.html) 
-
 +  [CreateStateMachine](http://docs.aws.amazon.com/step-functions/latest/apireference/API_CreateStateMachine.html) 
-
 +  [DeleteActivity](http://docs.aws.amazon.com/step-functions/latest/apireference/API_DeleteActivity.html) 
-
 +  [DeleteStateMachine](http://docs.aws.amazon.com/step-functions/latest/apireference/API_DeleteStateMachine.html) 
-
 +  [StartExecution](http://docs.aws.amazon.com/step-functions/latest/apireference/API_StartExecution.html) 
-
 +  [StopExecution](http://docs.aws.amazon.com/step-functions/latest/apireference/API_StopExecution.html) 
 
 Every log entry contains information about who generated the request\. The user identity information in the log helps you determine the following:
-
 + Whether the request was made with root or IAM user credentials
-
 + Whether the request was made with temporary security credentials for a role or federated user
-
 + Whether the request was made by another AWS service
 
 For more information, see the [userIdentity element](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-user-identity.html) in the *AWS CloudTrail User Guide*\.

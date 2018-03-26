@@ -22,11 +22,7 @@ States can have multiple incoming transitions from other states\.
 The process repeats until it reaches a terminal state \(a state with `"Type": Succeed`, `"Type": Fail`, or `"End": true`\), or a runtime error occurs\.
 
 The following rules apply to states within a state machine:
-
 + States can occur in any order within the enclosing block, but the order in which they're listed doesn't affect the order in which they're run, which is determined by the contents of the states themselves\.
-
 + Within a state machine, there can be only one state designated as the `start` state, which is designated by the value of the `StartAt` field in the top\-level structure\.
-
 + Depending on your state machine logic—for example, if your state machine has multiple branches of execution—you may have more than one `end` state\.
-
 + If your state machine consists of only one state, it can be both the `start` state and the `end` state\.

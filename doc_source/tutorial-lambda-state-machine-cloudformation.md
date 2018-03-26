@@ -2,7 +2,10 @@
 
 This tutorial shows you how to create a basic AWS Lambda function and start a state machine execution automatically\. You will use the AWS CloudFormation console and a YAML *template* to create the *stack* \(IAM roles, the Lambda function, and the state machine\)\. You will then use the AWS Step Functions console to start the state machine execution\. For more information, see [Working with CloudFormation Templates](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-guide.html) and the `[AWS::StepFunctions::StateMachine](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-statemachine.html)` resource in the *AWS CloudFormation User Guide*\.
 
-
+**Topics**
++ [Step 1: Setting Up Your AWS CloudFormation Template](#lambda-state-machine-cfn-step-1)
++ [Step 2: Using the AWS CloudFormation Template to Create a Lambda State Machine](#lambda-state-machine-cfn-step-2)
++ [Step 3: Starting a State Machine Execution](#lambda-state-machine-cfn-step-3)
 
 ## Step 1: Setting Up Your AWS CloudFormation Template<a name="lambda-state-machine-cfn-step-1"></a>
 
@@ -30,7 +33,7 @@ LambdaExecutionRole:
 Define the following properties of the Lambda function which prints the message `Hello World`\.
 
 **Important**  
-Ensure that your Lambda function is under the same AWS account as your state machine\.
+Ensure that your Lambda function is under the same AWS account and region as your state machine\.
 
 ```
 MyLambdaFunction:
@@ -209,7 +212,7 @@ After you create your Lambda state machine, you can start an execution\.
 
 1. \(Optional\) To help identify your execution, you can specify an ID for it in the **Enter your execution id here** box\. If you don't enter an ID, Step Functions generates a unique ID automatically\.
 **Note**  
-Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
+Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with Amazon CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
 
 1. Choose **Start Execution**\.
 
@@ -218,4 +221,4 @@ Step Functions allows you to create state machine, execution, and activity names
 1. \(Optional\) In the **Execution Details** section, choose the **Info** tab to view the **Execution Status** and the **Started** and **Closed** timestamps\.
 
 1. To view the results of your execution, choose the **Output** tab\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-console-state-machine-execution-output.png)![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/)![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/)
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-console-state-machine-execution-output.png)

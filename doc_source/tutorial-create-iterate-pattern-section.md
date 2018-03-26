@@ -2,20 +2,17 @@
 
 In this tutorial, you implement a design pattern that uses a state machine and an AWS Lambda function to iterate a loop a specific number of times\. 
 
-This implementation helps you break up large tasks, or long\-running executions, into smaller chunks\. You can use a similar implementation to periodically end and restart a long\-running execution\. This can help you avoid exceeding service limits for AWS Step Functions, AWS Lambda, or other AWS services\.
+Use this design pattern any time you need to keep track of the number of loops in a state machine\. This implementation can help you break up large tasks or long\-running executions into smaller chunks, or to end an execution after a specific number of events\. You can use a similar implementation to periodically end and restart a long\-running execution to avoid exceeding service limits for AWS Step Functions, AWS Lambda, or other AWS services\.
 
-Before you begin, go through the [Creating a Lambda State Machine](tutorial-creating-lambda-state-machine.md) tutorial to familiarize yourself with using Lambda with Step Functions\.
+Before you begin, go through the [Creating a Lambda State Machine](tutorial-creating-lambda-state-machine.md) tutorial to ensure you have created the necessary IAM role, and are familiar with using Lambda and Step Functions together\.
 
 ## Step 1: Create a Lambda Function to Iterate a Count<a name="create-iterate-pattern-step-1"></a>
 
-Your Lambda function receives input values for `count`, `index`, and `step`\. Then it returns these values with an updated `index` and a Boolean named `continue`\. The Lambda function sets `continue` to `true` if the `index` is less than `count`\.
+By using a Lambda function you can track the number of iterations of a loop in your state machine\. The following Lambda function receives input values for `count`, `index`, and `step`\. It returns these values with an updated `index` and a Boolean named `continue`\. The Lambda function sets `continue` to `true` if the `index` is less than `count`\.
 
 Your state machine then implements a `Choice` state that executes some application logic if `continue` is `true`, or exits if it is `false`\.
 
 ### To create the Lambda function<a name="create-iterate-pattern-create-lambda-function"></a>
-
-**Important**  
-Ensure that your Lambda function is under the same AWS account as your state machine\.
 
 1. Sign in to the [Lambda console](https://console.aws.amazon.com/lambda/home), and then choose **Create function**\.
 
@@ -23,7 +20,7 @@ Ensure that your Lambda function is under the same AWS account as your state mac
 
 1. In the **Author from scratch** section, configure your Lambda function, as follows:
 
-   1. For **Name**, type `Iterate`\.
+   1. For **Name**, type `Iterator`\.
 
    1. For **Runtime**, select **Node\.js 6\.10**\.
 
@@ -41,7 +38,7 @@ If the IAM role that you created doesn't appear in the list, the role might stil
       arn:aws:lambda:us-east-1:123456789012:function:Iterator
       ```
 
-1. Copy the following code for the Lambda function into the **Configuration** section of the ***Iterator*** page\.
+1. Copy the following code for the Lambda function into the **Configuration** section of the ***Iterator*** page in the Lambda console\.
 
    ```
    exports.iterator = function iterator (event, context, callback) {
@@ -66,7 +63,7 @@ If the IAM role that you created doesn't appear in the list, the role might stil
 
 ## Step 2: Test the Lambda Function<a name="create-iterate-pattern-step-3"></a>
 
-Test your Lambda function to see it in operation\.
+Run your Lambda function with numeric values to see it in operation\. You can provide input values for your Lambda function that mimic an iteration, to see what output you get with specific input values\. 
 
 ### To test your Lambda function<a name="create-iterate-pattern-test-lambda-function"></a>
 
@@ -85,11 +82,11 @@ Test your Lambda function to see it in operation\.
    }
    ```
 
-   These values will come from your state machine on each iteration until the index is not less than the count\. For this test, the index has already incremented to 5\. The results should increment the `index` to 6 and set `continue` to `true`\.
+   These values mimic what would come from your state machine during an iteration\. The Lambda function will increment the index and return `continue` as `true`\. Once the index is not less than the `count`, it will return `continue` as `false`\. For this test, the index has already incremented to 5\. The results should increment the `index` to 6 and set `continue` to `true`\.
 
 1. Choose **Create**\.
 
-1. On the ***Iterator*** page, be sure **TestIterator** is listed, and then choose **Test**\.
+1. On the ***Iterator*** page in your Lambda console, be sure **TestIterator** is listed, and then choose **Test**\.
 
    The results of the test are displayed at the top of the page\. Choose **Details** and review the result\.
 
@@ -109,26 +106,66 @@ If you set `index` to 9 for this test, the `index` will increment to 10, and `co
 ### To create the state machine<a name="create-iterate-pattern-create-state-machine"></a>
 
 1. Sign in to the [Step Functions console](https://console.aws.amazon.com/states/home), and then choose **Create a state machine**\.
+**Important**  
+Ensure that your state machine is under the same AWS account and region as the Lambda function you created earlier\.
 
 1. On the **Create a state machine** page, choose **Author from scratch**\. For **Give a name to your state machine**, enter `IterateCount`\.
 **Note**  
-State machine names must be 1—80 characters in length, must be unique for your account and region, and must not contain any of the following:  
+State machine names must be 1–80 characters in length, must be unique for your account and region, and must not contain any of the following:  
 Whitespace
-Whitespace characters \(`? *`\)
+Wildcard characters \(`? *`\)
 Bracket characters \(`< > { } [ ]`\)
 Special characters \(`: ; , \ | ^ ~ $ # % & ` "`\)
 Control characters \(`\\u0000` \- `\\u001f` or `\\u007f` \- `\\u009f`\)\.
-Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
+Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with Amazon CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
 
 1. Create or enter an IAM role\.
-
    + To create a new IAM role for Step Functions, choose **Create a role for me**, and then choose **I acknowledge that Step Functions will create an IAM role which allows access to my Lambda functions\.**
-
    + If you have [previously created an IAM role for Step Functions](procedure-create-iam-role.md), choose **I will provide an IAM role ARN** and enter your existing **IAM role ARN**\.
 **Note**  
 If you delete the IAM role that Step Functions creates, Step Functions can't recreate it later\. Similarly, if you modify the role \(for example, by removing Step Functions from the principals in the IAM policy\), Step Functions can't restore its original settings later\. 
 
-1. In the **Code** pane, add the following state machine definition using the Amazon Resource Name of [the Lambda function that you created earlier](#create-iterate-pattern-create-lambda-function)\.
+1. The following code describes a state machine with the following states:
+   + `ConfigureCount`: Sets the default values for `count`, `index`, and `step`\. 
+
+     ```
+     "ConfigureCount": {
+         "Type": "Pass",
+         "Result": {
+             "count": 10,
+             "index": -1,
+             "step": 1
+     },
+     ```
+   + `Iterator`: References your Lambda function you created earlier, passing in the values configured in `ConfigureCount`\.
+
+     ```
+     "Iterator": {
+         "Type": "Task",
+         "Resource": "arn:aws:lambda:us-east-1:123456789012:function:Iterate",
+         "ResultPath": "$.iterator",
+         "Next": "IsCountReached"
+     },
+     ```
+   + `IsCountReached`: A choice state that will either run your sample work again or will go to `Done` based on a boolean returned from your `Iterator` Lambda function\.
+
+     ```
+     "IsCountReached": {
+         "Type": "Choice",
+         "Choices": [
+             {
+                 "Variable": "$.iterator.continue",
+                 "BooleanEquals": true,
+                 "Next": "ExampleWork"
+             }
+         ],
+         "Default": "Done"
+     },
+     ```
+   + `ExampleWork`: A stub for the work you want to accomplish in your execution\. In this example it is a `pass` state\. In an actual implementation this would be a `task` state\. See [Tasks](concepts-tasks.md)\.
+   + `Done`: The end state of your execution\.
+
+   In the **Code** pane, add the following state machine definition using the Amazon Resource Name of [the Lambda function that you created earlier](#create-iterate-pattern-create-lambda-function)\.
 
    ```
    {
@@ -181,10 +218,12 @@ If you delete the IAM role that Step Functions creates, Step Functions can't rec
    }
    ```
 
-   This state machine references the `Iterator` Lambda function you created earlier\. Be sure to update the Amazon Resource Name in the previous `Iterator` state\. For more information about the Amazon States Language, see [State Machine Structure](amazon-states-language-state-machine-structure.md)\.
+   Be sure to update the Amazon Resource Name in the `Iterator` state above so that it references the Lambda you created earlier\. For more information about the Amazon States Language, see [State Machine Structure](amazon-states-language-state-machine-structure.md)\.
 
-1. Use the graph in the **Visual Workflow** pane to check that your Amazon States Language code describes your state machine correctly\.  
-![\[State machine workflow\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-create-iterate-workflow.png)![\[State machine workflow\]](http://docs.aws.amazon.com/step-functions/latest/dg/)![\[State machine workflow\]](http://docs.aws.amazon.com/step-functions/latest/dg/)
+1. Use the graph in the **Visual Workflow** pane to check that your Amazon States Language code describes your state machine correctly\.
+
+   This graph shows the logic expressed in the above state machine code\.   
+![\[State machine workflow\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-create-iterate-workflow.png)
 
    If you don't see the graph, choose ![\[refresh\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-getting-started-refresh.png)![\[refresh\]](http://docs.aws.amazon.com/step-functions/latest/dg/)![\[refresh\]](http://docs.aws.amazon.com/step-functions/latest/dg/) in the **Visual Workflow** pane\.
 
@@ -202,20 +241,18 @@ After you create your state machine, you can start an execution\.
 
 1. On the **IterateCount** page, choose **New execution**\.
 
-   The **New execution** page is displayed\.
-
 1. \(Optional\) To help identify your execution, you can specify an ID for it in the **Enter your execution id here** box\. If you don't enter an ID, Step Functions generates a unique ID automatically\.
 **Note**  
-Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
+Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with Amazon CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
 
 1. Choose **Start Execution**\.
 
-   A new execution of your state machine starts, and a new page showing your running execution is displayed\.  
-![\[State machine execution\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-create-iterate-running.png)![\[State machine execution\]](http://docs.aws.amazon.com/step-functions/latest/dg/)![\[State machine execution\]](http://docs.aws.amazon.com/step-functions/latest/dg/)
+   A new execution of your state machine starts, showing your running execution\.  
+![\[State machine execution\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-create-iterate-running.png)
 
-   The execution increments in steps, tracking the count using your Lambda function\. On each iteration, it performs your example work\. 
+   The execution increments in steps, tracking the count using your Lambda function\. On each iteration, it performs the example work referenced in the `ExampleWork` state in your state machine\. 
 
 1. \(Optional\) In the **Execution Details** section, choose the **Info** tab to view the **Execution Status** and the **Started** and **Closed** time stamps\.
 
 1. Once the count reaches the number configured in the `ConfigureCount` state in your state machine, the execution quits iterating and ends\.  
-![\[State machine execution complete\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-create-iterate-done.png)![\[State machine execution complete\]](http://docs.aws.amazon.com/step-functions/latest/dg/)![\[State machine execution complete\]](http://docs.aws.amazon.com/step-functions/latest/dg/)
+![\[State machine execution complete\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-create-iterate-done.png)

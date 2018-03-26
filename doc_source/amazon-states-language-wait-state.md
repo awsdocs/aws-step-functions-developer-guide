@@ -2,7 +2,7 @@
 
 A `Wait` state \(`"Type": "Wait"`\) delays the state machine from continuing for a specified time\. You can choose either a relative time, specified in seconds from when the state begins, or an absolute end\-time, specified as a timestamp\.
 
-In addition to the [common state fields](amazon-states-language-states.md#amazon-states-language-common-fields), `Wait` states have one of the following fields:
+In addition to the [common state fields](amazon-states-language-common-fields.md), `Wait` states have one of the following fields:
 
 ** `Seconds` **  
 A time, in seconds, to wait before beginning the state specified in the `Next` field\.

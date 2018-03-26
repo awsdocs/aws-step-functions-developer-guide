@@ -11,35 +11,22 @@ You can run your tasks on the AWS Cloud, on your own servers, or on any system t
 ## Overview of Step Functions<a name="overview"></a>
 
 Here are some of the key features of AWS Step Functions:
-
 + Step Functions is based on the concepts of [tasks](concepts-tasks.md) and [state machines](concepts-states.md)\.
-
 + You define state machines using the JSON\-based [Amazon States Language](concepts-amazon-states-language.md)\.
-
 + The [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/) displays a graphical view of your state machine's structure, which provides you with a way to visually check your state machine's logic and monitor executions\.
 
 ## Supported Regions<a name="supported-regions"></a>
 
 Currently, Step Functions is supported only in the following regions:
-
 + US East \(Ohio\)
-
 + US East \(N\. Virginia\)
-
 + US West \(Oregon\)
-
 + Asia Pacific \(Sydney\)
-
 + Asia Pacific \(Tokyo\)
-
 + EU \(Frankfurt\)
-
 + EU \(Ireland\)
-
 + EU \(London\)
-
 + Canada \(Central\)
-
 + Asia Pacific \(Singapore\)
 
 ### About Amazon Web Services<a name="about-amazon-web-services"></a>

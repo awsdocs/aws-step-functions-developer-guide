@@ -1,11 +1,8 @@
 # Error Handling<a name="concepts-error-handling"></a>
 
 Any state can encounter runtime errors\. Errors can happen for various reasons:
-
 + State machine definition issues \(for example, no matching rule in a `Choice` state\)\.
-
 + Task failures \(for example, an exception in a Lambda function\)\.
-
 + Transient issues \(for example, network partition events\)\.
 
 By default, when a state reports an error, Step Functions causes the execution to fail entirely\.
@@ -102,13 +99,9 @@ A retrier's parameters apply across all visits to the retrier in the context of 
 ```
 
 This task fails five times in succession, outputting these error names: `ErrorA`, `ErrorB`, `ErrorC`, **`ErrorB`**, and `ErrorB`\. The following occurs as a result:
-
 + The first two errors match the first retrier and cause waits of 1 and 2 seconds\.
-
 + The third error matches the second retrier and causes a wait of 5 seconds\.
-
 + The fourth error matches the first retrier and causes a wait of 4 seconds\.
-
 + The fifth error also matches the first retrier\. However, it has already reached its limit of two retries \(`MaxAttempts`\) for that particular error \(`ErrorB`\), so it fails and execution is redirected to the `Z` state via the `Catch` field\.
 
 ## Fallback States<a name="error-handling-fallback-states"></a>
@@ -151,9 +144,7 @@ Each catcher can specify multiple errors to handle\.
 When Step Functions transitions to the state specified in a catch name, the object usually contains the field `Cause`\. This field's value is a human\-readable description of the error\. This object is known as the *error output*\.
 
 In this example, the first catcher contains a `ResultPath` field\. This works similarly to a `ResultPath` field in a state's top level, resulting in two possibilities:
-
 + It takes the results of executing the state and overwrites a portion of the state's input \(or all of the state's input\)\.
-
 + It takes the results and adds them to the input\. In the case of an error handled by a catcher, the result of executing the state is the error output\.
 
 Thus, in this example, for the first catcher the error output is added to the input as a field named `error-info` \(if there isn't already a field with this name in the input\)\. Then, the entire input is sent to `RecoveryState`\. For the second catcher, the error output overwrites the input and only the error output is sent to `EndState`\.

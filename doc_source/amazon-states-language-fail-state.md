@@ -2,7 +2,7 @@
 
 A `Fail` state \(`"Type": "Fail"`\) stops the execution of the state machine and marks it as a failure\.
 
-The `Fail` state only allows the use of `Type` and `Comment` fields from the set of [common state fields](amazon-states-language-states.md#amazon-states-language-common-fields)\. In addition, the `Fail` state allows the following fields:
+The `Fail` state only allows the use of `Type` and `Comment` fields from the set of [common state fields](amazon-states-language-common-fields.md)\. In addition, the `Fail` state allows the following fields:
 
 ** `Cause` \(Optional\)**  
 Provides a custom failure string that can be used for operational or diagnostic purposes\.

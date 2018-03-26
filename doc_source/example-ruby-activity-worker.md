@@ -1,9 +1,7 @@
 # Example Activity Worker in Ruby<a name="example-ruby-activity-worker"></a>
 
 The following is an example activity worker written in Ruby\. This provides an implementation based on best practices that can be used as a reference for your activity worker\. The code implements a consumer\-producer pattern with a configurable number of threads for pollers and activity workers\. The poller threads are constantly long polling the activity task\. Once an activity task is retrieved, it is passed through a bounded blocking queue for the activity thread to pick it up\.
-
 + For more information on the AWS SDK for Ruby, see the [AWS SDK for Ruby API Reference](http://docs.aws.amazon.com/sdk-for-ruby/v3/api/)\. 
-
 + To download this code and related resources, see [step\-functions\-ruby\-activity\-worker](https://github.com/aws-samples/step-functions-ruby-activity-worker) on GitHub\.com\.
 
 The following Roby code is the main entry point and example usage for the Ruby activity worker that follows\.

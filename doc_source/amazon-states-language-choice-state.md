@@ -2,7 +2,7 @@
 
 A `Choice` state \(`"Type": "Choice"`\) adds branching logic to a state machine\.
 
-In addition to the [common state fields](amazon-states-language-states.md#amazon-states-language-common-fields), `Choice` states introduce the following additional fields:
+In addition to the [common state fields](amazon-states-language-common-fields.md), `Choice` states introduce the following additional fields:
 
 ** `Choices` \(Required\)**  
 An array of [Choice Rules](#amazon-states-language-choice-state-rules) that determines which state the state machine transitions to next\.
@@ -91,9 +91,7 @@ If there are no matches for the `Choice` state's `Choices`, the state provided i
 ## Choice Rules<a name="amazon-states-language-choice-state-rules"></a>
 
 A `Choice` state must have a `Choices` field whose value is a non\-empty array, whose every element is a object called a Choice Rule\. A Choice Rule contains the following:
-
 + A **comparison** – Two fields that specify an input variable to compared, the type of comparison, and the value to compare the variable to\.
-
 + A **`Next` field** – The value of this field must match a state name in the state machine\.
 
 The following example checks whether the numerical value is equal to `1`:
@@ -139,43 +137,24 @@ The following example checks whether the timestamp is equal to `2001-01-01T12:00
 Step Functions examines each of the Choice Rules in the order listed in the `Choices` field and transitions to the state specified in the `Next` field of the first Choice Rule in which the variable matches the value according to the comparison operator\.
 
 The following comparison operators are supported:
-
 + `And`
-
 + `BooleanEquals`
-
 + `Not`
-
 + `NumericEquals`
-
 + `NumericGreaterThan`
-
 + `NumericGreaterThanEquals`
-
 + `NumericLessThan`
-
 + `NumericLessThanEquals`
-
 + `Or`
-
 + `StringEquals`
-
 + `StringGreaterThan`
-
 + `StringGreaterThanEquals`
-
 + `StringLessThan`
-
 + `StringLessThanEquals`
-
 + `TimestampEquals`
-
 + `TimestampGreaterThan`
-
 + `TimestampGreaterThanEquals`
-
 + `TimestampLessThan`
-
 + `TimestampLessThanEquals`
 
 For each of these operators, the corresponding value must be of the appropriate type: string, number, Boolean, or timestamp\. Step Functions doesn't attempt to match a numeric field to a string value\. However, because timestamp fields are logically strings, it is possible that a field considered to be a timestamp can be matched by a `StringEquals` comparator\.

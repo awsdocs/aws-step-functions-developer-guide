@@ -5,22 +5,28 @@ AWS Step Functions places limits on the sizes of certain state machine parameter
 **Note**  
 If a particular stage of your state machine execution or activity execution takes too long, you can configure a state machine timeout to cause a timeout event\.
 
-
+**Topics**
++ [General Limits](#service-limits-general)
++ [Limits Related to Accounts](#service-limits-accounts)
++ [Limits Related to State Machine Executions](#service-limits-state-machine-executions)
++ [Limits Related to Task Executions](#service-limits-task-executions)
++ [Limits Related to API Action Throttling](#service-limits-api-action-throttling)
++ [Limits Related to State Throttling](#service-limits-api-state-throttling)
 
 ## General Limits<a name="service-limits-general"></a>
 
 
 | Limit | Description | 
 | --- | --- | 
-|  State machine name  | State machine names must be 1—80 characters in length, must be unique for your account and region, and must not contain any of the following: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/step-functions/latest/dg/limits.html) Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\. | 
+|  State machine name  | State machine names must be 1–80 characters in length, must be unique for your account and region, and must not contain any of the following: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/step-functions/latest/dg/limits.html) Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with Amazon CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\. | 
 
 ## Limits Related to Accounts<a name="service-limits-accounts"></a>
 
 
 | Limit | Description | 
 | --- | --- | 
-|  Maximum number of activities  |  10,000  | 
-| Maximum number of state machines | 10,000 | 
+|  Maximum number of registered activities  |  10,000  | 
+| Maximum number of registered state machines | 10,000 | 
 |  Maximum number of API actions  |  Beyond infrequent spikes, applications may be throttled if they make a large number of API actions in a very short period of time\.  | 
 |  Maximum request size  |  1 MB per request\. This is the total data size per Step Functions API request, including the request header and all other associated request data\.  | 
 

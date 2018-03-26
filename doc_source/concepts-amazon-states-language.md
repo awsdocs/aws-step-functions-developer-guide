@@ -4,7 +4,12 @@ Amazon States Language is a JSON\-based, structured language used to define your
 
 To create a state machine on the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/) using Amazon States Language, see [Getting Started](getting-started.md)\.
 
-
+**Topics**
++ [Example Amazon States Language Specification](#example-amazon-states-language-specification)
++ [State Machine Structure](amazon-states-language-state-machine-structure.md)
++ [States](amazon-states-language-states.md)
++ [Input and Output Processing](amazon-states-language-input-output-processing.md)
++ [Errors](amazon-states-language-errors.md)
 
 ## Example Amazon States Language Specification<a name="example-amazon-states-language-specification"></a>
 

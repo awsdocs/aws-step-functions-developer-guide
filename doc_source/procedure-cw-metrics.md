@@ -1,17 +1,11 @@
 # Monitoring Step Functions Using CloudWatch<a name="procedure-cw-metrics"></a>
 
 Monitoring is an important part of maintaining the reliability, availability, and performance of AWS Step Functions and your AWS solutions\. You should collect as much monitoring data from the AWS services that you use so that you can more easily debug any multi\-point failures\. Before you start monitoring Step Functions, you should create a monitoring plan that answers the following questions:
-
 + What are your monitoring goals?
-
 + What resources will you monitor?
-
 + How often will you monitor these resources?
-
 + What monitoring tools will you use?
-
 + Who will perform the monitoring tasks?
-
 + Who should be notified when something goes wrong?
 
 The next step is to establish a baseline for normal Step Functions performance in your environment\. To do this, measure performance at various times and under different load conditions\. As you monitor Step Functions, you should consider storing historical monitoring data\. Such data can give you a baseline to compare against current performance data, to identify normal performance patterns and performance anomalies, and to devise ways to address issues\.
@@ -19,22 +13,21 @@ The next step is to establish a baseline for normal Step Functions performance i
 For example, with Step Functions, you can monitor how many activities or Lambda tasks fail due to a heartbeat timeout\. When performance falls outside your established baseline, you might have to change your heartbeat interval\.
 
 To establish a baseline you should, at a minimum, monitor the following metrics:
-
 +  `ActivitiesStarted` 
-
 +  `ActivitiesTimedOut` 
-
 +  `ExecutionsStarted` 
-
 +  `ExecutionsTimedOut` 
-
 +  `LambdaFunctionsStarted` 
-
 +  `LambdaFunctionsTimedOut` 
 
 The following sections describe metrics that Step Functions provides to CloudWatch\. You can use these metrics to track your state machines and activities and to set alarms on threshold values\. You can view metrics using the AWS Management Console\.
 
-
+**Topics**
++ [Metrics that Report a Time Interval](#monitoring-using-cloudwatch-time-interval-metrics)
++ [Metrics that Report a Count](#monitoring-using-cloudwatch-count-metrics)
++ [State Machine Metrics](#monitoring-using-cloudwatch-state-machine-metrics)
++ [Viewing Metrics for Step Functions](monitoring-using-cloudwatch-console.md)
++ [Setting Alarms for Step Functions](monitoring-using-cloudwatch-console-set-alarm.md)
 
 ## Metrics that Report a Time Interval<a name="monitoring-using-cloudwatch-time-interval-metrics"></a>
 

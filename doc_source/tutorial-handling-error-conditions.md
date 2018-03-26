@@ -5,7 +5,12 @@ In this tutorial, you create an AWS Step Functions state machine with a `Catch` 
 **Note**  
 You can also create state machines that `Retry` on timeouts or those that use `Catch` to transition to a specific state when an error or timeout occurs\. For examples of these error handling techniques, see [Examples Using Retry and Using Catch](concepts-error-handling.md#error-handling-examples)\.
 
-
+**Topics**
++ [Step 1: Creating an IAM Role for Lambda](#using-state-machine-error-conditions-step-1)
++ [Step 2: Creating a Lambda Function That Fails](#using-state-machine-error-conditions-step-2)
++ [Step 3: Testing the Lambda Function](#using-state-machine-error-conditions-step-3)
++ [Step 4: Creating a State Machine with a `Catch` Field](#using-state-machine-error-conditions-step-4)
++ [Step 5: Starting a New Execution](#using-state-machine-error-conditions-step-5)
 
 ## Step 1: Creating an IAM Role for Lambda<a name="using-state-machine-error-conditions-step-1"></a>
 
@@ -32,7 +37,7 @@ The IAM role appears in the list of roles\.
 Use a Lambda function to simulate an error condition\.
 
 **Important**  
-Ensure that your Lambda function is under the same AWS account as your state machine\.
+Ensure that your Lambda function is under the same AWS account and region as your state machine\.
 
 ### To create a Lambda function that fails<a name="using-state-machine-error-conditions-simulate"></a>
 
@@ -100,22 +105,20 @@ Use the [Step Functions console](https://console.aws.amazon.com/states/home?regi
 1. Log in to the [Step Functions console](https://console.aws.amazon.com/states/home) and choose **Create a state machine**\.
 
 1. On the **Create a state machine** page, select **Templates** and choose **Catch failure**\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-create-state-machine-catch-failure.png)![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/)![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/)
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-create-state-machine-catch-failure.png)
 
 1. **Name your state machine**, for example `CatchStateMachine`\.
 **Note**  
-State machine names must be 1—80 characters in length, must be unique for your account and region, and must not contain any of the following:  
+State machine names must be 1–80 characters in length, must be unique for your account and region, and must not contain any of the following:  
 Whitespace
-Whitespace characters \(`? *`\)
+Wildcard characters \(`? *`\)
 Bracket characters \(`< > { } [ ]`\)
 Special characters \(`: ; , \ | ^ ~ $ # % & ` "`\)
 Control characters \(`\\u0000` \- `\\u001f` or `\\u007f` \- `\\u009f`\)\.
-Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
+Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with Amazon CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
 
 1. Create or enter an IAM role\.
-
    + To create a new IAM role for Step Functions, choose **Create a role for me**, and then choose **I acknowledge that Step Functions will create an IAM role which allows access to my Lambda functions\.**
-
    + If you have [previously created an IAM role for Step Functions](procedure-create-iam-role.md), choose **I will provide an IAM role ARN** and enter your existing **IAM role ARN**\.
 **Note**  
 If you delete the IAM role that Step Functions creates, Step Functions can't recreate it later\. Similarly, if you modify the role \(for example, by removing Step Functions from the principals in the IAM policy\), Step Functions can't restore its original settings later\. 
@@ -168,7 +171,7 @@ If you delete the IAM role that Step Functions creates, Step Functions can't rec
 Unhandled errors in Lambda are reported as `Lambda.Unknown` in the error output\. These include out\-of\-memory errors, function timeouts, and hitting the concurrent Lambda invoke limit\. You can match on `Lambda.Unknown`, `States.ALL`, or `States.TaskFailed` to handle these errors\. For more information about Lambda `Handled` and `Unhandled` errors, see `FunctionError` in the [AWS Lambda Developer Guide](http://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_ResponseSyntax)\. 
 
 1. Use the graph in the **Visual Workflow** pane to check that your Amazon States Language code describes your state machine correctly\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-create-state-machine-catch-failure-preview.png)![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/)![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/)
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-create-state-machine-catch-failure-preview.png)
 
    If you don't see the graph, choose ![\[refresh\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-getting-started-refresh.png)![\[refresh\]](http://docs.aws.amazon.com/step-functions/latest/dg/)![\[refresh\]](http://docs.aws.amazon.com/step-functions/latest/dg/) in the **Visual Workflow** pane\.
 
@@ -186,7 +189,7 @@ After you create your state machine, you can start an execution\.
 
 1. \(Optional\) To help identify your execution, you can specify an ID for it in the **Enter your execution id here** box\. If you don't enter an ID, Step Functions generates a unique ID automatically\.
 **Note**  
-Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
+Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with Amazon CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
 
 1. Choose **Start Execution**\.
 
@@ -195,4 +198,4 @@ Step Functions allows you to create state machine, execution, and activity names
 1. In the **Execution Details** section, choose the **Info** tab to view the **Execution Status** and the **Started** and **Closed** timestamps\.
 
 1. To view the results of your execution, choose the **Output** tab\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-console-retry-state-machine-execution-output.png)![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/)![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/)
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-console-retry-state-machine-execution-output.png)

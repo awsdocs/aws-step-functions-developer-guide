@@ -2,7 +2,7 @@
 
 The `Parallel` state \(`"Type": "Parallel"`\) can be used to create parallel branches of execution in your state machine\.
 
-In addition to the [common state fields](amazon-states-language-states.md#amazon-states-language-common-fields), `Parallel` states introduce these additional fields:
+In addition to the [common state fields](amazon-states-language-common-fields.md), `Parallel` states introduce these additional fields:
 
 ** `Branches` \(Required\)**  
 An array of objects that specify state machines to execute in parallel\. Each such state machine object must have fields named `States` and `StartAt` whose meanings are exactly like those in the top level of a state machine\.

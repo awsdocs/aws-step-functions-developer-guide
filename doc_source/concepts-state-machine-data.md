@@ -1,16 +1,16 @@
 # State Machine Data<a name="concepts-state-machine-data"></a>
 
 State Machine data takes the following forms:
-
 + The initial input into a state machine
-
 + Data passed between states
-
 + The output from a state machine
 
 This section describes how state machine data is formatted and used in AWS Step Functions\.
 
-
+**Topics**
++ [Data Format](#concepts-state-machine-data-format)
++ [State Machine Input/Output](#concepts-state-machine-data-state-machine-input-output)
++ [State Input/Output](#concepts-state-machine-data-state-input-output)
 
 ## Data Format<a name="concepts-state-machine-data-format"></a>
 
@@ -87,17 +87,14 @@ In the following example, the state machine adds two numbers together:
 ### Filters<a name="concepts-state-machine-data-filters"></a>
 
 Some states, such as [Task](amazon-states-language-task-state.md), have `InputPath`, `ResultPath`, and `OutputPath` fields\. The values of these fields are [path](amazon-states-language-input-output-processing.md)\.
-
 + The `InputPath` field selects a portion of the state's input to pass into the state's processing logic \(an activity, Lambda function, or so on\)\. If the field is `null`, an empty object \(`{}`\) is passed\.
 **Note**  
 If you omit the `InputPath` field, the entire state input \(`$`\) is selected by default\.
-
 + The `ResultPath` field selects a portion of the state's input to overwrite with, or add to, result data from the state's processing logic\.
 
   The `ResultPath` field's value can be `null`, which causes any output from your state's processing logic to be discarded instead of being added to the state's input\. In this scenario, the state's output is identical to the state's input, given the default value for the `OutputPath` field\.
 **Note**  
 If you omit the optional `ResultPath` field, it defaults to `$`, which overwrites the entire input\. However, you can select a portion of the input using the `OutputPath` field before the input is sent as the state's output\.
-
 + If the `OutputPath` field's value is `null`, an empty object \(`{}`\) is sent as the state's output\.
 **Note**  
 If you omit the optional `OutputPath` field, it defaults to `$`, which selects the entire input \(as modified by the `ResultPath` field\), and sends the input as the state's output\.
