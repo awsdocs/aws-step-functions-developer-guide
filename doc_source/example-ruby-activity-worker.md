@@ -4,7 +4,7 @@ The following is an example activity worker written in Ruby\. This provides an i
 + For more information on the AWS SDK for Ruby, see the [AWS SDK for Ruby API Reference](http://docs.aws.amazon.com/sdk-for-ruby/v3/api/)\. 
 + To download this code and related resources, see [step\-functions\-ruby\-activity\-worker](https://github.com/aws-samples/step-functions-ruby-activity-worker) on GitHub\.com\.
 
-The following Roby code is the main entry point and example usage for the Ruby activity worker that follows\.
+The following Ruby code is the main entry point and example usage for the Ruby activity worker that follows\.
 
 ```
  require_relative '../lib/step_functions/activity'
