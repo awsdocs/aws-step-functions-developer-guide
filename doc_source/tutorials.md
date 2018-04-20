@@ -11,3 +11,4 @@ The following tutorials will help you get started working with AWS Step Function
 + [Starting a State Machine Execution Using CloudWatch Events](tutorial-cloudwatch-events-target.md)
 + [Creating a Step Functions API Using API Gateway](tutorial-api-gateway.md)
 + [Iterating a Loop Using Lambda](tutorial-create-iterate-pattern-section.md)
++ [Continue as a New Execution](tutorial-continue-new.md)

@@ -98,7 +98,7 @@ A retrier's parameters apply across all visits to the retrier in the context of 
 }
 ```
 
-This task fails five times in succession, outputting these error names: `ErrorA`, `ErrorB`, `ErrorC`, **`ErrorB`**, and `ErrorB`\. The following occurs as a result:
+This task fails five times in succession, outputting these error names: `ErrorA`, `ErrorB`, `ErrorC`, `ErrorB`, and `ErrorB`\. The following occurs as a result:
 + The first two errors match the first retrier and cause waits of 1 and 2 seconds\.
 + The third error matches the second retrier and causes a wait of 5 seconds\.
 + The fourth error matches the first retrier and causes a wait of 4 seconds\.

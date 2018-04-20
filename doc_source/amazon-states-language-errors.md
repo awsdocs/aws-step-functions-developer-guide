@@ -102,7 +102,7 @@ A Retrier's parameters apply across all visits to that Retrier in the context of
 }
 ```
 
-Suppose that this task fails five successive times, outputting Error Names "ErrorA", "ErrorB", "ErrorC", "ErrorB" and "ErrorB"\. The first two errors match the first retrier and cause waits of one and two seconds\. The third error matches the second retrier and causes a wait of five seconds\. The fourth error matches the first retrier and causes a wait of four seconds\. The fifth error also matches the first retrier, but it has already reached its limit of two retries \("MaxAttempts"\) for that particular error \("ErrorB"\) so it fails and execution is redirected to the "Z" state via the "Catch" field\.
+Suppose that this task fails five successive times, outputting Error Names "`ErrorA`", "`ErrorB`", "`ErrorC`", "`ErrorB`", and "`ErrorB`"\. The first two errors match the first retrier, and cause waits of one and two seconds\. The third error matches the second retrier, and causes a wait of five seconds\. The fourth error matches the first retrier and causes a wait of four seconds\. The fifth error also matches the first retrier, but it has already reached its limit of two retries \("`MaxAttempts`"\) for that particular error \("`ErrorB`"\) so it fails and execution is redirected to the "Z" state via the "Catch" field\.
 
 Note that once the system transitions to another state, no matter how, all Retrier parameters are reset\.
 

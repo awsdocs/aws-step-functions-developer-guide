@@ -133,7 +133,7 @@ If you delete the IAM role that Step Functions creates, Step Functions can't rec
          "Type": "Pass",
          "Result": {
              "count": 10,
-             "index": -1,
+             "index": 0,
              "step": 1
      },
      ```
@@ -177,7 +177,7 @@ If you delete the IAM role that Step Functions creates, Step Functions can't rec
                "Type": "Pass",
                "Result": {
                    "count": 10,
-                   "index": -1,
+                   "index": 0,
                    "step": 1
                },
                "ResultPath": "$.iterator",

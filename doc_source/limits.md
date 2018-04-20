@@ -41,7 +41,7 @@ If a particular stage of your state machine execution or activity execution take
 |  Maximum execution time  |  1 year  | 
 |  Maximum execution history size  | 25,000 events | 
 |  Maximum execution idle time  |  1 year \(constrained by execution time limit\)  | 
-| Maximum execution history retention time |  90 days\. After this time, you can no longer retrieve or view the execution history\.There is no further limit to the number of closed executions that Step Functions retains\.  | 
+| Maximum execution history retention time |  90 days\. After this time, you can no longer retrieve or view the execution history\. There is no further limit to the number of closed executions that Step Functions retains\.  | 
 |  Maximum executions displayed in [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/)  | The Step Functions console displays a maximum of 1,000 executions per state machine\. If you have more than 1,000 executions, use the Step Functions API actions or the AWS CLI to display all of your executions\. | 
 
 ## Limits Related to Task Executions<a name="service-limits-task-executions"></a>
