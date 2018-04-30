@@ -269,7 +269,7 @@ This excerpt of your state machine shows the `Restart` `[Task](amazon-states-lan
              "Type": "Choice",
              "Choices": [
                {
-                 "Variable": "$.restart.count",
+                 "Variable": "$.iterator.count",
                  "NumericGreaterThan": 0,
                  "Next": "Restart"
                }
