@@ -60,7 +60,7 @@ After you create your state machine, you can start an execution\.
 
    The **New execution** window is displayed\.
 
-1. \(Optional\) To help identify your execution, you can specify an ID for it in the **Enter your execution id here** box\. If you don't enter an ID, Step Functions generates a unique ID automatically\.
+1. \(Optional\) To help identify your execution, you can specify an ID for it in the **Enter an execution name** box\. If you don't enter an ID, Step Functions generates a unique ID automatically\.
 **Note**  
 Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with Amazon CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
 
@@ -82,7 +82,7 @@ State machine updates in Step Functions are *eventually consistent*\. All execut
 
 ### To update a state machine<a name="update-state-machine"></a>
 
-1. On the ***Helloworld*** page, choose **Edit state machine**\.
+1. On the ***Helloworld*** page, choose **Edit**\.
 
    The **Edit** page is displayed\.
 
@@ -106,15 +106,12 @@ State machine updates in Step Functions are *eventually consistent*\. All execut
 **Note**  
 You can also select **Create new role** to create a new IAM role\. For more information, see [Creating IAM Roles for AWS Step Functions](procedure-create-iam-role.md)\.
 
-1. Choose **Update and start execution**\.
+1. Choose **Save** and then **Execute**\.
 
-   The **New execution** window displays a message that the state machine was updated successfully\.   
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-console-state-machine-updated.png)
+1. On the **New execution** page choose **Start Execution**\.
 
-1. Choose **Start Execution**\.
-
-1. To view the results of your execution, choose the **Output** tab in the **Execution Details** section\.  
-![\[Start new execution.\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-console-state-machine-update-output.png)
+1. To view the results of your execution, select the **HelloWorld** state in the **Visual workflow** and expand the **Output** section under **Step details**\.  
+![\[Execution output\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-console-state-machine-update-output.png)
 **Note**  
 The output text matches your newly updated state machine\.
 

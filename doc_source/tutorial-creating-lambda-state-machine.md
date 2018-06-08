@@ -80,7 +80,7 @@ If the IAM role that you created doesn't appear in the list, the role might stil
 
    This code assembles a greeting using the `who` field of the input data, which is provided by the `event` object passed into your function\. You will add input data for this function later, when you [start a new execution](#create-lambda-state-machine-start-execution)\. The `callback` method returns the assembled greeting from your function\.
 
-1. Choose **Save and Test**\.
+1. Choose **Save**\.
 
 ## Step 3: Testing the Lambda Function<a name="create-lambda-state-machine-step-3"></a>
 
@@ -88,7 +88,7 @@ Test your Lambda function to see it in operation\.
 
 ### To test your Lambda function<a name="create-lambda-state-machine-test-lambda-function"></a>
 
-1. On the **Configure test event** dialog box, type `HelloFunction` for **Event name**\.
+1. On the **Select a test event** drop\-down, choose **Configure test event** and type `HelloFunction` for **Event name**\.
 
 1. Replace the example data with the following:
 
@@ -104,7 +104,7 @@ Test your Lambda function to see it in operation\.
 
 1. On the ***HelloFunction*** page, **Test** your Lambda function using the new data\.
 
-   The results of the test are displayed at the top of the page\.
+   The results of the test are displayed at the top of the page\. Expand **Details** to see the output\.
 
 ## Step 4: Creating a State Machine<a name="create-lambda-state-machine-step-4"></a>
 
@@ -130,7 +130,7 @@ Step Functions allows you to create state machine, execution, and activity names
 **Note**  
 If you delete the IAM role that Step Functions creates, Step Functions can't recreate it later\. Similarly, if you modify the role \(for example, by removing Step Functions from the principals in the IAM policy\), Step Functions can't restore its original settings later\. 
 
-1. In the **Code** pane, add the following state machine definition using the ARN of [the Lambda function that you created earlier](#create-lambda-state-machine-create-lambda-function), for example:
+1. In the **State machine definition** pane, add the following state machine definition using the ARN of [the Lambda function that you created earlier](#create-lambda-state-machine-create-lambda-function), for example:
 
    ```
    {
@@ -147,6 +147,8 @@ If you delete the IAM role that Step Functions creates, Step Functions can't rec
    ```
 
    This is a description of your state machine using the Amazon States Language\. It defines a single `Task` state named `HelloWorld`\. For more information, see [State Machine Structure](amazon-states-language-state-machine-structure.md)\.
+**Note**  
+You can also set up a `Retry` for `Task` states\. For more information see [Retrying After an Error](concepts-error-handling.md#error-handling-retrying-after-an-error)
 
 1. Use the graph in the **Visual Workflow** pane to check that your Amazon States Language code describes your state machine correctly\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/hello-state-machine-preview.png)
@@ -155,21 +157,17 @@ If you delete the IAM role that Step Functions creates, Step Functions can't rec
 
 1. Choose **Create State Machine**\.
 
-1. Choose **OK**\.
-
-   The state machine is created and an acknowledgement page is displayed\.
-
 ## Step 5: Starting a New Execution<a name="create-lambda-state-machine-step-5"></a>
 
 After you create your state machine, you can start an execution\.
 
 ### To start a new execution<a name="create-lambda-state-machine-start-execution"></a>
 
-1. On the ***LambdaStateMachine*** page, choose **New execution**\.
+1. On the ***LambdaStateMachine*** page, choose **Start execution**\.
 
    The **New execution** page is displayed\.
 
-1. \(Optional\) To help identify your execution, you can specify an ID for it in the **Enter your execution id here** box\. If you don't enter an ID, Step Functions generates a unique ID automatically\.
+1. \(Optional\) To help identify your execution, you can specify an ID for it in the **Enter an execution name** box\. If you don't enter an ID, Step Functions generates a unique ID automatically\.
 **Note**  
 Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with Amazon CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
 
@@ -187,7 +185,5 @@ Step Functions allows you to create state machine, execution, and activity names
 
    A new execution of your state machine starts, and a new page showing your running execution is displayed\.
 
-1. \(Optional\) In the **Execution Details** section, choose the **Info** tab to view the **Execution Status** and the **Started** and **Closed** timestamps\.
-
-1. To view the results of your execution, choose the **Output** tab\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-console-lambda-state-machine-execution-output.png)
+1. To view the results of your execution, expand the **Output** section under **Execution details**\.  
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-console-state-machine-execution-output.png)

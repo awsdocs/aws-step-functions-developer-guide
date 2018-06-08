@@ -55,7 +55,7 @@ The `AWS/States` namespace includes the following metrics for Step Functions exe
 | Metric | Description | 
 | --- | --- | 
 | ExecutionTime | The interval, in milliseconds, between the time the execution starts and the time it closes\. | 
-| ExecutionThrottled | The number of StateEntered events and retries that have been throttled\. | 
+| ExecutionThrottled | The number of StateEntered events and retries that have been throttled\. This is related to StateTransition throttling\. For more information, see [Limits Related to State Throttling](http://docs.aws.amazon.com/step-functions/latest/dg/limits.html#service-limits-api-state-throttling) in the AWS Step Functions Developer Guide\. | 
 | ExecutionsAborted | The number of aborted or terminated executions\. | 
 | ExecutionsFailed | The number of failed executions\. | 
 | ExecutionsStarted | The number of started executions\. | 
@@ -116,3 +116,41 @@ The `AWS/States` namespace includes the following metrics for Step Functions Lam
 |  Dimension  |  Description  | 
 | --- | --- | 
 |  `LambdaFunctionArn`  |  The ARN of the Lambda function\.  | 
+
+### Service Metrics<a name="cloudwatch-step-functions-service-metrics"></a>
+
+The `AWS/States` namespace includes the following metrics for the Step Functions service:
+
+
+| Metric | Description | 
+| --- | --- | 
+| ThrottledEvents  | The count of requests that have been throttled\. | 
+| ProvisionedBucketSize |  The count of available requests per second\.  | 
+| ProvisionedRefillRate |  The count of requests per second that are allowed into the bucket\.  | 
+| ConsumedCapacity |  The count of requests per second\.  | 
+
+#### Dimension for Step Functions Service Metrics<a name="cloudwatch-step-functions-service-metrics-dimensions"></a>
+
+
+| Dimension | Description | 
+| --- | --- | 
+|  `StateTransition`  |  Filters data to show State Transitions metrics\.  | 
+
+### API Metrics<a name="cloudwatch-step-functions-api-metrics"></a>
+
+The `AWS/States` namespace includes the following metrics for the Step Functions API:
+
+
+| Metric | Description | 
+| --- | --- | 
+| ThrottledEvents  | The count of requests that have been throttled\. | 
+| ProvisionedBucketSize |  The count of available requests per second\.  | 
+| ProvisionedRefillRate |  The count of requests per second that are allowed into the bucket\.  | 
+| ConsumedCapacity |  The count of requests per second\.  | 
+
+#### Dimension for Step Functions API Metrics<a name="cloudwatch-step-functions-api-metrics-dimensions"></a>
+
+
+| Dimension | Description | 
+| --- | --- | 
+|  `APIName`  |  Filters data to an API of the specified API name\.  | 

@@ -21,37 +21,45 @@ A `Parallel` state causes AWS Step Functions to execute each branch, starting wi
 Here is an example:
 
 ```
-"LookupCustomerInfo": {
-  "Type": "Parallel",
-  "Branches": [
-    {
-      "StartAt": "LookupAddress",
-      "States": {
-        "LookupAddress": {
-          "Type": "Task",
-          "Resource":
-            "arn:aws:lambda:us-east-1:123456789012:function:AddressFinder",
-          "End": true
-        }
-      }
-    },
-    {
-      "StartAt": "LookupPhone",
-      "States": {
-        "LookupPhone": {
-          "Type": "Task",
-          "Resource":
-            "arn:aws:lambda:us-east-1:123456789012:function:PhoneFinder",
-          "End": true
-        }
-      }
+{
+  "Comment": "Parallel Example.",
+  "StartAt": "LookupCustomerInfo",
+  "States": {
+    "LookupCustomerInfo": {
+      "Type": "Parallel",
+      "End": true,
+      "Branches": [
+        {
+         "StartAt": "LookupAddress",
+         "States": {
+           "LookupAddress": {
+             "Type": "Task",
+             "Resource":
+               "arn:aws:lambda:us-east-1:123456789012:function:AddressFinder",
+             "End": true
+           }
+         }
+       },
+       {
+         "StartAt": "LookupPhone",
+         "States": {
+           "LookupPhone": {
+             "Type": "Task",
+             "Resource":
+               "arn:aws:lambda:us-east-1:123456789012:function:PhoneFinder",
+             "End": true
+           }
+         }
+       }
+      ]
     }
-  ],
-  "Next": "NextState"
+  }
 }
 ```
 
-In this example, the `LookupAddress` and `LookupPhone` branches are executed in parallel\.
+In this example, the `LookupAddress` and `LookupPhone` branches are executed in parallel\. Here is how the visual workflow looks in the Step Functions console:
+
+![\[Parallel Workflow\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/parallel-state.png)
 
 Each branch must be self\-contained\. A state in one branch of a `Parallel` state must not have a `Next` field that targets a field outside of that branch, nor can any other state outside the branch transition into that branch\.
 
@@ -62,31 +70,37 @@ A `Parallel` state provides each branch with a copy of its own input data \(subj
 Here is another example:
 
 ```
-"FunWithMath": {
-  "Type": "Parallel",
-  "Branches": [
-    {
-      "StartAt": "Add",
-      "States": {
-        "Add": {
-          "Type": "Task",
-          "Resource": "arn:aws:swf:us-east-1:123456789012:task:Add",
-          "End": true
+{
+  "Comment": "Parallel Example.",
+  "StartAt": "FunWithMath",
+  "States": {
+    "FunWithMath": {
+    "Type": "Parallel",
+    "End": true,
+    "Branches": [
+      {
+        "StartAt": "Add",
+        "States": {
+          "Add": {
+            "Type": "Task",
+            "Resource": "arn:aws:swf:us-east-1:123456789012:task:Add",
+            "End": true
+          }
+        }
+      },
+      {
+        "StartAt": "Subtract",
+        "States": {
+          "Subtract": {
+            "Type": "Task",
+            "Resource": "arn:aws:swf:us-east-1:123456789012:task:Subtract",
+            "End": true
+          }
         }
       }
-    },
-    {
-      "StartAt": "Subtract",
-      "States": {
-        "Subtract": {
-          "Type": "Task",
-          "Resource": "arn:aws:swf:us-east-1:123456789012:task:Subtract",
-          "End": true
-        }
-      }
-    }
-  ],
-  "Next": "NextState"
+    ]
+   }
+  }
 }
 ```
 

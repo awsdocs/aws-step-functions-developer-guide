@@ -12,6 +12,7 @@ If a particular stage of your state machine execution or activity execution take
 + [Limits Related to Task Executions](#service-limits-task-executions)
 + [Limits Related to API Action Throttling](#service-limits-api-action-throttling)
 + [Limits Related to State Throttling](#service-limits-api-state-throttling)
++ [Requesting a Limit Increase](#sfn-limits-how-to-increase)
 
 ## General Limits<a name="service-limits-general"></a>
 
@@ -38,7 +39,7 @@ If a particular stage of your state machine execution or activity execution take
 | Limit | Description | 
 | --- | --- | 
 |  Maximum open executions  | 1,000,000 | 
-|  Maximum execution time  |  1 year  | 
+|  Maximum execution time  |  1 year\. If an execution runs for more than the 1 year limit, it will fail with a `States.Timeout` error and emit a `ExecutionsTimedout` CloudWatch metric\.  | 
 |  Maximum execution history size  | 25,000 events | 
 |  Maximum execution idle time  |  1 year \(constrained by execution time limit\)  | 
 | Maximum execution history retention time |  90 days\. After this time, you can no longer retrieve or view the execution history\. There is no further limit to the number of closed executions that Step Functions retains\.  | 
@@ -80,17 +81,25 @@ Throttling limits are per account, per region\. AWS Step Functions may increase 
 | SendTaskFailure | 1,000 | 25 | 
 | SendTaskHeartbeat | 1,000 | 25 | 
 | SendTaskSuccess | 1,000 | 25 | 
-| StartExecution | 500 | 25 | 
-| StopExecution | 500 | 25 | 
+| StartExecution — In US East \(N\. Virginia\), US West \(Oregon\), and EU \(Ireland\) | 1000 | 200 | 
+| StartExecution — All other regions | 500 | 25 | 
+| StopExecution — In US East \(N\. Virginia\), US West \(Oregon\), and EU \(Ireland\) | 1000 | 200 | 
+| StopExecution — All other regions | 500 | 25 | 
 | UpdateStateMachine | 200 | 1 | 
 
 ## Limits Related to State Throttling<a name="service-limits-api-state-throttling"></a>
 
 Step Functions state transitions are throttled using a token bucket scheme to maintain service bandwidth\.
 
-For more information, see the [`ExecutionThrottled` CloudWatch metric](procedure-cw-metrics.md#monitoring-using-cloudwatch-state-machine-metrics)\.
+**Note**  
+Throttling on the `StateTransition` service metric is reported as `ExecutionThrottled` in CloudWatch\. For more information, see the [`ExecutionThrottled` CloudWatch metric](procedure-cw-metrics.md#monitoring-using-cloudwatch-state-machine-metrics)\.
 
 
 | Service Metric | Bucket Size | Refill Rate per Second  | 
 | --- | --- | --- | 
-|  `StateTransition`  |  800  |  400  | 
+|  `StateTransition` — *In US East \(N\. Virginia\), US West \(Oregon\), and EU \(Ireland\)*  |  5000  |  1000  | 
+|  `StateTransition` — *All other regions* |  800  |  400  | 
+
+## Requesting a Limit Increase<a name="sfn-limits-how-to-increase"></a>
+
+Use the **Support Center** page in the AWS Management Console to request a limit increase for resources provided by AWS Step Functions on a per\-region basis\. For more information, see [To Request a Limit Increase](http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html) in the *AWS General Reference*\.

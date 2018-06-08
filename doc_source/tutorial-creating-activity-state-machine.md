@@ -22,13 +22,13 @@ Ensure that your activity task is under the same AWS account as your state machi
 
 ### To create the new activity task<a name="create-activity-state-machine-new-activity"></a>
 
-1. Log in to the [Step Functions console](https://console.aws.amazon.com/states/home) and choose **Tasks**\.
+1. In the [Step Functions console](https://console.aws.amazon.com/states/home), choose **Activities** in the left navigation panel\.
 
-1. Choose **Create new activity**\.
+1. Choose **Create activity**\.
 
-1. On the **Tasks** page, type an **Activity Name**, for example `get-greeting`, and choose **Create Activity**\.
+1. Type an **Activity Name**\. For example `get-greeting`, and choose **Create Activity**\.
 
-1. When your activity task is created, note its Amazon Resource Name \(ARN\) on the right\-hand side of the page, for example:
+1. When your activity task is created, note its Amazon Resource Name \(ARN\), for example:
 
    ```
    arn:aws:states:us-east-1:123456789012:activity:get-greeting
@@ -40,9 +40,9 @@ Create a state machine that will determine when your activity is invoked and whe
 
 ### To create the state machine<a name="create-activity-state-machine-create"></a>
 
-1. Log in to the [Step Functions console](https://console.aws.amazon.com/states/home) and choose **Get Started**\.
+1. In the [Step Functions console](https://console.aws.amazon.com/states/home), choose **State machines** in the left navigation panel\.
 
-1. On the **Dashboard**, choose **Create a state machine**, select **Author from scratch**, and enter a name under **Give a name your state machine** \(for example `ActivityStateMachine)`\.
+1. On the **State machines** page, choose **Create state machine**, select **Author from scratch**, and enter a name under **Details** \(for example `ActivityStateMachine)`\.
 **Note**  
 State machine names must be 1–80 characters in length, must be unique for your account and region, and must not contain any of the following:  
 Whitespace
@@ -58,7 +58,7 @@ Step Functions allows you to create state machine, execution, and activity names
 **Note**  
 If you delete the IAM role that Step Functions creates, Step Functions can't recreate it later\. Similarly, if you modify the role \(for example, by removing Step Functions from the principals in the IAM policy\), Step Functions can't restore its original settings later\. 
 
-1. In the **Code** pane, enter the following code, and include the ARN of [the activity task that you created earlier](#create-activity-state-machine-new-activity) to the `Resource` field, for example:
+1. Under **State machine definition**, enter the following code, and include the ARN of [the activity task that you created earlier](#create-activity-state-machine-new-activity) in the `Resource` field, for example:
 
    ```
    {
@@ -172,11 +172,11 @@ When you start the execution of the state machine, your worker polls Step Functi
 
 ### To start the execution<a name="create-activity-state-machine-start-execution"></a>
 
-1. On the ***ActivityStateMachine*** page, choose **New execution**\.
+1. On the ***ActivityStateMachine*** page, choose **Start execution**\.
 
    The **New execution** page is displayed\.
 
-1. \(Optional\) To help identify your execution, you can specify an ID for it in the **Enter your execution id here** box\. If you don't enter an ID, Step Functions generates a unique ID automatically\.
+1. \(Optional\) To help identify your execution, you can specify an ID for it in the **Enter an execution name** box\. If you don't enter an ID, Step Functions generates a unique ID automatically\.
 **Note**  
 Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with Amazon CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
 
@@ -194,8 +194,7 @@ Step Functions allows you to create state machine, execution, and activity names
 
 1. In the **Execution Details** section, choose **Info** to view the **Execution Status** and the **Started** and **Closed** timestamps\.
 
-1. To view the results of your execution, choose **Output**\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-console-activity-state-machine-execution-output.png)
+1. In the **Execution Details** section, expand the **Output** section to view the output of your workflow\.
 
 ## Step 5: Running and Stopping the Worker<a name="create-activity-state-machine-step-5"></a>
 

@@ -269,7 +269,7 @@ This excerpt of your state machine shows the `Restart` `[Task](amazon-states-lan
              "Type": "Choice",
              "Choices": [
                {
-                 "Variable": "$.restart.count",
+                 "Variable": "$.restart.executionCount",
                  "NumericGreaterThan": 0,
                  "Next": "Restart"
                }
@@ -330,7 +330,7 @@ To start an execution, provide input that includes the ARN of the state machine 
    ```
    {
      "restart": {
-       "StateMachineArn": "arn:aws:lambda:us-east-1:123456789012:stateMachine:ContinueAsNew",
+       "StateMachineArn": "arn:aws:states:us-east-1:123456789012:stateMachine:ContinueAsNew",
        "executionCount": 4
      }
    }

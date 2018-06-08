@@ -6,6 +6,12 @@ Use this design pattern any time you need to keep track of the number of loops i
 
 Before you begin, go through the [Creating a Lambda State Machine](tutorial-creating-lambda-state-machine.md) tutorial to ensure you have created the necessary IAM role, and are familiar with using Lambda and Step Functions together\.
 
+**Topics**
++ [Step 1: Create a Lambda Function to Iterate a Count](#create-iterate-pattern-step-1)
++ [Step 2: Test the Lambda Function](#create-iterate-pattern-step-2)
++ [Step 3: Create a State Machine](#create-iterate-pattern-step-3)
++ [Step 4: Start a New Execution](#create-iterate-pattern-step-4)
+
 ## Step 1: Create a Lambda Function to Iterate a Count<a name="create-iterate-pattern-step-1"></a>
 
 By using a Lambda function you can track the number of iterations of a loop in your state machine\. The following Lambda function receives input values for `count`, `index`, and `step`\. It returns these values with an updated `index` and a Boolean named `continue`\. The Lambda function sets `continue` to `true` if the `index` is less than `count`\.
@@ -61,7 +67,7 @@ If the IAM role that you created doesn't appear in the list, the role might stil
 
 1. Choose **Save**\.
 
-## Step 2: Test the Lambda Function<a name="create-iterate-pattern-step-3"></a>
+## Step 2: Test the Lambda Function<a name="create-iterate-pattern-step-2"></a>
 
 Run your Lambda function with numeric values to see it in operation\. You can provide input values for your Lambda function that mimic an iteration, to see what output you get with specific input values\. 
 
@@ -101,7 +107,7 @@ Run your Lambda function with numeric values to see it in operation\. You can pr
 **Note**  
 If you set `index` to 9 for this test, the `index` will increment to 10, and `continue` will be `false`\. 
 
-## Step 3: Create a State Machine<a name="create-iterate-pattern-step-4"></a>
+## Step 3: Create a State Machine<a name="create-iterate-pattern-step-3"></a>
 
 ### To create the state machine<a name="create-iterate-pattern-create-state-machine"></a>
 
@@ -233,7 +239,7 @@ If you delete the IAM role that Step Functions creates, Step Functions can't rec
 
    The state machine is created and an acknowledgement page is displayed\.
 
-## Step 5: Start a New Execution<a name="create-iterate-pattern-step-5"></a>
+## Step 4: Start a New Execution<a name="create-iterate-pattern-step-4"></a>
 
 After you create your state machine, you can start an execution\.
 
@@ -241,7 +247,7 @@ After you create your state machine, you can start an execution\.
 
 1. On the **IterateCount** page, choose **New execution**\.
 
-1. \(Optional\) To help identify your execution, you can specify an ID for it in the **Enter your execution id here** box\. If you don't enter an ID, Step Functions generates a unique ID automatically\.
+1. \(Optional\) To help identify your execution, you can specify an ID for it in the **Enter an execution name** box\. If you don't enter an ID, Step Functions generates a unique ID automatically\.
 **Note**  
 Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with Amazon CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
 

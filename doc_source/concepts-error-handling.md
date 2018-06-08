@@ -328,3 +328,6 @@ This example uses a `Catch` field\. When a timeout occurs, the state machine tra
    }
 }
 ```
+
+**Note**  
+You can preserve the state input along with the error by using `ResultPath`\. See [Use `ResultPath` to Include Both Error and Input in a `Catch`](input-output-resultpath.md#input-output-resultpath-catch)

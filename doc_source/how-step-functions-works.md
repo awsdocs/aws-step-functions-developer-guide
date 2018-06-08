@@ -8,6 +8,7 @@ To understand AWS Step Functions, you will need to be familiar with a number of 
 + [Activities](concepts-activities.md)
 + [Transitions](concepts-transitions.md)
 + [State Machine Data](concepts-state-machine-data.md)
++ [Input and Output Processing](concepts-input-output-filtering.md)
 + [Executions](concepts-state-machine-executions.md)
 + [Error Handling](concepts-error-handling.md)
 + [Read Consistency](concepts-read-consistency.md)

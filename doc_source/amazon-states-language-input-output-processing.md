@@ -2,6 +2,9 @@
 
 In this section you will learn how to use paths and reference paths for input and output processing\.
 
+**Note**  
+For an overview, see [Input and Output Processing in Step Functions](concepts-input-output-filtering.md) in the [How Step Functions Works](how-step-functions-works.md) section\.
+
 ## Paths<a name="amazon-states-language-paths"></a>
 
 In Amazon States Language, a *path* is a string beginning with `$` that you can use to identify components within JSON text\. Paths follow [JsonPath](https://github.com/json-path/JsonPath) syntax\.
@@ -69,14 +72,12 @@ The `ResultPath` takes the results of executing the state's task and places them
 + If the `ResultPath` is `null`, the results of executing the state are discarded and the input is untouched\.
 
 **Note**  
- `ResultPath` field values must be [reference paths](#amazon-states-language-reference-paths)\.
+ `ResultPath` field values must be [reference paths](#amazon-states-language-reference-paths)\. For more information on `ResultPath` see [Understanding `ResultPath`](input-output-resultpath.md)
 
 #### OutputPath<a name="amazon-states-language-outputpath"></a>
 + If the `OutputPath` matches an item in the state's input, only that input item is selected\. This input item becomes the state's output\.
 + If the `OutputPath` doesn't match an item in the state's input, an exception specifies an invalid path\. For more information, see [Errors](amazon-states-language-errors.md)\.
 + If the `OutputPath` has the default value of `$`, this matches the entire input completely\. In this case, the entire input is passed to the next state\.
-**Note**  
-For more information about the effect `ResultPath` has on the input for those states that allow it, see [ResultPath](#amazon-states-language-resultpath)\.
 + If the `OutputPath` is `null`, JSON text representing an empty object `{}` is sent to the next state\.
 
 The following example demonstrates how `InputPath`, `ResultPath`, and `OutputPath` fields work in practice\. Consider the following input for the current state:

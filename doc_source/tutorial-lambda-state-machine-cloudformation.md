@@ -196,7 +196,7 @@ After you understand the different parts of the AWS CloudFormation template, you
    AWS CloudFormation begins to create the `MyStateMachine` stack and displays the **CREATE\_IN\_PROGRESS** status\. When the process is complete, AWS CloudFormation displays the **CREATE\_COMPLETE** status\.
 
 1. \(Optional\) To display the resources in your stack, select the stack and choose the **Resources** tab\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-lambda-state-machine-display-resources.png)![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/)![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/)
+![\[Display resources\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-lambda-state-machine-display-resources.png)![\[Display resources\]](http://docs.aws.amazon.com/step-functions/latest/dg/)![\[Display resources\]](http://docs.aws.amazon.com/step-functions/latest/dg/)
 
 ## Step 3: Starting a State Machine Execution<a name="lambda-state-machine-cfn-step-3"></a>
 
@@ -210,7 +210,7 @@ After you create your Lambda state machine, you can start an execution\.
 
    The **New execution** page is displayed\.
 
-1. \(Optional\) To help identify your execution, you can specify an ID for it in the **Enter your execution id here** box\. If you don't enter an ID, Step Functions generates a unique ID automatically\.
+1. \(Optional\) To help identify your execution, you can specify an ID for it in the **Enter an execution name** box\. If you don't enter an ID, Step Functions generates a unique ID automatically\.
 **Note**  
 Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with Amazon CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
 
@@ -221,4 +221,4 @@ Step Functions allows you to create state machine, execution, and activity names
 1. \(Optional\) In the **Execution Details** section, choose the **Info** tab to view the **Execution Status** and the **Started** and **Closed** timestamps\.
 
 1. To view the results of your execution, choose the **Output** tab\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-console-state-machine-execution-output.png)
+![\[Execution output\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-console-state-machine-execution-output.png)

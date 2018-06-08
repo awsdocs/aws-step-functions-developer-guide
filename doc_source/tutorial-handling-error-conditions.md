@@ -102,7 +102,7 @@ Use the [Step Functions console](https://console.aws.amazon.com/states/home?regi
 
 ### To create the state machine<a name="using-state-machine-error-conditions-create"></a>
 
-1. Log in to the [Step Functions console](https://console.aws.amazon.com/states/home) and choose **Create a state machine**\.
+1. Log in to the [Step Functions console](https://console.aws.amazon.com/states/home) and choose **Create state machine**\.
 
 1. On the **Create a state machine** page, select **Templates** and choose **Catch failure**\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-create-state-machine-catch-failure.png)
@@ -187,7 +187,7 @@ After you create your state machine, you can start an execution\.
 
    The **New execution** page is displayed\.
 
-1. \(Optional\) To help identify your execution, you can specify an ID for it in the **Enter your execution id here** box\. If you don't enter an ID, Step Functions generates a unique ID automatically\.
+1. \(Optional\) To help identify your execution, you can specify an ID for it in the **Enter an execution name** box\. If you don't enter an ID, Step Functions generates a unique ID automatically\.
 **Note**  
 Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with Amazon CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
 
@@ -195,7 +195,10 @@ Step Functions allows you to create state machine, execution, and activity names
 
    A new execution of your state machine starts, and a new page showing your running execution is displayed\.
 
-1. In the **Execution Details** section, choose the **Info** tab to view the **Execution Status** and the **Started** and **Closed** timestamps\.
+1. In the **Execution Details** section, expand the **Output** section to view the output of your workflow\.  
+![\[Execution output\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-console-retry-state-machine-execution-output.png)
 
-1. To view the results of your execution, choose the **Output** tab\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-console-retry-state-machine-execution-output.png)
+1. To view your custom error message, select `CreateAccount` in the **Visual workflow** and expand the **Output** section\.  
+![\[Error output\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-console-retry-state-machine-error-output.png)
+**Note**  
+You can preserve the state input along with the error by using `ResultPath`\. See [Use `ResultPath` to Include Both Error and Input in a `Catch`](input-output-resultpath.md#input-output-resultpath-catch)
