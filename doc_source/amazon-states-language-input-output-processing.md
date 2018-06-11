@@ -14,6 +14,7 @@ In Amazon States Language, a *path* is a string beginning with `$` that you can 
 A *reference path* is a path whose syntax is limited in such a way that it can identify only a single node in a JSON structure:
 + You can access object fields using only dot \(`.`\) and square bracket \(`[ ]`\) notation\.
 + The operators `@ .. , : ? *` aren't supported\.
++ Functions such as `length()` aren't supported\.
 
 For example, state input data contains the following values:
 
