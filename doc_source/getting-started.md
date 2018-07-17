@@ -56,9 +56,9 @@ After you create your state machine, you can start an execution\.
 
 ### To start a new execution<a name="start-new-execution"></a>
 
-1. On the ***Helloworld*** page, choose **New execution**\.
+1. On the ***Helloworld*** page, choose **Start execution**\.
 
-   The **New execution** window is displayed\.
+   The **Start execution** window is displayed\.
 
 1. \(Optional\) To help identify your execution, you can specify an ID for it in the **Enter an execution name** box\. If you don't enter an ID, Step Functions generates a unique ID automatically\.
 **Note**  
