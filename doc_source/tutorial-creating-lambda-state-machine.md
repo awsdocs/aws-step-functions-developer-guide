@@ -70,7 +70,7 @@ If the IAM role that you created doesn't appear in the list, the role might stil
       arn:aws:lambda:us-east-1:123456789012:function:HelloFunction
       ```
 
-1. Copy the following code for the Lambda function into the **Configuration** section of the ***HelloFunction*** page:
+1. Copy the following code for the Lambda function into the **Function code** section of the ***HelloFunction*** page:
 
    ```
    exports.handler = (event, context, callback) => {
