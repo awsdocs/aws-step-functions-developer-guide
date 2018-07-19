@@ -106,9 +106,9 @@ State machine updates in Step Functions are *eventually consistent*\. All execut
 **Note**  
 You can also select **Create new role** to create a new IAM role\. For more information, see [Creating IAM Roles for AWS Step Functions](procedure-create-iam-role.md)\.
 
-1. Choose **Save** and then **Execute**\.
+1. Choose **Save** and then **Start execution**\.
 
-1. On the **New execution** page choose **Start Execution**\.
+1. On the **New execution** page choose **Start execution**\.
 
 1. To view the results of your execution, select the **HelloWorld** state in the **Visual workflow** and expand the **Output** section under **Step details**\.  
 ![\[Execution output\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-console-state-machine-update-output.png)
