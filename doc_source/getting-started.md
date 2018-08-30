@@ -58,7 +58,7 @@ After you create your state machine, you can start an execution\.
 
 1. On the ***Helloworld*** page, choose **New execution**, or **Start execution** if you have started an execution before\.
 
-   The **New execution** window is displayed\.
+   The **Start execution** window is displayed\.
 
 1. \(Optional\) To help identify your execution, you can specify an ID for it in the **Enter an execution name** box\. If you don't enter an ID, Step Functions generates a unique ID automatically\.
 **Note**  
@@ -108,7 +108,7 @@ You can also select **Create new role** to create a new IAM role\. For more info
 
 1. Choose **Save** and then **Start execution**\.
 
-1. On the **New execution** page choose **Start Execution**\.
+1. On the **New execution** page choose **Start execution**\.
 
 1. To view the results of your execution, select the **HelloWorld** state in the **Visual workflow** and expand the **Output** section under **Step details**\.  
 ![\[Execution output\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-console-state-machine-update-output.png)
