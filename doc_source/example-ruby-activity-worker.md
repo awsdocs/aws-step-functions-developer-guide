@@ -1,10 +1,12 @@
 # Example Activity Worker in Ruby<a name="example-ruby-activity-worker"></a>
 
-The following is an example activity worker written in Ruby\. This provides an implementation based on best practices that can be used as a reference for your activity worker\. The code implements a consumer\-producer pattern with a configurable number of threads for pollers and activity workers\. The poller threads are constantly long polling the activity task\. Once an activity task is retrieved, it is passed through a bounded blocking queue for the activity thread to pick it up\.
-+ For more information on the AWS SDK for Ruby, see the [AWS SDK for Ruby API Reference](http://docs.aws.amazon.com/sdk-for-ruby/v3/api/)\. 
+The following is an example activity worker that uses the AWS SDK for Ruby to show you how to use best practices and implement your own activity worker\.\. 
+
+The code implements a consumer\-producer pattern with a configurable number of threads for pollers and activity workers\. The poller threads are constantly long polling the activity task\. Once an activity task is retrieved, it's passed through a bounded blocking queue for the activity thread to pick it up\.
++ For more information about the AWS SDK for Ruby, see the [AWS SDK for Ruby API Reference](http://docs.aws.amazon.com/sdk-for-ruby/v3/api/)\.
 + To download this code and related resources, see [step\-functions\-ruby\-activity\-worker](https://github.com/aws-samples/step-functions-ruby-activity-worker) on GitHub\.com\.
 
-The following Ruby code is the main entry point and example usage for the Ruby activity worker that follows\.
+The following Ruby code is the main entry point for this example Ruby activity worker\.
 
 ```
  require_relative '../lib/step_functions/activity'
@@ -26,19 +28,19 @@ The following Ruby code is the main entry point and example usage for the Ruby a
    { result: :SUCCESS, echo: input['value'] }
 ```
 
-The above code includes defaults you can change to reference your activity, and to adapt it to your specific implementation\. This code takes as input the actual implementation logic, allows you to reference your specific activity and credentials, and allows you to configure the number of threads and heartbeat delay\. For more information and to download the code, see [Step Functions Ruby Activity Worker](https://github.com/aws-samples/step-functions-ruby-activity-worker)\.
+The code includes defaults you can change to reference your activity, and to adapt it to your specific implementation\. This code takes as input the actual implementation logic, allows you to reference your specific activity and credentials, and enables you to configure the number of threads and heartbeat delay\. For more information and to download the code, see [Step Functions Ruby Activity Worker](https://github.com/aws-samples/step-functions-ruby-activity-worker)\.
 
 
 | Item | Description | 
 | --- | --- | 
-|  `require_relative`  |  Relative path to the activity worker code below\.  | 
-|  `region`  |  AWS region of your activity\.  | 
-|  `workers_count`  |  The number of threads for your activity worker\. For most implementations, between 10 and 20 threads should be sufficient\. The longer the activity takes to process, the more threads it may need\. As an estimate, multiply the number of process activities per second by the 99th percentile activity processing latency, in seconds\.  | 
+|  `require_relative`  |  Relative path to the following example activity worker code\.  | 
+|  `region`  |  AWS Region of your activity\.  | 
+|  `workers_count`  |  The number of threads for your activity worker\. For most implementations, between 10 and 20 threads should be sufficient\. The longer the activity takes to process, the more threads it might need\. As an estimate, multiply the number of process activities per second by the 99th percentile activity processing latency, in seconds\.  | 
 |  `pollers_count`  |  The number of threads for your pollers\. Between 10 and 20 threads should be sufficient for most implementations\.  | 
 |  `heartbeat_delay`  |  The delay in seconds between heartbeats\.  | 
 | input | Implementation logic of your activity\. | 
 
-The following is the Ruby activity worker used by the example above and referenced with `../lib/step_functions/activity`\.
+The following is the Ruby activity worker, referenced with `../lib/step_functions/activity` in your code\.
 
 ```
 require 'set'

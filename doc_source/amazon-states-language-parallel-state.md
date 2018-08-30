@@ -113,3 +113,8 @@ If the `FunWithMath` state was given the array `[3, 2]` as input, then both the 
 ### Error Handling<a name="error-handling"></a>
 
 If any branch fails, due to either an unhandled error or by transitioning to a `Fail` state, the entire `Parallel` state is considered to have failed and all its branches are stopped\. If the error is not handled by the `Parallel` state itself, Step Functions will stop the execution with an error\.
+
+**Note**  
+When a parallel state fails, invoked Lambda functions continue to run and activity workers processing a task token will not be stopped:   
+To stop long\-running Activities use heartbeats to detect if its branch has been stopped by Step Functions, and stop workers that are processing tasks\. Calling [http://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskHeartbeat.html](http://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskHeartbeat.html), [http://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskSuccess.html](http://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskSuccess.html), or [http://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskFailure.html](http://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskFailure.html) will throw an error if the state has failed\. See [Heartbeat Errors](http://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskHeartbeat.html#API_SendTaskHeartbeat_Errors)\.
+Running Lambda functions cannot be stopped\. If you have implemented a fallback, use a `Wait` state so that cleanup work happens after the Lambda function has finished\.

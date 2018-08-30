@@ -22,6 +22,7 @@ Currently, Step Functions is supported only in the following regions:
 + US East \(N\. Virginia\)
 + US West \(Oregon\)
 + US West \(N\. California\)
++ Asia Pacific \(Mumbai\)
 + Asia Pacific \(Sydney\)
 + Asia Pacific \(Tokyo\)
 + Asia Pacific \(Seoul\)
@@ -30,6 +31,7 @@ Currently, Step Functions is supported only in the following regions:
 + EU \(London\)
 + Canada \(Central\)
 + Asia Pacific \(Singapore\)
++ AWS GovCloud \(US\)
 
 ### About Amazon Web Services<a name="about-amazon-web-services"></a>
 

@@ -1,41 +1,41 @@
-# Logging Step Functions using CloudTrail<a name="procedure-cloud-trail"></a>
+# Logging Step Functions using AWS CloudTrail<a name="procedure-cloud-trail"></a>
 
-AWS Step Functions is integrated with CloudTrail, a service that captures specific API calls and delivers log files to an Amazon S3 bucket that you specify\. With the information collected by CloudTrail, you can determine what request was made to Step Functions, the IP address from which the request was made, who made the request, when it was made, and so on\.
+Step Functions is integrated with AWS CloudTrail, a service that provides a record of actions taken by a user, role, or an AWS service in Step Functions\. CloudTrail captures all API calls for Step Functions as events, including calls from the Step Functions console and from code calls to the Step Functions APIs\. If you create a trail, you can enable continuous delivery of CloudTrail events to an Amazon S3 bucket, including events for Step Functions\. If you don't configure a trail, you can still view the most recent events in the CloudTrail console in **Event history**\. Using the information collected by CloudTrail, you can determine the request that was made to Step Functions, the IP address from which the request was made, who made the request, when it was made, and additional details\. 
 
-To learn more about CloudTrail, including how to configure and enable it, see the AWS [CloudTrail User Guide](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html)\.
+To learn more about CloudTrail, see the [AWS CloudTrail User Guide](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/)\. 
 
-## Step Functions Information in CloudTrail<a name="statm-information-in-cloudtrail"></a>
+## Step Functions Information in CloudTrail<a name="service-name-info-in-cloudtrail"></a>
 
-When CloudTrail logging is enabled in your AWS account, API actions made to specific Step Functions actions are tracked in CloudTrail log files\. Step Functions actions are written, together with other AWS service records\. CloudTrail determines when to create and write to a new file based on a time period and file size\.
+CloudTrail is enabled on your AWS account when you create the account\. When activity occurs in Step Functions, that activity is recorded in a CloudTrail event along with other AWS service events in **Event history**\. You can view, search, and download recent events in your AWS account\. For more information, see [Viewing Events with CloudTrail Event History](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/view-cloudtrail-events.html)\. 
 
-The following actions are supported:
+For an ongoing record of events in your AWS account, including events for Step Functions, create a trail\. A trail enables CloudTrail to deliver log files to an Amazon S3 bucket\. By default, when you create a trail in the console, the trail applies to all regions\. The trail logs events from all regions in the AWS partition and delivers the log files to the Amazon S3 bucket that you specify\. Additionally, you can configure other AWS services to further analyze and act upon the event data collected in CloudTrail logs\. For more information, see: 
++ [Overview for Creating a Trail](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-create-and-update-a-trail.html)
++ [CloudTrail Supported Services and Integrations](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-aws-service-specific-topics.html#cloudtrail-aws-service-specific-topics-integrations)
++ [Configuring Amazon SNS Notifications for CloudTrail](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/getting_notifications_top_level.html)
++ [Receiving CloudTrail Log Files from Multiple Regions](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/receive-cloudtrail-log-files-from-multiple-regions.html) and [Receiving CloudTrail Log Files from Multiple Accounts](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-receive-logs-from-multiple-accounts.html)
+
+Step Functions supports logging the following actions as events in CloudTrail log files:
 +  [CreateActivity](http://docs.aws.amazon.com/step-functions/latest/apireference/API_CreateActivity.html) 
 +  [CreateStateMachine](http://docs.aws.amazon.com/step-functions/latest/apireference/API_CreateStateMachine.html) 
 +  [DeleteActivity](http://docs.aws.amazon.com/step-functions/latest/apireference/API_DeleteActivity.html) 
 +  [DeleteStateMachine](http://docs.aws.amazon.com/step-functions/latest/apireference/API_DeleteStateMachine.html) 
 +  [StartExecution](http://docs.aws.amazon.com/step-functions/latest/apireference/API_StartExecution.html) 
-+  [StopExecution](http://docs.aws.amazon.com/step-functions/latest/apireference/API_StopExecution.html) 
++  [UpdateStateMachine](http://docs.aws.amazon.com/step-functions/latest/apireference/API_UpdateStateMachine.html) 
 
-Every log entry contains information about who generated the request\. The user identity information in the log helps you determine the following:
-+ Whether the request was made with root or IAM user credentials
-+ Whether the request was made with temporary security credentials for a role or federated user
-+ Whether the request was made by another AWS service
+Every event or log entry contains information about who generated the request\. The identity information helps you determine the following: 
++ Whether the request was made with root or IAM user credentials\.
++ Whether the request was made with temporary security credentials for a role or federated user\.
++ Whether the request was made by another AWS service\.
 
-For more information, see the [userIdentity element](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-user-identity.html) in the *AWS CloudTrail User Guide*\.
+For more information, see the [CloudTrail userIdentity Element](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-user-identity.html)\.
 
-You can store your log files in your S3 bucket for as long as you want, but you can also define Amazon S3 lifecycle rules to archive or delete log files automatically\. By default, your log files are encrypted with [Amazon S3 server\-side encryption](http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html)\.
+## Example: Step Functions Log File Entries<a name="understanding-service-name-entries"></a>
 
-If you want to be notified upon log file delivery, you can configure CloudTrail to publish Amazon SNS notifications when new log files are delivered\. For more information, see [Configuring Amazon SNS Notifications for CloudTrail](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/configure-sns-notifications-for-cloudtrail.html)\.
-
-You can also aggregate Step Functions log files from multiple AWS regions and multiple AWS accounts into a single Amazon S3 bucket\. For more information, see [Receiving CloudTrail Log Files from Multiple Regions](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/receive-cloudtrail-log-files-from-multiple-regions.html) and [Receiving CloudTrail Log Files from Multiple Accounts](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-receive-logs-from-multiple-accounts.html)\.
-
-## Understanding Step Functions Log File Entries<a name="understanding-statm-log-file-entries"></a>
-
-CloudTrail log files contain one or more log entries\. Each entry lists multiple JSON\-formatted events\. A log entry represents a single request from any source and includes information about the requested action, the date and time of the action, request parameters, and so on\. The log entries are not an ordered stack trace of the public API actions, so they do not appear in any specific order\.
+A trail is a configuration that enables delivery of events as log files to an Amazon S3 bucket that you specify\. CloudTrail log files contain one or more log entries\. An event represents a single request from any source and includes information about the requested action, the date and time of the action, request parameters, and so on\. CloudTrail log files are not an ordered stack trace of the public API calls, so they do not appear in any specific order\.
 
 ### CreateActivity<a name="id1"></a>
 
-The following example shows a CloudTrail log entry that demonstrates the CreateActivity action:
+The following example shows a CloudTrail log entry that demonstrates the `CreateActivity` action:
 
 ```
 {
@@ -70,7 +70,7 @@ The following example shows a CloudTrail log entry that demonstrates the CreateA
 
 ### CreateStateMachine<a name="id2"></a>
 
-The following example shows a CloudTrail log entry that demonstrates the CreateStateMachine action:
+The following example shows a CloudTrail log entry that demonstrates the `CreateStateMachine` action:
 
 ```
 {
@@ -107,7 +107,7 @@ The following example shows a CloudTrail log entry that demonstrates the CreateS
 
 ### DeleteActivity<a name="id3"></a>
 
-The following example shows a CloudTrail log entry that demonstrates the DeleteActivity action:
+The following example shows a log entry that demonstrates the `DeleteActivity` action:
 
 ```
 {
@@ -139,7 +139,7 @@ The following example shows a CloudTrail log entry that demonstrates the DeleteA
 
 ### DeleteStateMachine<a name="id4"></a>
 
-The following example shows a CloudTrail log entry that demonstrates the DeleteStateMachine action:
+The following example shows a CloudTrail log entry that demonstrates the `DeleteStateMachine` action:
 
 ```
 {
@@ -171,7 +171,7 @@ The following example shows a CloudTrail log entry that demonstrates the DeleteS
 
 ### StartExecution<a name="id5"></a>
 
-The following example shows a CloudTrail log entry that demonstrates the StartExecution action:
+The following example shows a CloudTrail log entry that demonstrates the `StartExecution` action:
 
 ```
 {
@@ -208,7 +208,7 @@ The following example shows a CloudTrail log entry that demonstrates the StartEx
 
 ### StopExecution<a name="id6"></a>
 
-The following example shows a CloudTrail log entry that demonstrates the StopExecution action:
+The following example shows a CloudTrail log entry that demonstrates the `StopExecution` action:
 
 ```
 {

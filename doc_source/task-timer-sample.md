@@ -3,10 +3,10 @@
 This sample project creates a task timer\. It implements an AWS Step Functions state machine that implements a wait state, and uses a Lambda function to that sends an Amazon Simple Notification Service notification\. A Wait state is a state type that waits for a trigger to perform a single unit of work\.
 
 This sample project creates the state machine, a Lambda function, an Amazon SNS topic, and configures the related IAM permissions\. For more information on the resources that are created with the **Task Timer** sample project, see:
-+ [AWS CloudFormation User Guide](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/)
-+ [Amazon Simple Notification Service Developer Guide](http://docs.aws.amazon.com/sns/latest/dg/)
-+ [AWS Lambda Developer Guide](http://docs.aws.amazon.com/lambda/latest/dg/)
-+ [IAM Getting Started Guide](http://docs.aws.amazon.com/IAM/latest/GettingStartedGuide/)
++ http://docs\.aws\.amazon\.com/AWSCloudFormation/latest/UserGuide/
++ http://docs\.aws\.amazon\.com/sns/latest/dg/
++ http://docs\.aws\.amazon\.com/lambda/latest/dg/
++ http://docs\.aws\.amazon\.com/IAM/latest/GettingStartedGuide/
 
 To create the **Task Timer** state machine and provision all resources:
 

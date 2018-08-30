@@ -25,6 +25,8 @@ A `Task` state failed because it had insufficient privileges to execute the spec
 
 States can report errors with other names\. However, these must not begin with the `States.` prefix\.
 
+As a best practice, ensure production code can handle Lambda service exceptions \(`Lambda.ServiceException` and `Lambda.SdkclientException`\)\. For more information see [Handle Lambda Service Exceptions](bp-lambda-serviceexception.md)\.
+
 **Note**  
 Unhandled errors in Lambda are reported as `Lambda.Unknown` in the error output\. These include out\-of\-memory errors, function timeouts, and hitting the concurrent Lambda invoke limit\. You can match on `Lambda.Unknown`, `States.ALL`, or `States.TaskFailed` to handle these errors\. For more information about Lambda `Handled` and `Unhandled` errors, see `FunctionError` in the [AWS Lambda Developer Guide](http://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_ResponseSyntax)\. 
 
@@ -223,6 +225,9 @@ This variant uses the predefined error code `States.TaskFailed`, which matches a
    }
 }
 ```
+
+**Note**  
+As a best practice, tasks that reference a Lambda function should handle Lambda service exceptions\. For more information see [Handle Lambda Service Exceptions](bp-lambda-serviceexception.md)\. 
 
 ### Handling a Failure Using Catch<a name="error-handling-handling-failure-using-catch"></a>
 

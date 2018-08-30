@@ -1,13 +1,13 @@
 # Understanding `ResultPath`<a name="input-output-resultpath"></a>
 
-The output of a state can be a copy of its input, the result it produces \(for example, output from a Task state’s Lambda function\), or a combination of its input and result\. Use`ResultPath` to control which combination of these is passed to the state output\. 
+The output of a state can be a copy of its input, the result it produces \(for example, output from a Task state’s Lambda function\), or a combination of its input and result\. Use `ResultPath` to control which combination of these is passed to the state output\. 
 
 The following state types can generate a result and can include `ResultPath:`
 + [Pass](amazon-states-language-pass-state.md)
 + [Task](amazon-states-language-task-state.md)
 + [Parallel](amazon-states-language-parallel-state.md)
 
-Use `ResultPath` to combine a task result with task input, or to select one of these\. The path you provide to `ResultPath`controls what information passes to the output\. 
+Use `ResultPath` to combine a task result with task input, or to select one of these\. The path you provide to `ResultPath` controls what information passes to the output\. 
 
 These examples are based on the state machine and Lambda function described in the [Creating a Lambda State Machine](tutorial-creating-lambda-state-machine.md) tutorial\. Work through that tutorial and test different outputs by trying various paths in a `ResultPath` field\.
 

@@ -141,6 +141,9 @@ If you delete the IAM role that Step Functions creates, Step Functions can't rec
              "count": 10,
              "index": 0,
              "step": 1
+         },
+         "ResultPath": "$.iterator",
+         "Next": "Iterator"
      },
      ```
    + `Iterator`: References your Lambda function you created earlier, passing in the values configured in `ConfigureCount`\.

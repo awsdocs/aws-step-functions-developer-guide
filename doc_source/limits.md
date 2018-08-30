@@ -52,7 +52,7 @@ If a particular stage of your state machine execution or activity execution take
 | --- | --- | 
 |  Maximum task execution time  |  1 year \(constrained by execution time limit\)  | 
 |  Maximum time Step Functions keeps a task in the queue  |  1 year \(constrained by execution time limit\)  | 
-|  Maximum open activities  |  1,000 per execution\. This limit includes both activities that have been scheduled and those being processed by workers\.  | 
+|  Maximum activity pollers per ARN  |  1,000 pollers calling `GetActivityTask` per Amazon Resource Name\. Exceeding this limit results in the error: *"The maximum number of workers concurrently polling for activity tasks has been reached\."*  | 
 |  Maximum input or result data size for a task, state, or execution  |  32,768 characters\. This limit affects tasks \(activity or Lambda function\), state or execution result data, and input data when scheduling a task, entering a state, or starting an execution\.  | 
 
 ## Limits Related to API Action Throttling<a name="service-limits-api-action-throttling"></a>

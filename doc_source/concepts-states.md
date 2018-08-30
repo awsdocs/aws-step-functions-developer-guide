@@ -37,4 +37,4 @@ Certain state types require additional fields, or may redefine common field usag
 
 For more information regarding the various states that you can define using Amazon States Language, see [States](amazon-states-language-states.md)\.
 
-Once you create a state machine and executed it, you can access information about each state, its input and output, when it was active and for how long, by viewing the **Execution Details** page in the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/)\.
+Once you create a state machine and have executed it, you can access information about each state, its input and output, when it was active and for how long, by viewing the **Execution Details** page in the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/)\.

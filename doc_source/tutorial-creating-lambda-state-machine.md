@@ -70,7 +70,7 @@ If the IAM role that you created doesn't appear in the list, the role might stil
       arn:aws:lambda:us-east-1:123456789012:function:HelloFunction
       ```
 
-1. Copy the following code for the Lambda function into the **Configuration** section of the ***HelloFunction*** page:
+1. Copy the following code for the Lambda function into the **Function code** section of the ***HelloFunction*** page:
 
    ```
    exports.handler = (event, context, callback) => {
@@ -114,7 +114,7 @@ Use the [Step Functions console](https://console.aws.amazon.com/states/home?regi
 
 1. Log in to the [Step Functions console](https://console.aws.amazon.com/states/home) and choose **Create a state machine**\.
 
-1. On the **Create a state machine** page, select **Author from scratch** and enter a **Name your state machine**, for example `LambdaStateMachine`\.
+1. On the **Create a state machine** page, select **Author from scratch** and enter a **Name for your state machine**, for example `LambdaStateMachine`\.
 **Note**  
 State machine names must be 1–80 characters in length, must be unique for your account and region, and must not contain any of the following:  
 Whitespace
@@ -148,7 +148,9 @@ If you delete the IAM role that Step Functions creates, Step Functions can't rec
 
    This is a description of your state machine using the Amazon States Language\. It defines a single `Task` state named `HelloWorld`\. For more information, see [State Machine Structure](amazon-states-language-state-machine-structure.md)\.
 **Note**  
-You can also set up a `Retry` for `Task` states\. For more information see [Retrying After an Error](concepts-error-handling.md#error-handling-retrying-after-an-error)
+You can also set up a `Retry` for `Task` states\. As a best practice, ensure production code can handle Lambda service exceptions \(`Lambda.ServiceException` and `Lambda.SdkclientException`\)\. For more information see:   
+[Handle Lambda Service Exceptions](bp-lambda-serviceexception.md)\. 
+[Retrying After an Error](concepts-error-handling.md#error-handling-retrying-after-an-error)\. 
 
 1. Use the graph in the **Visual Workflow** pane to check that your Amazon States Language code describes your state machine correctly\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/hello-state-machine-preview.png)

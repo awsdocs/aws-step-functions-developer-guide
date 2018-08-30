@@ -56,7 +56,7 @@ After you create your state machine, you can start an execution\.
 
 ### To start a new execution<a name="start-new-execution"></a>
 
-1. On the ***Helloworld*** page, choose **New execution**\.
+1. On the ***Helloworld*** page, choose **New execution**, or **Start execution** if you have started an execution before\.
 
    The **New execution** window is displayed\.
 
@@ -64,7 +64,7 @@ After you create your state machine, you can start an execution\.
 **Note**  
 Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with Amazon CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
 
-1. Choose **Start Execution**\.
+1. Choose **Start execution**\.
 
    A new execution of your state machine starts, and a new page showing your running execution is displayed\.
 
@@ -106,7 +106,7 @@ State machine updates in Step Functions are *eventually consistent*\. All execut
 **Note**  
 You can also select **Create new role** to create a new IAM role\. For more information, see [Creating IAM Roles for AWS Step Functions](procedure-create-iam-role.md)\.
 
-1. Choose **Save** and then **Execute**\.
+1. Choose **Save** and then **Start execution**\.
 
 1. On the **New execution** page choose **Start Execution**\.
 

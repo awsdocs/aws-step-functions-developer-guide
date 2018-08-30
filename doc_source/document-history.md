@@ -2,6 +2,4 @@
 
 This section lists major changes to the *AWS Step Functions Developer Guide*\.
 
-**Latest documentation update:** June 7, 2018
-
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/step-functions/latest/dg/document-history.html)

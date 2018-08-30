@@ -15,6 +15,9 @@ Before you use the [example YAML template](#lambda-state-machine-cfn-step-2), yo
 
 Define the trust policy associated with the IAM role for the Lambda function\.
 
+------
+#### [ YAML ]
+
 ```
 LambdaExecutionRole:
   Type: "AWS::IAM::Role"
@@ -28,12 +31,39 @@ LambdaExecutionRole:
           Action: "sts:AssumeRole"
 ```
 
+------
+#### [ JSON ]
+
+```
+          "LambdaExecutionRole": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+                "AssumeRolePolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Principal": {
+                                "Service": "lambda.amazonaws.com"
+                            },
+                            "Action": "sts:AssumeRole"
+                        }
+                    ]
+                }
+            }
+```
+
+------
+
 ### To create a Lambda function<a name="lambda-state-machine-cfn-create-function"></a>
 
 Define the following properties of the Lambda function which prints the message `Hello World`\.
 
 **Important**  
 Ensure that your Lambda function is under the same AWS account and region as your state machine\.
+
+------
+#### [ YAML ]
 
 ```
 MyLambdaFunction:
@@ -50,9 +80,37 @@ MyLambdaFunction:
     Timeout: "25"
 ```
 
+------
+#### [ JSON ]
+
+```
+        "MyLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+                "Handler": "index.handler",
+                "Role": {
+                    "Fn::GetAtt": [
+                        "LambdaExecutionRole",
+                        "Arn"
+                    ]
+                },
+                "Code": {
+                    "ZipFile": "exports.handler = (event, context, callback) => {\n    callback(null, \"Hello World!\");\n};\n"
+                },
+                "Runtime": "nodejs4.3",
+                "Timeout": "25"
+            }
+        },
+```
+
+------
+
 ### To create an IAM role for the state machine execution<a name="lambda-state-machine-cfn-create-role"></a>
 
 Define the trust policy associated with the IAM role for the state machine execution\.
+
+------
+#### [ YAML ]
 
 ```
 StatesExecutionRole:
@@ -78,9 +136,59 @@ StatesExecutionRole:
               Resource: "*"
 ```
 
+------
+#### [ JSON ]
+
+```
+        "StatesExecutionRole": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+                "AssumeRolePolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Principal": {
+                                "Service": [
+                                    {
+                                        "Fn::Sub": "states.${AWS::Region}.amazonaws.com"
+                                    }
+                                ]
+                            },
+                            "Action": "sts:AssumeRole"
+                        }
+                    ]
+                },
+                "Path": "/",
+                "Policies": [
+                    {
+                        "PolicyName": "StatesExecutionPolicy",
+                        "PolicyDocument": {
+                            "Version": "2012-10-17",
+                            "Statement": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "lambda:InvokeFunction"
+                                    ],
+                                    "Resource": "*"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+```
+
+------
+
 ### To create a Lambda state machine<a name="lambda-state-machine-cfn-create"></a>
 
 Define the Lambda state machine\.
+
+------
+#### [ YAML ]
 
 ```
 MyStateMachine:
@@ -104,13 +212,48 @@ MyStateMachine:
     RoleArn: !GetAtt [ StatesExecutionRole, Arn ]
 ```
 
+------
+#### [ JSON ]
+
+```
+        "MyStateMachine": {
+            "Type": "AWS::StepFunctions::StateMachine",
+            "Properties": {
+                "DefinitionString": {
+                    "Fn::Sub": [
+                        "{\n  \"Comment\": \"A Hello World AWL example using an AWS Lambda function\",\n  \"StartAt\": \"HelloWorld\",\n  \"States\": {\n    \"HelloWorld\": {\n      \"Type\": \"Task\",\n      \"Resource\": \"${lambdaArn}\",\n      \"End\": true\n    }\n  }\n}",
+                        {
+                            "lambdaArn": {
+                                "Fn::GetAtt": [
+                                    "MyLambdaFunction",
+                                    "Arn"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                "RoleArn": {
+                    "Fn::GetAtt": [
+                        "StatesExecutionRole",
+                        "Arn"
+                    ]
+                }
+            }
+        }
+```
+
+------
+
 ## Step 2: Using the AWS CloudFormation Template to Create a Lambda State Machine<a name="lambda-state-machine-cfn-step-2"></a>
 
 After you understand the different parts of the AWS CloudFormation template, you can put them together and use the template to create a AWS CloudFormation stack\.
 
 ### To create the Lambda state machine<a name="to-create-the-lam-state-machine"></a>
 
-1. Copy the following example YAML data to a file named `MyStateMachine.yaml`\.
+1. Copy the following example data to a file named `MyStateMachine.yaml` for the YAML example, or `MyStateMachine.json` for JSON\.
+
+------
+#### [ YAML ]
 
    ```
    AWSTemplateFormatVersion: "2010-09-09"
@@ -183,9 +326,120 @@ After you understand the different parts of the AWS CloudFormation template, you
          RoleArn: !GetAtt [ StatesExecutionRole, Arn ]
    ```
 
+------
+#### [ JSON ]
+
+   ```
+   {
+       "AWSTemplateFormatVersion": "2010-09-09",
+       "Description": "An example template with an IAM role for a Lambda state machine.",
+       "Resources": {
+           "LambdaExecutionRole": {
+               "Type": "AWS::IAM::Role",
+               "Properties": {
+                   "AssumeRolePolicyDocument": {
+                       "Version": "2012-10-17",
+                       "Statement": [
+                           {
+                               "Effect": "Allow",
+                               "Principal": {
+                                   "Service": "lambda.amazonaws.com"
+                               },
+                               "Action": "sts:AssumeRole"
+                           }
+                       ]
+                   }
+               }
+           },
+           "MyLambdaFunction": {
+               "Type": "AWS::Lambda::Function",
+               "Properties": {
+                   "Handler": "index.handler",
+                   "Role": {
+                       "Fn::GetAtt": [
+                           "LambdaExecutionRole",
+                           "Arn"
+                       ]
+                   },
+                   "Code": {
+                       "ZipFile": "exports.handler = (event, context, callback) => {\n    callback(null, \"Hello World!\");\n};\n"
+                   },
+                   "Runtime": "nodejs4.3",
+                   "Timeout": "25"
+               }
+           },
+           "StatesExecutionRole": {
+               "Type": "AWS::IAM::Role",
+               "Properties": {
+                   "AssumeRolePolicyDocument": {
+                       "Version": "2012-10-17",
+                       "Statement": [
+                           {
+                               "Effect": "Allow",
+                               "Principal": {
+                                   "Service": [
+                                       {
+                                           "Fn::Sub": "states.${AWS::Region}.amazonaws.com"
+                                       }
+                                   ]
+                               },
+                               "Action": "sts:AssumeRole"
+                           }
+                       ]
+                   },
+                   "Path": "/",
+                   "Policies": [
+                       {
+                           "PolicyName": "StatesExecutionPolicy",
+                           "PolicyDocument": {
+                               "Version": "2012-10-17",
+                               "Statement": [
+                                   {
+                                       "Effect": "Allow",
+                                       "Action": [
+                                           "lambda:InvokeFunction"
+                                       ],
+                                       "Resource": "*"
+                                   }
+                               ]
+                           }
+                       }
+                   ]
+               }
+           },
+           "MyStateMachine": {
+               "Type": "AWS::StepFunctions::StateMachine",
+               "Properties": {
+                   "DefinitionString": {
+                       "Fn::Sub": [
+                           "{\n  \"Comment\": \"A Hello World AWL example using an AWS Lambda function\",\n  \"StartAt\": \"HelloWorld\",\n  \"States\": {\n    \"HelloWorld\": {\n      \"Type\": \"Task\",\n      \"Resource\": \"${lambdaArn}\",\n      \"End\": true\n    }\n  }\n}",
+                           {
+                               "lambdaArn": {
+                                   "Fn::GetAtt": [
+                                       "MyLambdaFunction",
+                                       "Arn"
+                                   ]
+                               }
+                           }
+                       ]
+                   },
+                   "RoleArn": {
+                       "Fn::GetAtt": [
+                           "StatesExecutionRole",
+                           "Arn"
+                       ]
+                   }
+               }
+           }
+       }
+   }
+   ```
+
+------
+
 1. Log in to the [AWS CloudFormation console](https://console.aws.amazon.com/cloudformation/home) and choose **Create Stack**\.
 
-1. On the **Select Template** page, select **Upload a template to Amazon S3**\. Choose your `MyStateMachine.yaml` file, and then choose **Next**\.
+1. On the **Select Template** page, select **Upload a template to Amazon S3**\. Choose your `MyStateMachine` file, and then choose **Next**\.
 
 1. On the **Specify Details** page, for **Stack name**, type `MyStateMachine`, and then choose **Next**\.
 
@@ -220,5 +474,4 @@ Step Functions allows you to create state machine, execution, and activity names
 
 1. \(Optional\) In the **Execution Details** section, choose the **Info** tab to view the **Execution Status** and the **Started** and **Closed** timestamps\.
 
-1. To view the results of your execution, choose the **Output** tab\.  
-![\[Execution output\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-console-state-machine-execution-output.png)
+1. To view the results of your execution, choose the **Output** tab\.
