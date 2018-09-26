@@ -37,16 +37,16 @@ Step Functions offers various predefined state machines as *templates*\. Create 
 
    This JSON text defines a `Pass` state named `HelloWorld`\. For more information, see [State Machine Structure](amazon-states-language-state-machine-structure.md)\.
 
-1. Use the graph in the **Visual Workflow** pane to check that your Amazon States Language code describes your state machine correctly\.  
-![\[Visual Workflow.\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/hello-state-machine-preview.png)
-
-   If you don't see the graph, choose ![\[refresh\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-getting-started-refresh.png)![\[refresh\]](http://docs.aws.amazon.com/step-functions/latest/dg/)![\[refresh\]](http://docs.aws.amazon.com/step-functions/latest/dg/) in the **Visual Workflow** pane\.
-
 1. Create or enter an IAM role\.
    + To create a new IAM role for Step Functions, choose **Create a role for me**, and then choose **I acknowledge that Step Functions will create an IAM role which allows access to my Lambda functions\.**
    + If you have [previously created an IAM role for Step Functions](procedure-create-iam-role.md), choose **I will provide an IAM role ARN** and enter your existing **IAM role ARN**\.
 **Note**  
 If you delete the IAM role that Step Functions creates, Step Functions can't recreate it later\. Similarly, if you modify the role \(for example, by removing Step Functions from the principals in the IAM policy\), Step Functions can't restore its original settings later\. 
+
+1. Use the graph in the **Visual Workflow** pane to check that your Amazon States Language code describes your state machine correctly\.  
+![\[Visual Workflow.\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/hello-state-machine-preview.png)
+
+   If you don't see the graph, choose ![\[refresh\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-getting-started-refresh.png)![\[refresh\]](http://docs.aws.amazon.com/step-functions/latest/dg/)![\[refresh\]](http://docs.aws.amazon.com/step-functions/latest/dg/) in the **Visual Workflow** pane\.
 
 1. Choose **Create State Machine**\.
 
@@ -58,7 +58,7 @@ After you create your state machine, you can start an execution\.
 
 1. On the ***Helloworld*** page, choose **New execution**, or **Start execution** if you have started an execution before\.
 
-   The **Start execution** window is displayed\.
+   The **New execution** window is displayed\.
 
 1. \(Optional\) To help identify your execution, you can specify an ID for it in the **Enter an execution name** box\. If you don't enter an ID, Step Functions generates a unique ID automatically\.
 **Note**  
@@ -108,7 +108,7 @@ You can also select **Create new role** to create a new IAM role\. For more info
 
 1. Choose **Save** and then **Start execution**\.
 
-1. On the **New execution** page choose **Start execution**\.
+1. On the **New execution** page choose **Start Execution**\.
 
 1. To view the results of your execution, select the **HelloWorld** state in the **Visual workflow** and expand the **Output** section under **Step details**\.  
 ![\[Execution output\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-console-state-machine-update-output.png)

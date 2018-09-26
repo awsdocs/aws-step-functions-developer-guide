@@ -116,7 +116,7 @@ Use the [Step Functions console](https://console.aws.amazon.com/states/home?regi
 
 1. On the **Create a state machine** page, select **Author from scratch** and enter a **Name for your state machine**, for example `LambdaStateMachine`\.
 **Note**  
-State machine names must be 1–80 characters in length, must be unique for your account and region, and must not contain any of the following:  
+State machine, execution, and activity names must be 1–80 characters in length, must be unique for your account and region, and must not contain any of the following:  
 Whitespace
 Wildcard characters \(`? *`\)
 Bracket characters \(`< > { } [ ]`\)

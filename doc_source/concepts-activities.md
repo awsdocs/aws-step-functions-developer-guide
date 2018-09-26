@@ -30,7 +30,7 @@ For example, if you need a workflow that waits for the outcome of a long process
 
 1. Implement an activity worker that polls for work by using `[GetActivityTask](http://docs.aws.amazon.com/step-functions/latest/apireference/API_GetActivityTask.html)`, referencing that activity ARN\. 
 
-1. Use `[SendTaskHeartbeat](http://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskHeartbeat.html)` periodically within the time you set in `TimeoutSeconds` to keep the task from timing out\.
+1. Use `[SendTaskHeartbeat](http://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskHeartbeat.html)` periodically within the time you set in `[HeartbeatSeconds](amazon-states-language-task-state.md)` in your state machine task definition to keep the task from timing out\.
 
 1. Start an execution of your state machine\.
 

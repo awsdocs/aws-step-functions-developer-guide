@@ -12,7 +12,7 @@ States are top\-level elements within a state machine's `States` field, and can 
 States are identified by their name, which must be unique within the state machine specification, but otherwise can be any valid string in JSON text format\. Each state also contains a number of fields with options that vary according to the contents of the state's required `Type` field\.
 
 **Note**  
-State machine names must be 1–80 characters in length, must be unique for your account and region, and must not contain any of the following:  
+State machine, execution, and activity names must be 1–80 characters in length, must be unique for your account and region, and must not contain any of the following:  
 Whitespace
 Wildcard characters \(`? *`\)
 Bracket characters \(`< > { } [ ]`\)

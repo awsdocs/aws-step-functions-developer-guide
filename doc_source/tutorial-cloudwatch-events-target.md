@@ -1,4 +1,4 @@
-# Starting a State Machine Execution Using CloudWatch Events<a name="tutorial-cloudwatch-events-target"></a>
+# Periodically Start a State Machine Execution Using CloudWatch Events<a name="tutorial-cloudwatch-events-target"></a>
 
 You can execute a Step Functions state machine in response to an event pattern or on a schedule using Amazon CloudWatch Events\. This tutorial shows how to set a state machine as a target for a CloudWatch Events rule that starts the execution of a state machine every 5 minutes\.
 

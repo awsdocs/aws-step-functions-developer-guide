@@ -117,7 +117,7 @@ Ensure that your state machine is under the same AWS account and region as the L
 
 1. On the **Create a state machine** page, choose **Author from scratch**\. For **Give a name to your state machine**, enter `IterateCount`\.
 **Note**  
-State machine names must be 1–80 characters in length, must be unique for your account and region, and must not contain any of the following:  
+State machine, execution, and activity names must be 1–80 characters in length, must be unique for your account and region, and must not contain any of the following:  
 Whitespace
 Wildcard characters \(`? *`\)
 Bracket characters \(`< > { } [ ]`\)

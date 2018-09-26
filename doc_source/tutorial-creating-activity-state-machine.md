@@ -44,7 +44,7 @@ Create a state machine that will determine when your activity is invoked and whe
 
 1. On the **State machines** page, choose **Create state machine**, select **Author from scratch**, and enter a name under **Details** \(for example `ActivityStateMachine)`\.
 **Note**  
-State machine names must be 1–80 characters in length, must be unique for your account and region, and must not contain any of the following:  
+State machine, execution, and activity names must be 1–80 characters in length, must be unique for your account and region, and must not contain any of the following:  
 Whitespace
 Wildcard characters \(`? *`\)
 Bracket characters \(`< > { } [ ]`\)
