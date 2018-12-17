@@ -1,0 +1,50 @@
+# Call Amazon SNS With Step Functions<a name="connectors-sns"></a>
+
+Step Functions can control some AWS services directly from the Amazon States Language\. For more information, see:
++ [Service Integrations](concepts-connectors.md)
++ [Pass Parameters to a Service API](connectors-parameters.md)
+
+Supported APIs:
++ [https://docs.aws.amazon.com/sns/latest/api/API_Publish.html](https://docs.aws.amazon.com/sns/latest/api/API_Publish.html)
+  + [Request syntax](https://docs.aws.amazon.com/sns/latest/api/API_Publish.html#API_Publish_Example_1_Request)
+  + Supported Parameters
+    + [https://docs.aws.amazon.com/sns/latest/api/API_Publish.html#API_Publish_RequestParameters](https://docs.aws.amazon.com/sns/latest/api/API_Publish.html#API_Publish_RequestParameters)
+    + [https://docs.aws.amazon.com/sns/latest/api/API_Publish.html#API_Publish_RequestParameters](https://docs.aws.amazon.com/sns/latest/api/API_Publish.html#API_Publish_RequestParameters)
+    + [https://docs.aws.amazon.com/sns/latest/api/API_Publish.html#API_Publish_RequestParameters](https://docs.aws.amazon.com/sns/latest/api/API_Publish.html#API_Publish_RequestParameters)
+    + [https://docs.aws.amazon.com/sns/latest/api/API_Publish.html#API_Publish_RequestParameters](https://docs.aws.amazon.com/sns/latest/api/API_Publish.html#API_Publish_RequestParameters)
+    + [https://docs.aws.amazon.com/sns/latest/api/API_Publish.html#API_Publish_RequestParameters](https://docs.aws.amazon.com/sns/latest/api/API_Publish.html#API_Publish_RequestParameters)
+    + [https://docs.aws.amazon.com/sns/latest/api/API_Publish.html#API_Publish_RequestParameters](https://docs.aws.amazon.com/sns/latest/api/API_Publish.html#API_Publish_RequestParameters)
+    + [https://docs.aws.amazon.com/sns/latest/api/API_Publish.html#API_Publish_RequestParameters](https://docs.aws.amazon.com/sns/latest/api/API_Publish.html#API_Publish_RequestParameters)
+  + [Response syntax](https://docs.aws.amazon.com/sns/latest/api/API_Publish.html#API_Publish_Example_1_Response)
+
+The following includes a `Task` state that publishes an Amazon SNS topic\.
+
+```
+{
+ "StartAt": "Publish to SNS",
+ "States": {
+   "Publish to SNS": {
+     "Type": "Task",
+     "Resource": "arn:aws:states:::sns:publish",
+     "Parameters": {
+       "TopicArn": "arn:aws:sns:us-east-1:123456789012:myTopic",
+       "Message.$": "$.input.message",
+       "MessageStructure": "json",
+       "MessageAttributes": {
+         "my attribute no 1": {
+           "DataType": "String",
+           "StringValue": "value of my attribute no 1"
+         },
+         "my attribute no 2": {
+           "DataType": "String",
+           "StringValue": "value of my attribute no 2"
+         }
+       }
+     },
+     "End": true
+    }
+  }
+}
+```
+
+For information on how to configure IAM when using Step Functions with other AWS services, see [IAM Policies for Integrated Services](connectors-iam-templates.md)\.
