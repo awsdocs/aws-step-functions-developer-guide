@@ -23,7 +23,7 @@ Step Functions supports only an HTTPS endpoint\.
 
 Step Functions provides service operations accessible through HTTPS requests\. You can use these operations to communicate directly with Step Functions and to develop your own libraries in any language that can communicate with Step Functions through HTTPS\.
 
-You can develop state machines, workers, or state machine starters using the service API actions\. You can also access visibility operations through the API actions to develop your own monitoring and reporting tools\. For detailed information on API actions, see the *[AWS Step Functions API Reference](http://docs.aws.amazon.com/step-functions/latest/apireference/)*\.
+You can develop state machines, workers, or state machine starters using the service API actions\. You can also access visibility operations through the API actions to develop your own monitoring and reporting tools\. For detailed information on API actions, see the *[AWS Step Functions API Reference](https://docs.aws.amazon.com/step-functions/latest/apireference/)*\.
 
 ## Development Environments<a name="development-options-environments"></a>
 
@@ -37,7 +37,7 @@ To reduce latency and to store data in a location that meets your requirements, 
 
 Each endpoint in Step Functions is completely independent: A state machine or activity exists only within the region where it was created\. Any state machines and activities that you create in one region don't share any data or attributes with those created in another region\. For example, you can register a state machine named `STATES-Flows-1` in two different regions, but the two state machines won't share data or attributes with each other, being completely independent from each other\.
 
-For a list of Step Functions endpoints, see [Regions and Endpoints: AWS Step Functions](http://docs.aws.amazon.com/general/latest/gr/rande.html#step-functions_region) in the *Amazon Web Services General Reference*\.
+For a list of Step Functions endpoints, see [Regions and Endpoints: AWS Step Functions](https://docs.aws.amazon.com/general/latest/gr/rande.html#step-functions_region) in the *Amazon Web Services General Reference*\.
 
 ## AWS CLI<a name="development-options-aws-cli"></a>
 

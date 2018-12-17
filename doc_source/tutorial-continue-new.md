@@ -49,7 +49,7 @@ Your state machine then implements a `Choice` state that executes some applicati
 
 1. In the **Create function** section, choose **Author from scratch**\.
 
-1. In the **Author from scratch** section, configure your Lambda function, as follows:
+1. In the **Author with code snippets** section, configure your Lambda function, as follows:
 
    1. For **Name**, type `Iterator`\.
 
@@ -136,7 +136,7 @@ If you set `index` to 9 for this test, the `index` increments to 10, and `contin
 
 1. Sign in to the [Lambda console](https://console.aws.amazon.com/lambda/home), and then choose **Create function**\.
 
-1. In the **Author from scratch** section, configure your Lambda function, as follows:
+1. In the **Author with code snippets** section, configure your Lambda function, as follows:
 
    1. For **Name**, type `Restart`\.
 
@@ -217,9 +217,7 @@ This excerpt of your state machine shows the `Restart` `[Task](amazon-states-lan
 
 1. In the Step Functions console, choose **Create a state machine**\.
 
-1. Select **Author from scratch**, and enter `ContinueAsNew` as your state machine name\.
-
-1. Under **IAM role for your state machine executions**, select the IAM role that you use for Lambda functions\.
+1. Select **Author with code snippets**, and enter `ContinueAsNew` as your state machine name\.
 
 1. Paste the following into the `Code` pane\.  
 **Example `ContinueAsNew` state machine**  
@@ -291,14 +289,22 @@ This excerpt of your state machine shows the `Restart` `[Task](amazon-states-lan
 
 1. Update the `Resource` string in the `Restart` and `Iterator` states to reference the respective Lambda functions you created earlier\.
 
-1. Select **Create State Machine**\.
+1. Choose **Next**\.
+
+1. Create or enter an IAM role\.
+   + To create a new IAM role for Step Functions, select **Create an IAM role for me**, and enter a **Name** for your role\.
+   + If you have [previously created an IAM role](procedure-create-iam-role.md) with the correct permissions for your state machine, select **Choose an existing IAM role**\. Select a role from the drop\-down, or provide an ARN for that role\. 
+**Note**  
+If you delete the IAM role that Step Functions creates, Step Functions can't recreate it later\. Similarly, if you modify the role \(for example, by removing Step Functions from the principals in the IAM policy\), Step Functions can't restore its original settings later\. 
+
+1. Select **Create state machine**\.
 
 **Note**  
 Save the Amazon Resource Name of this state machine\. 
 
 ## Step 4: Update the IAM Policy<a name="tutorial-continue-new-step-2"></a>
 
-To ensure your Lambda function has permissions to start a new Step Functions execution, attach an inline policy to the IAM role you use for your `Restart` Lambda function\. For more information, see [Embedding Inline Policies](http://docs.aws.amazon.com/IAM/latest/UserGuide//access_policies_manage-attach-detach.html#embed-inline-policy-console) in the *IAM User Guide*\.
+To ensure your Lambda function has permissions to start a new Step Functions execution, attach an inline policy to the IAM role you use for your `Restart` Lambda function\. For more information, see [Embedding Inline Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html#embed-inline-policy-console) in the *IAM User Guide*\.
 
 ```
 {

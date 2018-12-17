@@ -22,9 +22,9 @@ Your state machine then implements a `Choice` state that executes some applicati
 
 1. Sign in to the [Lambda console](https://console.aws.amazon.com/lambda/home), and then choose **Create function**\.
 
-1. In the **Create function** section, choose **Author from scratch**\.
+1. In the **Create function** section, choose **Author with code snippets**\.
 
-1. In the **Author from scratch** section, configure your Lambda function, as follows:
+1. In the **Author with code snippets** section, configure your Lambda function, as follows:
 
    1. For **Name**, type `Iterator`\.
 
@@ -115,7 +115,7 @@ If you set `index` to 9 for this test, the `index` will increment to 10, and `co
 **Important**  
 Ensure that your state machine is under the same AWS account and region as the Lambda function you created earlier\.
 
-1. On the **Create a state machine** page, choose **Author from scratch**\. For **Give a name to your state machine**, enter `IterateCount`\.
+1. On the **Create a state machine** page, choose **Author with code snippets**\. For **Give a name to your state machine**, enter `IterateCount`\.
 **Note**  
 State machine, execution, and activity names must be 1–80 characters in length, must be unique for your account and region, and must not contain any of the following:  
 Whitespace
@@ -126,8 +126,8 @@ Control characters \(`\\u0000` \- `\\u001f` or `\\u007f` \- `\\u009f`\)\.
 Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with Amazon CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
 
 1. Create or enter an IAM role\.
-   + To create a new IAM role for Step Functions, choose **Create a role for me**, and then choose **I acknowledge that Step Functions will create an IAM role which allows access to my Lambda functions\.**
-   + If you have [previously created an IAM role for Step Functions](procedure-create-iam-role.md), choose **I will provide an IAM role ARN** and enter your existing **IAM role ARN**\.
+   + To create a new IAM role for Step Functions, select **Create an IAM role for me**, and enter a **Name** for your role\.
+   + If you have [previously created an IAM role](procedure-create-iam-role.md) with the correct permissions for your state machine, select **Choose an existing IAM role**\. Select a role from the drop\-down, or provide an ARN for that role\. 
 **Note**  
 If you delete the IAM role that Step Functions creates, Step Functions can't recreate it later\. Similarly, if you modify the role \(for example, by removing Step Functions from the principals in the IAM policy\), Step Functions can't restore its original settings later\. 
 
@@ -236,11 +236,15 @@ If you delete the IAM role that Step Functions creates, Step Functions can't rec
 
    If you don't see the graph, choose ![\[refresh\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-getting-started-refresh.png)![\[refresh\]](http://docs.aws.amazon.com/step-functions/latest/dg/)![\[refresh\]](http://docs.aws.amazon.com/step-functions/latest/dg/) in the **Visual Workflow** pane\.
 
-1. Choose **Create State Machine**\.
+1. Choose **Next**\.
 
-1. Choose **OK**\.
+1. Create or enter an IAM role\.
+   + To create a new IAM role for Step Functions, select **Create an IAM role for me**, and enter a **Name** for your role\.
+   + If you have [previously created an IAM role](procedure-create-iam-role.md) with the correct permissions for your state machine, select **Choose an existing IAM role**\. Select a role from the drop\-down, or provide an ARN for that role\. 
+**Note**  
+If you delete the IAM role that Step Functions creates, Step Functions can't recreate it later\. Similarly, if you modify the role \(for example, by removing Step Functions from the principals in the IAM policy\), Step Functions can't restore its original settings later\. 
 
-   The state machine is created and an acknowledgement page is displayed\.
+1. Select **Create state machine**\.
 
 ## Step 4: Start a New Execution<a name="create-iterate-pattern-step-4"></a>
 

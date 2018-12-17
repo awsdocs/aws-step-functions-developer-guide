@@ -14,9 +14,9 @@ Lambda errors are reported as `Lambda.ErrorName`\. To retry a Lambda service exc
 ```
 
 **Note**  
-Unhandled errors in Lambda are reported as `Lambda.Unknown` in the error output\. These include out\-of\-memory errors, function timeouts, and hitting the concurrent Lambda invoke limit\. You can match on `Lambda.Unknown`, `States.ALL`, or `States.TaskFailed` to handle these errors\. For more information about Lambda `Handled` and `Unhandled` errors, see `FunctionError` in the [AWS Lambda Developer Guide](http://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_ResponseSyntax)\. 
+Unhandled errors in Lambda are reported as `Lambda.Unknown` in the error output\. These include out\-of\-memory errors, function timeouts, and hitting the concurrent Lambda invoke limit\. You can match on `Lambda.Unknown`, `States.ALL`, or `States.TaskFailed` to handle these errors\. For more information about Lambda `Handled` and `Unhandled` errors, see `FunctionError` in the [AWS Lambda Developer Guide](https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_ResponseSyntax)\. 
 
 For more information, see:
 + [Retrying After an Error](concepts-error-handling.md#error-handling-retrying-after-an-error)
 + [Handling Error Conditions Using a State Machine](tutorial-handling-error-conditions.md)
-+ [Lambda Invoke Errors](http://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_Errors)
++ [Lambda Invoke Errors](https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_Errors)

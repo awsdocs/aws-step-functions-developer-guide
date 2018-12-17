@@ -73,7 +73,7 @@ The `ResultPath` takes the results of executing the state's task and places them
 + If the `ResultPath` is `null`, the results of executing the state are discarded and the input is untouched\.
 
 **Note**  
- `ResultPath` field values must be [reference paths](#amazon-states-language-reference-paths)\. For more information on `ResultPath` see [Understanding `ResultPath`](input-output-resultpath.md)
+ `ResultPath` field values must be [reference paths](#amazon-states-language-reference-paths)\. For more information on `ResultPath` see [`ResultPath`](input-output-resultpath.md)
 
 #### OutputPath<a name="amazon-states-language-outputpath"></a>
 + If the `OutputPath` matches an item in the state's input, only that input item is selected\. This input item becomes the state's output\.

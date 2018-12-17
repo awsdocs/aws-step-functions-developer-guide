@@ -40,7 +40,7 @@ If a particular stage of your state machine execution or activity execution take
 | --- | --- | 
 |  Maximum open executions  | 1,000,000 | 
 |  Maximum execution time  |  1 year\. If an execution runs for more than the 1 year limit, it will fail with a `States.Timeout` error and emit a `ExecutionsTimedout` CloudWatch metric\.  | 
-|  Maximum execution history size  | 25,000 events | 
+|  Maximum execution history size  | 25,000 events\. If the execution history reaches this limit the execution will fail\. To avoid this, see [Avoid Reaching the History Limit](bp-history-limit.md)\. | 
 |  Maximum execution idle time  |  1 year \(constrained by execution time limit\)  | 
 | Maximum execution history retention time |  90 days\. After this time, you can no longer retrieve or view the execution history\. There is no further limit to the number of closed executions that Step Functions retains\.  | 
 
@@ -101,4 +101,4 @@ Throttling on the `StateTransition` service metric is reported as `ExecutionThro
 
 ## Requesting a Limit Increase<a name="sfn-limits-how-to-increase"></a>
 
-Use the **Support Center** page in the AWS Management Console to request a limit increase for resources provided by AWS Step Functions on a per\-region basis\. For more information, see [To Request a Limit Increase](http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html) in the *AWS General Reference*\.
+Use the **Support Center** page in the AWS Management Console to request a limit increase for resources provided by AWS Step Functions on a per\-region basis\. For more information, see [To Request a Limit Increase](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html) in the *AWS General Reference*\.

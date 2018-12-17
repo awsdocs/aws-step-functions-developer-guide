@@ -2,7 +2,7 @@
 
 You can execute a Step Functions state machine in response to an event pattern or on a schedule using Amazon CloudWatch Events\. This tutorial shows how to set a state machine as a target for a CloudWatch Events rule that starts the execution of a state machine every 5 minutes\.
 
-For more information about setting a Step Functions state machine as a target using the `PutTarget` Amazon CloudWatch Events API action, see [Add a Step Functions state machine as a target](http://docs.aws.amazon.com/AmazonCloudWatchEvents/latest/APIReference/API_PutTargets.html#API_PutTargets_Example_Adds_a_Step_Functions_state_machine_as_a_target)\.
+For more information about setting a Step Functions state machine as a target using the `PutTarget` Amazon CloudWatch Events API action, see [Add a Step Functions state machine as a target](https://docs.aws.amazon.com/AmazonCloudWatchEvents/latest/APIReference/API_PutTargets.html#API_PutTargets_Example_Adds_a_Step_Functions_state_machine_as_a_target)\.
 
 **Topics**
 + [Step 1: Creating a State Machine](#tutorial-cloudwatch-events-target-step-1)
@@ -25,7 +25,7 @@ After you create your state machine, you can create your CloudWatch Events rule\
    The **Step 1: Create rule** page is displayed\.
 
 1. In the **Event source** section, select **Schedule** and type `5` for **Fixed rate of**\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-cloudwatch-events-target-create-rule-event-source.png)
+![\[Event source options\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-cloudwatch-events-target-create-rule-event-source.png)
 
 1. In the **Targets** section, choose **Add target** and from the list choose **Step Functions state machine**\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-cloudwatch-events-target-create-rule-targets.png)

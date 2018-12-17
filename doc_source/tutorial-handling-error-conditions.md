@@ -1,6 +1,6 @@
 # Handling Error Conditions Using a State Machine<a name="tutorial-handling-error-conditions"></a>
 
-In this tutorial, you create an AWS Step Functions state machine with a `Catch` field which uses an AWS Lambda function to respond with conditional logic based on error message type, a method called *function error handling*\. For more information, see [Function Error Handling](http://docs.aws.amazon.com/lambda/latest/dg/nodejs-prog-mode-exceptions.html#nodejs-prog-model-custom-exceptions) in the *AWS Lambda Developer Guide*\.
+In this tutorial, you create an AWS Step Functions state machine with a `Catch` field which uses an AWS Lambda function to respond with conditional logic based on error message type, a method called *function error handling*\. For more information, see [Function Error Handling](https://docs.aws.amazon.com/lambda/latest/dg/nodejs-prog-mode-exceptions.html#nodejs-prog-model-custom-exceptions) in the *AWS Lambda Developer Guide*\.
 
 **Note**  
 You can also create state machines that `Retry` on timeouts or those that use `Catch` to transition to a specific state when an error or timeout occurs\. For examples of these error handling techniques, see [Examples Using Retry and Using Catch](concepts-error-handling.md#error-handling-examples)\.
@@ -107,7 +107,7 @@ Use the [Step Functions console](https://console.aws.amazon.com/states/home?regi
 1. On the **Create a state machine** page, select **Templates** and choose **Catch failure**\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-create-state-machine-catch-failure.png)
 
-1. **Name your state machine**, for example `CatchStateMachine`\.
+1. **Name your state machine**, for example `Catchfailure`\.
 **Note**  
 State machine, execution, and activity names must be 1–80 characters in length, must be unique for your account and region, and must not contain any of the following:  
 Whitespace
@@ -116,12 +116,6 @@ Bracket characters \(`< > { } [ ]`\)
 Special characters \(`: ; , \ | ^ ~ $ # % & ` "`\)
 Control characters \(`\\u0000` \- `\\u001f` or `\\u007f` \- `\\u009f`\)\.
 Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with Amazon CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
-
-1. Create or enter an IAM role\.
-   + To create a new IAM role for Step Functions, choose **Create a role for me**, and then choose **I acknowledge that Step Functions will create an IAM role which allows access to my Lambda functions\.**
-   + If you have [previously created an IAM role for Step Functions](procedure-create-iam-role.md), choose **I will provide an IAM role ARN** and enter your existing **IAM role ARN**\.
-**Note**  
-If you delete the IAM role that Step Functions creates, Step Functions can't recreate it later\. Similarly, if you modify the role \(for example, by removing Step Functions from the principals in the IAM policy\), Step Functions can't restore its original settings later\. 
 
 1. In the **Code** pane, add the ARN of [the Lambda function that you created earlier](#using-state-machine-error-conditions-simulate) to the `Resource` field, for example:
 
@@ -168,14 +162,22 @@ If you delete the IAM role that Step Functions creates, Step Functions can't rec
 
    For more information about the syntax of the `Retry` field, see [Retrying After an Error](amazon-states-language-errors.md#amazon-states-language-retrying-after-error)\.
 **Note**  
-Unhandled errors in Lambda are reported as `Lambda.Unknown` in the error output\. These include out\-of\-memory errors, function timeouts, and hitting the concurrent Lambda invoke limit\. You can match on `Lambda.Unknown`, `States.ALL`, or `States.TaskFailed` to handle these errors\. For more information about Lambda `Handled` and `Unhandled` errors, see `FunctionError` in the [AWS Lambda Developer Guide](http://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_ResponseSyntax)\. 
+Unhandled errors in Lambda are reported as `Lambda.Unknown` in the error output\. These include out\-of\-memory errors, function timeouts, and hitting the concurrent Lambda invoke limit\. You can match on `Lambda.Unknown`, `States.ALL`, or `States.TaskFailed` to handle these errors\. For more information about Lambda `Handled` and `Unhandled` errors, see `FunctionError` in the [AWS Lambda Developer Guide](https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_ResponseSyntax)\. 
 
 1. Use the graph in the **Visual Workflow** pane to check that your Amazon States Language code describes your state machine correctly\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-create-state-machine-catch-failure-preview.png)
 
    If you don't see the graph, choose ![\[refresh\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-getting-started-refresh.png)![\[refresh\]](http://docs.aws.amazon.com/step-functions/latest/dg/)![\[refresh\]](http://docs.aws.amazon.com/step-functions/latest/dg/) in the **Visual Workflow** pane\.
 
-1. Choose **Create State Machine**\.
+1. Choose **Next**\.
+
+1. Create or enter an IAM role\.
+   + To create a new IAM role for Step Functions, select **Create an IAM role for me**, and enter a **Name** for your role\.
+   + If you have [previously created an IAM role](procedure-create-iam-role.md) with the correct permissions for your state machine, select **Choose an existing IAM role**\. Select a role from the drop\-down, or provide an ARN for that role\. 
+**Note**  
+If you delete the IAM role that Step Functions creates, Step Functions can't recreate it later\. Similarly, if you modify the role \(for example, by removing Step Functions from the principals in the IAM policy\), Step Functions can't restore its original settings later\. 
+
+1. Select **Create state machine**\.
 
 ## Step 5: Starting a New Execution<a name="using-state-machine-error-conditions-step-5"></a>
 

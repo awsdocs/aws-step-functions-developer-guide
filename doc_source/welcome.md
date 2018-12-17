@@ -26,13 +26,16 @@ Currently, Step Functions is supported only in the following regions:
 + Asia Pacific \(Sydney\)
 + Asia Pacific \(Tokyo\)
 + Asia Pacific \(Seoul\)
++ Asia Pacific \(Singapore\)
 + EU \(Frankfurt\)
 + EU \(Ireland\)
 + EU \(London\)
++ EU \(Paris\)
++ EU \(Stockholm\)
 + Canada \(Central\)
-+ Asia Pacific \(Singapore\)
-+ AWS GovCloud \(US\)
++ South America \(São Paulo\)
++ AWS GovCloud \(US\-West\)
 
 ### About Amazon Web Services<a name="about-amazon-web-services"></a>
 
- Amazon Web Services \(AWS\) is a collection of digital infrastructure services that developers can leverage when developing their applications\. The services include computing, storage, database, and application synchronization \(messaging and queuing\)\. AWS uses a pay\-as\-you\-go service model: you are charged only for the services that you—or your applications—use\. For new AWS users, a free usage tier is available\. On this tier, services are free below a certain level of usage\. For more information about AWS costs and the Free Tier, see [Use the AWS Free Tier](http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-free-tier.html)\. To obtain an AWS account, visit the [AWS home page](https://aws.amazon.com/) and choose **Create a Free Account**\.
+ Amazon Web Services \(AWS\) is a collection of digital infrastructure services that developers can leverage when developing their applications\. The services include computing, storage, database, and application synchronization \(messaging and queuing\)\. AWS uses a pay\-as\-you\-go service model: you are charged only for the services that you—or your applications—use\. For new AWS users, a free usage tier is available\. On this tier, services are free below a certain level of usage\. For more information about AWS costs and the Free Tier, see [Use the AWS Free Tier](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-free-tier.html)\. To obtain an AWS account, visit the [AWS home page](https://aws.amazon.com/) and choose **Create a Free Account**\.

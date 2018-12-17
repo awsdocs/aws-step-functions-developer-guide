@@ -18,7 +18,7 @@ Apply to all API components that act on a specific activity or on a particular i
 
 ## Service\-Level Permissions<a name="concept-create-iam-advanced-service"></a>
 
-This permission level applies to all API actions that do not act on a specific resource\. These include `[CreateStateMachine](http://docs.aws.amazon.com/step-functions/latest/apireference/API_CreateStateMachine.html)`, `[CreateActivity](http://docs.aws.amazon.com/step-functions/latest/apireference/API_CreateActivity.html)`, `[ListStateMachines](http://docs.aws.amazon.com/step-functions/latest/apireference/API_ListStateMachines.html)`, and `[ListActivities](http://docs.aws.amazon.com/step-functions/latest/apireference/API_ListActivities.html)`\.
+This permission level applies to all API actions that do not act on a specific resource\. These include `[CreateStateMachine](https://docs.aws.amazon.com/step-functions/latest/apireference/API_CreateStateMachine.html)`, `[CreateActivity](https://docs.aws.amazon.com/step-functions/latest/apireference/API_CreateActivity.html)`, `[ListStateMachines](https://docs.aws.amazon.com/step-functions/latest/apireference/API_ListStateMachines.html)`, and `[ListActivities](https://docs.aws.amazon.com/step-functions/latest/apireference/API_ListActivities.html)`\.
 
 ```
 {
@@ -51,7 +51,7 @@ This permission level applies to all API actions that do not act on a specific r
 
 ## State Machine\-Level Permissions<a name="concept-create-iam-advanced-state"></a>
 
-This permission level applies to all API actions that act on a specific state machine\. These API require the ARN of the state machine as part of the request, such as `[DeleteStateMachine](http://docs.aws.amazon.com/step-functions/latest/apireference/API_DeleteStateMachine.html)`, `[DescribeStateMachine](http://docs.aws.amazon.com/step-functions/latest/apireference/API_DescribeStateMachine.html)`, `[StartExecution](http://docs.aws.amazon.com/step-functions/latest/apireference/API_StartExecution.html)`, and `[ListExecutions](http://docs.aws.amazon.com/step-functions/latest/apireference/API_ListExecutions.html)`\.
+This permission level applies to all API actions that act on a specific state machine\. These API require the ARN of the state machine as part of the request, such as `[DeleteStateMachine](https://docs.aws.amazon.com/step-functions/latest/apireference/API_DeleteStateMachine.html)`, `[DescribeStateMachine](https://docs.aws.amazon.com/step-functions/latest/apireference/API_DescribeStateMachine.html)`, `[StartExecution](https://docs.aws.amazon.com/step-functions/latest/apireference/API_StartExecution.html)`, and `[ListExecutions](https://docs.aws.amazon.com/step-functions/latest/apireference/API_ListExecutions.html)`\.
 
 ```
 {
@@ -76,7 +76,7 @@ This permission level applies to all API actions that act on a specific state ma
 
 ## Execution\-Level Permissions<a name="concept-create-iam-advanced-execution"></a>
 
-This permission level applies to all the API actions that act on a specific execution\. These API operations require the ARN of the execution as part of the request, such as `[DescribeExecution](http://docs.aws.amazon.com/step-functions/latest/apireference/API_DescribeExecution.html)`, `[GetExecutionHistory](http://docs.aws.amazon.com/step-functions/latest/apireference/API_GetExecutionHistory.html)`, and `[StopExecution](http://docs.aws.amazon.com/step-functions/latest/apireference/API_StopExecution.html)`\.
+This permission level applies to all the API actions that act on a specific execution\. These API operations require the ARN of the execution as part of the request, such as `[DescribeExecution](https://docs.aws.amazon.com/step-functions/latest/apireference/API_DescribeExecution.html)`, `[GetExecutionHistory](https://docs.aws.amazon.com/step-functions/latest/apireference/API_GetExecutionHistory.html)`, and `[StopExecution](https://docs.aws.amazon.com/step-functions/latest/apireference/API_StopExecution.html)`\.
 
 ```
 {
@@ -100,7 +100,7 @@ This permission level applies to all the API actions that act on a specific exec
 
 ## Activity\-Level Permissions<a name="concept-create-iam-advanced-activity"></a>
 
-This permission level applies to all the API actions that act on a specific activity or on a particular instance of it\. These API operations require the ARN of the activity or the token of the instance as part of the request, such as `[DeleteActivity](http://docs.aws.amazon.com/step-functions/latest/apireference/API_DeleteActivity.html)`, `[DescribeActivity](http://docs.aws.amazon.com/step-functions/latest/apireference/API_DescribeActivity.html)`, `[GetActivityTask](http://docs.aws.amazon.com/step-functions/latest/apireference/API_GetActivityTask.html)`, `[SendTaskSuccess](http://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskSuccess.html)`, `[SendTaskFailure](http://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskFailure.html)`, and `[SendTaskHeartbeat](http://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskHeartbeat.html)`\.
+This permission level applies to all the API actions that act on a specific activity or on a particular instance of it\. These API operations require the ARN of the activity or the token of the instance as part of the request, such as `[DeleteActivity](https://docs.aws.amazon.com/step-functions/latest/apireference/API_DeleteActivity.html)`, `[DescribeActivity](https://docs.aws.amazon.com/step-functions/latest/apireference/API_DescribeActivity.html)`, `[GetActivityTask](https://docs.aws.amazon.com/step-functions/latest/apireference/API_GetActivityTask.html)`, `[SendTaskSuccess](https://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskSuccess.html)`, `[SendTaskFailure](https://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskFailure.html)`, and `[SendTaskHeartbeat](https://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskHeartbeat.html)`\.
 
 ```
 {

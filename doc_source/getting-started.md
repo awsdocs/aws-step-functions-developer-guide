@@ -16,7 +16,7 @@ Step Functions offers various predefined state machines as *templates*\. Create 
 
 1. Sign in to the [Step Functions console](https://console.aws.amazon.com/states/home), and then choose **Get Started**\.
 
-1. On the **Create a state machine** page, select **Templates** and then choose **Hello world**\.  
+1. On the **Define state machine**page, review the **State machine definition** and the visual workflow\.  
 ![\[Hello world.\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-create-state-machine-hello-world.png)
 
    Step Functions fills in the name of the state machine automatically\. It also populates the **Code** pane with the Amazon States Language description of the state machine\.
@@ -37,18 +37,20 @@ Step Functions offers various predefined state machines as *templates*\. Create 
 
    This JSON text defines a `Pass` state named `HelloWorld`\. For more information, see [State Machine Structure](amazon-states-language-state-machine-structure.md)\.
 
-1. Create or enter an IAM role\.
-   + To create a new IAM role for Step Functions, choose **Create a role for me**, and then choose **I acknowledge that Step Functions will create an IAM role which allows access to my Lambda functions\.**
-   + If you have [previously created an IAM role for Step Functions](procedure-create-iam-role.md), choose **I will provide an IAM role ARN** and enter your existing **IAM role ARN**\.
-**Note**  
-If you delete the IAM role that Step Functions creates, Step Functions can't recreate it later\. Similarly, if you modify the role \(for example, by removing Step Functions from the principals in the IAM policy\), Step Functions can't restore its original settings later\. 
-
 1. Use the graph in the **Visual Workflow** pane to check that your Amazon States Language code describes your state machine correctly\.  
 ![\[Visual Workflow.\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/hello-state-machine-preview.png)
 
    If you don't see the graph, choose ![\[refresh\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-getting-started-refresh.png)![\[refresh\]](http://docs.aws.amazon.com/step-functions/latest/dg/)![\[refresh\]](http://docs.aws.amazon.com/step-functions/latest/dg/) in the **Visual Workflow** pane\.
 
-1. Choose **Create State Machine**\.
+1. Choose **Next**\.
+
+1. Create or enter an IAM role\.
+   + To create a new IAM role for Step Functions, select **Create an IAM role for me**, and enter a **Name** for your role\.
+   + If you have [previously created an IAM role](procedure-create-iam-role.md) with the correct permissions for your state machine, select **Choose an existing IAM role**\. Select a role from the drop\-down, or provide an ARN for that role\. 
+**Note**  
+If you delete the IAM role that Step Functions creates, Step Functions can't recreate it later\. Similarly, if you modify the role \(for example, by removing Step Functions from the principals in the IAM policy\), Step Functions can't restore its original settings later\. 
+
+1. Select **Create state machine**\.
 
 ## Step 2: Starting a New Execution<a name="create-state-machine-step-2"></a>
 

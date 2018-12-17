@@ -7,6 +7,9 @@ In addition to the [common state fields](amazon-states-language-common-fields.md
 ** `Resource` \(Required\)**  
 A URI, especially an Amazon Resource Name \(ARN\) that uniquely identifies the specific task to execute\.
 
+** `Parameters` \(Optional\)**  
+Use `Parameters` to pass information to the API actions of connected resources\.
+
 ** `ResultPath` \(Optional\)**  
 Specifies where \(in the input\) to place the results of executing the task specified in `Resource`\. The input is then filtered as prescribed by the `OutputPath` field \(if present\) before being used as the state's output\. For more information, see [path](amazon-states-language-input-output-processing.md)\.
 
@@ -17,10 +20,10 @@ An array of objects, called Retriers, that define a retry policy in case the sta
 An array of objects, called Catchers, that define a fallback state which is executed in case the state encounters runtime errors and its retry policy has been exhausted or is not defined\. For more information, see [Fallback States](amazon-states-language-errors.md#amazon-states-language-fallback-states)\.
 
 ** `TimeoutSeconds` \(Optional\)**  
-If the task runs longer than the specified seconds, then this state fails with a `States.Timeout` Error Name\. Must be a positive, non\-zero integer\. If not provided, the default value is `99999999`\.
+If the task runs longer than the specified seconds, then this state fails with a `States.Timeout` Error Name\. Must be a positive, non\-zero integer\. If not provided, the default value is `99999999`\. The count begins after the task has been started, for instance when `ActivityStarted` or `LambdaFunctionStarted` are logged in the **Execution event history**\.
 
 ** `HeartbeatSeconds` \(Optional\)**  
-If more time than the specified seconds elapses between heartbeats from the task, then this state fails with an `States.Timeout` Error Name\. Must be a positive, non\-zero integer less than the number of seconds specified in the `TimeoutSeconds` field\. If not provided, the default value is `99999999`\.
+If more time than the specified seconds elapses between heartbeats from the task, then this state fails with an `States.Timeout` Error Name\. Must be a positive, non\-zero integer less than the number of seconds specified in the `TimeoutSeconds` field\. If not provided, the default value is `99999999`\. This value applies only to Activity tasks\. The count begins when `GetActivityTask` receives a token and `ActivityStarted` is logged in the **Execution event history**\.
 
 A `Task` state must set either the `End` field to `true` if the state ends the execution, or must provide a state in the `Next` field that will be run upon completion of the `Task` state\.
 
@@ -53,12 +56,13 @@ Where:
 +  `service` indicates the AWS service used to execute the task, and is either:
   +  `states` for an [activity](#amazon-states-language-task-state-activity)\.
   +  `lambda` for a [Lambda function](#amazon-states-language-task-state-lambda)\.
-+  `region` is the [AWS region](http://docs.aws.amazon.com/general/latest/gr/rande.html) in which the Step Functions activity/state machine type or Lambda function has been created\.
++  `region` is the [AWS region](https://docs.aws.amazon.com/general/latest/gr/rande.html) in which the Step Functions activity/state machine type or Lambda function has been created\.
 +  `account` is your AWS account id\.
 +  `task_type` is the type of task to run\. It will be one of the following values:
   +  `activity` – an [activity](#amazon-states-language-task-state-activity)\.
   +  `function` – a [Lambda function](#amazon-states-language-task-state-lambda)\.
-+  `name` is the registered resource name \(activity name or Lambda function name\)\.
+  +  `servicename` – the name of a supported connected service \(see [Supported AWS Service Integrations for Step Functions](connectors-supported-services.md)\)\.
++  `name` is the registered resource name \(activity name, Lambda function name, or service API action\)\.
 
 **Note**  
 Step Functions does not support referencing ARNs across partitions \(For example: "aws\-cn" cannot invoke tasks in the "aws" partition, and vice versa\);
@@ -68,6 +72,7 @@ Step Functions does not support referencing ARNs across partitions \(For example
 The following task types are supported:
 +  [activity](#amazon-states-language-task-state-activity) 
 +  [Lambda functions](#amazon-states-language-task-state-lambda) 
++  [A supported AWS service](concepts-connectors.md) 
 
 The following sections will provide more detail about each type\.
 
@@ -84,13 +89,13 @@ arn:partition:states:region:account:activity:name
 For more information about these fields, see [Specifying Resource ARNs in Tasks](#amazon-states-language-task-state-specifying-resource-arns)\.
 
 **Note**  
-activities must be created with Step Functions \(using a [CreateActivity](http://docs.aws.amazon.com/step-functions/latest/apireference/API_CreateActivity.html), API action, or the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/)\) before their first use\.
+activities must be created with Step Functions \(using a [CreateActivity](https://docs.aws.amazon.com/step-functions/latest/apireference/API_CreateActivity.html), API action, or the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/)\) before their first use\.
 
 For more information about creating an activity and implementing workers, see [Activities](concepts-activities.md)\.
 
 ### Lambda Functions<a name="amazon-states-language-task-state-lambda"></a>
 
-Lambda functions execute a function using AWS Lambda\. To specify a Lambda function, use the ARN of the Lambda function in the `Resource` field\.
+Lambda tasks execute a function using AWS Lambda\. To specify a Lambda function, use the ARN of the Lambda function in the `Resource` field\.
 
 Lambda function `Resource` ARNs use the following syntax:
 
@@ -111,3 +116,40 @@ For example:
 ```
 
 Once the Lambda function specified in the `Resource` field completes, its output is sent to the state identified in the `Next` field \("NextState"\)\.
+
+### A supported AWS service<a name="amazon-states-language-task-state-connector"></a>
+
+When you reference a connected resource, Step Functions directly calls the API actions of a supported service\. Specify the service and action in the `Resource` field\.
+
+Connected service `Resource` ARNs use the following syntax:
+
+```
+arn:partition:states:region:account:servicename:APIname
+```
+
+**Note**  
+To create a synchronouse connection to a connected resource, append `.sync` to the *APIname* entry in the ARN\. For more information, see [Service Integrations](concepts-connectors.md)\.
+
+For example:
+
+```
+{
+ "StartAt": "BATCH_JOB",
+ "States": {
+   "BATCH_JOB": {
+     "Type": "Task",
+     "Resource": "arn:aws:states:::batch:submitJob.sync",
+     "Parameters": {  
+       "JobDefinition": "preprocessing",
+       "JobName": "PreprocessingBatchJob",
+       "JobQueue": "SecondaryQueue",
+       "Parameters.$": "$.batchjob.parameters",
+       "RetryStrategy": {
+          "attempts": 5
+        }
+     },
+     "End": true
+    }
+  }
+}
+```

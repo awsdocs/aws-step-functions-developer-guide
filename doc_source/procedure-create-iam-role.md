@@ -4,11 +4,9 @@ AWS Step Functions can execute code and access AWS resources \(such as invoking 
 
 The [Tutorials](tutorials.md) in this guide enable you to take advantage of automatically generated IAM roles that are valid for the region in which you create the state machine\. To create your own IAM role for a state machine, follow the steps in this section\.
 
-## Create a Role for Step Functions<a name="lambda-create-role"></a>
-
 In this example, you create an IAM role with permission to invoke a Lambda function\.
 
-### To create a role for Step Functions<a name="create-role-for-step-functions"></a>
+## To create a role for Step Functions<a name="create-role-for-step-functions"></a>
 
 1. Sign in to the [IAM console](https://console.aws.amazon.com/iam/home), and then choose **Roles**, **Create role**\.
 
@@ -20,4 +18,19 @@ In this example, you create an IAM role with permission to invoke a Lambda funct
 
    The IAM role appears in the list of roles\.
 
-For more information about IAM permissions and policies, see [Access Management](http://docs.aws.amazon.com/IAM/latest/UserGuide/access.html) in the *IAM User Guide*\.
+For more information about IAM permissions and policies, see [Access Management](https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html) in the *IAM User Guide*\.
+
+## Attach an Inline Policy<a name="attach-inline-policy"></a>
+
+Step Functions can control other services directly in a task state\. Attach inline policies to allow Step Functions to access the API actions of the services you need to control\.
+
+1. Sign in to the [IAM console](https://console.aws.amazon.com/iam/home), choose **Roles**, search for your Step Functions role, and select that role\.
+
+1. Select **Add inline policy**\.
+
+1. Use the **Visual editor** or the **JSON** tab to create policies for your role\.
+
+For more information on how AWS Step Functions can control other AWS services, see: [AWS Service Integrations](concepts-connectors.md)\.
+
+**Note**  
+For examples of IAM policies created by the Step Functions console, see [IAM Policies for Integrated Services](connectors-iam-templates.md)

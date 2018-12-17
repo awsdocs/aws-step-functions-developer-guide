@@ -23,9 +23,9 @@ The output of a state becomes the input into the next state\. However, you can r
 
 ## State Machine Input/Output<a name="concepts-state-machine-data-state-machine-input-output"></a>
 
-You can give AWS Step Functions initial input data by passing it to a `[StartExecution](http://docs.aws.amazon.com/step-functions/latest/apireference/API_StartExecution.html)` action when you start an execution, or by passing initial data using the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/)\. Initial data is passed to the state machine's `StartAt` state\. If no input is provided, the default is an empty object \(`{}`\)\.
+You can give AWS Step Functions initial input data by passing it to a `[StartExecution](https://docs.aws.amazon.com/step-functions/latest/apireference/API_StartExecution.html)` action when you start an execution, or by passing initial data using the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/)\. Initial data is passed to the state machine's `StartAt` state\. If no input is provided, the default is an empty object \(`{}`\)\.
 
-The output of the execution is returned by the last state \(`terminal`\)\. This output appears as JSON text in the execution's result\. You can retrieve execution results from the execution history using external callers \(for example, in the `[DescribeExecution](http://docs.aws.amazon.com/step-functions/latest/apireference/API_DescribeExecution.html)` action\)\. You can view execution results on the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/)\.
+The output of the execution is returned by the last state \(`terminal`\)\. This output appears as JSON text in the execution's result\. You can retrieve execution results from the execution history using external callers \(for example, in the `[DescribeExecution](https://docs.aws.amazon.com/step-functions/latest/apireference/API_DescribeExecution.html)` action\)\. You can view execution results on the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/)\.
 
 ## State Input/Output<a name="concepts-state-machine-data-state-input-output"></a>
 

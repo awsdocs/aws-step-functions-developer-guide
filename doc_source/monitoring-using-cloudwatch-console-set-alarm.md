@@ -27,4 +27,4 @@ You can use CloudWatch alarms to perform actions\. For example, if you want to k
 
 1. Enter the values for the **Alarm threshold** and **Actions** and then choose **Create Alarm**\.
 
-For more information about setting and using CloudWatch alarms, see [Creating Amazon CloudWatch Alarms](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/AlarmThatSendsEmail.html) in the *Amazon CloudWatch User Guide*\.
+For more information about setting and using CloudWatch alarms, see [Creating Amazon CloudWatch Alarms](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/AlarmThatSendsEmail.html) in the *Amazon CloudWatch User Guide*\.

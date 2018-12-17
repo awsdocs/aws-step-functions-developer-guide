@@ -4,7 +4,7 @@ You can coordinate task code in your state machine\. This tutorial introduces yo
 
 To complete this tutorial you'll need the following:
 + The [SDK for Java](https://aws.amazon.com/sdk-for-java/)\. The example activity in this tutorial is a Java application that uses the AWS SDK for Java to communicate with AWS\.
-+ AWS credentials in the environment or in the standard AWS configuration file\. For more information, see [Set up Your AWS credentials](http://docs.aws.amazon.com/AWSSdkDocsJava/latest/DeveloperGuide/set-up-creds.html) in the *AWS SDK for Java Developer Guide*\.
++ AWS credentials in the environment or in the standard AWS configuration file\. For more information, see [Set up Your AWS credentials](https://docs.aws.amazon.com/AWSSdkDocsJava/latest/DeveloperGuide/set-up-creds.html) in the *AWS SDK for Java Developer Guide*\.
 
 **Topics**
 + [Step 1: Creating a New Activity](#create-activity-state-machine-step-1)
@@ -52,13 +52,7 @@ Special characters \(`: ; , \ | ^ ~ $ # % & ` "`\)
 Control characters \(`\\u0000` \- `\\u001f` or `\\u007f` \- `\\u009f`\)\.
 Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with Amazon CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
 
-1. Create or enter an IAM role\.
-   + To create a new IAM role for Step Functions, choose **Create a role for me**, and then choose **I acknowledge that Step Functions will create an IAM role which allows access to my Lambda functions\.**
-   + If you have [previously created an IAM role for Step Functions](procedure-create-iam-role.md), choose **I will provide an IAM role ARN** and enter your existing **IAM role ARN**\.
-**Note**  
-If you delete the IAM role that Step Functions creates, Step Functions can't recreate it later\. Similarly, if you modify the role \(for example, by removing Step Functions from the principals in the IAM policy\), Step Functions can't restore its original settings later\. 
-
-1. Under **State machine definition**, enter the following code, and include the ARN of [the activity task that you created earlier](#create-activity-state-machine-new-activity) in the `Resource` field, for example:
+   Under **State machine definition**, enter the following code, and include the ARN of [the activity task that you created earlier](#create-activity-state-machine-new-activity) in the `Resource` field, for example:
 
    ```
    {
@@ -84,9 +78,15 @@ If you delete the IAM role that Step Functions creates, Step Functions can't rec
 
    If you don't see the graph, choose ![\[refresh\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-getting-started-refresh.png)![\[refresh\]](http://docs.aws.amazon.com/step-functions/latest/dg/)![\[refresh\]](http://docs.aws.amazon.com/step-functions/latest/dg/) in the **Visual Workflow** pane\.
 
-1. Choose **Create State Machine**\.
+1. Choose **Next**\.
 
-   The state machine is created and an acknowledgement page is displayed\.
+1. Create or enter an IAM role\.
+   + To create a new IAM role for Step Functions, select **Create an IAM role for me**, and enter a **Name** for your role\.
+   + If you have [previously created an IAM role](procedure-create-iam-role.md) with the correct permissions for your state machine, select **Choose an existing IAM role**\. Select a role from the drop\-down, or provide an ARN for that role\. 
+**Note**  
+If you delete the IAM role that Step Functions creates, Step Functions can't recreate it later\. Similarly, if you modify the role \(for example, by removing Step Functions from the principals in the IAM policy\), Step Functions can't restore its original settings later\. 
+
+1. Select **Create state machine**\.
 
 ## Step 3: Implementing a Worker<a name="create-activity-state-machine-step-3"></a>
 
@@ -161,7 +161,7 @@ For a more complete example of an activity worker, see [Example Activity Worker 
    }
    ```
 **Note**  
-The `EnvironmentVariableCredentialsProvider` class in this example assumes that the `AWS_ACCESS_KEY_ID` \(or `AWS_ACCESS_KEY`\) and `AWS_SECRET_KEY` \(or `AWS_SECRET_ACCESS_KEY`\) environment variables are set\. For more information about providing the required credentials to the factory, see [AWSCredentialsProvider](http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/auth/AWSCredentialsProvider.html) in the *AWS SDK for Java API Reference* and [Set up AWS Credentials and Region for Development](http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/setup-credentials.html) in the *AWS SDK for Java Developer Guide*\.  
+The `EnvironmentVariableCredentialsProvider` class in this example assumes that the `AWS_ACCESS_KEY_ID` \(or `AWS_ACCESS_KEY`\) and `AWS_SECRET_KEY` \(or `AWS_SECRET_ACCESS_KEY`\) environment variables are set\. For more information about providing the required credentials to the factory, see [AWSCredentialsProvider](https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/auth/AWSCredentialsProvider.html) in the *AWS SDK for Java API Reference* and [Set up AWS Credentials and Region for Development](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/setup-credentials.html) in the *AWS SDK for Java Developer Guide*\.  
 To give Step Functions sufficient time to process the request, `setSocketTimeout` is set to 70 seconds\.
 
 1. In the parameter list of the `GetActivityTaskRequest().withActivityArn()` constructor, replace the `ACTIVITY_ARN` value with the ARN of [the activity task that you created earlier](#create-activity-state-machine-new-activity)\.
@@ -207,7 +207,7 @@ After the execution completes, you should stop your worker\. If you don't stop t
 
 1. On the command line, navigate to the directory in which you created `GreeterActivities.java`\.
 
-1. To use the AWS SDK, add the full path of the `lib` and `third-party` directories to the dependencies of your build file and to your Java `CLASSPATH`\. For more information, see [Downloading and Extracting the SDK](http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/setup-install.html#download-and-extract-sdk) in the *AWS SDK for Java Developer Guide*\.
+1. To use the AWS SDK, add the full path of the `lib` and `third-party` directories to the dependencies of your build file and to your Java `CLASSPATH`\. For more information, see [Downloading and Extracting the SDK](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/setup-install.html#download-and-extract-sdk) in the *AWS SDK for Java Developer Guide*\.
 
 1. Compile the file:
 

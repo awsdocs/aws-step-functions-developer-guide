@@ -5,7 +5,6 @@ To understand AWS Step Functions, you will need to be familiar with a number of 
 **Topics**
 + [States](concepts-states.md)
 + [Tasks](concepts-tasks.md)
-+ [Activities](concepts-activities.md)
 + [Transitions](concepts-transitions.md)
 + [State Machine Data](concepts-state-machine-data.md)
 + [Input and Output Processing](concepts-input-output-filtering.md)
@@ -13,4 +12,3 @@ To understand AWS Step Functions, you will need to be familiar with a number of 
 + [Error Handling](concepts-error-handling.md)
 + [Read Consistency](concepts-read-consistency.md)
 + [Templates](concepts-templates.md)
-+ [Sample Projects](create-sample-projects.md)
