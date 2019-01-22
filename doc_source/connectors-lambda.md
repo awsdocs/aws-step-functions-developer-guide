@@ -5,7 +5,6 @@ It is simple and convenient to use a Lambda function for implementing task state
 **Note**  
 For more information on managing state input, output and results, see:  
 [Input and Output Processing in Step Functions](concepts-input-output-filtering.md)
-[Input and Output Processing in Step Functions](concepts-input-output-filtering.md)
 
 The following includes a `Task` state that invokes a Lambda function\.
 
