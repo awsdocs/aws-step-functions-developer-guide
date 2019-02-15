@@ -23,6 +23,8 @@ Currently, Step Functions is supported only in the following regions:
 + US West \(Oregon\)
 + US West \(N\. California\)
 + Asia Pacific \(Mumbai\)
++ China \(Ningxia\)
++ China \(Beijing\)
 + Asia Pacific \(Sydney\)
 + Asia Pacific \(Tokyo\)
 + Asia Pacific \(Seoul\)

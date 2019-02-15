@@ -46,3 +46,7 @@ You can access many Step Functions features from the AWS CLI\. The AWS CLI provi
 The Step Functions commands in AWS CLI allow you to start and manage executions, poll for activities, record task heartbeats, and so on\. For a complete list of Step Functions commands and the descriptions of the available arguments and examples showing their use, see the *AWS CLI Command Reference*\.
 
 The AWS CLI commands follow the Amazon States Language closely, so you can use the AWS CLI to learn about the Step Functions API actions\. You can also use your existing API knowledge to prototype code or perform Step Functions actions from the command line\.
+
+## Run Step Functions Locally<a name="development-options-local"></a>
+
+For testing and development purposes, you can install and run Step Functions on your local machine\. With a local version of Step Functions you can start an execution on any machine\. The local version of Step Functions can invoke Lambda functions, both in AWS and running locally\. You can also coordinate other [supported AWS services](concepts-connectors.md)\. For more information, see [Setting Up Step Functions Local \(Downloadable Version\)](sfn-local.md)\.

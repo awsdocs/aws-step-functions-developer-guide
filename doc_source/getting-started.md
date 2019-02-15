@@ -16,7 +16,7 @@ Step Functions offers various predefined state machines as *templates*\. Create 
 
 1. Sign in to the [Step Functions console](https://console.aws.amazon.com/states/home), and then choose **Get Started**\.
 
-1. On the **Define state machine**page, review the **State machine definition** and the visual workflow\.  
+1. On the **Define state machine** page, review the **State machine definition** and the visual workflow\.  
 ![\[Hello world.\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-create-state-machine-hello-world.png)
 
    Step Functions fills in the name of the state machine automatically\. It also populates the **Code** pane with the Amazon States Language description of the state machine\.

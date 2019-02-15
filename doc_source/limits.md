@@ -12,6 +12,7 @@ If a particular stage of your state machine execution or activity execution take
 + [Limits Related to Task Executions](#service-limits-task-executions)
 + [Limits Related to API Action Throttling](#service-limits-api-action-throttling)
 + [Limits Related to State Throttling](#service-limits-api-state-throttling)
++ [Restrictions Related to Tagging](#sfn-limits-tagging)
 + [Requesting a Limit Increase](#sfn-limits-how-to-increase)
 
 ## General Limits<a name="service-limits-general"></a>
@@ -38,7 +39,7 @@ If a particular stage of your state machine execution or activity execution take
 
 | Limit | Description | 
 | --- | --- | 
-|  Maximum open executions  | 1,000,000 | 
+|  Maximum open executions  | 1,000,000\. Exceeding this limit will cause an ExecutionLimitExceeded error\. | 
 |  Maximum execution time  |  1 year\. If an execution runs for more than the 1 year limit, it will fail with a `States.Timeout` error and emit a `ExecutionsTimedout` CloudWatch metric\.  | 
 |  Maximum execution history size  | 25,000 events\. If the execution history reaches this limit the execution will fail\. To avoid this, see [Avoid Reaching the History Limit](bp-history-limit.md)\. | 
 |  Maximum execution idle time  |  1 year \(constrained by execution time limit\)  | 
@@ -98,6 +99,22 @@ Throttling on the `StateTransition` service metric is reported as `ExecutionThro
 | --- | --- | --- | 
 |  `StateTransition` — *In US East \(N\. Virginia\), US West \(Oregon\), and EU \(Ireland\)*  |  5000  |  1000  | 
 |  `StateTransition` — *All other regions* |  800  |  400  | 
+
+## Restrictions Related to Tagging<a name="sfn-limits-tagging"></a>
+
+Be aware of these restrictions when tagging Step Functions resources\.
+
+**Note**  
+Tagging restrictions cannot be increased like other limits\.
+
+
+| Restriction | Description | 
+| --- | --- | 
+|  Maximum number of tags per resource  |  50  | 
+|  Maximum key length  |  128 Unicode characters in UTF\-8  | 
+|  Maximum value length  |  256 Unicode characters in UTF\-8  | 
+|  Prefix restriction  |  Do not use the `aws:` prefix in your tag names or values because it is reserved for AWS use\. You can't edit or delete tag names or values with this prefix\. Tags with this prefix do not count against your tags per resource limit\.  | 
+|  Character restrictions  |  Tags may only contain unicode letters, digits, whitespace, or these symbols: `_ . : / = + - @`\.  | 
 
 ## Requesting a Limit Increase<a name="sfn-limits-how-to-increase"></a>
 

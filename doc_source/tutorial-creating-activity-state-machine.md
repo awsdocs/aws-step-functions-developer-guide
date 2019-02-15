@@ -1,6 +1,6 @@
 # Creating an Activity State Machine<a name="tutorial-creating-activity-state-machine"></a>
 
-You can coordinate task code in your state machine\. This tutorial introduces you to creating an activity\-based state machine using Java and AWS Step Functions\.
+Activities allow you to control worker code that runs somewhere else in your state machine\. For an overview, see the [Activities](concepts-activities.md) topic in the [How Step Functions Works](how-step-functions-works.md) section\. This tutorial introduces you to creating an activity\-based state machine using Java and AWS Step Functions\.
 
 To complete this tutorial you'll need the following:
 + The [SDK for Java](https://aws.amazon.com/sdk-for-java/)\. The example activity in this tutorial is a Java application that uses the AWS SDK for Java to communicate with AWS\.
@@ -42,7 +42,7 @@ Create a state machine that will determine when your activity is invoked and whe
 
 1. In the [Step Functions console](https://console.aws.amazon.com/states/home), choose **State machines** in the left navigation panel\.
 
-1. On the **State machines** page, choose **Create state machine**, select **Author from scratch**, and enter a name under **Details** \(for example `ActivityStateMachine)`\.
+1. On the **State machines** page, choose **Create state machine**, select **Author with code snippets**, and enter a name under **Details** \(for example `ActivityStateMachine)`\.
 **Note**  
 State machine, execution, and activity names must be 1–80 characters in length, must be unique for your account and region, and must not contain any of the following:  
 Whitespace

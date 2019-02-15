@@ -1,6 +1,6 @@
 # Code Snippets<a name="concepts-code-snippets"></a>
 
-Code snippets are a way to easily configure the options for a new state in your state machine definition\. When you edit or create a state machine, the top of the code pane will include a **Generate code snippet** menu\. Selecting an option from the **Generate code snippet** menu will open a window to configure parameters specific to that service, and will generate Amazon States Language code based on the options you choose\.
+Code snippets are a way to easily configure the options for a new state in your state machine definition\. When you edit or create a state machine, the top of the code pane will include a **Generate code snippet** menu\. Selecting an option from the **Generate code snippet** menu will open a window to configure parameters specific to that state, and will generate Amazon States Language code based on the options you choose\.
 
 For instance, if you choose the **AWS Batch: Manage a job** code snippet, you can configure:
 + **Batch job name** — You can either specify the job name, or specify it at runtime using a path\.

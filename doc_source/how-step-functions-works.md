@@ -12,3 +12,4 @@ To understand AWS Step Functions, you will need to be familiar with a number of 
 + [Error Handling](concepts-error-handling.md)
 + [Read Consistency](concepts-read-consistency.md)
 + [Templates](concepts-templates.md)
++ [Tagging](concepts-tagging.md)

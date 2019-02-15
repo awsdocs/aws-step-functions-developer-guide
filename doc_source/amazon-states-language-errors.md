@@ -43,14 +43,14 @@ A positive integer, representing the maximum number of retry attempts \(default 
 ** `BackoffRate` \(Optional\)**  
 A number that is the multiplier by which the retry interval increases on each attempt \(default 2\.0\)\.
 
-Here is an example of a Retry field that will make 2 retry attempts after waits of 3 and 4\.5 seconds:
+Here is an example of a Retry field that will make 4 retry attempts after waits of 3, 4\.5, 6\.75 and 10\.125 seconds:
 
 ```
 "Retry" : [
     {
       "ErrorEquals": [ "States.Timeout" ],
       "IntervalSeconds": 3,
-      "MaxAttempts": 2,
+      "MaxAttempts": 4,
       "BackoffRate": 1.5
     }
 ]

@@ -1,6 +1,6 @@
 # Creating a Lambda State Machine Using AWS CloudFormation<a name="tutorial-lambda-state-machine-cloudformation"></a>
 
-This tutorial shows you how to create a basic AWS Lambda function and start a state machine execution automatically\. You will use the AWS CloudFormation console and a YAML *template* to create the *stack* \(IAM roles, the Lambda function, and the state machine\)\. You will then use the AWS Step Functions console to start the state machine execution\. For more information, see [Working with CloudFormation Templates](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-guide.html) and the `[AWS::StepFunctions::StateMachine](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-statemachine.html)` resource in the *AWS CloudFormation User Guide*\.
+This tutorial shows you how to create a basic AWS Lambda function using AWS CloudFormation\. You will use the AWS CloudFormation console and a YAML *template* to create the *stack* \(IAM roles, the Lambda function, and the state machine\)\. You will then use the AWS Step Functions console to start the state machine execution\. For more information, see [Working with CloudFormation Templates](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-guide.html) and the `[AWS::StepFunctions::StateMachine](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-statemachine.html)` resource in the *AWS CloudFormation User Guide*\.
 
 **Topics**
 + [Step 1: Setting Up Your AWS CloudFormation Template](#lambda-state-machine-cfn-step-1)
@@ -76,7 +76,7 @@ MyLambdaFunction:
         exports.handler = (event, context, callback) => {
             callback(null, "Hello World!");
         };
-    Runtime: "nodejs4.3"
+    Runtime: "nodejs8.10"
     Timeout: "25"
 ```
 
@@ -97,7 +97,7 @@ MyLambdaFunction:
                 "Code": {
                     "ZipFile": "exports.handler = (event, context, callback) => {\n    callback(null, \"Hello World!\");\n};\n"
                 },
-                "Runtime": "nodejs4.3",
+                "Runtime": "nodejs8.10",
                 "Timeout": "25"
             }
         },
@@ -280,7 +280,7 @@ After you understand the different parts of the AWS CloudFormation template, you
              exports.handler = (event, context, callback) => {
                  callback(null, "Hello World!");
              };
-         Runtime: "nodejs4.3"
+         Runtime: "nodejs8.10"
          Timeout: "25"
    
      StatesExecutionRole:
@@ -364,7 +364,7 @@ After you understand the different parts of the AWS CloudFormation template, you
                    "Code": {
                        "ZipFile": "exports.handler = (event, context, callback) => {\n    callback(null, \"Hello World!\");\n};\n"
                    },
-                   "Runtime": "nodejs4.3",
+                   "Runtime": "nodejs8.10",
                    "Timeout": "25"
                }
            },
@@ -472,6 +472,6 @@ Step Functions allows you to create state machine, execution, and activity names
 
    A new execution of your state machine starts, and a new page showing your running execution is displayed\.
 
-1. \(Optional\) In the **Execution Details** section, choose the **Info** tab to view the **Execution Status** and the **Started** and **Closed** timestamps\.
+1. \(Optional\) In the **Execution Details** review the **Execution Status** and the **Started** and **Closed** timestamps\.
 
-1. To view the results of your execution, choose the **Output** tab\.
+1. To view the results of your execution, choose **Output**\.

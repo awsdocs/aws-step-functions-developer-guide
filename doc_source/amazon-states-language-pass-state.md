@@ -10,6 +10,9 @@ Treated as the output of a virtual task to be passed on to the next state, and f
 ** `ResultPath` \(Optional\)**  
 Specifies where \(in the input\) to place the "output" of the virtual task specified in `Result`\. The input is further filtered as prescribed by the `OutputPath` field \(if present\) before being used as the state's output\. For more information, see [Input and Output Processing](amazon-states-language-input-output-processing.md)\.
 
+** `Parameters` \(Optional\)**  
+Create a collection of key\-value pairs that will be passed as input\. Values can be static, or selected from the input with a path\. See, [`InputPath` and `Parameters`](input-output-inputpath-params.md)\.
+
 Here is an example of a `Pass` state that injects some fixed data into the state machine, probably for testing purposes\.
 
 ```

@@ -1,8 +1,11 @@
 # Creating a Step Functions API Using API Gateway<a name="tutorial-api-gateway"></a>
 
-You can use Amazon API Gateway to associate your AWS Step Functions APIs with methods in an API Gateway API, so that, when an HTTPS request is sent to an API method, API Gateway invokes your Step Functions API actions\.
+You can use Amazon API Gateway to associate your AWS Step Functions APIs with methods in an API Gateway API\. When an HTTPS request is sent to an API method, API Gateway invokes your Step Functions API actions\.
 
 This tutorial shows you how to create an API that uses one resource and the `POST` method to communicate with the `StartExecution` API action\. You'll use the IAM console to create a role for API Gateway\. Then, you'll use the API Gateway console to create an API Gateway API, create a resource and method, and map the method to the `StartExecution` API action\. Finally, you'll deploy and test your API\. For more information about this API action, see [StartExecution](https://docs.aws.amazon.com/step-functions/latest/apireference/API_StartExecution.html) in the *AWS Step Functions API Reference*\.
+
+**Note**  
+While Amazon API Gateway can start a Step Functions execution by calling `[StartExecution](https://docs.aws.amazon.com/step-functions/latest/apireference/API_StartExecution.html)` you must call `[DescribeExecution](https://docs.aws.amazon.com/step-functions/latest/apireference/API_DescribeExecution.html)` to get the result\.
 
 **Topics**
 + [Step 1: Creating an IAM Role for API Gateway](#api-gateway-step-1)

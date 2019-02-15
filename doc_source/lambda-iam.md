@@ -12,8 +12,8 @@ AWS Step Functions will generate an IAM policy based on your state machine defin
                 "lambda:InvokeFunction"
             ],
             "Resource": [
-                "arn:aws:lambda:region:accountId:function:function1",
-                "arn:aws:lambda:region:accountId:function:function2"
+                "arn:aws:lambda:[[region]]:[[accountId]]:function:[[function1]]",
+                "arn:aws:lambda:[[region]]:[[accountId]]:function:[[function2]]"
             ]
         }
     ]

@@ -16,7 +16,7 @@ These example templates show how AWS Step Functions generates IAM policies based
                 "sns:Publish"
             ],
             "Resource": [
-                "arn:aws:sns:region:accountId:[[topicName]]"
+                "arn:aws:sns:[[region]]:[[accountId]]:[[topicName]]"
             ]
         }
     ]

@@ -16,7 +16,7 @@ These example templates show how AWS Step Functions generates IAM policies based
                 "sqs:SendMessage"
             ],
             "Resource": [
-                "arn:aws:sqs:region:accountId:[[queueName]]"
+                "arn:aws:sqs:[[region]]:[[accountId]]:[[queueName]]"
             ]
         }
     ]

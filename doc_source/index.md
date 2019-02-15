@@ -1,7 +1,7 @@
 # AWS Step Functions Developer Guide
 
 -----
-*****Copyright &copy; 2018 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
+*****Copyright &copy; 2019 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
 Amazon's trademarks and trade dress may not be used in 
@@ -15,6 +15,13 @@ Amazon's trademarks and trade dress may not be used in
 -----
 ## Contents
 + [What Is AWS Step Functions?](welcome.md)
++ [Setting Up Step Functions](sfn-setting-up.md)
+   + [Prerequisites For Setting Up Step Functions](setting-up-prereq.md)
+   + [Setting Up Step Functions Local (Downloadable Version)](sfn-local.md)
+      + [Step Functions (Downloadable Version) on Your Computer](sfn-local-computer.md)
+      + [Step Functions (Downloadable Version) and Docker](sfn-local-docker.md)
+      + [Step Functions Local Configuration Options](sfn-local-config-options.md)
+      + [Step Functions and Lambda Local](sfn-local-lambda.md)
 + [Getting Started](getting-started.md)
 + [Tutorials](tutorials.md)
    + [Development Options](development-options.md)
@@ -57,6 +64,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Error Handling](concepts-error-handling.md)
    + [Read Consistency](concepts-read-consistency.md)
    + [Templates](concepts-templates.md)
+   + [Tagging](concepts-tagging.md)
 + [Sample Projects](create-sample-projects.md)
    + [Manage a Batch Job (Batch, SNS)](batch-job-notification.md)
    + [Manage a Container Task (ECS, SNS)](sample-project-container-task-notification.md)

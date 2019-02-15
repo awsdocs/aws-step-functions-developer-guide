@@ -19,7 +19,7 @@ These example templates show how AWS Step Functions generates IAM policies based
                 "dynamodb:DeleteItem"
             ],
             "Resource": [
-                "arn:aws:dynamodb:region:accountId:table/[[tableName]]"
+                "arn:aws:dynamodb:[[region]]:[[accountId]]:table/[[tableName]]"
             ]
         }
     ]

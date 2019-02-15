@@ -30,7 +30,7 @@ AWS Batch does not support resource level access control\. You must use `"Resour
                 "events:DescribeRule"
             ],
             "Resource": [
-               "arn:aws:events:region:accountId:rule/StepFunctionsGetEventsForBatchJobsRule"
+               "arn:aws:events:[[region]]:[[accountId]]:rule/StepFunctionsGetEventsForBatchJobsRule"
             ]
         }
     ]

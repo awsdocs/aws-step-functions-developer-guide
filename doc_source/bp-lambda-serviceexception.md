@@ -1,12 +1,12 @@
 # Handle Lambda Service Exceptions<a name="bp-lambda-serviceexception"></a>
 
-AWS Lambda can occasionally experience transient service errors\. In this case, invoking Lambda will result in a 500 error such as `ServiceException` or `SdkClientException`\. As a best practice, protectively handle these exceptions in your state machine to `Retry` invoking your Lambda function, or to `Catch` the error\.
+AWS Lambda can occasionally experience transient service errors\. In this case, invoking Lambda will result in a 500 error such as `ServiceException`, `AWSLambdaException`, or `SdkClientException`\. As a best practice, proactively handle these exceptions in your state machine to `Retry` invoking your Lambda function, or to `Catch` the error\.
 
 Lambda errors are reported as `Lambda.ErrorName`\. To retry a Lambda service exception error, you could use the following `Retry` code:
 
 ```
 "Retry": [ {
-   "ErrorEquals": [ "Lambda.ServiceException", "Lambda.SdkClientException"],
+   "ErrorEquals": [ "Lambda.ServiceException", "Lambda.AWSLambdaException", "Lambda.SdkClientException"],
    "IntervalSeconds": 2,
    "MaxAttempts": 6,
    "BackoffRate": 2

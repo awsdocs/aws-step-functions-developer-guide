@@ -5,6 +5,9 @@ Step Functions can control some AWS services directly from the Amazon States Lan
 + [Pass Parameters to a Service API](connectors-parameters.md)
 
 Supported Amazon ECS APIs and syntax:
+
+**Note**  
+Parameters in Step Functions are expressed in `CamelCase`, even when the native service API is `pascalCase`\. 
 + [https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html) starts a new task using the specified task definition\.
   + [Request syntax](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html#API_RunTask_RequestSyntax)
   + Supported parameters: 

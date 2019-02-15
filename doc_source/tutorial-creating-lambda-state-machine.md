@@ -1,6 +1,6 @@
 # Creating a Lambda State Machine<a name="tutorial-creating-lambda-state-machine"></a>
 
-In this tutorial you'll create an AWS Step Functions state machine that uses a AWS Lambda function to implement a `Task` state\. A `Task` state is a simple state that performs a single unit of work\.
+In this tutorial you'll create an AWS Step Functions state machine that uses a AWS Lambda function to implement a `Task` state\. A `Task` state performs a single unit of work\.
 
 Lambda is well\-suited for implementing `Task` states, because Lambda functions are *stateless* \(they have a predictable input\-output relationship\), easy to write, and don't require deploying code to a server instance\. You can write code in the AWS Management Console or your favorite editor, and AWS handles the details of providing a computing environment for your function and running it\.
 
@@ -31,7 +31,9 @@ You can use the IAM console to create a service\-linked role\.
 
 1. Choose the **Lambda** use case\. Use cases are defined by the service to include the trust policy required by the service\. Then choose **Next: Permissions**\.
 
-1. Choose one or more permissions policies to attach to the role\. Select the box next to the policy that assigns the permissions that you want the role to have, and then choose **Next: Review**\.
+1. Choose one or more permissions policies to attach to the role \(for instance, `AWSLambdaBasicExecutionRole`\)\. See [AWS Lambda Permissions Model](https://docs.aws.amazon.com/lambda/latest/dg/intro-permission-model.html)\.
+
+    Select the box next to the policy that assigns the permissions that you want the role to have, and then choose **Next: Review**\.
 
 1. Enter a **Role name**\.
 
@@ -50,7 +52,7 @@ Ensure that your Lambda function is under the same AWS account and region as you
 
 1. Log in to the [Lambda console](https://console.aws.amazon.com/lambda/home) and choose **Create a function**\.
 
-1. In the **Blueprints** section, choose **Author with code snippets**\.
+1. In the **Blueprints** section, choose **Author from scratch**\.
 
 1. In the **Basic information** section, configure your Lambda function:
 
@@ -124,12 +126,6 @@ Special characters \(`: ; , \ | ^ ~ $ # % & ` "`\)
 Control characters \(`\\u0000` \- `\\u001f` or `\\u007f` \- `\\u009f`\)\.
 Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with Amazon CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
 
-1. Create or enter an IAM role\.
-   + To create a new IAM role for Step Functions, select **Create an IAM role for me**, and enter a **Name** for your role\.
-   + If you have [previously created an IAM role](procedure-create-iam-role.md) with the correct permissions for your state machine, select **Choose an existing IAM role**\. Select a role from the drop\-down, or provide an ARN for that role\. 
-**Note**  
-If you delete the IAM role that Step Functions creates, Step Functions can't recreate it later\. Similarly, if you modify the role \(for example, by removing Step Functions from the principals in the IAM policy\), Step Functions can't restore its original settings later\. 
-
 1. In the **State machine definition** pane, add the following state machine definition using the ARN of [the Lambda function that you created earlier](#create-lambda-state-machine-create-lambda-function), for example:
 
    ```
@@ -152,12 +148,7 @@ You can also set up a `Retry` for `Task` states\. As a best practice, ensure pro
 [Handle Lambda Service Exceptions](bp-lambda-serviceexception.md)\. 
 [Retrying After an Error](concepts-error-handling.md#error-handling-retrying-after-an-error)\. 
 
-1. Use the graph in the **Visual Workflow** pane to check that your Amazon States Language code describes your state machine correctly\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/hello-state-machine-preview.png)
-
-   If you don't see the graph, choose ![\[refresh\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-getting-started-refresh.png)![\[refresh\]](http://docs.aws.amazon.com/step-functions/latest/dg/)![\[refresh\]](http://docs.aws.amazon.com/step-functions/latest/dg/) in the **Visual Workflow** pane\.
-
-1. Select **Next**\.
+   Choose **Next**\.
 
 1. Create or enter an IAM role\.
    + To create a new IAM role for Step Functions, select **Create an IAM role for me**, and enter a **Name** for your role\.
@@ -165,7 +156,7 @@ You can also set up a `Retry` for `Task` states\. As a best practice, ensure pro
 **Note**  
 If you delete the IAM role that Step Functions creates, Step Functions can't recreate it later\. Similarly, if you modify the role \(for example, by removing Step Functions from the principals in the IAM policy\), Step Functions can't restore its original settings later\. 
 
-1. Select **Create state machine**\.
+1. Select **Next**\.
 
 ## Step 5: Starting a New Execution<a name="create-lambda-state-machine-step-5"></a>
 

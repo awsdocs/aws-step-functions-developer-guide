@@ -20,6 +20,7 @@ Step Functions supports logging the following actions as events in CloudTrail lo
 +  [DeleteActivity](https://docs.aws.amazon.com/step-functions/latest/apireference/API_DeleteActivity.html) 
 +  [DeleteStateMachine](https://docs.aws.amazon.com/step-functions/latest/apireference/API_DeleteStateMachine.html) 
 +  [StartExecution](https://docs.aws.amazon.com/step-functions/latest/apireference/API_StartExecution.html) 
++  [StopExecution](https://docs.aws.amazon.com/step-functions/latest/apireference/API_StopExecution.html) 
 +  [UpdateStateMachine](https://docs.aws.amazon.com/step-functions/latest/apireference/API_UpdateStateMachine.html) 
 
 Every event or log entry contains information about who generated the request\. The identity information helps you determine the following: 
@@ -107,7 +108,7 @@ The following example shows a CloudTrail log entry that demonstrates the `Create
 
 ### DeleteActivity<a name="id3"></a>
 
-The following example shows a log entry that demonstrates the `DeleteActivity` action:
+The following example shows a CloudTrail log entry that demonstrates the `DeleteActivity` action:
 
 ```
 {

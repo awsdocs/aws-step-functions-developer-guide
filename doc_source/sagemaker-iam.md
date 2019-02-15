@@ -30,7 +30,7 @@ For these examples, `[[roleArn]]` refers to the Amazon Resource Name \(ARN\) of 
         "sagemaker:StopTrainingJob"
       ],
       "Resource": [
-        "arn:aws:sagemaker:region:accountId:training-job/[[trainingJobName]]*"
+        "arn:aws:sagemaker:[[region]]:[[accountId]]:training-job/[[trainingJobName]]*"
       ]
     },
     {
@@ -64,7 +64,7 @@ For these examples, `[[roleArn]]` refers to the Amazon Resource Name \(ARN\) of 
         "events:DescribeRule"
       ],
       "Resource": [
-        "arn:aws:events:region:accountId:rule/StepFunctionsGetEventsForSageMakerTrainingJobsRule"
+        "arn:aws:events:[[region]]:[[accountId]]:rule/StepFunctionsGetEventsForSageMakerTrainingJobsRule"
       ]
     }
   ]
@@ -84,7 +84,7 @@ For these examples, `[[roleArn]]` refers to the Amazon Resource Name \(ARN\) of 
         "sagemaker:CreateTrainingJob"
       ],
       "Resource": [
-        "arn:aws:sagemaker:region:accountId:training-job/[[trainingJobName]]*"
+        "arn:aws:sagemaker:[[region]]:[[accountId]]:training-job/[[trainingJobName]]*"
       ]
     },
     {
@@ -133,7 +133,7 @@ For these examples, `[[roleArn]]` refers to the Amazon Resource Name \(ARN\) of 
         "sagemaker:StopTrainingJob"
       ],
       "Resource": [
-        "arn:aws:sagemaker:region:accountId:training-job/*"
+        "arn:aws:sagemaker:[[region]]:[[accountId]]:training-job/*"
       ]
     },
     {
@@ -167,7 +167,7 @@ For these examples, `[[roleArn]]` refers to the Amazon Resource Name \(ARN\) of 
         "events:DescribeRule"
       ],
       "Resource": [
-        "arn:aws:events:region:accountId:rule/StepFunctionsGetEventsForSageMakerTrainingJobsRule"
+        "arn:aws:events:[[region]]:[[accountId]]:rule/StepFunctionsGetEventsForSageMakerTrainingJobsRule"
       ]
     }
   ]
@@ -187,7 +187,7 @@ For these examples, `[[roleArn]]` refers to the Amazon Resource Name \(ARN\) of 
         "sagemaker:CreateTrainingJob"
       ],
       "Resource": [
-        "arn:aws:sagemaker:region:accountId:training-job/*"
+        "arn:aws:sagemaker:[[region]]:[[accountId]]:training-job/*"
       ]
     },
     {
@@ -241,7 +241,7 @@ AWS Step Functions will not automatically create a policy for `CreateTransformJo
         "sagemaker:StopTransformJob"
       ],
       "Resource": [
-        "arn:aws:sagemaker:region:accountId:transform-job/[[transformJobName]]*"
+        "arn:aws:sagemaker:[[region]]:[[accountId]]:transform-job/[[transformJobName]]*"
       ]
     },
     {
@@ -275,7 +275,7 @@ AWS Step Functions will not automatically create a policy for `CreateTransformJo
         "events:DescribeRule"
       ],
       "Resource": [
-        "arn:aws:events:region:accountId:rule/StepFunctionsGetEventsForSageMakerTransformJobsRule"
+        "arn:aws:events:[[region]]:[[accountId]]:rule/StepFunctionsGetEventsForSageMakerTransformJobsRule"
       ]
     }
   ]
@@ -295,7 +295,7 @@ AWS Step Functions will not automatically create a policy for `CreateTransformJo
         "sagemaker:CreateTransformJob"
       ],
       "Resource": [
-        "arn:aws:sagemaker:region:accountId:transform-job/[[transformJobName]]*"
+        "arn:aws:sagemaker:[[region]]:[[accountId]]:transform-job/[[transformJobName]]*"
       ]
     },
     {
@@ -344,7 +344,7 @@ AWS Step Functions will not automatically create a policy for `CreateTransformJo
         "sagemaker:StopTransformJob"
       ],
       "Resource": [
-        "arn:aws:sagemaker:region:accountId:transform-job/*"
+        "arn:aws:sagemaker:[[region]]:[[accountId]]:transform-job/*"
       ]
     },
     {
@@ -378,7 +378,7 @@ AWS Step Functions will not automatically create a policy for `CreateTransformJo
         "events:DescribeRule"
       ],
       "Resource": [
-        "arn:aws:events:region:accountId:rule/StepFunctionsGetEventsForSageMakerTransformJobsRule"
+        "arn:aws:events:[[region]]:[[accountId]]:rule/StepFunctionsGetEventsForSageMakerTransformJobsRule"
       ]
     }
   ]
@@ -398,7 +398,7 @@ AWS Step Functions will not automatically create a policy for `CreateTransformJo
         "sagemaker:CreateTransformJob"
       ],
       "Resource": [
-        "arn:aws:sagemaker:region:accountId:transform-job/*"
+        "arn:aws:sagemaker:[[region]]:[[accountId]]:transform-job/*"
       ]
     },
     {
