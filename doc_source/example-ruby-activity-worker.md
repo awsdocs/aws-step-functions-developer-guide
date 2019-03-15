@@ -51,7 +51,7 @@ require 'aws-sdk'
 
 module Validate
   def self.positive(value)
-    raise ArgumentError, 'Argument has to positive' if value <= 0
+    raise ArgumentError, 'Argument has to be positive' if value <= 0
     value
   end
 
