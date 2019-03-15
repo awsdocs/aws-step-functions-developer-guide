@@ -36,7 +36,7 @@ Follow these steps to set up and run Step Functions on your computer:
 1. To access Step Functions running locally, use the `--endpoint-url` parameter\. For example, using the AWS Command Line Interface, you would specify Step Functions commands as:
 
    ```
-   aws stepfunctions --endpoint http://localhost:8083 command
+   aws stepfunctions --endpoint-url http://localhost:8083 command
    ```
 
 **Note**  

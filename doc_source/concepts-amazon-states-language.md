@@ -1,6 +1,8 @@
 # Amazon States Language<a name="concepts-amazon-states-language"></a>
 
-Amazon States Language is a JSON\-based, structured language used to define your state machine, a collection of [states](concepts-states.md), that can do work \(`Task` states\), determine which states to transition to next \(`Choice` states\), stop an execution with an error \(`Fail` states\), and so on\. For more information, see the [Amazon States Language Specification](https://states-language.net/spec.html) and [Statelint](https://github.com/awslabs/statelint), a tool that validates Amazon States Language code\.
+The Amazon States Language is a JSON\-based, structured language used to define your state machine, a collection of [states](concepts-states.md), that can do work \(`Task` states\), determine which states to transition to next \(`Choice` states\), stop an execution with an error \(`Fail` states\), and so on\. 
+
+For more information, see the [Amazon States Language Specification](https://states-language.net/spec.html) and [Statelint](https://github.com/awslabs/statelint), a tool that validates Amazon States Language code\.
 
 To create a state machine on the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/) using Amazon States Language, see [Getting Started](getting-started.md)\.
 

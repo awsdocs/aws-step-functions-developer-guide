@@ -5,7 +5,7 @@ The default managed policies in IAM, such as `ReadOnly`, don't fully cover all t
 AWS Step Functions has four categories of permissions\. Depending on what access you want to provide to a user, you can control access by using permissions in these categories\. 
 
 [Service\-Level Permissions](#concept-create-iam-advanced-service)  
-Apply to components of the API that do not act on a specific resource\.
+Apply to components of the API that don't act on a specific resource\.
 
 [State Machine\-Level Permissions](#concept-create-iam-advanced-state)  
 Apply to all API components that act on a specific state machine\.
@@ -18,7 +18,7 @@ Apply to all API components that act on a specific activity or on a particular i
 
 ## Service\-Level Permissions<a name="concept-create-iam-advanced-service"></a>
 
-This permission level applies to all API actions that do not act on a specific resource\. These include `[CreateStateMachine](https://docs.aws.amazon.com/step-functions/latest/apireference/API_CreateStateMachine.html)`, `[CreateActivity](https://docs.aws.amazon.com/step-functions/latest/apireference/API_CreateActivity.html)`, `[ListStateMachines](https://docs.aws.amazon.com/step-functions/latest/apireference/API_ListStateMachines.html)`, and `[ListActivities](https://docs.aws.amazon.com/step-functions/latest/apireference/API_ListActivities.html)`\.
+This permission level applies to all API actions that don't act on a specific resource\. These include `[CreateStateMachine](https://docs.aws.amazon.com/step-functions/latest/apireference/API_CreateStateMachine.html)`, `[CreateActivity](https://docs.aws.amazon.com/step-functions/latest/apireference/API_CreateActivity.html)`, `[ListStateMachines](https://docs.aws.amazon.com/step-functions/latest/apireference/API_ListStateMachines.html)`, and `[ListActivities](https://docs.aws.amazon.com/step-functions/latest/apireference/API_ListActivities.html)`\.
 
 ```
 {
@@ -51,7 +51,7 @@ This permission level applies to all API actions that do not act on a specific r
 
 ## State Machine\-Level Permissions<a name="concept-create-iam-advanced-state"></a>
 
-This permission level applies to all API actions that act on a specific state machine\. These API require the ARN of the state machine as part of the request, such as `[DeleteStateMachine](https://docs.aws.amazon.com/step-functions/latest/apireference/API_DeleteStateMachine.html)`, `[DescribeStateMachine](https://docs.aws.amazon.com/step-functions/latest/apireference/API_DescribeStateMachine.html)`, `[StartExecution](https://docs.aws.amazon.com/step-functions/latest/apireference/API_StartExecution.html)`, and `[ListExecutions](https://docs.aws.amazon.com/step-functions/latest/apireference/API_ListExecutions.html)`\.
+This permission level applies to all API actions that act on a specific state machine\. These API operations require the Amazon Resource Name \(ARN\) of the state machine as part of the request, such as `[DeleteStateMachine](https://docs.aws.amazon.com/step-functions/latest/apireference/API_DeleteStateMachine.html)`, `[DescribeStateMachine](https://docs.aws.amazon.com/step-functions/latest/apireference/API_DescribeStateMachine.html)`, `[StartExecution](https://docs.aws.amazon.com/step-functions/latest/apireference/API_StartExecution.html)`, and `[ListExecutions](https://docs.aws.amazon.com/step-functions/latest/apireference/API_ListExecutions.html)`\.
 
 ```
 {

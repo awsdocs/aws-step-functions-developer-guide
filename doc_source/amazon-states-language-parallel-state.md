@@ -2,23 +2,23 @@
 
 The `Parallel` state \(`"Type": "Parallel"`\) can be used to create parallel branches of execution in your state machine\.
 
-In addition to the [common state fields](amazon-states-language-common-fields.md), `Parallel` states introduce these additional fields:
+In addition to the [common state fields](amazon-states-language-common-fields.md), `Parallel` states introduce these additional fields\.
 
 ** `Branches` \(Required\)**  
-An array of objects that specify state machines to execute in parallel\. Each such state machine object must have fields named `States` and `StartAt` whose meanings are exactly like those in the top level of a state machine\.
+An array of objects that specify state machines to execute in parallel\. Each such state machine object must have fields named `States` and `StartAt`, whose meanings are exactly like those in the top level of a state machine\.
 
 ** `ResultPath` \(Optional\)**  
-Specifies where \(in the input\) to place the output of the branches\. The input is then filtered as prescribed by the `OutputPath` field \(if present\) before being used as the state's output\. For more information, see [Input and Output Processing](amazon-states-language-input-output-processing.md)\.
+Specifies where \(in the input\) to place the output of the branches\. The input is then filtered as specified by the `OutputPath` field \(if present\) before being used as the state's output\. For more information, see [Input and Output Processing](amazon-states-language-input-output-processing.md)\.
 
 ** `Retry` \(Optional\)**  
-An array of objects, called Retriers that define a retry policy in case the state encounters runtime errors\. For more information, see [Retrying After an Error](amazon-states-language-errors.md#amazon-states-language-retrying-after-error)\.
+An array of objects, called Retriers, that define a retry policy in case the state encounters runtime errors\. For more information, see [Retrying After an Error](amazon-states-language-errors.md#amazon-states-language-retrying-after-error)\.
 
 ** `Catch` \(Optional\)**  
-An array of objects, called Catchers that define a fallback state which is executed in case the state encounters runtime errors and its retry policy has been exhausted or is not defined\. For more information, see [Fallback States](amazon-states-language-errors.md#amazon-states-language-fallback-states)\.
+An array of objects, called Catchers, that define a fallback state that is executed if the state encounters runtime errors and its retry policy is exhausted or isn't defined\. For more information, see [Fallback States](amazon-states-language-errors.md#amazon-states-language-fallback-states)\.
 
 A `Parallel` state causes AWS Step Functions to execute each branch, starting with the state named in that branch's `StartAt` field, as concurrently as possible, and wait until all branches terminate \(reach a terminal state\) before processing the `Parallel` state's `Next` field\.
 
-Here is an example:
+Here is an example\.
 
 ```
 {
@@ -57,17 +57,17 @@ Here is an example:
 }
 ```
 
-In this example, the `LookupAddress` and `LookupPhone` branches are executed in parallel\. Here is how the visual workflow looks in the Step Functions console:
+In this example, the `LookupAddress` and `LookupPhone` branches are executed in parallel\. Here is how the visual workflow looks in the Step Functions console\.
 
-![\[Parallel Workflow\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/parallel-state.png)
+![\[Parallel workflow.\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/parallel-state.png)
 
 Each branch must be self\-contained\. A state in one branch of a `Parallel` state must not have a `Next` field that targets a field outside of that branch, nor can any other state outside the branch transition into that branch\.
 
 ## Parallel State Output<a name="amazon-states-language-parallel-state-output"></a>
 
-A `Parallel` state provides each branch with a copy of its own input data \(subject to modification by the `InputPath` field\)\. It generates output which is an array with one element for each branch containing the output from that branch\. There is no requirement that all elements be of the same type\. The output array can be inserted into the input data \(and the whole sent as the `Parallel` state's output\) by using a `ResultPath` field in the usual way \(see [Input and Output Processing](amazon-states-language-input-output-processing.md)\)\.
+A `Parallel` state provides each branch with a copy of its own input data \(subject to modification by the `InputPath` field\)\. It generates output that is an array with one element for each branch, containing the output from that branch\. There is no requirement that all elements be of the same type\. The output array can be inserted into the input data \(and the whole sent as the `Parallel` state's output\) by using a `ResultPath` field in the usual way \(see [Input and Output Processing](amazon-states-language-input-output-processing.md)\)\.
 
-Here is another example:
+Here is another example\.
 
 ```
 {
@@ -104,7 +104,7 @@ Here is another example:
 }
 ```
 
-If the `FunWithMath` state was given the array `[3, 2]` as input, then both the `Add` and `Subtract` states receive that array as input\. The output of `Add` would be `5`, that of `Subtract` would be `1`, and the output of the `Parallel` state would be an array:
+If the `FunWithMath` state was given the array `[3, 2]` as input, then both the `Add` and `Subtract` states receive that array as input\. The output of `Add` would be `5`, that of `Subtract` would be `1`, and the output of the `Parallel` state would be an array\.
 
 ```
 [ 5, 1 ]
@@ -112,9 +112,9 @@ If the `FunWithMath` state was given the array `[3, 2]` as input, then both the 
 
 ### Error Handling<a name="error-handling"></a>
 
-If any branch fails, due to either an unhandled error or by transitioning to a `Fail` state, the entire `Parallel` state is considered to have failed and all its branches are stopped\. If the error is not handled by the `Parallel` state itself, Step Functions will stop the execution with an error\.
+If any branch fails, because of an unhandled error or by transitioning to a `Fail` state, the entire `Parallel` state is considered to have failed and all its branches are stopped\. If the error is not handled by the `Parallel` state itself, Step Functions stops the execution with an error\.
 
 **Note**  
-When a parallel state fails, invoked Lambda functions continue to run and activity workers processing a task token will not be stopped:   
-To stop long\-running Activities use heartbeats to detect if its branch has been stopped by Step Functions, and stop workers that are processing tasks\. Calling [https://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskHeartbeat.html](https://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskHeartbeat.html), [https://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskSuccess.html](https://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskSuccess.html), or [https://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskFailure.html](https://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskFailure.html) will throw an error if the state has failed\. See [Heartbeat Errors](https://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskHeartbeat.html#API_SendTaskHeartbeat_Errors)\.
+When a parallel state fails, invoked Lambda functions continue to run and activity workers processing a task token are not stopped\.   
+To stop long\-running activities, use heartbeats to detect if its branch has been stopped by Step Functions, and stop workers that are processing tasks\. Calling [https://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskHeartbeat.html](https://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskHeartbeat.html), [https://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskSuccess.html](https://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskSuccess.html), or [https://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskFailure.html](https://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskFailure.html) will throw an error if the state has failed\. See [Heartbeat Errors](https://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskHeartbeat.html#API_SendTaskHeartbeat_Errors)\.
 Running Lambda functions cannot be stopped\. If you have implemented a fallback, use a `Wait` state so that cleanup work happens after the Lambda function has finished\.

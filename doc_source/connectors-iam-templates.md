@@ -1,6 +1,6 @@
 # IAM Policies for Integrated Services<a name="connectors-iam-templates"></a>
 
-When you create a state machine in the AWS Step Functions console, Step Functions will produce an IAM policy based on the resources used in your state machine definition\. 
+When you create a state machine in the AWS Step Functions console, Step Functions produces an AWS Identity and Access Management \(IAM\) policy based on the resources used in your state machine definition\. 
 
 These examples show how Step Functions generates an IAM policy based on your state machine definition\. Items in the example code such as *`[[resourceName]]`* are replaced with the static resources listed in your state machine definition\. If you have multiple static resources, there will be an entry for each in the IAM role\.
 
@@ -12,10 +12,10 @@ Dynamic resources are those that are passed in to your state input, and accessed
 
 ## Synchronous vs\. Asynchronous IAM Policies<a name="connectors-iam-sync-async"></a>
 
-For synchronous connections \(those ending in `.sync`\), additional permissions are needed to monitor and receive a response from the API actions of connected services\. The related policies need more permissions than non\-synchronous connected services\. See [Connect to Resources](connectors-resource.md) for information on synchronous connections\.
+For synchronous connections \(those ending in `.sync`\), additional permissions are needed to monitor and receive a response from the API actions of connected services\. The related policies need more permissions than non\-synchronous connected services\. See [Connect to Resources](connectors-resource.md) for information about synchronous connections\.
 
 **Note**  
-Review these templates to understand how Step Functions creates your IAM policies, and as an example of how to manually create IAM policies for Step Functions when working with other AWS services\. For more information on Step Functions service integration, see: [AWS Service Integrations](concepts-connectors.md)
+Review these templates to understand how Step Functions creates your IAM policies, and as an example of how to manually create IAM policies for Step Functions when working with other AWS services\. For more information about Step Functions service integration, see [AWS Service Integrations](concepts-connectors.md)\.
 
 **Topics**
 + [Dynamic vs\. Static Resources](#connectors-iam-dynamic-static)

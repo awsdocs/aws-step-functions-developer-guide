@@ -1,6 +1,6 @@
-# `ResultPath`<a name="input-output-resultpath"></a>
+# ResultPath<a name="input-output-resultpath"></a>
 
-The output of a state can be a copy of its input, the result it produces \(for example, output from a Task state’s Lambda function\), or a combination of its input and result\. Use `ResultPath` to control which combination of these is passed to the state output\. 
+The output of a state can be a copy of its input, the result it produces \(for example, output from a `Task` state’s Lambda function\), or a combination of its input and result\. Use `ResultPath` to control which combination of these is passed to the state output\. 
 
 The following state types can generate a result and can include `ResultPath:`
 + [Pass](amazon-states-language-pass-state.md)
@@ -17,16 +17,16 @@ These examples are based on the state machine and Lambda function described in t
 **Use `ResultPath` to:**
 + [Replace Input With Result](#input-output-resultpath-default)
 + [Include Result With Input](#input-output-resultpath-append)
-+ [Update a Node in Input With Result](#input-output-resultpath-amend)
++ [Update a Node in Input with Result](#input-output-resultpath-amend)
 + [Include Error and Input in a `Catch`](#input-output-resultpath-catch)
 
-## Use `ResultPath` to Replace Input with Result<a name="input-output-resultpath-default"></a>
+## Use ResultPath to Replace Input with Result<a name="input-output-resultpath-default"></a>
 
 If you don't specify a `ResultPath`, the default behavior is as if you had specified `"ResultPath": "$"`\. Because this tells the state to replace the entire input with the result, the state input is completely replaced by the result coming from the task result\.
 
 The following diagram shows how `ResultPath` can completely replace the input with the result of the task\.
 
-![\[Replace input with ResultPath\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/input-output-resultpath-replace.png)![\[Replace input with ResultPath\]](http://docs.aws.amazon.com/step-functions/latest/dg/)![\[Replace input with ResultPath\]](http://docs.aws.amazon.com/step-functions/latest/dg/)
+![\[Replace input with ResultPath.\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/input-output-resultpath-replace.png)![\[Replace input with ResultPath.\]](http://docs.aws.amazon.com/step-functions/latest/dg/)![\[Replace input with ResultPath.\]](http://docs.aws.amazon.com/step-functions/latest/dg/)
 
 Using the state machine and Lambda function described in [Creating a Lambda State Machine](tutorial-creating-lambda-state-machine.md), if we pass the following input:
 
@@ -38,13 +38,13 @@ Using the state machine and Lambda function described in [Creating a Lambda Stat
 }
 ```
 
-The Lambda function provides the following result:
+The Lambda function provides the following result\.
 
 ```
 "Hello, AWS Step Functions!"
 ```
 
-If `ResultPath` isn't specified in the state, or if `"ResultPath": "$"` is set, the input of the state is replaced by the result of the Lambda function, and the output of the state is:
+If `ResultPath` isn't specified in the state, or if `"ResultPath": "$"` is set, the input of the state is replaced by the result of the Lambda function, and the output of the state is the following\.
 
 ```
 "Hello, AWS Step Functions!"
@@ -53,13 +53,13 @@ If `ResultPath` isn't specified in the state, or if `"ResultPath": "$"` is set, 
 **Note**  
 `ResultPath` is used to include content from the result with the input, before passing it to the output\. But, if `ResultPath` isn't specified, the default is to replace the entire input\.
 
-## Use `ResultPath` to Include Result with Input<a name="input-output-resultpath-append"></a>
+## Use ResultPath to Include Result with Input<a name="input-output-resultpath-append"></a>
 
 The following diagram shows how `ResultPath` can include the result with the input\.
 
 ![\[Include input with ResultPath\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/input-output-resultpath-append.png)![\[Include input with ResultPath\]](http://docs.aws.amazon.com/step-functions/latest/dg/)![\[Include input with ResultPath\]](http://docs.aws.amazon.com/step-functions/latest/dg/)
 
-Using the state machine and Lambda function described in the [Creating a Lambda State Machine](tutorial-creating-lambda-state-machine.md) tutorial, we could pass the following input:
+Using the state machine and Lambda function described in the [Creating a Lambda State Machine](tutorial-creating-lambda-state-machine.md) tutorial, we could pass the following input\.
 
 ```
 {
@@ -69,7 +69,7 @@ Using the state machine and Lambda function described in the [Creating a Lambda 
 }
 ```
 
-The result of the Lambda function is:
+The result of the Lambda function is the following\.
 
 ```
 "Hello, AWS Step Functions!"
@@ -81,7 +81,7 @@ If we want to preserve the input, insert the result of the Lambda function, and 
 "ResultPath": "$.taskresult"
 ```
 
-This includes the result of the Lambda function with the original input:
+This includes the result of the Lambda function with the original input\.
 
 ```
 {
@@ -94,13 +94,13 @@ This includes the result of the Lambda function with the original input:
 
 The output of the Lambda function is appended to the original input as a value for `taskresult`\. The input, including the newly inserted value, is passed to the next state\.
 
-You can also insert the result into a child node of the input\. Set the `ResultPath` to:
+You can also insert the result into a child node of the input\. Set the `ResultPath` to the following\.
 
 ```
 "ResultPath": "$.strings.lambdaresult"
 ```
 
-Start an execution using the following input:
+Start an execution using the following input\.
 
 ```
 {
@@ -131,13 +131,13 @@ The result of the Lambda function is inserted as a child of the `strings` node i
 
 The state output now includes the original input JSON with the result as a child node\.
 
-## Use `ResultPath` to Update a Node in Input with the Result<a name="input-output-resultpath-amend"></a>
+## Use ResultPath to Update a Node in Input with the Result<a name="input-output-resultpath-amend"></a>
 
 The following diagram shows how `ResultPath` can update the value of existing JSON nodes in the input with values from the task result\.
 
 ![\[Replace input with ResultPath\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/input-output-resultpath-amend.png)![\[Replace input with ResultPath\]](http://docs.aws.amazon.com/step-functions/latest/dg/)![\[Replace input with ResultPath\]](http://docs.aws.amazon.com/step-functions/latest/dg/)
 
-Using the example of the state machine and Lambda function described in the [Creating a Lambda State Machine](tutorial-creating-lambda-state-machine.md) tutorial, we could pass the following input:
+Using the example of the state machine and Lambda function described in the [Creating a Lambda State Machine](tutorial-creating-lambda-state-machine.md) tutorial, we could pass the following input\.
 
 ```
 {
@@ -147,19 +147,21 @@ Using the example of the state machine and Lambda function described in the [Cre
 }
 ```
 
-The result of the Lambda function is:
+The result of the Lambda function is the following\.
 
 ```
 Hello, AWS Step Functions!
 ```
 
-Instead of preserving the input and inserting the result as a new node in the JSON, we can overwrite an existing node\. For example, just as omitting or setting `"ResultPath": "$"` overwrites the entire node, you can specify an individual node to overwrite with the result:
+Instead of preserving the input and inserting the result as a new node in the JSON, we can overwrite an existing node\. 
+
+For example, just as omitting or setting `"ResultPath": "$"` overwrites the entire node, you can specify an individual node to overwrite with the result\.
 
 ```
 "ResultPath": "$.comment"
 ```
 
-Because the `comment` node already exists in the state input, setting `ResultPath` to `"$.comment"` replaces that node in the input with the result of the Lambda function\. Without further filtering by `OutputPath`, the following is passed to the output:
+Because the `comment` node already exists in the state input, setting `ResultPath` to `"$.comment"` replaces that node in the input with the result of the Lambda function\. Without further filtering by `OutputPath`, the following is passed to the output\.
 
 ```
 {
@@ -171,9 +173,9 @@ Because the `comment` node already exists in the state input, setting `ResultPat
 
 The value for the `comment` node, `"This is a test of the input and output of a Task state."`, is replaced by the result of the Lambda function: `"Hello, AWS Step Functions!"` in the state output\.
 
-## Use `ResultPath` to Include Both Error and Input in a `Catch`<a name="input-output-resultpath-catch"></a>
+## Use ResultPath to Include Both Error and Input in a `Catch`<a name="input-output-resultpath-catch"></a>
 
-The [Handling Error Conditions Using a State Machine](tutorial-handling-error-conditions.md) tutorial shows how to use a state machine to catch an error\. In some cases, you might want to preserve the original input with the error\. Use `ResultPath` in a `Catch` to include the error with the original input, rather than replace it: 
+The [Handling Error Conditions Using a State Machine](tutorial-handling-error-conditions.md) tutorial shows how to use a state machine to catch an error\. In some cases, you might want to preserve the original input with the error\. Use `ResultPath` in a `Catch` to include the error with the original input, instead of replacing it: 
 
 ```
 "Catch": [{ 
@@ -189,7 +191,7 @@ If the previous `Catch` statement catches an error, it includes the result in an
 {"foo": "bar"}
 ```
 
-The state output when catching an error is:
+The state output when catching an error is the following\.
 
 ```
 {

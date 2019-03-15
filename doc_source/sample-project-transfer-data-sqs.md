@@ -1,19 +1,21 @@
-# Transfer Data Records \(Lambda, DynamoDB, SQS\)<a name="sample-project-transfer-data-sqs"></a>
+# Transfer Data Records \(Lambda, DynamoDB, Amazon SQS\)<a name="sample-project-transfer-data-sqs"></a>
 
-This sample project demonstrates how to read values from a DynamoDB table and send them to Amazon SQS using AWS Step Functions\. Deploying this sample project will create a Step Functions state machine, a DynamoDB table, a Lambda function, and an Amazon SQS topic\. In this project, Step Functions uses the Lambda function to populate the DynamoDB table and then uses a for loop to read each of the entries, and sends each entry to Amazon SQS\.
+This sample project demonstrates how to read values from an Amazon DynamoDB table and send them to Amazon SQS using AWS Step Functions\. Deploying this sample project will create a Step Functions state machine, a DynamoDB table, an AWS Lambda function, and an Amazon SQS topic\. 
 
-To create the **Transfer Data Records** state machine and provision all resources:
+In this project, Step Functions uses the Lambda function to populate the DynamoDB table, uses a `for` loop to read each of the entries, and then sends each entry to Amazon SQS\.
 
-1. Log in to the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/), and choose **Create a state machine**\.
+**To create the **Transfer Data Records** state machine and provision all resources**
 
-1. Select **Sample Projects** and choose **Transfer Data Records**\.
+1. Open the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/) and choose **Create a state machine**\.
+
+1. Choose **Sample Projects**, and then choose **Transfer Data Records**\.
 
    The state machine **Code** and **Visual Workflow** are displayed\.  
 ![\[Transfer data with SQS workflow.\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/sample-transfer-sqs.png)
 **Note**  
 The **Code** section in this state machine references the AWS resources that will be created for this sample project\.
 
-1. Select **Next**\.
+1. Choose **Next**\.
 
    The **Deploy resources** page is displayed, listing the resources that will be created\. For this sample project the resources include:
    + A Lambda function for seeding the DynamoDB table
@@ -22,7 +24,7 @@ The **Code** section in this state machine references the AWS resources that wil
 
 1. Choose **Deploy Resources**\.
 **Note**  
-It can take up to 10 minutes as these resources and related IAM permissions are created\. While the **Deploy resources** page displays, you can open the **Stack ID** link to see which resources are being provisioned\.
+It can take up to 10 minutes for these resources and related IAM permissions to be created\. While the **Deploy resources** page is displayed, you can open the **Stack ID** link to see which resources are being provisioned\.
 
 ## To start a new execution<a name="sample-sqs-start-execution"></a>
 
@@ -32,15 +34,17 @@ It can take up to 10 minutes as these resources and related IAM permissions are 
 **Note**  
 Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with Amazon CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
 
-1. Optionally, you can go to the newly\-created state machine on the Step Functions **Dashboard**, select **New execution**\.
+1. Optionally, you can go to the newly created state machine on the Step Functions **Dashboard**, and then choose **New execution**\.
 
-1. Once an execution is complete, you can select states on the **Visual workflow** and browse the **Input** and **Output** under **Step details**
+1. When an execution is complete, you can select states on the **Visual workflow** and browse the **Input** and **Output** under **Step details**
 
-## Example State machine code<a name="sample-sqs-code-examples"></a>
+## Example State Machine Code<a name="sample-sqs-code-examples"></a>
 
-The state machine in this sample project integrates with DynamoDB and Amazon SQS by passing parameters directly to those resources\. Browse through this example state machine to see how Step Functions controls DynamoDB and Amazon SQS by connecting to the ARN in the `Resource` field, and by passing `Parameters` to the service API\.
+The state machine in this sample project integrates with DynamoDB and Amazon SQS by passing parameters directly to those resources\. 
 
-For more information on how AWS Step Functions can control other AWS services, see: [AWS Service Integrations](concepts-connectors.md)\.
+Browse through this example state machine to see how Step Functions controls DynamoDB and Amazon SQS by connecting to the Amazon Resource Name \(ARN\) in the `Resource` field, and by passing `Parameters` to the service API\.
+
+For more information about how AWS Step Functions can control other AWS services, see [AWS Service Integrations](concepts-connectors.md)\.
 
 ```
 {
@@ -103,13 +107,13 @@ For more information on how AWS Step Functions can control other AWS services, s
 }
 ```
 
-For more information on passing parameters and managing results, see:
+For more information about passing parameters and managing results, see:
 + [Pass Parameters to a Service API](connectors-parameters.md)
-+ [`ResultPath`](input-output-resultpath.md)
++ [ResultPath](input-output-resultpath.md)
 
 ## IAM Example<a name="sample-sqs-iam-example"></a>
 
-This example IAM policy generated by the sample project includes the least privilege necessary to execute the state machine and related resources\. It is a best practice to include only those permissions necessary in your IAM policies 
+This example AWS Identity and Access Management \(IAM\) policy generated by the sample project includes the least privilege necessary to execute the state machine and related resources\. It's a best practice to include only those permissions that are necessary in your IAM policies\. 
 
 ```
 {
@@ -146,4 +150,4 @@ This example IAM policy generated by the sample project includes the least privi
 }
 ```
 
-For information on how to configure IAM when using Step Functions with other AWS services, see [IAM Policies for Integrated Services](connectors-iam-templates.md)\.
+For information about how to configure IAM when using Step Functions with other AWS services, see [IAM Policies for Integrated Services](connectors-iam-templates.md)\.

@@ -1,4 +1,4 @@
-# Manage Amazon ECS/Fargate Tasks With Step Functions<a name="connectors-ecs"></a>
+# Manage Amazon ECS/Fargate Tasks with Step Functions<a name="connectors-ecs"></a>
 
 Step Functions can control some AWS services directly from the Amazon States Language\. For more information, see:
 + [Service Integrations](concepts-connectors.md)
@@ -7,7 +7,7 @@ Step Functions can control some AWS services directly from the Amazon States Lan
 Supported Amazon ECS APIs and syntax:
 
 **Note**  
-Parameters in Step Functions are expressed in `CamelCase`, even when the native service API is `pascalCase`\. 
+Parameters in Step Functions are expressed in `PascalCase`, even when the native service API is `camelCase`\. 
 + [https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html) starts a new task using the specified task definition\.
   + [Request syntax](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html#API_RunTask_RequestSyntax)
   + Supported parameters: 
@@ -23,7 +23,7 @@ Parameters in Step Functions are expressed in `CamelCase`, even when the native 
   + [Response syntax](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html#API_RunTask_ResponseSyntax)
 
 **Note**  
-For the `Overrides` parameter, Step Functions does not support `executionRoleArn` or `taskRoleArn` as `containerOverrides`\.
+For the `Overrides` parameter, Step Functions does not support `executionRoleArn` or `taskRoleArn` as `ContainerOverrides`\.
 
 ## Passing data to an Amazon ECS task<a name="connectors-ecs-pass-to"></a>
 

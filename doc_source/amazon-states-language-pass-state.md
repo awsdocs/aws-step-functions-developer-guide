@@ -1,17 +1,17 @@
 # Pass<a name="amazon-states-language-pass-state"></a>
 
-A `Pass` state \(`"Type": "Pass"`\) simply passes its input to its output, performing no work\. `Pass` states are useful when constructing and debugging state machines\.
+A `Pass` state \(`"Type": "Pass"`\) passes its input to its output, without performing work\. `Pass` states are useful when constructing and debugging state machines\.
 
-In addition to the [common state fields](amazon-states-language-common-fields.md), `Pass` states allow the following fields:
+In addition to the [common state fields](amazon-states-language-common-fields.md), `Pass` states allow the following fields\.
 
 ** `Result` \(Optional\)**  
-Treated as the output of a virtual task to be passed on to the next state, and filtered as prescribed by the `ResultPath` field \(if present\)\.
+Treated as the output of a virtual task to be passed to the next state, and filtered as specified by the `ResultPath` field \(if present\)\.
 
 ** `ResultPath` \(Optional\)**  
-Specifies where \(in the input\) to place the "output" of the virtual task specified in `Result`\. The input is further filtered as prescribed by the `OutputPath` field \(if present\) before being used as the state's output\. For more information, see [Input and Output Processing](amazon-states-language-input-output-processing.md)\.
+Specifies where \(in the input\) to place the "output" of the virtual task specified in `Result`\. The input is further filtered as specified by the `OutputPath` field \(if present\) before being used as the state's output\. For more information, see [Input and Output Processing](amazon-states-language-input-output-processing.md)\.
 
 ** `Parameters` \(Optional\)**  
-Create a collection of key\-value pairs that will be passed as input\. Values can be static, or selected from the input with a path\. See, [`InputPath` and `Parameters`](input-output-inputpath-params.md)\.
+Create a collection of key\-value pairs that will be passed as input\. Values can be static, or selected from the input with a path\. For more information, see [InputPath and Parameters](input-output-inputpath-params.md)\.
 
 Here is an example of a `Pass` state that injects some fixed data into the state machine, probably for testing purposes\.
 
@@ -27,7 +27,7 @@ Here is an example of a `Pass` state that injects some fixed data into the state
 }
 ```
 
-Suppose the input to this state is:
+Suppose the input to this state is this:
 
 ```
 {
@@ -35,7 +35,7 @@ Suppose the input to this state is:
 }
 ```
 
-Then the output would be:
+Then the output would be this\.
 
 ```
 {

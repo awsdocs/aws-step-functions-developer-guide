@@ -1,15 +1,23 @@
 # Creating a Lambda State Machine Using AWS CloudFormation<a name="tutorial-lambda-state-machine-cloudformation"></a>
 
-This tutorial shows you how to create a basic AWS Lambda function using AWS CloudFormation\. You will use the AWS CloudFormation console and a YAML *template* to create the *stack* \(IAM roles, the Lambda function, and the state machine\)\. You will then use the AWS Step Functions console to start the state machine execution\. For more information, see [Working with CloudFormation Templates](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-guide.html) and the `[AWS::StepFunctions::StateMachine](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-statemachine.html)` resource in the *AWS CloudFormation User Guide*\.
+This tutorial shows you how to create a basic AWS Lambda function using AWS CloudFormation\. You use the AWS CloudFormation console and a YAML *template* to create the *stack* \(IAM roles, the Lambda function, and the state machine\)\. Then you use the AWS Step Functions console to start the state machine execution\. 
+
+For more information, see [Working with CloudFormation Templates](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-guide.html) and the `[AWS::StepFunctions::StateMachine](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-statemachine.html)` resource in the *AWS CloudFormation User Guide*\.
 
 **Topics**
-+ [Step 1: Setting Up Your AWS CloudFormation Template](#lambda-state-machine-cfn-step-1)
-+ [Step 2: Using the AWS CloudFormation Template to Create a Lambda State Machine](#lambda-state-machine-cfn-step-2)
-+ [Step 3: Starting a State Machine Execution](#lambda-state-machine-cfn-step-3)
++ [Step 1: Set Up Your AWS CloudFormation Template](#lambda-state-machine-cfn-step-1)
++ [Step 2: Use the AWS CloudFormation Template to Create a Lambda State Machine](#lambda-state-machine-cfn-step-2)
++ [Step 3: Start a State Machine Execution](#lambda-state-machine-cfn-step-3)
 
-## Step 1: Setting Up Your AWS CloudFormation Template<a name="lambda-state-machine-cfn-step-1"></a>
+## Step 1: Set Up Your AWS CloudFormation Template<a name="lambda-state-machine-cfn-step-1"></a>
 
-Before you use the [example YAML template](#lambda-state-machine-cfn-step-2), you should understand its separate parts\.
+Before you use the [example templates](#lambda-state-machine-cfn-step-2), you should understand their parts\.
+
+**Topics**
++ [To create an IAM role for Lambda](#lambda-state-machine-cfn-procedure-create-iam-role)
++ [To create a Lambda function](#lambda-state-machine-cfn-create-function)
++ [To create an IAM role for the state machine execution](#lambda-state-machine-cfn-create-role)
++ [To create a Lambda state machine](#lambda-state-machine-cfn-create)
 
 ### To create an IAM role for Lambda<a name="lambda-state-machine-cfn-procedure-create-iam-role"></a>
 
@@ -57,10 +65,10 @@ LambdaExecutionRole:
 
 ### To create a Lambda function<a name="lambda-state-machine-cfn-create-function"></a>
 
-Define the following properties of the Lambda function which prints the message `Hello World`\.
+Define the following properties of the Lambda function that prints the message `Hello World`\.
 
 **Important**  
-Ensure that your Lambda function is under the same AWS account and region as your state machine\.
+Ensure that your Lambda function is under the same AWS account and AWS Region as your state machine\.
 
 ------
 #### [ YAML ]
@@ -198,7 +206,7 @@ MyStateMachine:
       !Sub
         - |-
           {
-            "Comment": "A Hello World AWL example using an AWS Lambda function",
+            "Comment": "A Hello World example using an AWS Lambda function",
             "StartAt": "HelloWorld",
             "States": {
               "HelloWorld": {
@@ -221,7 +229,7 @@ MyStateMachine:
             "Properties": {
                 "DefinitionString": {
                     "Fn::Sub": [
-                        "{\n  \"Comment\": \"A Hello World AWL example using an AWS Lambda function\",\n  \"StartAt\": \"HelloWorld\",\n  \"States\": {\n    \"HelloWorld\": {\n      \"Type\": \"Task\",\n      \"Resource\": \"${lambdaArn}\",\n      \"End\": true\n    }\n  }\n}",
+                        "{\n  \"Comment\": \"A Hello World example using an AWS Lambda function\",\n  \"StartAt\": \"HelloWorld\",\n  \"States\": {\n    \"HelloWorld\": {\n      \"Type\": \"Task\",\n      \"Resource\": \"${lambdaArn}\",\n      \"End\": true\n    }\n  }\n}",
                         {
                             "lambdaArn": {
                                 "Fn::GetAtt": [
@@ -244,9 +252,9 @@ MyStateMachine:
 
 ------
 
-## Step 2: Using the AWS CloudFormation Template to Create a Lambda State Machine<a name="lambda-state-machine-cfn-step-2"></a>
+## Step 2: Use the AWS CloudFormation Template to Create a Lambda State Machine<a name="lambda-state-machine-cfn-step-2"></a>
 
-After you understand the different parts of the AWS CloudFormation template, you can put them together and use the template to create a AWS CloudFormation stack\.
+After you understand the parts of the AWS CloudFormation template, you put them together and use the template to create an AWS CloudFormation stack\.
 
 ### To create the Lambda state machine<a name="to-create-the-lam-state-machine"></a>
 
@@ -312,7 +320,7 @@ After you understand the different parts of the AWS CloudFormation template, you
            !Sub
              - |-
                {
-                 "Comment": "A Hello World AWL example using an AWS Lambda function",
+                 "Comment": "A Hello World example using an AWS Lambda function",
                  "StartAt": "HelloWorld",
                  "States": {
                    "HelloWorld": {
@@ -412,7 +420,7 @@ After you understand the different parts of the AWS CloudFormation template, you
                "Properties": {
                    "DefinitionString": {
                        "Fn::Sub": [
-                           "{\n  \"Comment\": \"A Hello World AWL example using an AWS Lambda function\",\n  \"StartAt\": \"HelloWorld\",\n  \"States\": {\n    \"HelloWorld\": {\n      \"Type\": \"Task\",\n      \"Resource\": \"${lambdaArn}\",\n      \"End\": true\n    }\n  }\n}",
+                           "{\n  \"Comment\": \"A Hello World example using an AWS Lambda function\",\n  \"StartAt\": \"HelloWorld\",\n  \"States\": {\n    \"HelloWorld\": {\n      \"Type\": \"Task\",\n      \"Resource\": \"${lambdaArn}\",\n      \"End\": true\n    }\n  }\n}",
                            {
                                "lambdaArn": {
                                    "Fn::GetAtt": [
@@ -437,11 +445,11 @@ After you understand the different parts of the AWS CloudFormation template, you
 
 ------
 
-1. Log in to the [AWS CloudFormation console](https://console.aws.amazon.com/cloudformation/home) and choose **Create Stack**\.
+1. Open the [AWS CloudFormation console](https://console.aws.amazon.com/cloudformation/home) and choose **Create Stack**\.
 
 1. On the **Select Template** page, select **Upload a template to Amazon S3**\. Choose your `MyStateMachine` file, and then choose **Next**\.
 
-1. On the **Specify Details** page, for **Stack name**, type `MyStateMachine`, and then choose **Next**\.
+1. On the **Specify Details** page, for **Stack name**, enter `MyStateMachine`, and then choose **Next**\.
 
 1. On the **Options** page, choose **Next**\.
 
@@ -452,13 +460,13 @@ After you understand the different parts of the AWS CloudFormation template, you
 1. \(Optional\) To display the resources in your stack, select the stack and choose the **Resources** tab\.  
 ![\[Display resources\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-lambda-state-machine-display-resources.png)![\[Display resources\]](http://docs.aws.amazon.com/step-functions/latest/dg/)![\[Display resources\]](http://docs.aws.amazon.com/step-functions/latest/dg/)
 
-## Step 3: Starting a State Machine Execution<a name="lambda-state-machine-cfn-step-3"></a>
+## Step 3: Start a State Machine Execution<a name="lambda-state-machine-cfn-step-3"></a>
 
-After you create your Lambda state machine, you can start an execution\.
+After you create your Lambda state machine, you start an execution\.
 
 ### To start the state machine execution<a name="to-start-the-state-machine-execution"></a>
 
-1. Log in to the [Step Functions console](https://console.aws.amazon.com/states/home) and choose the name of the state machine that you created using AWS CloudFormation\.
+1. Open the [Step Functions console](https://console.aws.amazon.com/states/home) and choose the name of the state machine that you created using AWS CloudFormation\.
 
 1. On the ***MyStateMachine\-ABCDEFGHIJ1K*** page, choose **New execution**\.
 
@@ -472,6 +480,6 @@ Step Functions allows you to create state machine, execution, and activity names
 
    A new execution of your state machine starts, and a new page showing your running execution is displayed\.
 
-1. \(Optional\) In the **Execution Details** review the **Execution Status** and the **Started** and **Closed** timestamps\.
+1. \(Optional\) In the **Execution Details**, review the **Execution Status** and the **Started** and **Closed** timestamps\.
 
 1. To view the results of your execution, choose **Output**\.

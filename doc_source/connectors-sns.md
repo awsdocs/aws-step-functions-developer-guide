@@ -1,4 +1,4 @@
-# Call Amazon SNS With Step Functions<a name="connectors-sns"></a>
+# Call Amazon SNS with Step Functions<a name="connectors-sns"></a>
 
 Step Functions can control some AWS services directly from the Amazon States Language\. For more information, see:
 + [Service Integrations](concepts-connectors.md)

@@ -1,11 +1,12 @@
 # Tagging<a name="concepts-tagging"></a>
 
-AWS Step Functions supports tagging of state machines and activities\. This can help you track and manage the costs associated with your resources, and provide better security in your IAM policies\.
+AWS Step Functions supports tagging of state machines and activities\. This can help you track and manage the costs associated with your resources, and provide better security in your IAM policies\. Tagging AWS Step Functions resources allows them to be managed by AWS Resource Groups\. For more information on Resource Groups, see the [AWS Resource Groups](https://docs.aws.amazon.com/ARG/latest/userguide/) User Guide\.
 
 To review the restrictions related to resource tagging, see [Restrictions Related to Tagging](limits.md#sfn-limits-tagging)\.
 
 **Topics**
 + [Tagging for Cost Allocation](#tagging-cost)
++ [Tagging for Security](#tagging-security)
 + [Viewing and Managing](#tagging-console)
 + [Tagging API](#tagging-api)
 
@@ -20,6 +21,35 @@ For instance, you could add tags that represent the cost center and purpose of y
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/step-functions/latest/dg/concepts-tagging.html)
 
 This tagging scheme allows you to group two state machines performing related tasks in the same cost center, while tagging an unrelated activity with a different cost allocation tag\.
+
+## Tagging for Security<a name="tagging-security"></a>
+
+IAM supports controlling access to resources based on tags\. To control access based on tags, provide information about your resource tags in the condition element of an IAM policy\.
+
+For instance, you could restrict access to all Step Functions resources that include a tag with the key `environment` and the value `production`:
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Deny",
+            "Action": [
+                "states:TagResource",
+                "states:DeleteActivity",
+                "states:DeleteStateMachine",
+                "states:StopExecution"
+            ],
+            "Resource": "*",
+            "Condition": {
+                "StringEquals": {"aws:ResourceTag/environment": "production"}
+            }
+        }
+    ]
+}
+```
+
+For more information, see [Controlling Access Using Tags](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html) in the IAM User Guide\.
 
 ## Viewing and Managing Tags in the Step Functions Console<a name="tagging-console"></a>
 

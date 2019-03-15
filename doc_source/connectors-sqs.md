@@ -1,4 +1,4 @@
-# Call Amazon SQS With Step Functions<a name="connectors-sqs"></a>
+# Call Amazon SQS with Step Functions<a name="connectors-sqs"></a>
 
 Step Functions can control some AWS services directly from the Amazon States Language\. For more information, see:
 + [Service Integrations](concepts-connectors.md)
@@ -45,5 +45,7 @@ The following includes a `Task` state that sends an Amazon SQS message\.
   }
 }
 ```
+
+To learn more about receiving messages in Amazon SQS, see [Receive and Delete Your Message](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-getting-started.html#step-receive-delete-message) in the Amazon Simple Queue Service Developer Guide\.
 
 For information on how to configure IAM when using Step Functions with other AWS services, see [IAM Policies for Integrated Services](connectors-iam-templates.md)\.

@@ -51,7 +51,7 @@ require 'aws-sdk'
 
 module Validate
   def self.positive(value)
-    raise ArgumentError, 'Argument has to positive' if value <= 0
+    raise ArgumentError, 'Argument has to be positive' if value <= 0
     value
   end
 
@@ -226,7 +226,7 @@ module StepFunctions
             run
           rescue => e
             puts e
-            @logger.error('Unexpected error had occurred')
+            @logger.error('Unexpected error has occurred')
             @logger.error(e)
           end
         end

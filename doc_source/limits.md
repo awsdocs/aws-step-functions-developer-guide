@@ -20,7 +20,7 @@ If a particular stage of your state machine execution or activity execution take
 
 | Limit | Description | 
 | --- | --- | 
-|  Names in Step Functions  | State machine, execution, and activity names must be 1–80 characters in length, must be unique for your account and region, and must not contain any of the following: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/step-functions/latest/dg/limits.html) Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with Amazon CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\. | 
+|  Names in Step Functions  | State machine, execution, and activity names must be 1–80 characters in length, must be unique for your account and AWS Region, and must not contain any of the following: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/step-functions/latest/dg/limits.html) Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with Amazon CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\. | 
 
 ## Limits Related to Accounts<a name="service-limits-accounts"></a>
 
@@ -29,7 +29,7 @@ If a particular stage of your state machine execution or activity execution take
 | --- | --- | 
 |  Maximum number of registered activities  |  10,000  | 
 | Maximum number of registered state machines | 10,000 | 
-|  Maximum number of API actions  |  Beyond infrequent spikes, applications may be throttled if they make a large number of API actions in a very short period of time\.  | 
+|  Maximum number of API actions  |  Beyond infrequent spikes, applications can be throttled if they make a large number of API actions in a very short period of time\.  | 
 |  Maximum request size  |  1 MB per request\. This is the total data size per Step Functions API request, including the request header and all other associated request data\.  | 
 
 ## Limits Related to State Machine Executions<a name="service-limits-state-machine-executions"></a>
@@ -40,7 +40,7 @@ If a particular stage of your state machine execution or activity execution take
 | Limit | Description | 
 | --- | --- | 
 |  Maximum open executions  | 1,000,000\. Exceeding this limit will cause an ExecutionLimitExceeded error\. | 
-|  Maximum execution time  |  1 year\. If an execution runs for more than the 1 year limit, it will fail with a `States.Timeout` error and emit a `ExecutionsTimedout` CloudWatch metric\.  | 
+|  Maximum execution time  |  1 year\. If an execution runs for more than the 1\-year limit, it will fail with a `States.Timeout` error and emit a `ExecutionsTimedout` CloudWatch metric\.  | 
 |  Maximum execution history size  | 25,000 events\. If the execution history reaches this limit the execution will fail\. To avoid this, see [Avoid Reaching the History Limit](bp-history-limit.md)\. | 
 |  Maximum execution idle time  |  1 year \(constrained by execution time limit\)  | 
 | Maximum execution history retention time |  90 days\. After this time, you can no longer retrieve or view the execution history\. There is no further limit to the number of closed executions that Step Functions retains\.  | 
@@ -52,7 +52,7 @@ If a particular stage of your state machine execution or activity execution take
 | --- | --- | 
 |  Maximum task execution time  |  1 year \(constrained by execution time limit\)  | 
 |  Maximum time Step Functions keeps a task in the queue  |  1 year \(constrained by execution time limit\)  | 
-|  Maximum activity pollers per ARN  |  1,000 pollers calling `GetActivityTask` per Amazon Resource Name\. Exceeding this limit results in the error: *"The maximum number of workers concurrently polling for activity tasks has been reached\."*  | 
+|  Maximum activity pollers per Amazon Resource Name \(ARN\)  |  1,000 pollers calling `GetActivityTask` per ARN\. Exceeding this limit results in this error: *"The maximum number of workers concurrently polling for activity tasks has been reached\."*  | 
 |  Maximum input or result data size for a task, state, or execution  |  32,768 characters\. This limit affects tasks \(activity or Lambda function\), state or execution result data, and input data when scheduling a task, entering a state, or starting an execution\.  | 
 
 ## Limits Related to API Action Throttling<a name="service-limits-api-action-throttling"></a>
@@ -60,7 +60,7 @@ If a particular stage of your state machine execution or activity execution take
 Some Step Functions API actions are throttled using a token bucket scheme to maintain service bandwidth\.
 
 **Note**  
-Throttling limits are per account, per region\. AWS Step Functions may increase both the bucket size and refill rate at any time\. Do not rely on these throttling rates to limit your costs\.
+Throttling limits are per account, per AWS Region\. AWS Step Functions may increase both the bucket size and refill rate at any time\. Do not rely on these throttling rates to limit your costs\.
 
 
 | API Name | Bucket Size | Refill Rate per Second | 
@@ -82,9 +82,9 @@ Throttling limits are per account, per region\. AWS Step Functions may increase 
 | SendTaskHeartbeat | 1,000 | 25 | 
 | SendTaskSuccess | 1,000 | 25 | 
 | StartExecution — In US East \(N\. Virginia\), US West \(Oregon\), and EU \(Ireland\) | 1000 | 200 | 
-| StartExecution — All other regions | 500 | 25 | 
+| StartExecution — All other Regions | 500 | 25 | 
 | StopExecution — In US East \(N\. Virginia\), US West \(Oregon\), and EU \(Ireland\) | 1000 | 200 | 
-| StopExecution — All other regions | 500 | 25 | 
+| StopExecution — All other Regions | 500 | 25 | 
 | UpdateStateMachine | 200 | 1 | 
 
 ## Limits Related to State Throttling<a name="service-limits-api-state-throttling"></a>
@@ -92,7 +92,7 @@ Throttling limits are per account, per region\. AWS Step Functions may increase 
 Step Functions state transitions are throttled using a token bucket scheme to maintain service bandwidth\.
 
 **Note**  
-Throttling on the `StateTransition` service metric is reported as `ExecutionThrottled` in CloudWatch\. For more information, see the [`ExecutionThrottled` CloudWatch metric](procedure-cw-metrics.md#monitoring-using-cloudwatch-state-machine-metrics)\.
+Throttling on the `StateTransition` service metric is reported as `ExecutionThrottled` in Amazon CloudWatch\. For more information, see the [`ExecutionThrottled` CloudWatch metric](procedure-cw-metrics.md#monitoring-using-cloudwatch-state-machine-metrics)\.
 
 
 | Service Metric | Bucket Size | Refill Rate per Second  | 
@@ -114,8 +114,8 @@ Tagging restrictions cannot be increased like other limits\.
 |  Maximum key length  |  128 Unicode characters in UTF\-8  | 
 |  Maximum value length  |  256 Unicode characters in UTF\-8  | 
 |  Prefix restriction  |  Do not use the `aws:` prefix in your tag names or values because it is reserved for AWS use\. You can't edit or delete tag names or values with this prefix\. Tags with this prefix do not count against your tags per resource limit\.  | 
-|  Character restrictions  |  Tags may only contain unicode letters, digits, whitespace, or these symbols: `_ . : / = + - @`\.  | 
+|  Character restrictions  |  Tags may only contain unicode letters, digits, whitespace, or these symbols: `_ . : / = + - @`  | 
 
 ## Requesting a Limit Increase<a name="sfn-limits-how-to-increase"></a>
 
-Use the **Support Center** page in the AWS Management Console to request a limit increase for resources provided by AWS Step Functions on a per\-region basis\. For more information, see [To Request a Limit Increase](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html) in the *AWS General Reference*\.
+Use the **Support Center** page in the AWS Management Console to request a limit increase for resources provided by AWS Step Functions on a per\-Region basis\. For more information, see [To Request a Limit Increase](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html) in the *AWS General Reference*\.

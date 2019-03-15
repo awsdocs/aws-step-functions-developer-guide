@@ -12,12 +12,12 @@ The following diagram shows how JSON information moves through a task state\. `I
 
 ![\[Input and output processing\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/input-output-processing.png)![\[Input and output processing\]](http://docs.aws.amazon.com/step-functions/latest/dg/)![\[Input and output processing\]](http://docs.aws.amazon.com/step-functions/latest/dg/)
 
-`InputPath`, `Parameters`, `ResultPath` and `OutputPath` each manipulate JSON as it moves through each state in your workflow\.
+`InputPath`, `Parameters`, `ResultPath`, and `OutputPath` each manipulate JSON as it moves through each state in your workflow\.
 
- Each may use [paths](amazon-states-language-input-output-processing.md#amazon-states-language-paths) to select portions of the JSON from the input or the result\. A path is a string, beginning with `$`, that identifies nodes within JSON text\. Step Functions paths use [JsonPath](https://github.com/json-path/JsonPath) syntax\.
+ Each can use [paths](amazon-states-language-input-output-processing.md#amazon-states-language-paths) to select portions of the JSON from the input or the result\. A path is a string, beginning with `$`, that identifies nodes within JSON text\. Step Functions paths use [JsonPath](https://github.com/json-path/JsonPath) syntax\.
 
 **Topics**
-+ [`InputPath` and `Parameters`](input-output-inputpath-params.md)
-+ [`ResultPath`](input-output-resultpath.md)
-+ [`OutputPath`](input-output-outputpath.md)
-+ [`InputPath`, `ResultPath` and `OutputPath` Example](input-output-example.md)
++ [InputPath and Parameters](input-output-inputpath-params.md)
++ [ResultPath](input-output-resultpath.md)
++ [OutputPath](input-output-outputpath.md)
++ [InputPath, ResultPath and `OutputPath` Example](input-output-example.md)

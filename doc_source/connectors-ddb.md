@@ -1,4 +1,4 @@
-# Call DynamoDB APIs With Step Functions<a name="connectors-ddb"></a>
+# Call DynamoDB APIs with Step Functions<a name="connectors-ddb"></a>
 
 Step Functions can control some AWS services directly from the Amazon States Language\. For more information, see:
 + [Service Integrations](concepts-connectors.md)
@@ -81,6 +81,6 @@ The following is a `Task` state that retrieves a message from Amazon DynamoDB\.
     },
 ```
 
-To see this state in a working example, see the [Transfer Data Records \(Lambda, DynamoDB, SQS\)](sample-project-transfer-data-sqs.md) sample project\.
+To see this state in a working example, see the [Transfer Data Records \(Lambda, DynamoDB, Amazon SQS\)](sample-project-transfer-data-sqs.md) sample project\.
 
 For information on how to configure IAM when using Step Functions with other AWS services, see [IAM Policies for Integrated Services](connectors-iam-templates.md)\.

@@ -4,9 +4,9 @@ You can use CloudWatch alarms to perform actions\. For example, if you want to k
 
 ## To set an alarm on a metric<a name="to-set-an-alarm-on-a-metric"></a>
 
-1. Open the AWS Management Console and navigate to **CloudWatch**\.
+1. Sign in to the AWS Management Console and open the CloudWatch console\.
 
-1. Choose **Metrics** and on the **All Metrics** tab, choose **States**\.  
+1. Choose **Metrics**, and on the **All Metrics** tab, choose **States**\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-cloudwatch-monitoring-states.png)
 
    If you ran any executions recently, you will see up to three types of metrics:
@@ -17,14 +17,14 @@ You can use CloudWatch alarms to perform actions\. For example, if you want to k
 1. Choose a metric type to see a list of metrics\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-cloudwatch-monitoring-list-metrics.png)
 
-1. Choose a metric and then choose **Graphed metrics**\.
+1. Choose a metric, and then choose **Graphed metrics**\.
 
 1. Choose ![\[bell\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-cloudwatch-monitoring-bell.png)![\[bell\]](http://docs.aws.amazon.com/step-functions/latest/dg/)![\[bell\]](http://docs.aws.amazon.com/step-functions/latest/dg/) next to a metric on the list\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-cloudwatch-monitoring-setting-alarms-graph.png)
 
-   The **Create Alarm** dialog box is displayed\.  
+   The **Create Alarm** page is displayed\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-cloudwatch-monitoring-setting-alarms-define-alarm.png)
 
-1. Enter the values for the **Alarm threshold** and **Actions** and then choose **Create Alarm**\.
+1. Enter the values for the **Alarm threshold** and **Actions**, and then choose **Create Alarm**\.
 
 For more information about setting and using CloudWatch alarms, see [Creating Amazon CloudWatch Alarms](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/AlarmThatSendsEmail.html) in the *Amazon CloudWatch User Guide*\.

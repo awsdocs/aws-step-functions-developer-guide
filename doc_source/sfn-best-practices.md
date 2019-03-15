@@ -1,6 +1,6 @@
 # Best Practices for Step Functions<a name="sfn-best-practices"></a>
 
-The following best practices for implementing Step Functions workflows can help you optimize the performance of your implementations\.
+The following best practices for implementing AWS Step Functions workflows can help you optimize the performance of your implementations\.
 
 **Topics**
 + [Use Timeouts to Avoid Stuck Executions](sfn-stuck-execution.md)

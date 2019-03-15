@@ -8,7 +8,7 @@ Monitoring is an important part of maintaining the reliability, availability, an
 + Who will perform the monitoring tasks?
 + Who should be notified when something goes wrong?
 
-The next step is to establish a baseline for normal Step Functions performance in your environment\. To do this, measure performance at various times and under different load conditions\. As you monitor Step Functions, you should consider storing historical monitoring data\. Such data can give you a baseline to compare against current performance data, to identify normal performance patterns and performance anomalies, and to devise ways to address issues\.
+The next step is to establish a baseline for normal Step Functions performance in your environment\. To do this, measure performance at various times and under different load conditions\. As you monitor Step Functions, consider storing historical monitoring data\. Such data can give you a baseline to compare against current performance data, to identify normal performance patterns and performance anomalies, and to devise ways to address issues\.
 
 For example, with Step Functions, you can monitor how many activities or Lambda tasks fail due to a heartbeat timeout\. When performance falls outside your established baseline, you might have to change your heartbeat interval\.
 
@@ -20,16 +20,16 @@ To establish a baseline you should, at a minimum, monitor the following metrics:
 +  `LambdaFunctionsStarted` 
 +  `LambdaFunctionsTimedOut` 
 
-The following sections describe metrics that Step Functions provides to CloudWatch\. You can use these metrics to track your state machines and activities and to set alarms on threshold values\. You can view metrics using the AWS Management Console\.
+The following sections describe metrics that Step Functions provides to Amazon CloudWatch\. You can use these metrics to track your state machines and activities and to set alarms on threshold values\. You can view metrics using the AWS Management Console\.
 
 **Topics**
-+ [Metrics that Report a Time Interval](#monitoring-using-cloudwatch-time-interval-metrics)
-+ [Metrics that Report a Count](#monitoring-using-cloudwatch-count-metrics)
++ [Metrics That Report a Time Interval](#monitoring-using-cloudwatch-time-interval-metrics)
++ [Metrics That Report a Count](#monitoring-using-cloudwatch-count-metrics)
 + [State Machine Metrics](#monitoring-using-cloudwatch-state-machine-metrics)
 + [Viewing Metrics for Step Functions](monitoring-using-cloudwatch-console.md)
 + [Setting Alarms for Step Functions](monitoring-using-cloudwatch-console-set-alarm.md)
 
-## Metrics that Report a Time Interval<a name="monitoring-using-cloudwatch-time-interval-metrics"></a>
+## Metrics That Report a Time Interval<a name="monitoring-using-cloudwatch-time-interval-metrics"></a>
 
 Some of the Step Functions CloudWatch metrics are *time intervals*, always measured in milliseconds\. These metrics generally correspond to stages of your execution for which you can set state machine, activity, and Lambda function timeouts, with descriptive names\.
 
@@ -37,7 +37,7 @@ For example, the `ActivityRunTime` metric measures the time it takes for an acti
 
 In the CloudWatch console, you can get the best results if you choose **average** as the display statistic for time interval metrics\.
 
-## Metrics that Report a Count<a name="monitoring-using-cloudwatch-count-metrics"></a>
+## Metrics That Report a Count<a name="monitoring-using-cloudwatch-count-metrics"></a>
 
 Some of the Step Functions CloudWatch metrics report results as a *count*\. For example, `ExecutionsFailed` records the number of failed state machine executions\.
 
@@ -45,11 +45,11 @@ In the CloudWatch console, you can get the best results if you choose **sum** as
 
 ## State Machine Metrics<a name="monitoring-using-cloudwatch-state-machine-metrics"></a>
 
-The following metrics are available for Step Functions state machines:
+The following metrics are available for Step Functions state machines\.
 
 ### Execution Metrics<a name="cloudwatch-step-functions-execution-metrics"></a>
 
-The `AWS/States` namespace includes the following metrics for Step Functions executions:
+The `AWS/States` namespace includes the following metrics for Step Functions executions\.
 
 
 | Metric | Description | 
@@ -67,11 +67,11 @@ The `AWS/States` namespace includes the following metrics for Step Functions exe
 
 | Dimension | Description | 
 | --- | --- | 
-|  StateMachineArn  |  The ARN of the state machine for the execution in question\.  | 
+|  StateMachineArn  |  The Amazon Resource Name \(ARN\) of the state machine for the execution in question\.  | 
 
 ### Activity Metrics<a name="cloudwatch-step-functions-activity-metrics"></a>
 
-The `AWS/States` namespace includes the following metrics for Step Functions activities:
+The `AWS/States` namespace includes the following metrics for Step Functions activities\.
 
 
 | Metric | Description | 
@@ -95,7 +95,7 @@ The `AWS/States` namespace includes the following metrics for Step Functions act
 
 ### Lambda Function Metrics<a name="cloudwatch-step-functions-lambda-function-metrics"></a>
 
-The `AWS/States` namespace includes the following metrics for Step Functions Lambda functions:
+The `AWS/States` namespace includes the following metrics for Step Functions Lambda functions\.
 
 
 |  Metric  |  Description  | 
@@ -119,7 +119,7 @@ The `AWS/States` namespace includes the following metrics for Step Functions Lam
 
 ### Service Metrics<a name="cloudwatch-step-functions-service-metrics"></a>
 
-The `AWS/States` namespace includes the following metrics for the Step Functions service:
+The `AWS/States` namespace includes the following metrics for the Step Functions service\.
 
 
 | Metric | Description | 
@@ -138,7 +138,7 @@ The `AWS/States` namespace includes the following metrics for the Step Functions
 
 ### API Metrics<a name="cloudwatch-step-functions-api-metrics"></a>
 
-The `AWS/States` namespace includes the following metrics for the Step Functions API:
+The `AWS/States` namespace includes the following metrics for the Step Functions API\.
 
 
 | Metric | Description | 

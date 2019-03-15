@@ -1,4 +1,4 @@
-# Manage AWS Glue Jobs With Step Functions<a name="connectors-glue"></a>
+# Manage AWS Glue Jobs with Step Functions<a name="connectors-glue"></a>
 
 Step Functions can control some AWS services directly from the Amazon States Language\. For more information, see:
 + [Service Integrations](concepts-connectors.md)

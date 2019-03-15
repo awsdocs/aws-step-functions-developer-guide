@@ -1,4 +1,4 @@
-# Manage AWS Batch With Step Functions<a name="connectors-batch"></a>
+# Manage AWS Batch with Step Functions<a name="connectors-batch"></a>
 
 Step Functions can control some AWS services directly from the Amazon States Language\. For more information, see:
 + [Service Integrations](concepts-connectors.md)
@@ -7,7 +7,7 @@ Step Functions can control some AWS services directly from the Amazon States Lan
 Supported APIs:
 
 **Note**  
-Parameters in Step Functions are expressed in `CamelCase`, even when the native service API is `pascalCase`\. 
+Parameters in Step Functions are expressed in `PascalCase`, even when the native service API is `camelCase`\. 
 + [https://docs.aws.amazon.com/batch/latest/APIReference/API_SubmitJob.html](https://docs.aws.amazon.com/batch/latest/APIReference/API_SubmitJob.html)
   + [Request syntax](https://docs.aws.amazon.com/batch/latest/APIReference/API_SubmitJob.html#API_SubmitJob_RequestSyntax)
   + Supported parameters:

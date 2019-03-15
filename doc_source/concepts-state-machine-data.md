@@ -1,6 +1,6 @@
 # State Machine Data<a name="concepts-state-machine-data"></a>
 
-State Machine data takes the following forms:
+State machine data takes the following forms:
 + The initial input into a state machine
 + Data passed between states
 + The output from a state machine
@@ -18,7 +18,7 @@ State machine data is represented by JSON text, so you can provide values using 
 
 **Note**  
 Numbers in JSON text format conform to JavaScript semantics\. These numbers typically correspond to double\-precision [IEEE\-854](https://standards.ieee.org/findstds/standard/854-1987.html) values\.
-The following is valid JSON text: stand\-alone, quote\-delimited strings; objects; arrays; numbers; Boolean values; and `null`\.
+The following is valid JSON text: standalone, quote\-delimited strings; objects; arrays; numbers; Boolean values; and `null`\.
 The output of a state becomes the input into the next state\. However, you can restrict states to working on a subset of the input data by using [Input and Output Processing](amazon-states-language-input-output-processing.md)\.
 
 ## State Machine Input/Output<a name="concepts-state-machine-data-state-machine-input-output"></a>
@@ -31,9 +31,9 @@ The output of the execution is returned by the last state \(`terminal`\)\. This 
 
 Each state's input consists of JSON text from the preceding state or, for the `StartAt` state, the input into the execution\. Certain flow\-control states echo their input to their output\.
 
-In the following example, the state machine adds two numbers together:
+In the following example, the state machine adds two numbers together\.
 
-1. Define the Lambda function\.
+1. Define the AWS Lambda function\.
 
    ```
    function Add(input) {
@@ -64,17 +64,17 @@ In the following example, the state machine adds two numbers together:
    }
    ```
 
-1. Start an execution with the following JSON text:
+1. Start an execution with the following JSON text\.
 
    ```
    { "numbers": [3, 4] }
    ```
 
-   The `Add` state receives the JSON text and passes it to the Lambda function
+   The `Add` state receives the JSON text and passes it to the Lambda function\.
 
    The Lambda function returns the result of the calculation to the state\.
 
-   The state returns the following value in its output:
+   The state returns the following value in its output\.
 
    ```
    { "result": 7 }
@@ -84,4 +84,4 @@ In the following example, the state machine adds two numbers together:
 
    If the final state returns no output, then the state machine returns an empty object \(`{}`\)\.
 
-For more information, see [Input and Output Processing in Step Functions](concepts-input-output-filtering.md)
+For more information, see [Input and Output Processing in Step Functions](concepts-input-output-filtering.md)\.

@@ -1,9 +1,11 @@
 # Security<a name="security"></a>
 
-This section provides information about Step Functions security and authentication\.
+This section provides information about AWS Step Functions security and authentication\.
 
 **Topics**
 + [Authentication](#authentication)
++ [Resource\-Based Policies](resource-based-policies.md)
++ [Tag\-based Policies](tag-based-policies.md)
 + [Creating IAM Roles for AWS Step Functions](procedure-create-iam-role.md)
 + [Creating Granular IAM Permissions for Non\-Admin Users](concept-create-iam-advanced.md)
 + [IAM Policies for Integrated Services](connectors-iam-templates.md)

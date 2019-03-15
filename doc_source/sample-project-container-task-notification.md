@@ -1,43 +1,45 @@
-# Manage a Container Task \(ECS, SNS\)<a name="sample-project-container-task-notification"></a>
+# Manage a Container Task \(Amazon ECS, Amazon SNS\)<a name="sample-project-container-task-notification"></a>
 
-This sample project demonstrates how to run a Fargate task, and then send an Amazon SNS notification based on whether that job succeeds or fails\. Deploying this sample project will create a Step Functions state machine, a Fargate Cluster, and an Amazon SNS topic\. In this project, Step Functions uses a state machine to call the Fargate task synchronously\. It then waits for the task to succeed or fail, and it sends an Amazon SNS topic with a message about whether the job succeeded or failed\.
+This sample project demonstrates how to run an AWS Fargate task, and then send an Amazon SNS notification based on whether that job succeeds or fails\. Deploying this sample project will create a Step Functions state machine, a Fargate cluster, and an Amazon SNS topic\. 
 
-To create the **Manage a container task** state machine and provision all resources:
+In this project, Step Functions uses a state machine to call the Fargate task synchronously\. It then waits for the task to succeed or fail, and it sends an Amazon SNS topic with a message about whether the job succeeded or failed\.
 
-1. Log in to the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/), and choose **Create a state machine**\.
+**To create the Manage a container task state machine and provision all resources**
 
-1. Select **Sample Projects** and choose **Manage a container task**\.
+1. Open the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/) and choose **Create a state machine**\.
+
+1. Choose **Sample Projects**, and then choose **Manage a container task**\.
 
    The state machine **Code** and **Visual Workflow** are displayed\.  
 ![\[Container task notification workflow.\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/sample-manage-container.png)
 
-1. Select **Next**\.
+1. Choose **Next**\.
 
    The **Deploy resources** page is displayed, listing the resources that will be created\. For this sample project the resources include:
-   + A Fargate Cluster
+   + A Fargate cluster
    + An Amazon SNS topic
 
 1. Choose **Deploy Resources**\.
 **Note**  
-It can take up to 10 minutes as these resources and related IAM permissions are created\. While the **Deploy resources** page displays, you can open the **Stack ID** link to see which resources are being provisioned\.
+It can take up to 10 minutes for these resources and related IAM permissions to be created\. While the **Deploy resources** page is displayed, you can open the **Stack ID** link to see which resources are being provisioned\.
 
 ## To start a new execution<a name="sample-container-start-execution"></a>
 
-1. On the **New execution** page, enter an execution name \(optional\) and choose **Start Execution\.**
+1. On the **New execution** page, enter an execution name \(optional\), and then choose **Start Execution**\.
 
 1. \(Optional\) To help identify your execution, you can specify an ID for it in the **Enter an execution name** box\. If you don't enter an ID, Step Functions generates a unique ID automatically\.
 **Note**  
 Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with Amazon CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
 
-1. Optionally, you can go to the newly\-created state machine on the Step Functions **Dashboard**, select **New execution**\.
+1. Optionally, you can go to the newly created state machine on the Step Functions **Dashboard**, and then choose **New execution**\.
 
-1. Once an execution is complete, you can select states on the **Visual workflow** and browse the **Input** and **Output** under **Step details**
+1. When an execution is complete, you can select states on the **Visual workflow** and browse the **Input** and **Output** under **Step details**\.
 
-## Example State machine code<a name="sample-container-code-examples"></a>
+## Example State Machine Code<a name="sample-container-code-examples"></a>
 
-The state machine in this sample project integrates with AWS Batch and Amazon SNS by passing parameters directly to those resources\. Browse through this example state machine to see how Step Functions controls AWS Batch; and Amazon SNS by connecting to the ARN in the `Resource` field, and by passing `Parameters` to the service API\.
+The state machine in this sample project integrates with AWS Fargate and Amazon SNS by passing parameters directly to those resources\. Browse through this example state machine to see how Step Functions uses a state machine to call the Fargate task synchronously, waits for the task to succeed or fail, and sends an Amazon SNS topic with a message about whether the job succeeded or failed\.
 
-For more information on how AWS Step Functions can control other AWS services, see: [AWS Service Integrations](concepts-connectors.md)\.
+For more information about how AWS Step Functions can control other AWS services, see [AWS Service Integrations](concepts-connectors.md)\.
 
 ```
 {
@@ -94,7 +96,7 @@ For more information on how AWS Step Functions can control other AWS services, s
 
 ## IAM Example<a name="sample-container-iam-example"></a>
 
-This example IAM policy generated by the sample project includes the least privilege necessary to execute the state machine and related resources\. It is a best practice to include only those permissions necessary in your IAM policies 
+This example AWS Identity and Access Management \(IAM\) policy generated by the sample project includes the least privilege necessary to execute the state machine and related resources\. It's a best practice to include only those permissions that are necessary in your IAM policies\. 
 
 ```
 {
@@ -141,4 +143,4 @@ This example IAM policy generated by the sample project includes the least privi
 }
 ```
 
-For information on how to configure IAM when using Step Functions with other AWS services, see [IAM Policies for Integrated Services](connectors-iam-templates.md)\.
+For information about how to configure IAM when using Step Functions with other AWS services, see [IAM Policies for Integrated Services](connectors-iam-templates.md)\.

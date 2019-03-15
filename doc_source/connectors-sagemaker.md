@@ -1,4 +1,4 @@
-# Manage Amazon SageMaker Training Jobs With Step Functions<a name="connectors-sagemaker"></a>
+# Manage Amazon SageMaker Training Jobs with Step Functions<a name="connectors-sagemaker"></a>
 
 Step Functions can control some AWS services directly from the Amazon States Language\. For more information, see:
 + [Service Integrations](concepts-connectors.md)

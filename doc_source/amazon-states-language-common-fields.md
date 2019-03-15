@@ -4,10 +4,10 @@
 The state's type\.
 
 ** `Next` **  
-The name of the next state that will be run when the current state finishes\. Some state types, such as `Choice`, allow multiple transition states\.
+The name of the next state that is run when the current state finishes\. Some state types, such as `Choice`, allow multiple transition states\.
 
 ** `End` **  
-Designates this state as a terminal state \(it ends the execution\) if set to `true`\. There can be any number of terminal states per state machine\. Only one of `Next` or `End` can be used in a state\. Some state types, such as `Choice`, do not support or use the `End` field\.
+Designates this state as a terminal state \(ends the execution\) if set to `true`\. There can be any number of terminal states per state machine\. Only one of `Next` or `End` can be used in a state\. Some state types, such as `Choice`, don't support or use the `End` field\.
 
 ** `Comment` \(Optional\)**  
 Holds a human\-readable description of the state\.

@@ -1,12 +1,16 @@
 # What Is AWS Step Functions?<a name="welcome"></a>
 
-AWS Step Functions is a web service that enables you to coordinate the components of distributed applications and microservices using visual workflows\. You build applications from individual components that each perform a discrete function, or *task*, allowing you to scale and change applications quickly\. Step Functions provides a reliable way to coordinate components and step through the functions of your application\. Step Functions provides a graphical console to visualize the components of your application as a series of steps\. It automatically triggers and tracks each step, and retries when there are errors, so your application executes in order and as expected, every time\. Step Functions logs the state of each step, so when things do go wrong, you can diagnose and debug problems quickly\.
+AWS Step Functions is a web service that enables you to coordinate the components of distributed applications and microservices using visual workflows\. You build applications from individual components that each perform a discrete function, or *task*, allowing you to scale and change applications quickly\. 
+
+Step Functions provides a reliable way to coordinate components and step through the functions of your application\. Step Functions offers a graphical console to visualize the components of your application as a series of steps\. It automatically triggers and tracks each step, and retries when there are errors, so your application executes in order and as expected, every time\. Step Functions logs the state of each step, so when things do go wrong, you can diagnose and debug problems quickly\.
 
 [![AWS Videos](http://img.youtube.com/vi/https://www.youtube.com/embed/Dh7h3lkpeP4?rel=0&amp;controls=0&amp;showinfo=0/0.jpg)](http://www.youtube.com/watch?v=https://www.youtube.com/embed/Dh7h3lkpeP4?rel=0&amp;controls=0&amp;showinfo=0)
 
 Step Functions manages the operations and underlying infrastructure for you to ensure your application is available at any scale\.
 
-You can run your tasks on the AWS Cloud, on your own servers, or on any system that has access to AWS\. Step Functions can be accessed and used with the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/), the AWS SDKs, or an HTTP API\. This guide shows you how to develop, test, and troubleshoot your own state machine using these methods\.
+You can run your tasks in the AWS Cloud, on your servers, or on any system that has access to AWS\. Access and use Step Functions by using the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/), the AWS SDKs, or an HTTP API\. 
+
+This guide shows you how to develop, test, and troubleshoot your own state machine using these methods\.
 
 ## Overview of Step Functions<a name="overview"></a>
 
@@ -17,7 +21,7 @@ Here are some of the key features of AWS Step Functions:
 
 ## Supported Regions<a name="supported-regions"></a>
 
-Currently, Step Functions is supported only in the following regions:
+Currently, Step Functions is supported only in the following AWS Regions:
 + US East \(Ohio\)
 + US East \(N\. Virginia\)
 + US West \(Oregon\)

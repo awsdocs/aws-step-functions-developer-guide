@@ -1,13 +1,12 @@
 # Input and Output Processing<a name="amazon-states-language-input-output-processing"></a>
 
-In this section you will learn how to use paths and reference paths for input and output processing\.
+This section describes how to use paths and reference paths for input and output processing\.
 
-**Note**  
-For an overview, see [Input and Output Processing in Step Functions](concepts-input-output-filtering.md) in the [How Step Functions Works](how-step-functions-works.md) section\.
+For an overview, see [Input and Output Processing in Step Functions](concepts-input-output-filtering.md) in [How Step Functions Works](how-step-functions-works.md)\.
 
 ## Paths<a name="amazon-states-language-paths"></a>
 
-In Amazon States Language, a *path* is a string beginning with `$` that you can use to identify components within JSON text\. Paths follow [JsonPath](https://github.com/json-path/JsonPath) syntax\.
+In the Amazon States Language, a *path* is a string beginning with `$` that you can use to identify components within JSON text\. Paths follow [JsonPath](https://github.com/json-path/JsonPath) syntax\.
 
 ## Reference Paths<a name="amazon-states-language-reference-paths"></a>
 
@@ -16,7 +15,7 @@ A *reference path* is a path whose syntax is limited in such a way that it can i
 + The operators `@ .. , : ? *` aren't supported\.
 + Functions such as `length()` aren't supported\.
 
-For example, state input data contains the following values:
+For example, if state input data contains the following values:
 
 ```
 {
@@ -28,7 +27,7 @@ For example, state input data contains the following values:
 }
 ```
 
-In this case, the following reference paths would return:
+The following reference paths would return the following\.
 
 ```
 $.foo => 123
@@ -36,7 +35,7 @@ $.bar => ["a", "b", "c"]
 $.car.cdr => true
 ```
 
-Certain states use paths and reference paths to control the flow of a state machine or configure a states's settings or options\.
+Certain states use paths and reference paths to control the flow of a state machine or configure a state's settings or options\.
 
 ### Paths in InputPath, ResultPath, and OutputPath Fields<a name="amazon-states-language-path-types"></a>
 
@@ -49,12 +48,12 @@ To specify how to use part of the state's input and what to send as output to th
 The `InputPath` field selects a portion of the state's input to pass to the state's task for processing\. If you omit the field, it gets the `$` value, representing the entire input\. If you use `null`, the input is discarded \(not sent to the state's task\) and the task receives JSON text representing an empty object `{}`\.
 
 **Note**  
-A path can yield a selection of values\. Consider the following example:  
+A path can yield a selection of values\. Consider the following example\.  
 
 ```
 { "a": [1, 2, 3, 4] }
 ```
-If you apply the path `$.a[0:2]`, the following is the result:  
+If you apply the path `$.a[0:2]`, the following is the result\.  
 
 ```
 [ 1, 2 ]
@@ -73,7 +72,7 @@ The `ResultPath` takes the results of executing the state's task and places them
 + If the `ResultPath` is `null`, the results of executing the state are discarded and the input is untouched\.
 
 **Note**  
- `ResultPath` field values must be [reference paths](#amazon-states-language-reference-paths)\. For more information on `ResultPath` see [`ResultPath`](input-output-resultpath.md)
+ `ResultPath` field values must be [reference paths](#amazon-states-language-reference-paths)\. For more information about `ResultPath`, see [ResultPath](input-output-resultpath.md)\.
 
 #### OutputPath<a name="amazon-states-language-outputpath"></a>
 + If the `OutputPath` matches an item in the state's input, only that input item is selected\. This input item becomes the state's output\.
@@ -81,7 +80,7 @@ The `ResultPath` takes the results of executing the state's task and places them
 + If the `OutputPath` has the default value of `$`, this matches the entire input completely\. In this case, the entire input is passed to the next state\.
 + If the `OutputPath` is `null`, JSON text representing an empty object `{}` is sent to the next state\.
 
-The following example demonstrates how `InputPath`, `ResultPath`, and `OutputPath` fields work in practice\. Consider the following input for the current state:
+The following example demonstrates how `InputPath`, `ResultPath`, and `OutputPath` fields work in practice\. Consider the following input for the current state\.
 
 ```
 {

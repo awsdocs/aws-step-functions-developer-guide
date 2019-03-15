@@ -1,15 +1,15 @@
 # Error Handling<a name="concepts-error-handling"></a>
 
 Any state can encounter runtime errors\. Errors can happen for various reasons:
-+ State machine definition issues \(for example, no matching rule in a `Choice` state\)\.
-+ Task failures \(for example, an exception in a Lambda function\)\.
-+ Transient issues \(for example, network partition events\)\.
++ State machine definition issues \(for example, no matching rule in a `Choice` state\)
++ Task failures \(for example, an exception in a Lambda function\)
++ Transient issues \(for example, network partition events\)
 
-By default, when a state reports an error, Step Functions causes the execution to fail entirely\.
+By default, when a state reports an error, AWS Step Functions causes the execution to fail entirely\.
 
 ## Error Names<a name="error-handling-error-representation"></a>
 
-Step Functions identifies errors in Amazon States Language using case\-sensitive strings, known as *error names*\. Amazon States Language defines a set of built\-in strings that name well\-known errors, all beginning with the `States.` prefix\.
+Step Functions identifies errors in the Amazon States Language using case\-sensitive strings, known as *error names*\. The Amazon States Language defines a set of built\-in strings that name well\-known errors, all beginning with the `States.` prefix\.
 
 ** `States.ALL` **  
 A wildcard that matches any known error name\.
@@ -25,19 +25,19 @@ A `Task` state failed because it had insufficient privileges to execute the spec
 
 States can report errors with other names\. However, these must not begin with the `States.` prefix\.
 
-As a best practice, ensure production code can handle Lambda service exceptions \(`Lambda.ServiceException` and `Lambda.SdkclientException`\)\. For more information see [Handle Lambda Service Exceptions](bp-lambda-serviceexception.md)\.
+As a best practice, ensure production code can handle AWS Lambda service exceptions \(`Lambda.ServiceException` and `Lambda.SdkclientException`\)\. For more information, see [Handle Lambda Service Exceptions](bp-lambda-serviceexception.md)\.
 
 **Note**  
 Unhandled errors in Lambda are reported as `Lambda.Unknown` in the error output\. These include out\-of\-memory errors, function timeouts, and hitting the concurrent Lambda invoke limit\. You can match on `Lambda.Unknown`, `States.ALL`, or `States.TaskFailed` to handle these errors\. For more information about Lambda `Handled` and `Unhandled` errors, see `FunctionError` in the [AWS Lambda Developer Guide](https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_ResponseSyntax)\. 
 
-## Retrying After an Error<a name="error-handling-retrying-after-an-error"></a>
+## Retrying after an Error<a name="error-handling-retrying-after-an-error"></a>
 
  `Task` and `Parallel` states can have a field named `Retry`, whose value must be an array of objects known as *retriers*\. An individual retrier represents a certain number of retries, usually at increasing time intervals\.
 
 **Note**  
-Retries are treated as state transitions\. For information on how state transitions affect billing, see [Step Functions Pricing](https://aws.amazon.com/step-functions/pricing/)\.
+Retries are treated as state transitions\. For information about how state transitions affect billing, see [Step Functions Pricing](https://aws.amazon.com/step-functions/pricing/)\.
 
-A retrier contains the following fields:
+A retrier contains the following fields\.
 
 ** `ErrorEquals` \(Required\)**  
 A non\-empty array of strings that match error names\. When a state reports an error, Step Functions scans through the retriers\. When the error name appears in this array, it implements the retry policy described in this retrier\.
@@ -62,7 +62,7 @@ This example of a `Retry` makes 2 retry attempts after waiting for 3 and 4\.5 se
 } ]
 ```
 
-The reserved name `States.ALL` that appears in a Retrier's `ErrorEquals` field is a wildcard that matches any error name\. It must appear alone in the `ErrorEquals` array and must appear in the last retrier in the `Retry` array\.
+The reserved name `States.ALL` that appears in a retrier's `ErrorEquals` field is a wildcard that matches any error name\. It must appear alone in the `ErrorEquals` array and must appear in the last retrier in the `Retry` array\.
 
 This example of a `Retry` field retries any error except `States.Timeout`\.
 
@@ -77,7 +77,9 @@ This example of a `Retry` field retries any error except `States.Timeout`\.
 
 ### Complex Retry Scenarios<a name="error-handling-complex-retry-scenarios"></a>
 
-A retrier's parameters apply across all visits to the retrier in the context of a single\-state execution\. Consider the following `Task` state:
+A retrier's parameters apply across all visits to the retrier in the context of a single\-state execution\. 
+
+Consider the following `Task` state:
 
 ```
 "X": {
@@ -110,10 +112,10 @@ This task fails five times in succession, outputting these error names: `ErrorA`
 
  `Task` and `Parallel` states can have a field named `Catch`\. This field's value must be an array of objects, known as *catchers*\.
 
-A catcher contains the following fields:
+A catcher contains the following fields\.
 
 ** `ErrorEquals` \(Required\)**  
-A non\-empty array of Strings that match error names, specified exactly as they are with the retrier field of the same name\.
+A non\-empty array of strings that match error names, specified exactly as they are with the retrier field of the same name\.
 
 ** `Next` \(Required\)**  
 A string that must exactly match one of the state machine's state names\.
@@ -125,7 +127,7 @@ When a state reports an error and either there is no `Retry` field, or if retrie
 
 The reserved name `States.ALL` that appears in a catcher's `ErrorEquals` field is a wildcard that matches any error name\. It must appear alone in the `ErrorEquals` array and must appear in the last catcher in the `Catch` array\.
 
-The following example of a `Catch` field transitions to the state named `RecoveryState` when a Lambda function outputs an unhandled Java exception\. Otherwise, the field transitions to the `EndState` state:
+The following example of a `Catch` field transitions to the state named `RecoveryState` when a Lambda function outputs an unhandled Java exception\. Otherwise, the field transitions to the `EndState` state\.
 
 ```
 "Catch": [ {
@@ -227,7 +229,7 @@ This variant uses the predefined error code `States.TaskFailed`, which matches a
 ```
 
 **Note**  
-As a best practice, tasks that reference a Lambda function should handle Lambda service exceptions\. For more information see [Handle Lambda Service Exceptions](bp-lambda-serviceexception.md)\. 
+As a best practice, tasks that reference a Lambda function should handle Lambda service exceptions\. For more information, see [Handle Lambda Service Exceptions](bp-lambda-serviceexception.md)\. 
 
 ### Handling a Failure Using Catch<a name="error-handling-handling-failure-using-catch"></a>
 
@@ -335,4 +337,4 @@ This example uses a `Catch` field\. When a timeout occurs, the state machine tra
 ```
 
 **Note**  
-You can preserve the state input along with the error by using `ResultPath`\. See [Use `ResultPath` to Include Both Error and Input in a `Catch`](input-output-resultpath.md#input-output-resultpath-catch)
+You can preserve the state input and the error by using `ResultPath`\. See [Use ResultPath to Include Both Error and Input in a `Catch`](input-output-resultpath.md#input-output-resultpath-catch)\.

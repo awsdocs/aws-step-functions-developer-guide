@@ -7,7 +7,7 @@ Once you have run Step Functions locally with the AWS CLI, you can start a state
 1. Create a state machine from the AWS CLI by escaping the state machine definition\.
 
    ```
-   aws stepfunctions --endpoint http://localhost:8083 create-state-machine --definition "{\
+   aws stepfunctions --endpoint-url http://localhost:8083 create-state-machine --definition "{\
      \"Comment\": \"A Hello World example of the Amazon States Language using a Pass state\",\
      \"StartAt\": \"HelloWorld\",\
      \"States\": {\
@@ -32,7 +32,7 @@ The `role-arn` is not used for Step Functions Local, but you must have it includ
 1. Start an execution using the ARN of the state machine you created\.
 
    ```
-   aws stepfunctions --endpoint http://localhost:8083 start-execution --state-machine-arn arn:aws:states:us-east-1:123456789012:stateMachine:HelloWorld
+   aws stepfunctions --endpoint-url http://localhost:8083 start-execution --state-machine-arn arn:aws:states:us-east-1:123456789012:stateMachine:HelloWorld
    ```
 
 ## Step Functions Local with Lambda Local<a name="with-lambda-local"></a>

@@ -14,7 +14,7 @@ Before you begin, go through the [Creating a Lambda State Machine](tutorial-crea
 
 ## Step 1: Create a Lambda Function to Iterate a Count<a name="create-iterate-pattern-step-1"></a>
 
-By using a Lambda function you can track the number of iterations of a loop in your state machine\. The following Lambda function receives input values for `count`, `index`, and `step`\. It returns these values with an updated `index` and a Boolean named `continue`\. The Lambda function sets `continue` to `true` if the `index` is less than `count`\.
+By using a Lambda function you can track the number of iterations of a loop in your state machine\. The following Lambda function receives input values for `count`, `index`, and `step`\. It returns these values with an updated `index` and a Boolean value named `continue`\. The Lambda function sets `continue` to `true` if the `index` is less than `count`\.
 
 Your state machine then implements a `Choice` state that executes some application logic if `continue` is `true`, or exits if it is `false`\.
 
@@ -26,13 +26,13 @@ Your state machine then implements a `Choice` state that executes some applicati
 
 1. In the **Author with code snippets** section, configure your Lambda function, as follows:
 
-   1. For **Name**, type `Iterator`\.
+   1. For **Name**, enter `Iterator`\.
 
-   1. For **Runtime**, select **Node\.js 6\.10**\.
+   1. For **Runtime**, choose **Node\.js 6\.10**\.
 
    1. For **Role**, select **Choose an existing role**\.
 
-   1. For **Existing role**, select the Lambda role that you created in the [Creating a Lambda State Machine](tutorial-creating-lambda-state-machine.md) tutorial\.
+   1. For **Existing role**, choose the Lambda role that you created in the [Creating a Lambda State Machine](tutorial-creating-lambda-state-machine.md) tutorial\.
 **Note**  
 If the IAM role that you created doesn't appear in the list, the role might still need a few minutes to propagate to Lambda\.
 
@@ -73,7 +73,7 @@ Run your Lambda function with numeric values to see it in operation\. You can pr
 
 ### To test your Lambda function<a name="create-iterate-pattern-test-lambda-function"></a>
 
-1. In the **Configure test event** dialog box, choose **Create new test event**, and then type `TestIterator` for **Event name**\.
+1. In the **Configure test event** dialog box, choose **Create new test event**, and then enter `TestIterator` for **Event name**\.
 
 1. Replace the example data with the following\.
 
@@ -88,7 +88,7 @@ Run your Lambda function with numeric values to see it in operation\. You can pr
    }
    ```
 
-   These values mimic what would come from your state machine during an iteration\. The Lambda function will increment the index and return `continue` as `true`\. Once the index is not less than the `count`, it will return `continue` as `false`\. For this test, the index has already incremented to 5\. The results should increment the `index` to 6 and set `continue` to `true`\.
+   These values mimic what would come from your state machine during an iteration\. The Lambda function will increment the index and return `continue` as `true`\. When the index isn't less than the `count`, it returns `continue` as `false`\. For this test, the index has already incremented to `5`\. The results should increment the `index` to `6` and set `continue` to `true`\.
 
 1. Choose **Create**\.
 
@@ -105,7 +105,7 @@ Run your Lambda function with numeric values to see it in operation\. You can pr
    }
    ```
 **Note**  
-If you set `index` to 9 for this test, the `index` will increment to 10, and `continue` will be `false`\. 
+If you set `index` to `9` for this test, the `index` increments to `10`, and `continue` is `false`\. 
 
 ## Step 3: Create a State Machine<a name="create-iterate-pattern-step-3"></a>
 
@@ -113,11 +113,11 @@ If you set `index` to 9 for this test, the `index` will increment to 10, and `co
 
 1. Sign in to the [Step Functions console](https://console.aws.amazon.com/states/home), and then choose **Create a state machine**\.
 **Important**  
-Ensure that your state machine is under the same AWS account and region as the Lambda function you created earlier\.
+Ensure that your state machine is under the same AWS account and Region as the Lambda function you created earlier\.
 
 1. On the **Create a state machine** page, choose **Author with code snippets**\. For **Give a name to your state machine**, enter `IterateCount`\.
 **Note**  
-State machine, execution, and activity names must be 1–80 characters in length, must be unique for your account and region, and must not contain any of the following:  
+State machine, execution, and activity names must be 1–80 characters in length, must be unique for your account and AWS Region, and must not contain any of the following:  
 Whitespace
 Wildcard characters \(`? *`\)
 Bracket characters \(`< > { } [ ]`\)
@@ -125,14 +125,16 @@ Special characters \(`: ; , \ | ^ ~ $ # % & ` "`\)
 Control characters \(`\\u0000` \- `\\u001f` or `\\u007f` \- `\\u009f`\)\.
 Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with Amazon CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
 
-1. Create or enter an IAM role\.
-   + To create a new IAM role for Step Functions, select **Create an IAM role for me**, and enter a **Name** for your role\.
-   + If you have [previously created an IAM role](procedure-create-iam-role.md) with the correct permissions for your state machine, select **Choose an existing IAM role**\. Select a role from the drop\-down, or provide an ARN for that role\. 
+   Select **Next**\.
+
+1. Create or enter an IAM role:
+   + To create an IAM role for Step Functions, select **Create an IAM role for me**, and enter a **Name** for your role\.
+   + If you have [previously created an IAM role](procedure-create-iam-role.md) with the correct permissions for your state machine, select **Choose an existing IAM role**\. Select a role from the list, or provide an ARN for that role\. 
 **Note**  
 If you delete the IAM role that Step Functions creates, Step Functions can't recreate it later\. Similarly, if you modify the role \(for example, by removing Step Functions from the principals in the IAM policy\), Step Functions can't restore its original settings later\. 
 
-1. The following code describes a state machine with the following states:
-   + `ConfigureCount`: Sets the default values for `count`, `index`, and `step`\. 
+1. The following code describes a state machine with the following states\.
+   + `ConfigureCount` – Sets the default values for `count`, `index`, and `step`\. 
 
      ```
      "ConfigureCount": {
@@ -146,7 +148,7 @@ If you delete the IAM role that Step Functions creates, Step Functions can't rec
          "Next": "Iterator"
      },
      ```
-   + `Iterator`: References your Lambda function you created earlier, passing in the values configured in `ConfigureCount`\.
+   + `Iterator` – References the Lambda function you created earlier, passing in the values configured in `ConfigureCount`\.
 
      ```
      "Iterator": {
@@ -156,7 +158,7 @@ If you delete the IAM role that Step Functions creates, Step Functions can't rec
          "Next": "IsCountReached"
      },
      ```
-   + `IsCountReached`: A choice state that will either run your sample work again or will go to `Done` based on a boolean returned from your `Iterator` Lambda function\.
+   + `IsCountReached` – A choice state that either runs your sample work again or goes to `Done`, based on a Boolean value returned from your `Iterator` Lambda function\.
 
      ```
      "IsCountReached": {
@@ -171,10 +173,10 @@ If you delete the IAM role that Step Functions creates, Step Functions can't rec
          "Default": "Done"
      },
      ```
-   + `ExampleWork`: A stub for the work you want to accomplish in your execution\. In this example it is a `pass` state\. In an actual implementation this would be a `task` state\. See [Tasks](concepts-tasks.md)\.
-   + `Done`: The end state of your execution\.
+   + `ExampleWork` – A stub for the work you want to accomplish in your execution\. In this example, it's a `pass` state\. In an actual implementation, this would be a `task` state\. See [Tasks](concepts-tasks.md)\.
+   + `Done` – The end state of your execution\.
 
-   In the **Code** pane, add the following state machine definition using the Amazon Resource Name of [the Lambda function that you created earlier](#create-iterate-pattern-create-lambda-function)\.
+   In the **Code** pane, add the following state machine definition using the Amazon Resource Name \(ARN\) of [the Lambda function that you created earlier](#create-iterate-pattern-create-lambda-function)\.
 
    ```
    {
@@ -227,24 +229,24 @@ If you delete the IAM role that Step Functions creates, Step Functions can't rec
    }
    ```
 
-   Be sure to update the Amazon Resource Name in the `Iterator` state above so that it references the Lambda you created earlier\. For more information about the Amazon States Language, see [State Machine Structure](amazon-states-language-state-machine-structure.md)\.
+   Be sure to update the ARN in the `Iterator` state above, so that it references the Lambda function you created earlier\. For more information about the Amazon States Language, see [State Machine Structure](amazon-states-language-state-machine-structure.md)\.
 
 1. Use the graph in the **Visual Workflow** pane to check that your Amazon States Language code describes your state machine correctly\.
 
-   This graph shows the logic expressed in the above state machine code\.   
+   This graph shows the logic expressed in the previous state machine code\.   
 ![\[State machine workflow\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-create-iterate-workflow.png)
 
    If you don't see the graph, choose ![\[refresh\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-getting-started-refresh.png)![\[refresh\]](http://docs.aws.amazon.com/step-functions/latest/dg/)![\[refresh\]](http://docs.aws.amazon.com/step-functions/latest/dg/) in the **Visual Workflow** pane\.
 
 1. Choose **Next**\.
 
-1. Create or enter an IAM role\.
-   + To create a new IAM role for Step Functions, select **Create an IAM role for me**, and enter a **Name** for your role\.
-   + If you have [previously created an IAM role](procedure-create-iam-role.md) with the correct permissions for your state machine, select **Choose an existing IAM role**\. Select a role from the drop\-down, or provide an ARN for that role\. 
+1. Create or enter an IAM role:
+   + To create an IAM role for Step Functions, select **Create an IAM role for me**, and enter a **Name** for your role\.
+   + If you have [previously created an IAM role](procedure-create-iam-role.md) with the correct permissions for your state machine, select **Choose an existing IAM role**\. Select a role from the list, or provide an ARN for that role\. 
 **Note**  
 If you delete the IAM role that Step Functions creates, Step Functions can't recreate it later\. Similarly, if you modify the role \(for example, by removing Step Functions from the principals in the IAM policy\), Step Functions can't restore its original settings later\. 
 
-1. Select **Create state machine**\.
+1. Choose **Create state machine**\.
 
 ## Step 4: Start a New Execution<a name="create-iterate-pattern-step-4"></a>
 
@@ -265,7 +267,7 @@ Step Functions allows you to create state machine, execution, and activity names
 
    The execution increments in steps, tracking the count using your Lambda function\. On each iteration, it performs the example work referenced in the `ExampleWork` state in your state machine\. 
 
-1. \(Optional\) In the **Execution Details** section, choose the **Info** tab to view the **Execution Status** and the **Started** and **Closed** time stamps\.
+1. \(Optional\) In the **Execution Details** section, choose the **Info** tab to view the **Execution Status** and the **Started** and **Closed** timestamps\.
 
-1. Once the count reaches the number configured in the `ConfigureCount` state in your state machine, the execution quits iterating and ends\.  
+1. When the count reaches the number specified in the `ConfigureCount` state in your state machine, the execution quits iterating and ends\.  
 ![\[State machine execution complete\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-create-iterate-done.png)
