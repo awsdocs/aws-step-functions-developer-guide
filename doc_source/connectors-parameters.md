@@ -44,7 +44,7 @@ To specify that a parameter use a path to reference a JSON node in the input, en
   "comment": "A message in the state input",
   "input": {
     "message": "foo",
-    "otherInfo": "bar",
+    "otherInfo": "bar"
   },
   "data": "example"
 }

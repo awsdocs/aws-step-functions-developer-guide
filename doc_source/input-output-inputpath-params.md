@@ -14,7 +14,7 @@ Use `InputPath` to select a portion of the state input\. For instance, if input 
   "dataset1": {
     "val1": 1,
     "val2": 2,
-    "val3": 3,
+    "val3": 3
   },
   "dataset2": {
     "val1": "a",
@@ -51,7 +51,7 @@ Use `Parameters` to create a collection of key\-value pairs that will be passed 
     "details": {
        "color": "blue",
        "size": "small",
-       "material": "cotton",
+       "material": "cotton"
     },
     "availability": "in stock",
     "sku": "2317",
