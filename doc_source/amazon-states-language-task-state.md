@@ -8,7 +8,7 @@ In addition to the [common state fields](amazon-states-language-common-fields.md
 A URI, especially an Amazon Resource Name \(ARN\) that uniquely identifies the specific task to execute\.
 
 ** `Parameters` \(Optional\)**  
-Used to pass information to the API actions of connected resources\.
+Used to pass information to the API actions of connected resources\. The parameters can use a mix of static JSON and [JsonPath](https://github.com/json-path/JsonPath). For more information, see [Pass Parameters to a Service API](connectors-parameters.md).
 
 ** `ResultPath` \(Optional\)**  
 Specifies where \(in the input\) to place the results of executing the task that's specified in `Resource`\. The input is then filtered as specified by the `OutputPath` field \(if present\) before being used as the state's output\. For more information, see [path](amazon-states-language-input-output-processing.md)\.
