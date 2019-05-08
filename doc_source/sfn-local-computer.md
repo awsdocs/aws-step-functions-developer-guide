@@ -1,6 +1,6 @@
 # Step Functions \(Downloadable Version\) on Your Computer<a name="sfn-local-computer"></a>
 
-## Run a HeloWorld State Machine Locally<a name="sfn-local-heloworld"></a>
+## Run a HelloWorld State Machine Locally<a name="sfn-local-heloworld"></a>
 
 Once you have run Step Functions locally with the AWS CLI, you can start a state machine execution\.
 
