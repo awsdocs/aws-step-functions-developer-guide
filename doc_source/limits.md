@@ -1,6 +1,6 @@
 # Limits<a name="limits"></a>
 
-AWS Step Functions places limits on the sizes of certain state machine parameters, such as the number of API actions that you can make during a certain time period or the number of state machines that you can define\. Although these limits are designed to prevent a misconfigured state machine from consuming all of the resources of the system, they aren't hard limits\.
+AWS Step Functions places limits on the sizes of certain state machine parameters, such as the number of API actions that you can make during a certain time period or the number of state machines that you can define\. Although these limits are designed to prevent a misconfigured state machine from consuming all of the resources of the system, many aren't hard limits\.
 
 **Note**  
 If a particular stage of your state machine execution or activity execution takes too long, you can configure a state machine timeout to cause a timeout event\.
@@ -92,7 +92,7 @@ Throttling limits are per account, per AWS Region\. AWS Step Functions may incre
 Step Functions state transitions are throttled using a token bucket scheme to maintain service bandwidth\.
 
 **Note**  
-Throttling on the `StateTransition` service metric is reported as `ExecutionThrottled` in Amazon CloudWatch\. For more information, see the [`ExecutionThrottled` CloudWatch metric](procedure-cw-metrics.md#monitoring-using-cloudwatch-state-machine-metrics)\.
+Throttling on the `StateTransition` service metric is reported as `ExecutionThrottled` in Amazon CloudWatch\. For more information, see the [`ExecutionThrottled` CloudWatch metric](procedure-cw-metrics.md#cloudwatch-step-functions-execution-metrics)\.
 
 
 | Service Metric | Bucket Size | Refill Rate per Second  | 

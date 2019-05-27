@@ -8,7 +8,7 @@ In addition to the [common state fields](amazon-states-language-common-fields.md
 A URI, especially an Amazon Resource Name \(ARN\) that uniquely identifies the specific task to execute\.
 
 ** `Parameters` \(Optional\)**  
-Used to pass information to the API actions of connected resources\. The parameters can use a mix of static JSON and [JsonPath](https://github.com/json-path/JsonPath). For more information, see [Pass Parameters to a Service API](connectors-parameters.md).
+Used to pass information to the API actions of connected resources\. The parameters can use a mix of static JSON and [JsonPath](https://github.com/json-path/JsonPath)\. For more information, see [Pass Parameters to a Service API](connect-parameters.md)\.
 
 ** `ResultPath` \(Optional\)**  
 Specifies where \(in the input\) to place the results of executing the task that's specified in `Resource`\. The input is then filtered as specified by the `OutputPath` field \(if present\) before being used as the state's output\. For more information, see [path](amazon-states-language-input-output-processing.md)\.
@@ -23,7 +23,7 @@ An array of objects, called Catchers, that define a fallback state\. This state 
 If the task runs longer than the specified seconds, this state fails with a `States.Timeout` error name\. Must be a positive, non\-zero integer\. If not provided, the default value is `99999999`\. The count begins after the task has been started, for example, when `ActivityStarted` or `LambdaFunctionStarted` are logged in the **Execution event history**\.
 
 ** `HeartbeatSeconds` \(Optional\)**  
-If more time than the specified seconds elapses between heartbeats from the task, this state fails with a `States.Timeout` error name\. Must be a positive, non\-zero integer less than the number of seconds specified in the `TimeoutSeconds` field\. If not provided, the default value is `99999999`\. This value applies only to Activity tasks\. The count begins when `GetActivityTask` receives a token and `ActivityStarted` is logged in the **Execution event history**\.
+If more time than the specified seconds elapses between heartbeats from the task, this state fails with a `States.Timeout` error name\. Must be a positive, non\-zero integer less than the number of seconds specified in the `TimeoutSeconds` field\. If not provided, the default value is `99999999`\. For Activities, the count begins when `GetActivityTask` receives a token and `ActivityStarted` is logged in the **Execution event history**\.
 
 A `Task` state must set either the `End` field to `true` if the state ends the execution, or must provide a state in the `Next` field that is run when the `Task` state is complete\.
 
@@ -61,7 +61,7 @@ In this pattern:
 +  `task_type` is the type of task to run\. It is one of the following values:
   +  `activity` – An [activity](#amazon-states-language-task-state-activity)\.
   +  `function` – A [Lambda function](#amazon-states-language-task-state-lambda)\.
-  +  `servicename` – The name of a supported connected service \(see [Supported AWS Service Integrations for Step Functions](connectors-supported-services.md)\)\.
+  +  `servicename` – The name of a supported connected service \(see [Supported AWS Service Integrations for Step Functions](connect-supported-services.md)\)\.
 +  `name` is the registered resource name \(activity name, Lambda function name, or service API action\)\.
 
 **Note**  
@@ -72,7 +72,7 @@ Step Functions doesn't support referencing ARNs across partitions \(for example,
 The following task types are supported:
 +  [activity](#amazon-states-language-task-state-activity) 
 +  [Lambda functions](#amazon-states-language-task-state-lambda) 
-+  [A supported AWS service](concepts-connectors.md) 
++  [A supported AWS service](concepts-service-integrations.md) 
 
 The following sections provide more detail about each task type\.
 
@@ -128,7 +128,7 @@ arn:partition:states:region:account:servicename:APIname
 ```
 
 **Note**  
-To create a synchronous connection to a connected resource, append `.sync` to the *APIname* entry in the ARN\. For more information, see [Service Integrations](concepts-connectors.md)\.
+To create a synchronous connection to a connected resource, append `.sync` to the *APIname* entry in the ARN\. For more information, see [Service Integrations](concepts-service-integrations.md)\.
 
 For example:
 

@@ -9,13 +9,13 @@ For example, if you choose the **AWS Batch: Manage a job** code snippet, you can
 + **Run synchronously** – Selecting this option configures Step Functions to wait until the AWS Batch job completes before continuing to the next state\.
 
 **Note**  
-For more information about specifying service parameters by using input to your state machine execution, see [Pass State Input as Parameters Using Paths](connectors-parameters.md#connectors-parameters-path)\.
+For more information about specifying service parameters, see [Pass Parameters to a Service API](connect-parameters.md)\.
 
 After you configure your AWS Batch options, you can specify error handling options for your state, such as `Retry`, `Catch`, and `TimeoutSeconds.` 
 
 For more information, see [Errors](amazon-states-language-errors.md) in Amazon States Language\.
 
 To learn more about Step Functions service integrations, see:
-+ [AWS Service Integrations](concepts-connectors.md)
-+ [Supported AWS Service Integrations for Step Functions](connectors-supported-services.md)
++ [AWS Service Integrations](concepts-service-integrations.md)
++ [Supported AWS Service Integrations for Step Functions](connect-supported-services.md)
 + [Using Code Snippets](tutorial-code-snippet.md)

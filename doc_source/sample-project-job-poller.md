@@ -1,26 +1,26 @@
 # Poll for Job Status \(Lambda, AWS Batch\)<a name="sample-project-job-poller"></a>
 
-This sample project creates an AWS Batch job status poller\. It implements an AWS Step Functions state machine that uses AWS Lambda to create a `Wait` state loop that checks on an AWS Batch job\. 
+This sample project creates an AWS Batch job poller\. It implements an AWS Step Functions state machine that uses AWS Lambda to create a `Wait` state loop that checks on an AWS Batch job\. 
 
 This sample project creates and configures all resources so that your Step Functions workflow will submit an AWS Batch job, and will wait for that job to complete before ending successfully\. 
 
 **Note**  
-You can also implement this pattern without using a Lambda function\. For information about controlling AWS Batch directly, see [AWS Service Integrations](concepts-connectors.md)\. 
+You can also implement this pattern without using a Lambda function\. For information about controlling AWS Batch directly, see [AWS Service Integrations](concepts-service-integrations.md)\. 
 
-This sample project creates the state machine, two Lambda functions, and an AWS Batch queue, and configures the related IAM permissions\. For more information about the resources that are created with the **Job Status Poller** sample project, see:
+This sample project creates the state machine, two Lambda functions, and an AWS Batch queue, and configures the related IAM permissions\. For more information about the resources that are created with the **Job Poller** sample project, see:
 + [AWS CloudFormation User Guide](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/)
 + [AWS Batch User Guide](https://docs.aws.amazon.com/batch/latest/userguide/)
 + [AWS Lambda Developer Guide](https://docs.aws.amazon.com/lambda/latest/dg/)
 + [IAM Getting Started Guide](https://docs.aws.amazon.com/IAM/latest/GettingStartedGuide/)
 
-**To create the **Job Status Poller** state machine and provision all resources**
+**To create the **Job Poller** state machine and provision all resources**
 
 1. Open the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/) and choose **Create a state machine**\.
 
 1. Choose **Sample Projects**, and then choose **Job Status Poller**\.
 
    The state machine **Code** and **Visual Workflow** are displayed\.  
-![\[Job status poller visual workflow\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-create-state-machine-job-status-poller-preview.png)![\[Job status poller visual workflow\]](http://docs.aws.amazon.com/step-functions/latest/dg/)![\[Job status poller visual workflow\]](http://docs.aws.amazon.com/step-functions/latest/dg/)
+![\[Job poller visual workflow\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-create-state-machine-job-status-poller-preview.png)![\[Job poller visual workflow\]](http://docs.aws.amazon.com/step-functions/latest/dg/)![\[Job poller visual workflow\]](http://docs.aws.amazon.com/step-functions/latest/dg/)
 **Note**  
 The **Code** section in this state machine references the AWS resources that will be created for this sample project\.
 

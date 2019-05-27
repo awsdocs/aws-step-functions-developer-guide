@@ -1,8 +1,8 @@
-# Call DynamoDB APIs with Step Functions<a name="connectors-ddb"></a>
+# Call DynamoDB APIs with Step Functions<a name="connect-ddb"></a>
 
-Step Functions can control some AWS services directly from the Amazon States Language\. For more information, see:
-+ [Service Integrations](concepts-connectors.md)
-+ [Pass Parameters to a Service API](connectors-parameters.md)
+Step Functions can control certain AWS services directly from the Amazon States Language\. For more information, see:
++ [Service Integrations](concepts-service-integrations.md)
++ [Pass Parameters to a Service API](connect-parameters.md)
 
 **Note**  
 There is a limit on the maximum input or result data size for a task in Step Functions\. This limits you to 32,768 characters of data when you send to, or receive data from, another service\. See [Limits Related to State Machine Executions](limits.md#service-limits-state-machine-executions)\.
@@ -81,6 +81,9 @@ The following is a `Task` state that retrieves a message from Amazon DynamoDB\.
     },
 ```
 
+**Note**  
+You cannot pass a map or list to DynamoDB inside a map\.
+
 To see this state in a working example, see the [Transfer Data Records \(Lambda, DynamoDB, Amazon SQS\)](sample-project-transfer-data-sqs.md) sample project\.
 
-For information on how to configure IAM when using Step Functions with other AWS services, see [IAM Policies for Integrated Services](connectors-iam-templates.md)\.
+For information on how to configure IAM when using Step Functions with other AWS services, see [IAM Policies for Integrated Services](service-integration-iam-templates.md)\.

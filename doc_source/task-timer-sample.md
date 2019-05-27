@@ -5,7 +5,7 @@ This sample project creates a task timer\. It implements an AWS Step Functions s
 This sample project creates the state machine, a Lambda function, and an Amazon SNS topic, and configures the related AWS Identity and Access Management \(IAM\) permissions\. For more information about the resources that are created with the **Task Timer** sample project, see:
 
 **Note**  
-This sample project implements an AWS Lambda function to send an Amazon Simple Notification Service \(Amazon SNS\) notification\. You can also send an Amazon SNS notification directly from the Amazon States Language\. See [AWS Service Integrations](concepts-connectors.md)\.
+This sample project implements an AWS Lambda function to send an Amazon Simple Notification Service \(Amazon SNS\) notification\. You can also send an Amazon SNS notification directly from the Amazon States Language\. See [AWS Service Integrations](concepts-service-integrations.md)\.
 + [AWS CloudFormation User Guide](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/)
 + [Amazon Simple Notification Service Developer Guide](https://docs.aws.amazon.com/sns/latest/dg/)
 + [AWS Lambda Developer Guide](https://docs.aws.amazon.com/lambda/latest/dg/)

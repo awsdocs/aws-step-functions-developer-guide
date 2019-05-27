@@ -37,7 +37,7 @@ Start an execution using the following input\.
 }
 ```
 
-Assume that the `comment` and `extra` nodes can be discarded, but that we want to include the output of the Lambda function, as well as preserve the information in the `data` node\.
+Assume that the `comment` and `extra` nodes can be discarded, but that we want to include the output of the Lambda function, and preserve the information in the `data` node\.
 
 In the updated state machine, the `Task` state is altered to process the input to the task\.
 

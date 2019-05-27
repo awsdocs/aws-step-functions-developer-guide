@@ -1,8 +1,8 @@
-# Manage Amazon SageMaker Training Jobs with Step Functions<a name="connectors-sagemaker"></a>
+# Manage Amazon SageMaker Training Jobs with Step Functions<a name="connect-sagemaker"></a>
 
-Step Functions can control some AWS services directly from the Amazon States Language\. For more information, see:
-+ [Service Integrations](concepts-connectors.md)
-+ [Pass Parameters to a Service API](connectors-parameters.md)
+Step Functions can control certain AWS services directly from the Amazon States Language\. For more information, see:
++ [Service Integrations](concepts-service-integrations.md)
++ [Pass Parameters to a Service API](connect-parameters.md)
 
 Supported Amazon SageMaker APIs and syntax:
 + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateTrainingJob.html](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateTrainingJob.html)
@@ -34,9 +34,9 @@ Supported Amazon SageMaker APIs and syntax:
     + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateTransformJob.html#API_CreateTransformJob_RequestParameters](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateTransformJob.html#API_CreateTransformJob_RequestParameters)
   + [Response syntax](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateTransformJob.html#API_CreateTransformJob_ResponseSyntax)
 **Note**  
-AWS Step Functions will not automatically create a policy for `CreateTransformJob` when you create a state machine that integrates with Amazon SageMaker\. You must attach an inline policy to the created role\. For more infomation, see this example IAM policy: [`CreateTrainingJob`](sagemaker-iam.md#sagemaker-iam-createtrainingjob)\.
+When you create a state machine that integrates with Amazon SageMaker, AWS Step Functions will not automatically create a policy for `CreateTransformJob`\. You must attach an inline policy to the created role\. For more information, see this example IAM policy: [`CreateTrainingJob`](sagemaker-iam.md#sagemaker-iam-createtrainingjob)\.
 
-The following includes a `Task` state that creates a Amazon SageMaker transform job, specifying the Amazon S3 location for `DataSource` and `TransformOutput`\.
+The following includes a `Task` state that creates an Amazon SageMaker transform job, specifying the Amazon S3 location for `DataSource` and `TransformOutput`\.
 
 ```
 {
@@ -68,4 +68,4 @@ The following includes a `Task` state that creates a Amazon SageMaker transform 
 },
 ```
 
-For information on how to configure IAM when using Step Functions with other AWS services, see [IAM Policies for Integrated Services](connectors-iam-templates.md)\.
+For information on how to configure IAM when using Step Functions with other AWS services, see [IAM Policies for Integrated Services](service-integration-iam-templates.md)\.

@@ -8,7 +8,7 @@ In the Amazon States Language, these fields filter and control the flow of JSON 
 + `ResultPath`
 + `Parameters`
 
-The following diagram shows how JSON information moves through a task state\. `InputPath` selects which parts of the JSON input to pass to the task of the `Task` state \(for example, an AWS Lambda function\)\. `ResultPath` then selects what combination of the state input and the task result to pass to the output\. `OutputPath` can filter the JSON output to further limit the information that is passed to the output\.
+The following diagram shows how JSON information moves through a task state\. `InputPath` selects which parts of the JSON input to pass to the task of the `Task` state \(for example, an AWS Lambda function\)\. `ResultPath` then selects what combination of the state input and the task result to pass to the output\. `OutputPath` can filter the JSON output to further limit the information that's passed to the output\.
 
 ![\[Input and output processing\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/input-output-processing.png)![\[Input and output processing\]](http://docs.aws.amazon.com/step-functions/latest/dg/)![\[Input and output processing\]](http://docs.aws.amazon.com/step-functions/latest/dg/)
 
@@ -21,3 +21,4 @@ The following diagram shows how JSON information moves through a task state\. `I
 + [ResultPath](input-output-resultpath.md)
 + [OutputPath](input-output-outputpath.md)
 + [InputPath, ResultPath and `OutputPath` Example](input-output-example.md)
++ [The Context Object](input-output-contextobject.md)

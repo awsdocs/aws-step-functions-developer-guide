@@ -10,3 +10,4 @@ Each of the sample projects provisions a fully functional state machine, and cre
 + [Transfer Data Records \(Lambda, DynamoDB, Amazon SQS\)](sample-project-transfer-data-sqs.md)
 + [Poll for Job Status \(Lambda, AWS Batch\)](sample-project-job-poller.md)
 + [Task Timer](task-timer-sample.md)
++ [Callback Pattern Example](callback-task-sample-sqs.md)

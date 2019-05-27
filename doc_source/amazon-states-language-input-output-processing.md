@@ -6,7 +6,10 @@ For an overview, see [Input and Output Processing in Step Functions](concepts-in
 
 ## Paths<a name="amazon-states-language-paths"></a>
 
-In the Amazon States Language, a *path* is a string beginning with `$` that you can use to identify components within JSON text\. Paths follow [JsonPath](https://github.com/json-path/JsonPath) syntax\.
+In the Amazon States Language, a *path* is a string beginning with `$` that you can use to identify components within JSON text\. Paths follow [JsonPath](https://github.com/json-path/JsonPath) syntax\. You can specify a path to access subsets of the input when specifying values for `InputPath`, `ResultPath`, and `OutputPath`\. For more information see [Input and Output Processing in Step Functions](concepts-input-output-filtering.md)\.
+
+**Note**  
+You can also specify a JSON node of the input or the context object by using paths within the `"Parameters"` field of a state definition\. See [Pass Parameters to a Service API](connect-parameters.md)\.
 
 ## Reference Paths<a name="amazon-states-language-reference-paths"></a>
 

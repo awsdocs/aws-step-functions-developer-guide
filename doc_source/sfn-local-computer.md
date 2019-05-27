@@ -1,6 +1,6 @@
 # Step Functions \(Downloadable Version\) on Your Computer<a name="sfn-local-computer"></a>
 
-## Run a HelloWorld State Machine Locally<a name="sfn-local-heloworld"></a>
+## Run a HeloWorld State Machine Locally<a name="sfn-local-heloworld"></a>
 
 Once you have run Step Functions locally with the AWS CLI, you can start a state machine execution\.
 
@@ -35,13 +35,13 @@ The `role-arn` is not used for Step Functions Local, but you must have it includ
    aws stepfunctions --endpoint-url http://localhost:8083 start-execution --state-machine-arn arn:aws:states:us-east-1:123456789012:stateMachine:HelloWorld
    ```
 
-## Step Functions Local with Lambda Local<a name="with-lambda-local"></a>
+## Step Functions Local with AWS SAM CLI Local<a name="with-lambda-local"></a>
 
 You can use the local version of Step Functions along with a local version of AWS Lambda\. To configure this, you must install and configure the AWS Serverless Application Model \(AWS SAM\)\.
 
 For information on configuring and running AWS SAM, see:
 + [Set Up AWS SAM](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-quick-start.html)
-+ [Start Lambda Local](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-cli-command-reference-sam-local-start-lambda.html)
++ [Start AWS SAM CLI Local](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-cli-command-reference-sam-local-start-lambda.html)
 
 Once Lambda is running on your local system, you can start Step Functions Local\. From the directory where you extracted your Step Functions local jar files, start Step Functions Local, configuring the local Lambda endpoint:
 
@@ -49,4 +49,4 @@ Once Lambda is running on your local system, you can start Step Functions Local\
 java -jar StepFunctionsLocal.jar --lambda-endpoint http://127.0.0.1:3001 command
 ```
 
-For more information is running Step Functions Local with AWS Lambda, see [Step Functions and Lambda Local](sfn-local-lambda.md)
+For more information is running Step Functions Local with AWS Lambda, see [Step Functions and AWS SAM CLI Local](sfn-local-lambda.md)

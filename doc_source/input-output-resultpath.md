@@ -20,7 +20,7 @@ These examples are based on the state machine and Lambda function described in t
 + [Update a Node in Input with Result](#input-output-resultpath-amend)
 + [Include Error and Input in a `Catch`](#input-output-resultpath-catch)
 
-## Use ResultPath to Replace Input with Result<a name="input-output-resultpath-default"></a>
+## Use ResultPath to Replace the Input with the Result<a name="input-output-resultpath-default"></a>
 
 If you don't specify a `ResultPath`, the default behavior is as if you had specified `"ResultPath": "$"`\. Because this tells the state to replace the entire input with the result, the state input is completely replaced by the result coming from the task result\.
 
@@ -53,7 +53,7 @@ If `ResultPath` isn't specified in the state, or if `"ResultPath": "$"` is set, 
 **Note**  
 `ResultPath` is used to include content from the result with the input, before passing it to the output\. But, if `ResultPath` isn't specified, the default is to replace the entire input\.
 
-## Use ResultPath to Include Result with Input<a name="input-output-resultpath-append"></a>
+## Use ResultPath to Include the Result with the Input<a name="input-output-resultpath-append"></a>
 
 The following diagram shows how `ResultPath` can include the result with the input\.
 
@@ -75,7 +75,7 @@ The result of the Lambda function is the following\.
 "Hello, AWS Step Functions!"
 ```
 
-If we want to preserve the input, insert the result of the Lambda function, and then pass the combined JSON to the next state, we could set `ResultPath` to:
+If we want to preserve the input, insert the result of the Lambda function, and then pass the combined JSON to the next state, we could set `ResultPath` to the following\.
 
 ```
 "ResultPath": "$.taskresult"
@@ -131,7 +131,7 @@ The result of the Lambda function is inserted as a child of the `strings` node i
 
 The state output now includes the original input JSON with the result as a child node\.
 
-## Use ResultPath to Update a Node in Input with the Result<a name="input-output-resultpath-amend"></a>
+## Use ResultPath to Update a Node in the Input with the Result<a name="input-output-resultpath-amend"></a>
 
 The following diagram shows how `ResultPath` can update the value of existing JSON nodes in the input with values from the task result\.
 

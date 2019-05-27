@@ -42,10 +42,10 @@ Follow these steps to set up and run Step Functions on your computer:
 **Note**  
 By default Step Functions Local uses a fake account and credentials, and the region is set to US East \(N\. Virginia\)\. To use Step Functions Local with AWS Lambda, or other supported services, you must configure your credentials and region\.
 
-To configure and run Step Functions Local to work with AWS Lambda, Lambda Local, or other supported services, see the following topics\. 
+To configure and run Step Functions Local to work with AWS Lambda, AWS SAM CLI Local, or other supported services, see the following topics\. 
 
 **Topics**
 + [Step Functions \(Downloadable Version\) on Your Computer](sfn-local-computer.md)
 + [Step Functions \(Downloadable Version\) and Docker](sfn-local-docker.md)
 + [Step Functions Local Configuration Options](sfn-local-config-options.md)
-+ [Step Functions and Lambda Local](sfn-local-lambda.md)
++ [Step Functions and AWS SAM CLI Local](sfn-local-lambda.md)

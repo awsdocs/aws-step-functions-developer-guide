@@ -12,7 +12,7 @@ Step Functions offers various predefined state machines as *templates*\. Create 
 
 ## Create a state machine<a name="create-state-machine"></a>
 
-1. Sign in to the AWS Management Console and open the Step Functions console at [https://console\.aws\.amazon\.com/step\-functions/](https://console.aws.amazon.com/step-functions/)\.
+1. Sign in to the AWS Management Console and open the Step Functions console at [https://console\.aws\.amazon\.com/states/](https://console.aws.amazon.com/states/)\.
 
    Choose **Get Started**\.
 

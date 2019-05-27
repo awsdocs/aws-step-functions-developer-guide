@@ -25,7 +25,12 @@ The following sections describe metrics that Step Functions provides to Amazon C
 **Topics**
 + [Metrics That Report a Time Interval](#monitoring-using-cloudwatch-time-interval-metrics)
 + [Metrics That Report a Count](#monitoring-using-cloudwatch-count-metrics)
-+ [State Machine Metrics](#monitoring-using-cloudwatch-state-machine-metrics)
++ [Execution Metrics](#cloudwatch-step-functions-execution-metrics)
++ [Activity Metrics](#cloudwatch-step-functions-activity-metrics)
++ [Lambda Function Metrics](#cloudwatch-step-functions-lambda-function-metrics)
++ [Service Integration Metrics](#cloudwatch-step-functions-service-integration-metrics)
++ [Service Metrics](#cloudwatch-step-functions-service-metrics)
++ [API Metrics](#cloudwatch-step-functions-api-metrics)
 + [Viewing Metrics for Step Functions](monitoring-using-cloudwatch-console.md)
 + [Setting Alarms for Step Functions](monitoring-using-cloudwatch-console-set-alarm.md)
 
@@ -43,11 +48,7 @@ Some of the Step Functions CloudWatch metrics report results as a *count*\. For 
 
 In the CloudWatch console, you can get the best results if you choose **sum** as the display statistic for count metrics\.
 
-## State Machine Metrics<a name="monitoring-using-cloudwatch-state-machine-metrics"></a>
-
-The following metrics are available for Step Functions state machines\.
-
-### Execution Metrics<a name="cloudwatch-step-functions-execution-metrics"></a>
+## Execution Metrics<a name="cloudwatch-step-functions-execution-metrics"></a>
 
 The `AWS/States` namespace includes the following metrics for Step Functions executions\.
 
@@ -62,14 +63,14 @@ The `AWS/States` namespace includes the following metrics for Step Functions exe
 | ExecutionsSucceeded | The number of successfully completed executions\. | 
 | ExecutionsTimedOut | The number of executions that time out for any reason\. | 
 
-#### Dimension for Step Functions Execution Metrics<a name="cloudwatch-step-functions-execution-metrics-dimensions"></a>
+### Dimension for Step Functions Execution Metrics<a name="cloudwatch-step-functions-execution-metrics-dimensions"></a>
 
 
 | Dimension | Description | 
 | --- | --- | 
 |  StateMachineArn  |  The Amazon Resource Name \(ARN\) of the state machine for the execution in question\.  | 
 
-### Activity Metrics<a name="cloudwatch-step-functions-activity-metrics"></a>
+## Activity Metrics<a name="cloudwatch-step-functions-activity-metrics"></a>
 
 The `AWS/States` namespace includes the following metrics for Step Functions activities\.
 
@@ -86,14 +87,14 @@ The `AWS/States` namespace includes the following metrics for Step Functions act
 | ActivitiesSucceeded | The number of successfully completed activities\. | 
 | ActivitiesTimedOut | The number of activities that time out on close\. | 
 
-#### Dimension for Step Functions Activity Metrics<a name="cloudwatch-step-functions-activity-metrics-dimensions"></a>
+### Dimension for Step Functions Activity Metrics<a name="cloudwatch-step-functions-activity-metrics-dimensions"></a>
 
 
 | Dimension | Description | 
 | --- | --- | 
 |  `ActivityArn`  |  The ARN of the activity\.  | 
 
-### Lambda Function Metrics<a name="cloudwatch-step-functions-lambda-function-metrics"></a>
+## Lambda Function Metrics<a name="cloudwatch-step-functions-lambda-function-metrics"></a>
 
 The `AWS/States` namespace includes the following metrics for Step Functions Lambda functions\.
 
@@ -104,20 +105,42 @@ The `AWS/States` namespace includes the following metrics for Step Functions Lam
 | LambdaFunctionScheduleTime | The interval, in milliseconds, for which the Lambda function stays in the schedule state\. | 
 | LambdaFunctionTime | The interval, in milliseconds, between the time the Lambda function is scheduled and the time it closes\. | 
 | LambdaFunctionsFailed | The number of failed Lambda functions\. | 
-| LambdaFunctionsHeartbeatTimedOut | The number of Lambda functions that time out due to a heartbeat timeout\. | 
 | LambdaFunctionsScheduled | The number of scheduled Lambda functions\. | 
 | LambdaFunctionsStarted | The number of started Lambda functions\. | 
 | LambdaFunctionsSucceeded | The number of successfully completed Lambda functions\. | 
 | LambdaFunctionsTimedOut | The number of Lambda functions that time out on close\. | 
 
-#### Dimension for Step Functions Lambda Function Metrics<a name="cloudwatch-step-functions-lambda-function-metrics-dimensions"></a>
+### Dimension for Step Functions Lambda Function Metrics<a name="cloudwatch-step-functions-lambda-function-metrics-dimensions"></a>
 
 
 |  Dimension  |  Description  | 
 | --- | --- | 
 |  `LambdaFunctionArn`  |  The ARN of the Lambda function\.  | 
 
-### Service Metrics<a name="cloudwatch-step-functions-service-metrics"></a>
+## Service Integration Metrics<a name="cloudwatch-step-functions-service-integration-metrics"></a>
+
+The `AWS/States` namespace includes the following metrics for Step Functions service integrations\. For more information see [AWS Service Integrations](concepts-service-integrations.md)\. 
+
+
+|  Metric  |  Description  | 
+| --- | --- | 
+| ServiceIntegrationRunTime | The interval, in milliseconds, between the time the Service Task starts and the time it closes\. | 
+| ServiceIntegrationScheduleTime | The interval, in milliseconds, for which the Service Task stays in the schedule state\. | 
+| ServiceIntegrationTime | The interval, in milliseconds, between the time the Service Task is scheduled and the time it closes\. | 
+| ServiceIntegrationsFailed | The number of failed Service Tasks\. | 
+| ServiceIntegrationsScheduled | The number of scheduled Service Tasks\. | 
+| ServiceIntegrationsStarted | The number of started Service Tasks\. | 
+| ServiceIntegrationsSucceeded | The number of successfully completed Service Tasks\. | 
+| ServiceIntegrationsTimedOut | The number of Service Tasks that time out on close\. | 
+
+### Dimension for Step Functions Service Integration Metrics<a name="cloudwatch-step-functions-service-integration-metrics-dimensions"></a>
+
+
+|  Dimension  |  Description  | 
+| --- | --- | 
+|  `ServiceIntegrationResourceArn`  |  The resource ARN of the integrated service\.  | 
+
+## Service Metrics<a name="cloudwatch-step-functions-service-metrics"></a>
 
 The `AWS/States` namespace includes the following metrics for the Step Functions service\.
 
@@ -129,14 +152,14 @@ The `AWS/States` namespace includes the following metrics for the Step Functions
 | ProvisionedRefillRate |  The count of requests per second that are allowed into the bucket\.  | 
 | ConsumedCapacity |  The count of requests per second\.  | 
 
-#### Dimension for Step Functions Service Metrics<a name="cloudwatch-step-functions-service-metrics-dimensions"></a>
+### Dimension for Step Functions Service Metrics<a name="cloudwatch-step-functions-service-metrics-dimensions"></a>
 
 
 | Dimension | Description | 
 | --- | --- | 
 |  `StateTransition`  |  Filters data to show State Transitions metrics\.  | 
 
-### API Metrics<a name="cloudwatch-step-functions-api-metrics"></a>
+## API Metrics<a name="cloudwatch-step-functions-api-metrics"></a>
 
 The `AWS/States` namespace includes the following metrics for the Step Functions API\.
 
@@ -148,7 +171,7 @@ The `AWS/States` namespace includes the following metrics for the Step Functions
 | ProvisionedRefillRate |  The count of requests per second that are allowed into the bucket\.  | 
 | ConsumedCapacity |  The count of requests per second\.  | 
 
-#### Dimension for Step Functions API Metrics<a name="cloudwatch-step-functions-api-metrics-dimensions"></a>
+### Dimension for Step Functions API Metrics<a name="cloudwatch-step-functions-api-metrics-dimensions"></a>
 
 
 | Dimension | Description | 

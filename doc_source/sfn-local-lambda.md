@@ -1,4 +1,4 @@
-# Step Functions and Lambda Local<a name="sfn-local-lambda"></a>
+# Step Functions and AWS SAM CLI Local<a name="sfn-local-lambda"></a>
 
 With both Step Functions and Lambda running on your local machine, you can test your state machine and Lambda functions without deploying your code to AWS\. 
 
@@ -8,15 +8,15 @@ For more information, see:
 
 **Topics**
 + [Step 1: Set Up The AWS Serverless Application Model](#install-sam)
-+ [Step 2: Test Lambda Local](#test-local-lambda)
-+ [Step 3: Start Lambda Local](#start-local-lambda)
++ [Step 2: Test AWS SAM CLI Local](#test-local-lambda)
++ [Step 3: Start AWS SAM CLI Local](#start-local-lambda)
 + [Step 4: Start Step Functions Local](#start-stepfunctions-local)
-+ [Step 5: Create a State Machine That References Your Lambda Local Function](#create-local-statemachine)
++ [Step 5: Create a State Machine That References Your AWS SAM CLI Local Function](#create-local-statemachine)
 + [Step 6: Start an Execution of Your Local State Machine](#run-local-statemachine)
 
 ## Step 1: Set Up The AWS Serverless Application Model<a name="install-sam"></a>
 
-Lambda Local requires the AWS Command Line Interface, the AWS Serverless Application Model, and Docker to be installed\. 
+AWS SAM CLI Local requires the AWS Command Line Interface, the AWS Serverless Application Model, and Docker to be installed\. 
 
 1. Install the AWS SAM CLI\.
 
@@ -32,7 +32,7 @@ Before installing the AWS SAM CLI, you will need to install the AWS CLI and Dock
 
    This will create a `sam-app` directory, and will build an environment that includes a Python\-based hello world Lambda function\.
 
-## Step 2: Test Lambda Local<a name="test-local-lambda"></a>
+## Step 2: Test AWS SAM CLI Local<a name="test-local-lambda"></a>
 
 Now that you have installed AWS SAM and created the Hello World Lambda function, test that it works\. In the `sam-app` directory, type:
 
@@ -63,15 +63,15 @@ This will show output from your function:
 
 Enter **CTRL\+C** to end the Lambda API\.
 
-## Step 3: Start Lambda Local<a name="start-local-lambda"></a>
+## Step 3: Start AWS SAM CLI Local<a name="start-local-lambda"></a>
 
-Now that you've tested that the function works, start Lambda Local\. In the `sam-app` directory, type:
+Now that you've tested that the function works, start AWS SAM CLI Local\. In the `sam-app` directory, type:
 
 ```
 sam local start-lambda
 ```
 
-This will start Lambda Local and will provide the endpoint to use:
+This will start AWS SAM CLI Local and will provide the endpoint to use:
 
 ```
 2019-01-29 15:33:32 Found credentials in shared credentials file: ~/.aws/credentials
@@ -108,9 +108,9 @@ docker run -p 8083:8083 amazon/aws-stepfunctions-local
 For information on installing the Docker version of Step Functions, see [Step Functions \(Downloadable Version\) and Docker](sfn-local-docker.md)\.
 
 **Note**  
-You can specify the endpoint through the command line or by setting environment variables if you launch Step Functions from the `.jar` file\. For the Docker version, you must specify the endpoints and credentials in a text file\. See, [Step Functions Local Configuration Options](sfn-local-config-options.md)\.
+You can specify the endpoint through the command line or by setting environment variables if you launch Step Functions from the `.jar` file\. For the Docker version, you must specify the endpoints and credentials in a text file\. See [Step Functions Local Configuration Options](sfn-local-config-options.md)\.
 
-## Step 5: Create a State Machine That References Your Lambda Local Function<a name="create-local-statemachine"></a>
+## Step 5: Create a State Machine That References Your AWS SAM CLI Local Function<a name="create-local-statemachine"></a>
 
 Once Step Functions Local is running, create a state machine that references the `HelloWorldFunction` that you initialized in [Step 1: Set Up The AWS Serverless Application Model](#install-sam)\.
 

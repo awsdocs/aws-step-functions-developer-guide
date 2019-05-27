@@ -1,8 +1,8 @@
-# Call Amazon SNS with Step Functions<a name="connectors-sns"></a>
+# Call Amazon SNS with Step Functions<a name="connect-sns"></a>
 
-Step Functions can control some AWS services directly from the Amazon States Language\. For more information, see:
-+ [Service Integrations](concepts-connectors.md)
-+ [Pass Parameters to a Service API](connectors-parameters.md)
+Step Functions can control certain AWS services directly from the Amazon States Language\. For more information, see:
++ [Service Integrations](concepts-service-integrations.md)
++ [Pass Parameters to a Service API](connect-parameters.md)
 
 Supported APIs:
 
@@ -50,4 +50,27 @@ The following includes a `Task` state that publishes an Amazon SNS topic\.
 }
 ```
 
-For information on how to configure IAM when using Step Functions with other AWS services, see [IAM Policies for Integrated Services](connectors-iam-templates.md)\.
+The following includes a `Task` state that publishes an Amazon SNS topic, and then waits for the task token to be returned\. See [Wait for a Callback with the Task Token](connect-to-resource.md#connect-wait-token)\.
+
+```
+{  
+   "StartAt":"Send message to SNS",
+   "States":{  
+      "Send message to SNS":{  
+         "Type":"Task",
+         "Resource":"arn:aws:states:::sns:publish.waitForTaskToken",
+         "Parameters":{  
+            "TopicArn":"arn:aws:sns:us-east-1:123456789012:myTopic",
+            "Message":{  
+               "Input.$":"$",
+               "TaskToken.$":"$$.Task.Token"
+            },
+            "MessageStructure":"json"
+         },
+         "End":true
+      }
+   }
+}
+```
+
+For information on how to configure IAM when using Step Functions with other AWS services, see [IAM Policies for Integrated Services](service-integration-iam-templates.md)\.

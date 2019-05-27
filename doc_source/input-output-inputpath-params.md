@@ -1,14 +1,14 @@
 # InputPath and Parameters<a name="input-output-inputpath-params"></a>
 
-Both `InputPath` and `Parameters` provide a way to manipulate JSON as it moves through your workflow\. `InputPath` can limit the input that is passed by filtering the JSON notation by using a path \(see, [Paths](amazon-states-language-input-output-processing.md#amazon-states-language-paths)\)\. `Parameters` enable you to pass a collection of key\-value pairs, where the values are either static values that you define in your state machine definition, or that are selected from the input using a path\.
+Both the `"InputPath"` and `"Parameters"` fields provide a way to manipulate JSON as it moves through your workflow\. `InputPath` can limit the input that is passed by filtering the JSON notation by using a path \(see [Paths](amazon-states-language-input-output-processing.md#amazon-states-language-paths)\)\. The `"Parameters"` field enables you to pass a collection of key\-value pairs, where the values are either static values that you define in your state machine definition, or that are selected from the input using a path\.
 
-AWS Step Functions applies `InputPath` first, and then `Parameters`\. You can first filter your raw input to a selection you want using `InputPath`, and then apply `Parameters` to manipulate that input further, or add new values\.
+AWS Step Functions applies the `"InputPath"` field first, and then the `"Parameters"` field\. You can first filter your raw input to a selection you want using `InputPath`, and then apply `Parameters` to manipulate that input further, or add new values\.
 
 ## InputPath<a name="input-output-inputpath"></a>
 
 Use `InputPath` to select a portion of the state input\. 
 
-For example, if input to your state includes the following:
+For example, suppose the input to your state includes the following\.
 
 ```
 {
@@ -32,7 +32,7 @@ You could apply the `InputPath`\.
 "InputPath": "$.dataset2",
 ```
 
-With the previous `InputPath`, the JSON that is passed as the input is the following\.
+With the previous `InputPath`, the following is the JSON that is passed as the input\.
 
 ```
 {
@@ -44,9 +44,9 @@ With the previous `InputPath`, the JSON that is passed as the input is the follo
 
 ## Parameters<a name="input-output-parameters"></a>
 
-Use `Parameters` to create a collection of key\-value pairs that are passed as input\. The values of each can either be static values that you include in your state machine definition, or selected from the input with a path\. For key\-value pairs where the value is selected using a path, the key name must end in `*.$`\. 
+Use `"Parameters"` field to create a collection of key\-value pairs that are passed as input\. The values of each can either be static values that you include in your state machine definition, or selected from either the input or the context object with a path\. For key\-value pairs where the value is selected using a path, the key name must end in `.$`\. 
 
-For example, given the following input: 
+For example, suppose you provide the following input\. 
 
 ```
 {
@@ -64,7 +64,7 @@ For example, given the following input:
 }
 ```
 
-To select some of the information, you could specify these `Parameters` in your state machine definition\.
+To select some of the information, you could specify these parameters in your state machine definition\. 
 
 ```
 "Parameters": {
@@ -77,7 +77,7 @@ To select some of the information, you could specify these `Parameters` in your 
       },
 ```
 
-Given the previous input and specified `Parameters`, this is the JSON that is passed\.
+Given the previous input and the `"Parameters"` field, this is the JSON that is passed\.
 
 ```
 {
@@ -90,7 +90,9 @@ Given the previous input and specified `Parameters`, this is the JSON that is pa
 },
 ```
 
+In addition to the input, you can access a special JSON object, known as the context object\. The context object includes information about your state machine execution\. See [The Context Object](input-output-contextobject.md)\.
+
 **Note**  
-`Parameters` can also pass information to connected resources\. For example, if your task state is orchestrating an AWS Batch job, you can pass the relevant API parameters directly to the API actions of that service\. For more information, see:  
-[Pass Parameters to a Service API](connectors-parameters.md)
-[Service Integrations](concepts-connectors.md)
+The `"Parameters"` field can also pass information to connected resources\. For example, if your task state is orchestrating an AWS Batch job, you can pass the relevant API parameters directly to the API actions of that service\. For more information, see:  
+[Pass Parameters to a Service API](connect-parameters.md)
+[Service Integrations](concepts-service-integrations.md)

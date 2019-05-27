@@ -1,8 +1,8 @@
 # Amazon SageMaker<a name="sagemaker-iam"></a>
 
 These example templates show how AWS Step Functions generates IAM policies based on the resources in your state machine definition\. For more information, see:
-+ [IAM Policies for Integrated Services](connectors-iam-templates.md)
-+ [AWS Service Integrations](concepts-connectors.md)
++ [IAM Policies for Integrated Services](service-integration-iam-templates.md)
++ [AWS Service Integrations](concepts-service-integrations.md)
 
 **Note**  
 For these examples, `[[roleArn]]` refers to the Amazon Resource Name \(ARN\) of the IAM role that Amazon SageMaker uses to access model artifacts and docker images for deployment on ML compute instances, or for batch transform jobs\. For more information, see [Amazon SageMaker Roles](https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html)\.

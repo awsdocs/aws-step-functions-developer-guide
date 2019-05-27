@@ -1,8 +1,8 @@
-# Manage AWS Batch with Step Functions<a name="connectors-batch"></a>
+# Manage AWS Batch with Step Functions<a name="connect-batch"></a>
 
-Step Functions can control some AWS services directly from the Amazon States Language\. For more information, see:
-+ [Service Integrations](concepts-connectors.md)
-+ [Pass Parameters to a Service API](connectors-parameters.md)
+Step Functions can control certain AWS services directly from the Amazon States Language\. For more information, see:
++ [Service Integrations](concepts-service-integrations.md)
++ [Pass Parameters to a Service API](connect-parameters.md)
 
 Supported APIs:
 
@@ -20,8 +20,6 @@ Parameters in Step Functions are expressed in `PascalCase`, even when the native
     + [https://docs.aws.amazon.com/batch/latest/APIReference/API_SubmitJob.html#Batch-SubmitJob-request-parameters](https://docs.aws.amazon.com/batch/latest/APIReference/API_SubmitJob.html#Batch-SubmitJob-request-parameters)
     + [https://docs.aws.amazon.com/batch/latest/APIReference/API_SubmitJob.html#Batch-SubmitJob-request-retryStrategy](https://docs.aws.amazon.com/batch/latest/APIReference/API_SubmitJob.html#Batch-SubmitJob-request-retryStrategy)
     + [https://docs.aws.amazon.com/batch/latest/APIReference/API_SubmitJob.html#Batch-SubmitJob-request-timeout](https://docs.aws.amazon.com/batch/latest/APIReference/API_SubmitJob.html#Batch-SubmitJob-request-timeout)
-**Note**  
-Only use `Timeout` with [asynchronous](connectors-resource.md#connectors-sync) connections\. For [synchronous](connectors-resource.md#connectors-sync) connections, see [Use Timeouts to Avoid Stuck Executions](sfn-stuck-execution.md)\.
   + [Response syntax](https://docs.aws.amazon.com/batch/latest/APIReference/API_SubmitJob.html#API_SubmitJob_ResponseSyntax)
 
 The following includes a `Task` state that submits an AWS Batch job and waits for it to complete\.
@@ -39,8 +37,7 @@ The following includes a `Task` state that submits an AWS Batch job and waits fo
        "JobQueue": "SecondaryQueue",
        "Parameters.$": "$.batchjob.parameters",
        "ContainerOverrides": {
-          "Vcpus": 4,
-          "Memory": 16000
+          "Vcpus": 4
         }
      },
      "End": true
@@ -49,4 +46,4 @@ The following includes a `Task` state that submits an AWS Batch job and waits fo
 }
 ```
 
-For information on how to configure IAM when using Step Functions with other AWS services, see [IAM Policies for Integrated Services](connectors-iam-templates.md)\.
+For information on how to configure IAM when using Step Functions with other AWS services, see [IAM Policies for Integrated Services](service-integration-iam-templates.md)\.

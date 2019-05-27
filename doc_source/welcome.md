@@ -19,29 +19,17 @@ Here are some of the key features of AWS Step Functions:
 + You define state machines using the JSON\-based [Amazon States Language](concepts-amazon-states-language.md)\.
 + The [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/) displays a graphical view of your state machine's structure, which provides you with a way to visually check your state machine's logic and monitor executions\.
 
+## Service Integrations<a name="welcome-service-integrations"></a>
+
+AWS Step Functions integrates with other AWS services\. You can call API actions and coordinate executions directly from the Amazon States Language\. For more information, see the following topics\.
++ [Service Integration Patterns](connect-to-resource.md)
++ [Supported AWS Service Integrations for Step Functions](connect-supported-services.md)
++ [Callback Pattern Example ](callback-task-sample-sqs.md)
+
 ## Supported Regions<a name="supported-regions"></a>
 
-Currently, Step Functions is supported only in the following AWS Regions:
-+ US East \(Ohio\)
-+ US East \(N\. Virginia\)
-+ US West \(Oregon\)
-+ US West \(N\. California\)
-+ Asia Pacific \(Mumbai\)
-+ China \(Ningxia\)
-+ China \(Beijing\)
-+ Asia Pacific \(Sydney\)
-+ Asia Pacific \(Tokyo\)
-+ Asia Pacific \(Seoul\)
-+ Asia Pacific \(Singapore\)
-+ EU \(Frankfurt\)
-+ EU \(Ireland\)
-+ EU \(London\)
-+ EU \(Paris\)
-+ EU \(Stockholm\)
-+ Canada \(Central\)
-+ South America \(São Paulo\)
-+ AWS GovCloud \(US\-West\)
+For a list of the regions where AWS Step Functions is available, see [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#step-functions_region) in the Amazon Web Services General Reference\.
 
-### About Amazon Web Services<a name="about-amazon-web-services"></a>
+## About Amazon Web Services<a name="about-amazon-web-services"></a>
 
  Amazon Web Services \(AWS\) is a collection of digital infrastructure services that developers can leverage when developing their applications\. The services include computing, storage, database, and application synchronization \(messaging and queuing\)\. AWS uses a pay\-as\-you\-go service model: you are charged only for the services that you—or your applications—use\. For new AWS users, a free usage tier is available\. On this tier, services are free below a certain level of usage\. For more information about AWS costs and the Free Tier, see [Use the AWS Free Tier](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-free-tier.html)\. To obtain an AWS account, visit the [AWS home page](https://aws.amazon.com/) and choose **Create a Free Account**\.

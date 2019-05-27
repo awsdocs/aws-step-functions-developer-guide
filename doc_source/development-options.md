@@ -64,4 +64,4 @@ The AWS CLI commands follow the Amazon States Language closely, so you can use t
 
 For testing and development purposes, you can install and run Step Functions on your local machine\. With a Step Functions Local, you can start an execution on any machine\. 
 
-The local version of Step Functions can invoke Lambda functions, both in AWS and running locally\. You can also coordinate other [supported AWS services](concepts-connectors.md)\. For more information, see [Setting Up Step Functions Local \(Downloadable Version\)](sfn-local.md)\.
+The local version of Step Functions can invoke Lambda functions, both in AWS and running locally\. You can also coordinate other [supported AWS services](concepts-service-integrations.md)\. For more information, see [Setting Up Step Functions Local \(Downloadable Version\)](sfn-local.md)\.

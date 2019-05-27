@@ -3,9 +3,9 @@
 Step Functions integrates with certain AWS services, such as Amazon Simple Notification Service \(SNS\)\. In this tutorial, you generate a code snippet that sends a text message using Amazon SNS\. You pass parameters directly to Amazon SNS from your state machine definition\.
 
 For more information about how Step Functions integrates with other AWS services directly from the Amazon States Language, see:
-+ [Service Integrations](concepts-connectors.md)
++ [Service Integrations](concepts-service-integrations.md)
 + [Code Snippets](concepts-code-snippets.md)
-+ [Pass Parameters to a Service API](connectors-parameters.md)
++ [Pass Parameters to a Service API](connect-parameters.md)
 
 **Topics**
 + [Step 1: Generate a Code Snippet](#tutorial-code-snippet-1)
@@ -16,7 +16,7 @@ For more information about how Step Functions integrates with other AWS services
 
 To generate a code snippet, you must start by editing a state machine definition\. 
 
-1. Open the Step Functions console at [https://console\.aws\.amazon\.com/step\-functions/](https://console.aws.amazon.com/step-functions/)\.
+1. Open the Step Functions console at [https://console\.aws\.amazon\.com/states/](https://console.aws.amazon.com/states/)\.
 
    Choose **Get started** or **Create state machine**\.
 
@@ -38,7 +38,7 @@ To generate a code snippet, you must start by editing a state machine definition
 You can also choose **Specify message at runtime with state input**\. This option enables you to use a reference path to select a message from the input of your state machine execution\. For more information, see:  
 [Input and Output Processing in Step Functions](concepts-input-output-filtering.md)
 [Reference Paths](amazon-states-language-input-output-processing.md#amazon-states-language-reference-paths)
-[Pass State Input as Parameters Using Paths](connectors-parameters.md#connectors-parameters-path)
+[Pass State Input as Parameters Using Paths](connect-parameters.md#connect-parameters-path)
 
 As you configure options on the **Generate SNS Publish task state** page, the **Preview** section updates with the Amazon States Language code for a task state with the necessary options\. 
 
