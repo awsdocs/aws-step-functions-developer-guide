@@ -39,7 +39,8 @@ The following includes a `Task` state that submits an AWS Batch job and waits fo
        "JobQueue": "SecondaryQueue",
        "Parameters.$": "$.batchjob.parameters",
        "ContainerOverrides": {
-          "vcpus": 4
+          "Vcpus": 4,
+          "Memory": 16000
         }
      },
      "End": true
