@@ -30,7 +30,7 @@ Before installing the AWS SAM CLI, you will need to install the AWS CLI and Dock
 
    1.  [Test the Application Locally](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-quick-start.html#gs-ex1-test-locally) 
 
-   This will create a `sam-app` directory, and will build an environment that includes a Python\-bases hello world Lambda function\.
+   This will create a `sam-app` directory, and will build an environment that includes a Python\-based hello world Lambda function\.
 
 ## Step 2: Test Lambda Local<a name="test-local-lambda"></a>
 
