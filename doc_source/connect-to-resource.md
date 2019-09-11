@@ -101,7 +101,7 @@ This tells Step Functions to pause and wait for the task token\. When you specif
 When it's complete, the external service calls [https://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskSuccess.html](https://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskSuccess.html) or [https://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskFailure.html](https://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskFailure.html) with the `taskToken` included\. Only then does the workflow continue to the next state\. 
 
 **Note**  
-To avoid waiting indefinitely if a process fails to send the task token along with `SendTaskSucess` or `SendTaskFailure`, see [Configure a Heartbeat Timeout for a Waiting Task](#wait-token-hearbeat)\.
+To avoid waiting indefinitely if a process fails to send the task token along with `SendTaskSuccess` or `SendTaskFailure`, see [Configure a Heartbeat Timeout for a Waiting Task](#wait-token-hearbeat)\.
 
 ### Get a Token from the Context Object<a name="wait-token-contextobject"></a>
 
