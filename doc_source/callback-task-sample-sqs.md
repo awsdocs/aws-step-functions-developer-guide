@@ -14,7 +14,7 @@ When this sample project is deployed and an execution is started, the following 
 
 1. The `"Notify Success"` task publishes an Amazon SNS message that the callback was received\.
 
-For an overview of how Step Functions integrates with other AWS services, see, [Service Integration Patterns](connect-to-resource.md)\.
+To learn how to implement the callback pattern in Step Functions see [Wait for a Callback with the Task Token](connect-to-resource.md#connect-wait-token)\.
 
 **To create the state machine and provision all resources**
 

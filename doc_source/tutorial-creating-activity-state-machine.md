@@ -162,7 +162,7 @@ For a more complete example of an activity worker, see [Example Activity Worker 
    ```
 **Note**  
 The `EnvironmentVariableCredentialsProvider` class in this example assumes that the `AWS_ACCESS_KEY_ID` \(or `AWS_ACCESS_KEY`\) and `AWS_SECRET_KEY` \(or `AWS_SECRET_ACCESS_KEY`\) environment variables are set\. For more information about providing the required credentials to the factory, see [AWSCredentialsProvider](https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/auth/AWSCredentialsProvider.html) in the *AWS SDK for Java API Reference* and [Set Up AWS Credentials and Region for Development](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/setup-credentials.html) in the *AWS SDK for Java Developer Guide*\.  
-To give Step Functions sufficient time to process the request, set `setSocketTimeout` to 70 seconds\.
+By default the AWS SDK will wait up to 50 seconds to receive data from the server for any operation\. The `GetActivityTask` operation is a long\-poll operation that will wait up to 60 seconds for the next available task\. To prevent receiving a `SocketTimeoutException` errors, set SocketTimeout to 70 seconds\.
 
 1. In the parameter list of the `GetActivityTaskRequest().withActivityArn()` constructor, replace the `ACTIVITY_ARN` value with the ARN of [the activity task that you created earlier](#create-activity-state-machine-new-activity)\.
 
@@ -199,8 +199,6 @@ Step Functions allows you to create state machine, execution, and activity names
 ## Step 5: Run and Stop the Worker<a name="create-activity-state-machine-step-5"></a>
 
 To have the worker poll your state machine for activities, you must run the worker\.
-
-After the execution completes, you should stop your worker\. If you don't stop the worker, it will continue to run and poll for activities\. When the execution is stopped, your worker has no source of tasks and generates a `SocketTimeoutException` during each poll\.
 
 ### <a name="create-activity-state-machine-run-stop-worker"></a>
 

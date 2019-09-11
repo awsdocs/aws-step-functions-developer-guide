@@ -36,10 +36,10 @@ With the previous `InputPath`, the following is the JSON that is passed as the i
 
 ```
 {
-    "val1": "a",
-    "val2": "b",
-    "val3": "c"
-  }
+  "val1": "a",
+  "val2": "b",
+  "val3": "c"
+}
 ```
 
 ## Parameters<a name="input-output-parameters"></a>

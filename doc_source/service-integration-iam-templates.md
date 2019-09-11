@@ -28,4 +28,5 @@ Review these templates to understand how Step Functions creates your IAM policie
 + [Amazon SQS](sqs-iam.md)
 + [AWS Glue](glue-iam.md)
 + [Amazon SageMaker](sagemaker-iam.md)
++ [Step Functions](stepfunctions-iam.md)
 + [Activities](activities-iam.md)

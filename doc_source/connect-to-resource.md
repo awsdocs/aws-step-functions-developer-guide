@@ -7,8 +7,6 @@ AWS Step Functions integrates with services directly in the Amazon States Langua
 
 Each of these service integration patterns is controlled by how you create a URI in the `"Resource"` field of your [task definition](concepts-tasks.md)\.
 
-For a list of integrated services that can you can manage directly from a Step Functions task state, see [Supported AWS Service Integrations for Step Functions](connect-supported-services.md)\.
-
 **Topics**
 + [Request Response](#connect-default)
 + [Run a Job](#connect-sync)
@@ -101,7 +99,7 @@ This tells Step Functions to pause and wait for the task token\. When you specif
 When it's complete, the external service calls [https://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskSuccess.html](https://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskSuccess.html) or [https://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskFailure.html](https://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskFailure.html) with the `taskToken` included\. Only then does the workflow continue to the next state\. 
 
 **Note**  
-To avoid waiting indefinitely if a process fails to send the task token along with `SendTaskSucess` or `SendTaskFailure`, see [Configure a Heartbeat Timeout for a Waiting Task](#wait-token-hearbeat)\.
+To avoid waiting indefinitely if a process fails to send the task token along with `SendTaskSuccess` or `SendTaskFailure`, see [Configure a Heartbeat Timeout for a Waiting Task](#wait-token-hearbeat)\.
 
 ### Get a Token from the Context Object<a name="wait-token-contextobject"></a>
 

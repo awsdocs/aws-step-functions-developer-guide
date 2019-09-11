@@ -7,5 +7,7 @@ For production systems, we recommend at least 100 open polls per activity ARN's 
 To avoid these kinds of latency problems when polling for tasks:
 + Implement your pollers as separate threads from the work in your activity worker implementation\.
 + Have at least 100 open polls per activity ARN at each point in time\.
+**Note**  
+Scaling to 100 open polls per ARN can be expensive\. For example, 100 Lambda functions polling per ARN is 100 times more expensive than having a single Lambda function with 100 polling threads\. To both reduce latency *and* minimize cost, use a language that has asynchronous I/O, and implement multiple polling threads per worker\. For an example activity worker where the poller threads are separate from the work threads, see [Example Activity Worker in Ruby](example-ruby-activity-worker.md)\. 
 
-For an example activity worker where the poller threads are separate from the work threads, see [Example Activity Worker in Ruby](example-ruby-activity-worker.md)\. For more information on activities and activity workers see [Activities](concepts-activities.md)\.
+For more information on activities and activity workers see [Activities](concepts-activities.md)\.

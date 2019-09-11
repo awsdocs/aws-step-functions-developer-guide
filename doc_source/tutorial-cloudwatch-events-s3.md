@@ -24,7 +24,7 @@ Before you can configure a CloudWatch Events target, you must create a state mac
 
 ## Step 1: Create a Bucket in Amazon S3<a name="tutorial-cloudwatch-events-s3-bucket"></a>
 
-Now that you have a `Helloworld`state machine, you need an Amazon S3 bucket\. In Step 3 of this tutorial, you set up a rule so that when a file is added to this bucket, CloudWatch Events triggers an execution of the state machine\.
+Now that you have a `Helloworld` state machine, you need an Amazon S3 bucket\. In Step 3 of this tutorial, you set up a rule so that when a file is added to this bucket, CloudWatch Events triggers an execution of the state machine\.
 
 1. Navigate to the [Amazon S3 console](https://console.aws.amazon.com/s3/), and then choose **Create bucket**\.
 
@@ -76,6 +76,8 @@ You must configure CloudWatch Events in the same AWS Region as the Amazon S3 buc
 1. For **Event Type**, choose **Object Level Operations**\.
 
 1. Choose **Specific operation\(s\)**, and then choose **PutObject**\.
+**Note**  
+If the object size is bigger than the Multipart threshold used in the `PutObject` operation, the AWS CloudTrail API logged will be `CompleteMultipartUpload` instead of `PutObject`\. See, [Multipart Upload Overview](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/mpuoverview.html) in the AWS CloudTrail User Guide\.
 
 1. Choose **Specific bucket\(s\) by name** and enter the bucket name you created in Step 1 \(`username-sfn-tutorial`\)\.
 

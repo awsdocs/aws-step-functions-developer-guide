@@ -22,15 +22,15 @@ Your state machine then implements a `Choice` state that executes some applicati
 
 1. Sign in to the [Lambda console](https://console.aws.amazon.com/lambda/home), and then choose **Create function**\.
 
-1. In the **Create function** section, choose **Author with code snippets**\.
+1. In the **Create function** section, choose **Author from scratch**\.
 
-1. In the **Author with code snippets** section, configure your Lambda function, as follows:
+1. In the **Basic information** section, configure your Lambda function, as follows:
 
-   1. For **Name**, enter `Iterator`\.
+   1. For **Function name**, enter `Iterator`\.
 
    1. For **Runtime**, choose **Node\.js 6\.10**\.
 
-   1. For **Role**, select **Choose an existing role**\.
+   1. For **Role**, select **Use an existing role**\.
 
    1. For **Existing role**, choose the Lambda role that you created in the [Creating a Lambda State Machine](tutorial-creating-lambda-state-machine.md) tutorial\.
 **Note**  

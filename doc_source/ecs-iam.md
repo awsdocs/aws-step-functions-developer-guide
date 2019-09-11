@@ -45,7 +45,7 @@ You can only stop Amazon ECS tasks that were started by Step Functions, despite 
             ],
             "Resource": [
                "arn:aws:events:[[region]]:
-[[accountID]]:rule/StepFunctionsGetEventsForECSTaskRule"
+[[accountId]]:rule/StepFunctionsGetEventsForECSTaskRule"
             ]
         }
     ]
@@ -99,7 +99,7 @@ You can only stop Amazon ECS tasks that were started by Step Functions, despite 
             ],
             "Resource": [
                 "arn:aws:ecs:[[region]]:
-[[accountID]]:task-definition/[[taskDefinition]]"
+[[accountId]]:task-definition/[[taskDefinition]]"
             ]
         }
     ]

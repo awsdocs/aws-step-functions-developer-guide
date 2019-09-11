@@ -61,7 +61,7 @@ The following includes a `Task` state that implements the [callback](connect-to-
 To simply invoke a Lambda function, you can also call the resource ARN directly in the `"Resource"` string\.
 
 **Note**  
-When you invoke Lambda using an ARN directly from the `"Resource"` field, you cannot specify `.waitForTaskToken`, the `"Parameters"` field is not supported, and the state input is passed to Lambda as the payload\.   
+When you invoke Lambda using an ARN directly from the `"Resource"` field, you cannot specify `.waitForTaskToken`, and the state input is passed to Lambda as the payload\. The output of the Lambda function is the result\.  
 To have a Lambda task wait for a task token, see the previous callback pattern example\.
 
 ```
@@ -76,5 +76,10 @@ To have a Lambda task wait for a task token, see the previous callback pattern e
    }
 }
 ```
+
+**Note**  
+You can invoke a specific Lambda function version or alias by specifying those options in the Amazon Resource Name in the `Resource` field\. See the following in the Lambda documentation\.  
+[AWS Lambda versioning](https://docs.aws.amazon.com/lambda/latest/dg/versioning-intro.html)
+[AWS Lambda aliases](https://docs.aws.amazon.com/lambda/latest/dg/aliases-intro.html)
 
 For information on how to configure IAM when using Step Functions with other AWS services, see [IAM Policies for Integrated Services](service-integration-iam-templates.md)\.

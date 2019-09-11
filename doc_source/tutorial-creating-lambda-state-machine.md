@@ -56,7 +56,9 @@ Ensure that your Lambda function is under the same AWS account and AWS Region as
 
 1. In the **Basic information** section, configure your Lambda function:
 
-   1. For **Name**, enter `HelloFunction`\.
+   1. For **Function name**, enter `HelloFunction`\.
+
+   1. For **Runtime**, choose **Node\.js 6\.10**\.
 
    1. For **Role**, select **Choose an existing role**\.
 

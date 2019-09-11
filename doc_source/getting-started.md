@@ -12,9 +12,7 @@ Step Functions offers various predefined state machines as *templates*\. Create 
 
 ## Create a state machine<a name="create-state-machine"></a>
 
-1. Sign in to the AWS Management Console and open the Step Functions console at [https://console\.aws\.amazon\.com/states/](https://console.aws.amazon.com/states/)\.
-
-   Choose **Get Started**\.
+1. Sign in to the AWS Management Console and open the Step Functions console at [https://console\.aws\.amazon\.com/states/home?\#/statemachines/create](https://console.aws.amazon.com/states/home?#/statemachines/create)\.
 
 1. On the **Define state machine** page select **Templates** and choose **Hello world**\. Review the **State machine definition** and the visual workflow\.  
 ![\[Hello world.\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-create-state-machine-hello-world.png)
@@ -69,7 +67,7 @@ Step Functions allows you to create state machine, execution, and activity names
 1. \(Optional\) In the **Execution Details** section, choose the **Info** tab to view the **Execution Status** and the **Started** and **Closed** timestamps\.
 
 1. To view the results of your execution, choose the **Output** tab\.  
-![\[State machine results.\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-console-state-machine-execution-output.png)
+![\[State machine results.\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-getting-started-output.png)
 
 ## Update a state machine<a name="update-state-machine"></a>
 

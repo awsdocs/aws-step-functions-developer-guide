@@ -13,10 +13,11 @@ For more information on service integrations, see [Service Integration Patterns]
 | Service | [Request Response](connect-to-resource.md#connect-default) | [Run a Job \(`.sync`\)](connect-to-resource.md#connect-sync) | [Wait for Callback \(`.waitForTaskToken`\)](connect-to-resource.md#connect-wait-token) | 
 | --- | --- | --- | --- | 
 | [Lambda](connect-lambda.md) | ✓ |  | ✓ | 
-| [AWS Batch](connect-batch.md) | ✓ | ✓ |  | 
+| [AWS Batch](connect-batch.md) | ✓ | ✓ | ✓ | 
 | [DynamoDB](connect-ddb.md) | ✓ |  |  | 
 | [Amazon ECS/Fargate](connect-ecs.md) | ✓ | ✓ | ✓ | 
 | [Amazon SNS](connect-sns.md) | ✓ |  | ✓ | 
 | [Amazon SQS](connect-sqs.md) | ✓ |  | ✓ | 
 | [AWS Glue](connect-glue.md) | ✓ | ✓ |  | 
 | [Amazon SageMaker](connect-sagemaker.md) | ✓ | ✓ |  | 
+| [Step Functions](connect-stepfunctions.md) | ✓ | ✓ | ✓ | 

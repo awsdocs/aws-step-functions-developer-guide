@@ -21,7 +21,6 @@ You can also pass multiple parameters with static JSON\. As a more complete exam
      "Parameters": {
        "TopicArn": "arn:aws:sns:us-east-1:123456789012:myTopic",
        "Message": "test message",
-       "MessageStructure": "json",
        "MessageAttributes": {
          "my attribute no 1": {
            "DataType": "String",

@@ -11,3 +11,4 @@ Each of the sample projects provisions a fully functional state machine, and cre
 + [Poll for Job Status \(Lambda, AWS Batch\)](sample-project-job-poller.md)
 + [Task Timer](task-timer-sample.md)
 + [Callback Pattern Example](callback-task-sample-sqs.md)
++ [Start a Workflow Within a Workflow \(AWS Step Functions, AWS Lambda\)](sample-start-workflow.md)

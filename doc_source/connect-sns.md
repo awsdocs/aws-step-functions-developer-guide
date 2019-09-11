@@ -32,7 +32,6 @@ The following includes a `Task` state that publishes an Amazon SNS topic\.
      "Parameters": {
        "TopicArn": "arn:aws:sns:us-east-1:123456789012:myTopic",
        "Message.$": "$.input.message",
-       "MessageStructure": "json",
        "MessageAttributes": {
          "my attribute no 1": {
            "DataType": "String",
@@ -64,8 +63,7 @@ The following includes a `Task` state that publishes an Amazon SNS topic, and th
             "Message":{  
                "Input.$":"$",
                "TaskToken.$":"$$.Task.Token"
-            },
-            "MessageStructure":"json"
+            }
          },
          "End":true
       }

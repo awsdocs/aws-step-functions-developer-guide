@@ -55,7 +55,7 @@ Your state machine then implements a `Choice` state that executes some applicati
 
    1. For **Name**, enter `Iterator`\.
 
-   1. For **Runtime**, choose **Node\.js 6\.10**\.
+   1. For **Runtime**, choose **Node\.js 10\.15**\.
 
    1. For **Role**, select **Choose an existing role**\.
 
@@ -142,7 +142,7 @@ If you set `index` to `9` for this test, the `index` increments to `10`, and `co
 
    1. For **Name**, enter `Restart`\.
 
-   1. For **Runtime**, choose **Node\.js 6\.10**\.
+   1. For **Runtime**, choose **Node\.js 10\.15**\.
 
    1. For **Role**, select **Choose an existing role**\.
 

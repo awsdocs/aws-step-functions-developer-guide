@@ -20,6 +20,9 @@ A `Task` state failed during the execution\.
 ** `States.Permissions` **  
 A `Task` state failed because it had insufficient privileges to execute the specified code\.
 
+** `States.ReferencePathConflict` **  
+A reference path is invalid\. See [Reference Paths](amazon-states-language-input-output-processing.md#amazon-states-language-reference-paths) in the [Input and Output Processing](amazon-states-language-input-output-processing.md) section\.
+
 States can report errors with other names, which must not begin with the prefix `"States."`\.
 
 ## Retrying After an Error<a name="amazon-states-language-retrying-after-error"></a>
@@ -102,7 +105,7 @@ A Retrier's parameters apply across all visits to that Retrier in the context of
 }
 ```
 
-Suppose that this task fails five successive times, outputting Error Names "`ErrorA`", "`ErrorB`", "`ErrorC`", "`ErrorB`", and "`ErrorB`"\. The first two errors match the first retrier, and cause waits of one and two seconds\. The third error matches the second retrier, and causes a wait of five seconds\. The fourth error matches the first retrier and causes a wait of four seconds\. The fifth error also matches the first retrier, but it has already reached its limit of two retries \("`MaxAttempts`"\) for that particular error \("`ErrorB`"\) so it fails and execution is redirected to the `"Z"` state via the `"Catch"` field\.
+Suppose that this task fails four successive times, outputting Error Names "`ErrorA`", "`ErrorB`", "`ErrorC`", and "`ErrorB`"\. The first two errors match the first retrier, and cause waits of one and two seconds\. The third error matches the second retrier, and causes a wait of five seconds\. The fourth error would match the first retrier but its `"MaxAttempts"` ceiling of two retries has already been reached, so that retrier fails, and execution is redirected to the `"Z"` state via the `"Catch"` field\.
 
 Note that once the system transitions to another state, no matter how, all Retrier parameters are reset\.
 

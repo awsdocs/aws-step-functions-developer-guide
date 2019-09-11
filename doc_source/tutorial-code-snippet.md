@@ -16,9 +16,7 @@ For more information about how Step Functions integrates with other AWS services
 
 To generate a code snippet, you must start by editing a state machine definition\. 
 
-1. Open the Step Functions console at [https://console\.aws\.amazon\.com/states/](https://console.aws.amazon.com/states/)\.
-
-   Choose **Get started** or **Create state machine**\.
+1. Sign in to the AWS Management Console and open the Step Functions console at [https://console\.aws\.amazon\.com/states/home?\#/statemachines/create](https://console.aws.amazon.com/states/home?#/statemachines/create)\.
 
 1. Choose **Author with code snippets**, and then enter a name for your state machine\.
 

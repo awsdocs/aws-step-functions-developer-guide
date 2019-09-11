@@ -62,6 +62,8 @@ Some Step Functions API actions are throttled using a token bucket scheme to mai
 **Note**  
 Throttling limits are per account, per AWS Region\. AWS Step Functions may increase both the bucket size and refill rate at any time\. Do not rely on these throttling rates to limit your costs\.
 
+### Limits In US East \(N\. Virginia\), US West \(Oregon\), and EU \(Ireland\)<a name="service-limits-large-regions"></a>
+
 
 | API Name | Bucket Size | Refill Rate per Second | 
 | --- | --- | --- | 
@@ -70,21 +72,50 @@ Throttling limits are per account, per AWS Region\. AWS Step Functions may incre
 | DeleteActivity | 100 | 1 | 
 | DeleteStateMachine | 100 | 1 | 
 | DescribeActivity | 200 | 1 | 
-| DescribeExecution | 200 | 2 | 
-| DescribeStateMachine | 200 | 1 | 
-| DescribeStateMachineForExecution | 100 | 1 | 
-| GetActivityTask | 1,000 | 25 | 
-| GetExecutionHistory | 250 | 5 | 
-| ListActivities | 100 | 1 | 
+| DescribeExecution | 300 | 15 | 
+| DescribeStateMachine | 200 | 20 | 
+| DescribeStateMachineForExecution | 200 | 1 | 
+| GetActivityTask | 3,000 | 500 | 
+| GetExecutionHistory | 400 | 20 | 
+| ListActivities | 100 | 10 | 
+| ListExecutions | 200 | 5 | 
+| ListStateMachines | 100 | 5 | 
+| ListTagsForResource | 100 | 1 | 
+| SendTaskFailure | 3,000 | 500 | 
+| SendTaskHeartbeat | 3,000 | 500 | 
+| SendTaskSuccess | 3,000 | 500 | 
+| StartExecution | 1,300 | 300 | 
+| StopExecution | 1,000 | 200 | 
+| TagResource | 200 | 1 | 
+| UntagResource | 200 | 1 | 
+| UpdateStateMachine | 100 | 1 | 
+
+### Limits In All Other Regions<a name="service-limits-other-regions"></a>
+
+
+| API Name | Bucket Size | Refill Rate per Second | 
+| --- | --- | --- | 
+| CreateActivity | 100 | 1 | 
+| CreateStateMachine | 100 | 1 | 
+| DeleteActivity | 100 | 1 | 
+| DeleteStateMachine | 100 | 1 | 
+| DescribeActivity | 200 | 1 | 
+| DescribeExecution | 250 | 10 | 
+| DescribeStateMachine | 200 | 20 | 
+| DescribeStateMachineForExecution | 200 | 1 | 
+| GetActivityTask | 1,500 | 300 | 
+| GetExecutionHistory | 400 | 20 | 
+| ListActivities | 100 | 5 | 
 | ListExecutions | 100 | 2 | 
-| ListStateMachines | 100 | 1 | 
-| SendTaskFailure | 1,000 | 25 | 
-| SendTaskHeartbeat | 1,000 | 25 | 
-| SendTaskSuccess | 1,000 | 25 | 
-| StartExecution — In US East \(N\. Virginia\), US West \(Oregon\), and EU \(Ireland\) | 1000 | 200 | 
-| StartExecution — All other Regions | 500 | 25 | 
-| StopExecution — In US East \(N\. Virginia\), US West \(Oregon\), and EU \(Ireland\) | 1000 | 200 | 
-| StopExecution — All other Regions | 500 | 25 | 
+| ListStateMachines | 100 | 5 | 
+| ListTagsForResource | 100 | 1 | 
+| SendTaskFailure | 1,500 | 300 | 
+| SendTaskHeartbeat | 1,500 | 300 | 
+| SendTaskSuccess | 1,500 | 300 | 
+| StartExecution | 800 | 150 | 
+| StopExecution | 500 | 25 | 
+| TagResource | 200 | 1 | 
+| UntagResource | 200 | 1 | 
 | UpdateStateMachine | 200 | 1 | 
 
 ## Limits Related to State Throttling<a name="service-limits-api-state-throttling"></a>
@@ -97,8 +128,8 @@ Throttling on the `StateTransition` service metric is reported as `ExecutionThro
 
 | Service Metric | Bucket Size | Refill Rate per Second  | 
 | --- | --- | --- | 
-|  `StateTransition` — *In US East \(N\. Virginia\), US West \(Oregon\), and EU \(Ireland\)*  |  5000  |  1000  | 
-|  `StateTransition` — *All other regions* |  800  |  400  | 
+|  `StateTransition` — *In US East \(N\. Virginia\), US West \(Oregon\), and EU \(Ireland\)*  |  5,000  |  1,500  | 
+|  `StateTransition` — *All other regions* |  800  |  500  | 
 
 ## Restrictions Related to Tagging<a name="sfn-limits-tagging"></a>
 
