@@ -77,7 +77,8 @@ You must configure CloudWatch Events in the same AWS Region as the Amazon S3 buc
 
 1. Choose **Specific operation\(s\)**, and then choose **PutObject**\.
 **Note**  
-If the object size is bigger than the Multipart threshold used in the `PutObject` operation, the AWS CloudTrail API logged will be `CompleteMultipartUpload` instead of `PutObject`\. See, [Multipart Upload Overview](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/mpuoverview.html) in the AWS CloudTrail User Guide\.
+
+If the object size is bigger than the multipart threshold(default is 8MB) used in the PutObject operation, the CloudTtrail API logged will be **CompleteMultipartUpload** instead of PutObject\.
 
 1. Choose **Specific bucket\(s\) by name** and enter the bucket name you created in Step 1 \(`username-sfn-tutorial`\)\.
 
