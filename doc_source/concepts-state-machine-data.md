@@ -19,7 +19,7 @@ State machine data is represented by JSON text, so you can provide values using 
 **Note**  
 Numbers in JSON text format conform to JavaScript semantics\. These numbers typically correspond to double\-precision [IEEE\-854](https://standards.ieee.org/findstds/standard/854-1987.html) values\.
 The following is valid JSON text: standalone, quote\-delimited strings; objects; arrays; numbers; Boolean values; and `null`\.
-The output of a state becomes the input into the next state\. However, you can restrict states to working on a subset of the input data by using [Input and Output Processing](amazon-states-language-input-output-processing.md)\.
+The output of a state becomes the input into the next state\. However, you can restrict states to working on a subset of the input data by using [Input and Output Processing](concepts-input-output-filtering.md)\.
 
 ## State Machine Input/Output<a name="concepts-state-machine-data-state-machine-input-output"></a>
 

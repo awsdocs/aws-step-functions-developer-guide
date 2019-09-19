@@ -2,6 +2,17 @@
 
 A `Task` state \(`"Type": "Task"`\) represents a single unit of work performed by a state machine\.
 
+All work in your state machine is done by *tasks*\. A task performs work by using an activity or an AWS Lambda function, or by passing parameters to the API actions of other services\.
+
+AWS Step Functions can invoke Lambda functions directly from a task state\. A Lambda function is a cloud\-native task that runs on AWS Lambda\. You can write Lambda functions in a variety of programming languages, using the AWS Management Console or by uploading code to Lambda\. For more information see [Creating a Lambda State Machine](tutorial-creating-lambda-state-machine.md)\.
+
+**Note**  
+Step Functions can coordinate some AWS services directly from a task state\. For more information see [Service Integrations](concepts-service-integrations.md)\.
+
+An activity consists of program code that waits for an operator to perform an action or to provide input\. You can host activities on Amazon EC2, on Amazon ECS, or even on mobile devices\. Activities poll Step Functions using the `GetActivityTask` and `SendTaskSuccess`, `SendTaskFailure`, and `SendTaskHeartbeat` API actions\.
+
+The Amazon States Language represents tasks by setting a state's type to `Task` and by providing the task with the Amazon Resource Name \(ARN\) of the activity or Lambda function\. 
+
 In addition to the [common state fields](amazon-states-language-common-fields.md), `Task` states have the following fields\.
 
 ** `Resource` \(Required\)**  
@@ -11,13 +22,13 @@ A URI, especially an Amazon Resource Name \(ARN\) that uniquely identifies the s
 Used to pass information to the API actions of connected resources\. The parameters can use a mix of static JSON and [JsonPath](https://github.com/json-path/JsonPath)\. For more information, see [Pass Parameters to a Service API](connect-parameters.md)\.
 
 ** `ResultPath` \(Optional\)**  
-Specifies where \(in the input\) to place the results of executing the task that's specified in `Resource`\. The input is then filtered as specified by the `OutputPath` field \(if present\) before being used as the state's output\. For more information, see [path](amazon-states-language-input-output-processing.md)\.
+Specifies where \(in the input\) to place the results of executing the task that's specified in `Resource`\. The input is then filtered as specified by the `OutputPath` field \(if present\) before being used as the state's output\. For more information, see [path](concepts-input-output-filtering.md)\.
 
 ** `Retry` \(Optional\)**  
-An array of objects, called Retriers, that define a retry policy if the state encounters runtime errors\. For more information, see [Retrying After an Error](amazon-states-language-errors.md#amazon-states-language-retrying-after-error)\.
+An array of objects, called Retriers, that define a retry policy if the state encounters runtime errors\. For more information, see [Examples Using Retry and Using Catch](concepts-error-handling.md#error-handling-examples)\.
 
 ** `Catch` \(Optional\)**  
-An array of objects, called Catchers, that define a fallback state\. This state is executed if the state encounters runtime errors and its retry policy is exhausted or isn't defined\. For more information, see [Fallback States](amazon-states-language-errors.md#amazon-states-language-fallback-states)\.
+An array of objects, called Catchers, that define a fallback state\. This state is executed if the state encounters runtime errors and its retry policy is exhausted or isn't defined\. For more information, see [Fallback States](concepts-error-handling.md#error-handling-fallback-states)\.
 
 ** `TimeoutSeconds` \(Optional\)**  
 If the task runs longer than the specified seconds, this state fails with a `States.Timeout` error name\. Must be a positive, non\-zero integer\. If not provided, the default value is `99999999`\. The count begins after the task has been started, for example, when `ActivityStarted` or `LambdaFunctionStarted` are logged in the **Execution event history**\.
@@ -26,6 +37,8 @@ If the task runs longer than the specified seconds, this state fails with a `Sta
 If more time than the specified seconds elapses between heartbeats from the task, this state fails with a `States.Timeout` error name\. Must be a positive, non\-zero integer less than the number of seconds specified in the `TimeoutSeconds` field\. If not provided, the default value is `99999999`\. For Activities, the count begins when `GetActivityTask` receives a token and `ActivityStarted` is logged in the **Execution event history**\.
 
 A `Task` state must set either the `End` field to `true` if the state ends the execution, or must provide a state in the `Next` field that is run when the `Task` state is complete\.
+
+## Task State Example<a name="task-state-example"></a>
 
 Here is an example\.
 

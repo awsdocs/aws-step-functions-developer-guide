@@ -12,3 +12,4 @@ Each of the sample projects provisions a fully functional state machine, and cre
 + [Task Timer](task-timer-sample.md)
 + [Callback Pattern Example](callback-task-sample-sqs.md)
 + [Start a Workflow Within a Workflow \(AWS Step Functions, AWS Lambda\)](sample-start-workflow.md)
++ [Dynamically Process Data with a Map State](sample-map-state.md)

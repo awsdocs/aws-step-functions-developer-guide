@@ -7,11 +7,7 @@ This sample project creates and configures all resources so that your Step Funct
 **Note**  
 You can also implement this pattern without using a Lambda function\. For information about controlling AWS Batch directly, see [AWS Service Integrations](concepts-service-integrations.md)\. 
 
-This sample project creates the state machine, two Lambda functions, and an AWS Batch queue, and configures the related IAM permissions\. For more information about the resources that are created with the **Job Poller** sample project, see:
-+ [AWS CloudFormation User Guide](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/)
-+ [AWS Batch User Guide](https://docs.aws.amazon.com/batch/latest/userguide/)
-+ [AWS Lambda Developer Guide](https://docs.aws.amazon.com/lambda/latest/dg/)
-+ [IAM Getting Started Guide](https://docs.aws.amazon.com/IAM/latest/GettingStartedGuide/)
+This sample project creates the state machine, two Lambda functions, and an AWS Batch queue, and configures the related IAM permissions\. 
 
 **To create the **Job Poller** state machine and provision all resources**
 

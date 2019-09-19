@@ -3,7 +3,7 @@
 Step Functions integrates with its own API as a service integration\. This allows Step Functions to start a new execution of a state machine directly from the task state of a running execution\. Use [nested workflow executions](concepts-nested-workflows.md) to reduce the complexity of your main workflows and to reuse common processes when building new workflows\.
 
 For more information, see:
-+ [Start Workflow Executions](concepts-nested-workflows.md)
++ [Start Executions From a Task](concepts-nested-workflows.md)
 + [Service Integrations](concepts-service-integrations.md)
 + [Pass Parameters to a Service API](connect-parameters.md)
 

@@ -14,10 +14,12 @@ The following diagram shows how JSON information moves through a task state\. `I
 
 `InputPath`, `Parameters`, `ResultPath`, and `OutputPath` each manipulate JSON as it moves through each state in your workflow\.
 
- Each can use [paths](amazon-states-language-input-output-processing.md#amazon-states-language-paths) to select portions of the JSON from the input or the result\. A path is a string, beginning with `$`, that identifies nodes within JSON text\. Step Functions paths use [JsonPath](https://github.com/json-path/JsonPath) syntax\.
+ Each can use [paths](amazon-states-language-paths.md) to select portions of the JSON from the input or the result\. A path is a string, beginning with `$`, that identifies nodes within JSON text\. Step Functions paths use [JsonPath](https://github.com/json-path/JsonPath) syntax\.
 
 **Topics**
++ [Paths](amazon-states-language-paths.md)
 + [InputPath and Parameters](input-output-inputpath-params.md)
++ [ItemsPath](input-output-itemspath.md)
 + [ResultPath](input-output-resultpath.md)
 + [OutputPath](input-output-outputpath.md)
 + [InputPath, ResultPath and `OutputPath` Example](input-output-example.md)

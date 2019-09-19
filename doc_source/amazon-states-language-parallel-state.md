@@ -2,23 +2,25 @@
 
 The `Parallel` state \(`"Type": "Parallel"`\) can be used to create parallel branches of execution in your state machine\.
 
-In addition to the [common state fields](amazon-states-language-common-fields.md), `Parallel` states introduce these additional fields\.
+In addition to the [common state fields](amazon-states-language-common-fields.md), `Parallel` states include these additional fields\.
 
 ** `Branches` \(Required\)**  
 An array of objects that specify state machines to execute in parallel\. Each such state machine object must have fields named `States` and `StartAt`, whose meanings are exactly like those in the top level of a state machine\.
 
 ** `ResultPath` \(Optional\)**  
-Specifies where \(in the input\) to place the output of the branches\. The input is then filtered as specified by the `OutputPath` field \(if present\) before being used as the state's output\. For more information, see [Input and Output Processing](amazon-states-language-input-output-processing.md)\.
+Specifies where \(in the input\) to place the output of the branches\. The input is then filtered as specified by the `OutputPath` field \(if present\) before being used as the state's output\. For more information, see [Input and Output Processing](concepts-input-output-filtering.md)\.
 
 ** `Retry` \(Optional\)**  
-An array of objects, called Retriers, that define a retry policy in case the state encounters runtime errors\. For more information, see [Retrying After an Error](amazon-states-language-errors.md#amazon-states-language-retrying-after-error)\.
+An array of objects, called Retriers, that define a retry policy in case the state encounters runtime errors\. For more information, see [Examples Using Retry and Using Catch](concepts-error-handling.md#error-handling-examples)\.
 
 ** `Catch` \(Optional\)**  
-An array of objects, called Catchers, that define a fallback state that is executed if the state encounters runtime errors and its retry policy is exhausted or isn't defined\. For more information, see [Fallback States](amazon-states-language-errors.md#amazon-states-language-fallback-states)\.
+An array of objects, called Catchers, that define a fallback state that is executed if the state encounters runtime errors and its retry policy is exhausted or isn't defined\. For more information, see [Fallback States](concepts-error-handling.md#error-handling-fallback-states)\.
 
 A `Parallel` state causes AWS Step Functions to execute each branch, starting with the state named in that branch's `StartAt` field, as concurrently as possible, and wait until all branches terminate \(reach a terminal state\) before processing the `Parallel` state's `Next` field\.
 
 Here is an example\.
+
+## Parallel State Example<a name="parallel-example"></a>
 
 ```
 {
@@ -63,11 +65,9 @@ In this example, the `LookupAddress` and `LookupPhone` branches are executed in 
 
 Each branch must be self\-contained\. A state in one branch of a `Parallel` state must not have a `Next` field that targets a field outside of that branch, nor can any other state outside the branch transition into that branch\.
 
-## Parallel State Output<a name="amazon-states-language-parallel-state-output"></a>
+## Parallel State Input and Output Processing<a name="amazon-states-language-parallel-state-output"></a>
 
-A `Parallel` state provides each branch with a copy of its own input data \(subject to modification by the `InputPath` field\)\. It generates output that is an array with one element for each branch, containing the output from that branch\. There is no requirement that all elements be of the same type\. The output array can be inserted into the input data \(and the whole sent as the `Parallel` state's output\) by using a `ResultPath` field in the usual way \(see [Input and Output Processing](amazon-states-language-input-output-processing.md)\)\.
-
-Here is another example\.
+A `Parallel` state provides each branch with a copy of its own input data \(subject to modification by the `InputPath` field\)\. It generates output that is an array with one element for each branch, containing the output from that branch\. There is no requirement that all elements be of the same type\. The output array can be inserted into the input data \(and the whole sent as the `Parallel` state's output\) by using a `ResultPath` field in the usual way \(see [Input and Output Processing](concepts-input-output-filtering.md)\)\.
 
 ```
 {
@@ -110,7 +110,7 @@ If the `FunWithMath` state was given the array `[3, 2]` as input, then both the 
 [ 5, 1 ]
 ```
 
-### Error Handling<a name="error-handling"></a>
+## Error Handling<a name="error-handling"></a>
 
 If any branch fails, because of an unhandled error or by transitioning to a `Fail` state, the entire `Parallel` state is considered to have failed and all its branches are stopped\. If the error is not handled by the `Parallel` state itself, Step Functions stops the execution with an error\.
 

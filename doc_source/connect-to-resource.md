@@ -5,7 +5,7 @@ AWS Step Functions integrates with services directly in the Amazon States Langua
 + Call a service and have Step Functions wait for a job to complete\.
 + Call a service with a task token and have Step Functions wait until that token is returned along with a payload\.
 
-Each of these service integration patterns is controlled by how you create a URI in the `"Resource"` field of your [task definition](concepts-tasks.md)\.
+Each of these service integration patterns is controlled by how you create a URI in the `"Resource"` field of your [task definition](amazon-states-language-task-state.md)\.
 
 **Topics**
 + [Request Response](#connect-default)
@@ -13,7 +13,7 @@ Each of these service integration patterns is controlled by how you create a URI
 + [Wait for a Callback with the Task Token](#connect-wait-token)
 
 **Note**  
-For information about configuring AWS Identity and Access Management \(IAM\) for integreated services, see [IAM Policies for Integrated Services](service-integration-iam-templates.md)\.
+For information about configuring AWS Identity and Access Management \(IAM\) for integrated services, see [IAM Policies for Integrated Services](service-integration-iam-templates.md)\.
 
 ## Request Response<a name="connect-default"></a>
 

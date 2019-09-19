@@ -173,7 +173,7 @@ If you delete the IAM role that Step Functions creates, Step Functions can't rec
          "Default": "Done"
      },
      ```
-   + `ExampleWork` – A stub for the work you want to accomplish in your execution\. In this example, it's a `pass` state\. In an actual implementation, this would be a `task` state\. See [Tasks](concepts-tasks.md)\.
+   + `ExampleWork` – A stub for the work you want to accomplish in your execution\. In this example, it's a `pass` state\. In an actual implementation, this would be a `task` state\. See [Task](amazon-states-language-task-state.md)\.
    + `Done` – The end state of your execution\.
 
    In the **Code** pane, add the following state machine definition using the Amazon Resource Name \(ARN\) of [the Lambda function that you created earlier](#create-iterate-pattern-create-lambda-function)\.

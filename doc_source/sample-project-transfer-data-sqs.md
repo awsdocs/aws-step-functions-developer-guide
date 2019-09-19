@@ -26,7 +26,7 @@ The **Code** section in this state machine references the AWS resources that wil
 **Note**  
 It can take up to 10 minutes for these resources and related IAM permissions to be created\. While the **Deploy resources** page is displayed, you can open the **Stack ID** link to see which resources are being provisioned\.
 
-## To start a new execution<a name="sample-sqs-start-execution"></a>
+## Start a New Execution<a name="sample-sqs-start-execution"></a>
 
 1. On the **New execution** page, enter an execution name \(optional\) and choose **Start Execution\.**
 

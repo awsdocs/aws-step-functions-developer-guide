@@ -13,7 +13,7 @@ Designates this state as a terminal state \(ends the execution\) if set to `true
 Holds a human\-readable description of the state\.
 
 ** `InputPath` \(Optional\)**  
-A [path](amazon-states-language-input-output-processing.md) that selects a portion of the state's input to be passed to the state's task for processing\. If omitted, it has the value `$` which designates the entire input\. For more information, see [Input and Output Processing](amazon-states-language-input-output-processing.md)\)\.
+A [path](concepts-input-output-filtering.md) that selects a portion of the state's input to be passed to the state's task for processing\. If omitted, it has the value `$` which designates the entire input\. For more information, see [Input and Output Processing](concepts-input-output-filtering.md)\)\.
 
 ** `OutputPath` \(Optional\)**  
-A [path](amazon-states-language-input-output-processing.md) that selects a portion of the state's input to be passed to the state's output\. If omitted, it has the value `$` which designates the entire input\. For more information, see [Input and Output Processing](amazon-states-language-input-output-processing.md)\.
+A [path](concepts-input-output-filtering.md) that selects a portion of the state's input to be passed to the state's output\. If omitted, it has the value `$` which designates the entire input\. For more information, see [Input and Output Processing](concepts-input-output-filtering.md)\.

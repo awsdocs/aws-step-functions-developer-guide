@@ -164,7 +164,7 @@ Step Functions allows you to create state machine, execution, and activity names
 
    This is a description of your state machine using the Amazon States Language\. It defines a single `Task` state named `CreateAccount`\. For more information, see [State Machine Structure](amazon-states-language-state-machine-structure.md)\.
 
-   For more information about the syntax of the `Retry` field, see [Retrying after an Error](amazon-states-language-errors.md#amazon-states-language-retrying-after-error)\.
+   For more information about the syntax of the `Retry` field, see [Examples Using Retry and Using Catch](concepts-error-handling.md#error-handling-examples)\.
 **Note**  
 Unhandled errors in Lambda are reported as `Lambda.Unknown` in the error output\. These include out\-of\-memory errors, function timeouts, and hitting the concurrent Lambda invoke limit\. You can match on `Lambda.Unknown`, `States.ALL`, or `States.TaskFailed` to handle these errors\. For more information about Lambda `Handled` and `Unhandled` errors, see `FunctionError` in the [AWS Lambda Developer Guide](https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_ResponseSyntax)\. 
 

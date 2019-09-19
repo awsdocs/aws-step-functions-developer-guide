@@ -15,7 +15,7 @@ This guide shows you how to develop, test, and troubleshoot your own state machi
 ## Overview of Step Functions<a name="overview"></a>
 
 Here are some of the key features of AWS Step Functions:
-+ Step Functions is based on the concepts of [tasks](concepts-tasks.md) and [state machines](concepts-states.md)\.
++ Step Functions is based on the concepts of [tasks](amazon-states-language-task-state.md) and [state machines](concepts-states.md)\.
 + You define state machines using the JSON\-based [Amazon States Language](concepts-amazon-states-language.md)\.
 + The [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/) displays a graphical view of your state machine's structure, which provides you with a way to visually check your state machine's logic and monitor executions\.
 

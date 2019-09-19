@@ -9,7 +9,7 @@ A human\-readable description of the state machine\.
 A string that must exactly match \(is case sensitive\) the name of one of the state objects\.
 
 ** `TimeoutSeconds` \(Optional\)**  
-The maximum number of seconds an execution of the state machine can run\. If it runs longer than the specified time, the execution fails with a `States.Timeout` [Error Name](amazon-states-language-errors.md#amazon-states-language-error-names)\.
+The maximum number of seconds an execution of the state machine can run\. If it runs longer than the specified time, the execution fails with a `States.Timeout` [Error Name](concepts-error-handling.md#error-handling-error-representation)\.
 
 ** `Version` \(Optional\)**  
 The version of the Amazon States Language used in the state machine \(default is "1\.0"\)\.
@@ -17,7 +17,7 @@ The version of the Amazon States Language used in the state machine \(default is
 ** `States` \(Required\)**  
 An object containing a comma\-delimited set of states\.
 
-The `States` field contains [States](amazon-states-language-states.md)\.
+The `States` field contains [States](concepts-states.md)\.
 
 ```
 {

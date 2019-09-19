@@ -35,7 +35,7 @@ To generate a code snippet, you must start by editing a state machine definition
 **Note**  
 You can also choose **Specify message at runtime with state input**\. This option enables you to use a reference path to select a message from the input of your state machine execution\. For more information, see:  
 [Input and Output Processing in Step Functions](concepts-input-output-filtering.md)
-[Reference Paths](amazon-states-language-input-output-processing.md#amazon-states-language-reference-paths)
+[Reference Paths](amazon-states-language-paths.md#amazon-states-language-reference-paths)
 [Pass State Input as Parameters Using Paths](connect-parameters.md#connect-parameters-path)
 
 As you configure options on the **Generate SNS Publish task state** page, the **Preview** section updates with the Amazon States Language code for a task state with the necessary options\. 

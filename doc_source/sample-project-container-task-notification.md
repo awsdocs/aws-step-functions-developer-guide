@@ -23,7 +23,7 @@ In this project, Step Functions uses a state machine to call the Fargate task sy
 **Note**  
 It can take up to 10 minutes for these resources and related IAM permissions to be created\. While the **Deploy resources** page is displayed, you can open the **Stack ID** link to see which resources are being provisioned\.
 
-## To start a new execution<a name="sample-container-start-execution"></a>
+## Start a New Execution<a name="sample-container-start-execution"></a>
 
 1. On the **New execution** page, enter an execution name \(optional\), and then choose **Start Execution**\.
 

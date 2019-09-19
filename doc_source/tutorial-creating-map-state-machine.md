@@ -1,23 +1,23 @@
-# Creating a Lambda State Machine<a name="tutorial-creating-lambda-state-machine"></a>
+# Use a Map State to Call Lambda Multiple Times<a name="tutorial-creating-map-state-machine"></a>
 
-In this tutorial, you create an AWS Step Functions state machine that uses an AWS Lambda function to implement a `Task` state\. A `Task` state performs a single unit of work\.
+In this tutorial, you will learn how to use a `Map` state to call a AWS Lambda function multiple times, based on the state machine input\.
 
-Lambda is well suited for implementing `Task` states, because Lambda functions are *stateless* \(they have a predictable input\-output relationship\), easy to write, and don't require deploying code to a server instance\. You can write code in the AWS Management Console or your favorite editor, and AWS handles the details of providing a computing environment for your function and running it\.
+The [Creating a Lambda State Machine](tutorial-creating-lambda-state-machine.md) tutorial walks you though creating a state machine that calls a Lambda function\. If you have completed that tutorial, skip to [Step 4](#create-map-lambda-state-machine-step-4) and use the IAM role and Lambda function that you previously created\.
 
 **Topics**
-+ [Step 1: Create an IAM Role for Lambda](#create-lambda-state-machine-step-1)
-+ [Step 2: Create a Lambda Function](#create-lambda-state-machine-step-2)
-+ [Step 3: Test the Lambda Function](#create-lambda-state-machine-step-3)
-+ [Step 4: Create a State Machine](#create-lambda-state-machine-step-4)
-+ [Step 5: Start a New Execution](#create-lambda-state-machine-step-5)
++ [Step 1: Create an IAM Role for Lambda](#create-map-lambda-state-machine-step-1)
++ [Step 2: Create a Lambda Function](#create-map-lambda-state-machine-step-2)
++ [Step 3: Test the Lambda Function](#create-map-lambda-state-machine-step-3)
++ [Step 4: Create a State Machine](#create-map-lambda-state-machine-step-4)
++ [Step 5: Start a New Execution](#create-map-lambda-state-machine-step-5)
 
-## Step 1: Create an IAM Role for Lambda<a name="create-lambda-state-machine-step-1"></a>
+## Step 1: Create an IAM Role for Lambda<a name="create-map-lambda-state-machine-step-1"></a>
 
 Both AWS Lambda and AWS Step Functions can execute code and access AWS resources \(for example, data stored in Amazon S3 buckets\)\. To maintain security, you must grant Lambda and Step Functions access to these resources\.
 
 Lambda requires you to assign an AWS Identity and Access Management \(IAM\) role when you create a Lambda function, in the same way Step Functions requires you to assign an IAM role when you create a state machine\.
 
-### <a name="create-lambda-state-machine-to-create-a-role-for-use-with-lambda"></a>
+### <a name="create-map-lambda-state-machine-to-create-a-role-for-use-with-lambda"></a>
 
 You use the IAM console to create a service\-linked role\.
 
@@ -41,18 +41,18 @@ You use the IAM console to create a service\-linked role\.
 
 1. Review the role, and then choose **Create role**\.
 
-## Step 2: Create a Lambda Function<a name="create-lambda-state-machine-step-2"></a>
+## Step 2: Create a Lambda Function<a name="create-map-lambda-state-machine-step-2"></a>
 
 Your Lambda function receives input \(a name\) and returns a greeting that includes the input value\.
 
-### <a name="create-lambda-state-machine-create-lambda-function"></a>
+### <a name="create-map-lambda-state-machine-create-lambda-function"></a>
 
 **Important**  
 Ensure that your Lambda function is under the same AWS account and AWS Region as your state machine\.
 
 1. Open the [Lambda console](https://console.aws.amazon.com/lambda/home) and choose **Create a function**\.
 
-1. In the **Create function** section, choose **Author from scratch**\.
+1. In the **Blueprints** section, choose **Author from scratch**\.
 
 1. In the **Basic information** section, configure your Lambda function:
 
@@ -62,7 +62,7 @@ Ensure that your Lambda function is under the same AWS account and AWS Region as
 
    1. For **Role**, select **Choose an existing role**\.
 
-   1. For **Existing role**, select [the Lambda role that you created earlier](#create-lambda-state-machine-to-create-a-role-for-use-with-lambda)\.
+   1. For **Existing role**, select [the Lambda role that you created earlier](#create-map-lambda-state-machine-to-create-a-role-for-use-with-lambda)\.
 **Note**  
 If the IAM role that you created doesn't appear in the list, the role might still need a few minutes to propagate to Lambda\.
 
@@ -82,15 +82,15 @@ If the IAM role that you created doesn't appear in the list, the role might stil
    };
    ```
 
-   This code assembles a greeting using the `who` field of the input data, which is provided by the `event` object passed into your function\. You add input data for this function later, when you [start a new execution](#create-lambda-state-machine-start-execution)\. The `callback` method returns the assembled greeting from your function\.
+   This code assembles a greeting using the `who` field of the input data, which is provided by the `event` object passed into your function\. You add input data for this function later, when you [start a new execution](#create-map-lambda-state-machine-start-execution)\. The `callback` method returns the assembled greeting from your function\.
 
 1. Choose **Save**\.
 
-## Step 3: Test the Lambda Function<a name="create-lambda-state-machine-step-3"></a>
+## Step 3: Test the Lambda Function<a name="create-map-lambda-state-machine-step-3"></a>
 
 Test your Lambda function to see it in operation\.
 
-### <a name="create-lambda-state-machine-test-lambda-function"></a>
+### <a name="create-map-lambda-state-machine-test-lambda-function"></a>
 
 1. For **Select a test event**, choose **Configure test event**\. For **Event name**, enter `HelloFunction`\.
 
@@ -110,15 +110,15 @@ Test your Lambda function to see it in operation\.
 
    The results of the test are displayed at the top of the page\. Expand **Details** to see the output\.
 
-## Step 4: Create a State Machine<a name="create-lambda-state-machine-step-4"></a>
+## Step 4: Create a State Machine<a name="create-map-lambda-state-machine-step-4"></a>
 
-Use the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/) to create a state machine with a `Task` state\. Add a reference to your Lambda function in the `Task` state\. The Lambda function is invoked when an execution of the state machine reaches the `Task` state\.
+Use the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/) to create a state machine with a `Map` state\. Add a `Task`state with a reference to your Lambda\. The Lambda function is invoked for each iteration of the `Map` state, based on the state machine input\.
 
-### <a name="create-lambda-state-machine-create"></a>
+### <a name="create-map-lambda-state-machine-create"></a>
 
 1. Open the [Step Functions console](https://console.aws.amazon.com/states/home) and choose **Create a state machine**\.
 
-1. On the **Define state machine** page, choose **Author with code snippets**\. Enter a **Name for your state machine**, for example, `LambdaStateMachine`\.
+1. On the **Define state machine** page, choose **Author with code snippets**\. Enter a **Name for your state machine**, for example, `MapLambda`\.
 **Note**  
 State machine, execution, and activity names must be 1–80 characters in length, must be unique for your account and AWS Region, and must not contain any of the following:  
 Whitespace
@@ -128,23 +128,31 @@ Special characters \(`: ; , \ | ^ ~ $ # % & ` "`\)
 Control characters \(`\\u0000` \- `\\u001f` or `\\u007f` \- `\\u009f`\)\.
 Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with Amazon CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
 
-1. In the **State machine definition** pane, add the following state machine definition using the ARN of [the Lambda function that you created earlier](#create-lambda-state-machine-create-lambda-function), for example:
+1. In the **State machine definition** pane, add the following state machine definition using the ARN of [the Lambda function that you created earlier](#create-map-lambda-state-machine-create-lambda-function), for example:
 
    ```
    {
-     "Comment": "A Hello World example of the Amazon States Language using an AWS Lambda function",
-     "StartAt": "HelloWorld",
+     "StartAt": "ExampleMapState",
      "States": {
-       "HelloWorld": {
-         "Type": "Task",
-         "Resource": "arn:aws:lambda:us-east-1:123456789012:function:HelloFunction",
+       "ExampleMapState": {
+         "Type": "Map",
+         "Iterator": {
+            "StartAt": "CallLambda",
+            "States": {
+              "CallLambda": {
+                "Type": "Task",
+                "Resource": "arn:aws:lambda:us-east-1:123456789012:function:HelloFunction",
+                "End": true
+              }
+            }
+         },
          "End": true
        }
      }
    }
    ```
 
-   This is a description of your state machine using the Amazon States Language\. It defines a single `Task` state named `HelloWorld`\. For more information, see [State Machine Structure](amazon-states-language-state-machine-structure.md)\.
+   This is a description of your state machine using the Amazon States Language\. It defines a `Map` state named `ExampleMapState` that includes a `Task` state \(`CallLambda`\) that calls your Lambda function\. For more information, see [State Machine Structure](amazon-states-language-state-machine-structure.md)\.
 **Note**  
 You can also set up a `Retry` for `Task` states\. As a best practice, ensure production code can handle Lambda service exceptions \(`Lambda.ServiceException` and `Lambda.SdkclientException`\)\. For more information, see:   
 [Handle Lambda Service Exceptions](bp-lambda-serviceexception.md)\. 
@@ -160,11 +168,11 @@ If you delete the IAM role that Step Functions creates, Step Functions can't rec
 
 1. Select **Next**\.
 
-## Step 5: Start a New Execution<a name="create-lambda-state-machine-step-5"></a>
+## Step 5: Start a New Execution<a name="create-map-lambda-state-machine-step-5"></a>
 
 After you create your state machine, you start an execution\.
 
-### <a name="create-lambda-state-machine-start-execution"></a>
+### <a name="create-map-lambda-state-machine-start-execution"></a>
 
 1. On the ***LambdaStateMachine*** page, choose **Start execution**\.
 
@@ -177,16 +185,39 @@ Step Functions allows you to create state machine, execution, and activity names
 1. In the execution input area, replace the example data with the following\.
 
    ```
-   {
-       "who" : "AWS Step Functions"
-   }
+   [
+     {
+       "who": "bob"
+     },
+     {
+       "who": "meg"
+     },
+     {
+       "who": "joe"
+     }
+   ]
    ```
 
-    `"who"` is the key name that your Lambda function uses to get the name of the person to greet\.
+   Your `Map` state will iterate and run the `CallLambda` task state for each of these items in the input\. `"who"` is the key name that your Lambda function uses to get the name of the person to greet\.
 
 1. Choose **Start Execution**\.
 
    A new execution of your state machine starts, and a new page showing your running execution is displayed\.
 
-1. To view the results of your execution, expand the **Output** section under **Execution details**\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-console-state-machine-execution-output.png)
+1. To view the results of your execution, expand the **Output** section under **Execution details**\. 
+
+   ```
+   [
+     "Hello, bob!",
+     "Hello, meg!",
+     "Hello, joe!"
+   ]
+   ```
+
+   The output for each of the Lambda function executions are combined into the output for the state machine\.
+
+For more information on using `Map` states, see the following\.
++ [](amazon-states-language-map-state.md)
++ [Map State Example](amazon-states-language-map-state.md#map-state-examples)
++ [Map State Input and Output Processing](amazon-states-language-map-state.md#amazon-states-language-map-state-output)
++ [ItemsPath](input-output-itemspath.md)

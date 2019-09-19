@@ -121,7 +121,7 @@ A non\-empty array of strings that match error names, specified exactly as they 
 A string that must exactly match one of the state machine's state names\.
 
 ** `ResultPath` \(Optional\)**  
-A [path](amazon-states-language-input-output-processing.md) that determines what input is sent to the state specified in the `Next` field\.
+A [path](concepts-input-output-filtering.md) that determines what input is sent to the state specified in the `Next` field\.
 
 When a state reports an error and either there is no `Retry` field, or if retries fail to resolve the error, Step Functions scans through the catchers in the order listed in the array\. When the error name appears in the value of a catcher's `ErrorEquals` field, the state machine transitions to the state named in the `Next` field\.
 

@@ -17,3 +17,4 @@ To complete these tutorials, you need an AWS account\. If you don't have an AWS 
 + [Continue as a New Execution](tutorial-continue-new.md)
 + [Using Code Snippets](tutorial-code-snippet.md)
 + [Deploy an Example Human Approval Project](tutorial-human-approval.md)
++ [Use a Map State to Call Lambda Multiple Times](tutorial-creating-map-state-machine.md)

@@ -8,7 +8,7 @@ These examples show how Step Functions generates an IAM policy based on your sta
 
 Static resources are defined directly in the task state of your state machine\. When you include the information about the API actions you call directly in your task states, Step Functions creates an IAM role for only those resources\. 
 
-Dynamic resources are those that are passed in to your state input, and accessed using a Path \(see, [Paths](amazon-states-language-input-output-processing.md#amazon-states-language-paths)\)\. If you are passing dynamic resources to your task, Step Functions will create a more privileged policy that specifies: `"Resource": "*"`\.
+Dynamic resources are those that are passed in to your state input, and accessed using a Path \(see, [Paths](amazon-states-language-paths.md)\)\. If you are passing dynamic resources to your task, Step Functions will create a more privileged policy that specifies: `"Resource": "*"`\.
 
 ## Synchronous vs\. Asynchronous IAM Policies<a name="connect-iam-sync-async"></a>
 

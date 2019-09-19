@@ -90,7 +90,7 @@ The following includes a `Task` state that runs an Amazon ECS task, and then wai
             "Overrides":{  
                "ContainerOverrides":[  
                   {  
-                     "Name":"cluster-name",
+                     "Name":"container-name",
                      "Environment":[  
                         {  
                            "Name":"TASK_TOKEN_ENV_VARIABLE",

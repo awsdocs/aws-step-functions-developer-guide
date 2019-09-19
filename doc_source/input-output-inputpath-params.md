@@ -1,6 +1,6 @@
 # InputPath and Parameters<a name="input-output-inputpath-params"></a>
 
-Both the `"InputPath"` and `"Parameters"` fields provide a way to manipulate JSON as it moves through your workflow\. `InputPath` can limit the input that is passed by filtering the JSON notation by using a path \(see [Paths](amazon-states-language-input-output-processing.md#amazon-states-language-paths)\)\. The `"Parameters"` field enables you to pass a collection of key\-value pairs, where the values are either static values that you define in your state machine definition, or that are selected from the input using a path\.
+Both the `"InputPath"` and `"Parameters"` fields provide a way to manipulate JSON as it moves through your workflow\. `InputPath` can limit the input that is passed by filtering the JSON notation by using a path \(see [Paths](amazon-states-language-paths.md)\)\. The `"Parameters"` field enables you to pass a collection of key\-value pairs, where the values are either static values that you define in your state machine definition, or that are selected from the input using a path\.
 
 AWS Step Functions applies the `"InputPath"` field first, and then the `"Parameters"` field\. You can first filter your raw input to a selection you want using `InputPath`, and then apply `Parameters` to manipulate that input further, or add new values\.
 
@@ -40,6 +40,18 @@ With the previous `InputPath`, the following is the JSON that is passed as the i
   "val2": "b",
   "val3": "c"
 }
+```
+
+**Note**  
+A path can yield a selection of values\. Consider the following example\.  
+
+```
+{ "a": [1, 2, 3, 4] }
+```
+If you apply the path `$.a[0:2]`, the following is the result\.  
+
+```
+[ 1, 2 ]
 ```
 
 ## Parameters<a name="input-output-parameters"></a>

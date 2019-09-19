@@ -36,7 +36,7 @@ You can also pass multiple parameters with static JSON\. As a more complete exam
 
 ## Pass State Input as Parameters Using Paths<a name="connect-parameters-path"></a>
 
-You can pass portions of the state input into parameters by using [paths](amazon-states-language-input-output-processing.md#amazon-states-language-paths)\. A path is a string, beginning with `$`, that's used to identify components within JSON text\. Step Functions paths use [JsonPath](https://github.com/json-path/JsonPath) syntax\.
+You can pass portions of the state input into parameters by using [paths](amazon-states-language-paths.md)\. A path is a string, beginning with `$`, that's used to identify components within JSON text\. Step Functions paths use [JsonPath](https://github.com/json-path/JsonPath) syntax\.
 
 To specify that a parameter use a path to reference a JSON node in the input, end the parameter name with `.$`\. For example, if you have text in your state input in a node named `message`, you could pass that to a parameter by referencing the input JSON with a path\. 
 

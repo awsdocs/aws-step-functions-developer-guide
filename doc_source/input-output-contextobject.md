@@ -57,6 +57,9 @@ Content from a running execution includes specifics in the following format\.
 }
 ```
 
+**Note**  
+For context object data related to `Map` states, see [Context Object Data For Map States](#contextobject-map)\.
+
 ## Accessing the Context Object<a name="contextobject-access"></a>
 
 To access the context object, first specify the parameter name by appending `.$` to the end, as you do when selecting state input with a path\. Then, to access context object data instead of the input, prepend the path with `$$.`\. This tells Step Functions to use the path to select a node in the context object\. 
@@ -83,3 +86,89 @@ This example task state uses a path to retrieve and pass the execution ARN to an
 
 **Note**  
 For more information about using the task token when calling an integrated service, see [Wait for a Callback with the Task Token](connect-to-resource.md#connect-wait-token)\.
+
+## Context Object Data For Map States<a name="contextobject-map"></a>
+
+There are two additional items available in the context object when processing a [`Map` state](amazon-states-language-map-state.md): `Index` and `Value`\. The `Index` contains the index number for the array item that is being processed in the current iteration\. Within a `Map` state, the context object includes the following\.
+
+```
+"Map": {
+   "Item": {
+      "Index": "Number",
+      "Value": "String"
+   }
+}
+```
+
+These are available only in a `Map` state, and can be specified in the [`"Parameters"`](input-output-inputpath-params.md#input-output-parameters) field, before the `"Iterator"` section\.
+
+**Note**  
+You must define parameters from the context object in the `"Parameters"` block of the main `Map` state, not within the states included in the `"Iterator"` section\.
+
+Given a state machine with a simple `Map` state, we can inject information from the context object as follows\.
+
+```
+{
+  "StartAt": "ExampleMapState",
+  "States": {
+    "ExampleMapState": {
+      "Type": "Map",
+      "Parameters": {
+               "ContextIndex.$": "$$.Map.Item.Index",
+               "ContextValue.$": "$$.Map.Item.Value"
+             },
+      "Iterator": {
+         "StartAt": "TestPass",
+         "States": {
+           "TestPass": {
+             "Type": "Pass",    
+             "End": true
+           }
+         }
+      },
+      "End": true
+    }
+  }
+}
+```
+
+If you execute the previous state machine with the following input, `Index` and `Value` are inserted in the output\.
+
+```
+[
+  {
+    "who": "bob"
+  },
+  {
+    "who": "meg"
+  },
+  {
+    "who": "joe"
+  }
+]
+```
+
+The output for the execution is the following\.
+
+```
+[
+  {
+    "ContextValue": {
+      "who": "bob"
+    },
+    "ContextIndex": 0
+  },
+  {
+    "ContextValue": {
+      "who": "meg"
+    },
+    "ContextIndex": 1
+  },
+  {
+    "ContextValue": {
+      "who": "joe"
+    },
+    "ContextIndex": 2
+  }
+]
+```

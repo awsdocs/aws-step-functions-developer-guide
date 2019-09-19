@@ -4,7 +4,6 @@ This section describes important concepts to help you get familiar with AWS Step
 
 **Topics**
 + [States](concepts-states.md)
-+ [Tasks](concepts-tasks.md)
 + [Transitions](concepts-transitions.md)
 + [State Machine Data](concepts-state-machine-data.md)
 + [Input and Output Processing](concepts-input-output-filtering.md)

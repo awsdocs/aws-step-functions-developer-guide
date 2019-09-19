@@ -10,7 +10,7 @@ The following state types can generate a result and can include `ResultPath:`
 Use `ResultPath` to combine a task result with task input, or to select one of these\. The path you provide to `ResultPath` controls what information passes to the output\. 
 
 **Note**  
- `ResultPath` is limited to using [reference paths](amazon-states-language-input-output-processing.md#amazon-states-language-reference-paths), which limit scope so that it can identify only a single node in JSON\. See [Reference Paths](amazon-states-language-input-output-processing.md#amazon-states-language-reference-paths) in the [Amazon States Language](concepts-amazon-states-language.md)\.
+ `ResultPath` is limited to using [reference paths](amazon-states-language-paths.md#amazon-states-language-reference-paths), which limit scope so that it can identify only a single node in JSON\. See [Reference Paths](amazon-states-language-paths.md#amazon-states-language-reference-paths) in the [Amazon States Language](concepts-amazon-states-language.md)\.
 
 These examples are based on the state machine and Lambda function described in the [Creating a Lambda State Machine](tutorial-creating-lambda-state-machine.md) tutorial\. Work through that tutorial and test different outputs by trying various paths in a `ResultPath` field\.
 

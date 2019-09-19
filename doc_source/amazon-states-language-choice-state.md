@@ -13,6 +13,8 @@ The name of the state to transition to if none of the transitions in `Choices` i
 **Important**  
  `Choice` states don't support the `End` field\. In addition, they use `Next` only inside their `Choices` field\.
 
+## Choice State Example<a name="choice-state-example"></a>
+
 The following is an example of a `Choice` state and other states that it transitions to\.
 
 **Note**  

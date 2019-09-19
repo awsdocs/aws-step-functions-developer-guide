@@ -13,7 +13,7 @@ For more information about specifying service parameters, see [Pass Parameters t
 
 After you configure your AWS Batch options, you can specify error handling options for your state, such as `Retry`, `Catch`, and `TimeoutSeconds.` 
 
-For more information, see [Errors](amazon-states-language-errors.md) in Amazon States Language\.
+For more information, see [Error Names](concepts-error-handling.md#error-handling-error-representation) in Amazon States Language\.
 
 To learn more about Step Functions service integrations, see:
 + [AWS Service Integrations](concepts-service-integrations.md)
