@@ -62,14 +62,25 @@ The following includes a `Task` state that runs an Amazon ECS task and waits for
 
 The `"Command.$": "$.commands"` line in `ContainerOverrides` passes the commands from the state input to the container\.
 
-For the previous example, if the input to the execution is the following\.
+For example, to run a single command with two parameters, the input to the execution is the following\.
 
 ```
 {
   "commands": [
     "test command 1",
-    "test command 2",
-    "test command 3"
+    "parameter 1",
+    "parameter 2"
+  ]
+}
+```
+Another example for running multiple commands within a shell, the input to the execution is the following\.
+
+```
+{
+  "commands": [
+    "sh",
+    "-c",
+    "test command 1; test command 2; test command 3;"
   ]
 }
 ```
