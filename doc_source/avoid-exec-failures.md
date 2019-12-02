@@ -23,7 +23,7 @@ For instance, a state machine can pass input to a Lambda function, like in the f
 }
 ```
 
-Rather than pass a large amount of data in the input, you could save that data in an Amazon S3 bucket, and pass the Amazon Resource Name of that bucket in the `Payload` parameter\. Your Lambda function can then use that ARN to access the data directly\. The following is example input for an state machine execution, where the data is stored in `data.json` in an Amazon S3 bucket\.
+Rather than pass a large amount of data in the input, you could save that data in an Amazon S3 bucket, and pass the Amazon Resource Name of that bucket in the `Payload` parameter\. Your Lambda function can then use that ARN to access the data directly\. The following is example input for a state machine execution, where the data is stored in `data.json` in an Amazon S3 bucket\.
 
 ```
 {
