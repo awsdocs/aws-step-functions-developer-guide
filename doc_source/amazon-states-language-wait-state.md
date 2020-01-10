@@ -32,7 +32,7 @@ The following `Wait` state introduces a 10\-second delay into a state machine\.
 }
 ```
 
-In the next example, the `Wait` state waits until an absolute time: March 14th, 2016, at 1:59 PM UTC\.
+In the next example, the `Wait` state waits until an absolute time: March 14th, 2016, at 1:59 AM UTC\.
 
 ```
 "wait_until" : {
