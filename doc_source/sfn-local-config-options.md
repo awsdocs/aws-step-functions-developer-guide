@@ -18,6 +18,7 @@ To use Step Functions Local by starting the jar file, you can set configuration 
 | SageMaker Endpoint | \-sageMakerEndpoint,\-\-sagemaker\-endpoint | SAGE\_MAKER\_ENDPOINT | 
 | SQS Endpoint | \-sqsEndpoint,\-\-sqs\-endpoint | SQS\_ENDPOINT | 
 | SNS Endpoint | \-snsEndpoint,\-\-sns\-endpoint | SNS\_ENDPOINT | 
+| Step Functions Endpoint | \-stepFunctionsEndpoint,\-\-step\-functions\-endpoint | STEP_FUNCTIONS\_ENDPOINT | 
 
 ## Credentials and Configuration for Docker<a name="docker-credentials"></a>
 
@@ -38,6 +39,7 @@ GLUE_ENDPOINT=VALUE
 SAGE_MAKER_ENDPOINT=VALUE
 SQS_ENDPOINT=VALUE
 SNS_ENDPOINT=VALUE
+STEP_FUNCTIONS_ENDPOINT=VALUE
 ```
 
 Once you have configured your credentials and configuration options in `aws-stepfunctions-local-credentials.txt`, start Step Functions with the following command:
