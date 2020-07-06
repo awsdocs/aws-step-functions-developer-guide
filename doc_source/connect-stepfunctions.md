@@ -49,6 +49,39 @@ The following includes a `Task` state that starts an execution of another state 
    "End":true
 }
 ```
+The following includes multiple `Task` states that start an execution with different path values against the same state machine\.
+
+```
+{
+    "StartAt": "ProcessFirstMessage",
+    "States": {
+        "ProcessFirstMessage": {
+            "Type": "Task",
+            "Resource":"arn:aws:states:::states:startExecution.sync:2",
+            "Parameters":{
+                "Input": { 
+                    "HelloWorld.$": "$.FirstMessage.Content"
+                },
+            "StateMachineArn":"arn:aws:states:us-east-1:123456789012:stateMachine:HelloWorld"
+        },
+        "ResultPath": "$.Reponse",
+        "Next":"ProcessSecondMessage"
+        },
+        "ProcessSecondMessage": {
+            "Type": "Task",
+            "Resource":"arn:aws:states:::states:startExecution.sync:2",
+            "Parameters":{
+                "Input":{
+                    "HelloWorld.$": "$.SecondMessage.Content"
+                },
+                "StateMachineArn":"arn:aws:states:us-east-1:123456789012:stateMachine:HelloWorld"
+        },
+        "ResultPath": "$.Reponse",
+        "End":true   
+        }
+    }
+}
+```
 
 The following includes a `Task` state that implements the [callback](connect-to-resource.md#connect-wait-token) service integration pattern\.
 
