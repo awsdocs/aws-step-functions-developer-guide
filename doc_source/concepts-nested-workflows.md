@@ -16,16 +16,16 @@ Step Functions can start these workflow executions by calling its own API as an 
       "StateMachineArn":"arn:aws:states:us-east-1:123456789012:stateMachine:HelloWorld",
       "Input":{  
          "Comment":"Hello world!"
-      },
-      "Retry":[  
-         {  
-            "ErrorEquals":[  
-               "StepFunctions.ExecutionLimitExceeded"
-            ]
-         }
-      ],
-      "End":true
-   }
+      }
+   },
+   "Retry":[  
+      {  
+         "ErrorEquals":[  
+            "StepFunctions.ExecutionLimitExceeded"
+         ]
+      }
+   ],
+   "End":true
 }
 ```
 
