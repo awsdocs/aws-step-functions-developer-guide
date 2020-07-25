@@ -1,6 +1,6 @@
 # Transfer Data Records \(Lambda, DynamoDB, Amazon SQS\)<a name="sample-project-transfer-data-sqs"></a>
 
-This sample project demonstrates how to read values from an Amazon DynamoDB table and send them to Amazon SQS using AWS Step Functions\. Deploying this sample project will create a Step Functions state machine, a DynamoDB table, an AWS Lambda function, and an Amazon SQS topic\. 
+This sample project demonstrates how to read values from an Amazon DynamoDB table and send them to Amazon SQS using AWS Step Functions\. Deploying this sample project will create a Step Functions state machine, a DynamoDB table, an AWS Lambda function, and an Amazon SQS queue\. 
 
 In this project, Step Functions uses the Lambda function to populate the DynamoDB table, uses a `for` loop to read each of the entries, and then sends each entry to Amazon SQS\.
 
