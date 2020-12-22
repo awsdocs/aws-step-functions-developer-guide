@@ -17,15 +17,15 @@ Step Functions can start these workflow executions by calling its own API as an 
       "Input":{  
          "Comment":"Hello world!"
       },
-      "Retry":[  
-         {  
-            "ErrorEquals":[  
-               "StepFunctions.ExecutionLimitExceeded"
-            ]
-         }
-      ],
-      "End":true
    }
+   "Retry":[  
+      {  
+         "ErrorEquals":[  
+            "StepFunctions.ExecutionLimitExceeded"
+         ]
+      }
+   ],
+   "End":true
 }
 ```
 
