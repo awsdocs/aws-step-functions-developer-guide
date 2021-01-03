@@ -7,12 +7,11 @@ For an introduction to using a `Map` state, see the [Map State Tutorial](tutoria
 In addition to the [common state fields](amazon-states-language-common-fields.md), `Map` states include these additional fields\.
 
 ** `Iterator` \(Required\)**  
-The `“Iterator”` field’s value is an object that defines a state machine which will process each element of the array\.
+The `“Iterator”` field’s value is an object that defines a state machine which will process each element of the array\. States within an `"Iterator"` field can only transition to each other, and no state outside the `“Iterator”` field can transition to a state within it\.  
+If any iteration fails, entire Map state fails, and all iterations are terminated\.
 
 ** `ItemsPath` \(Optional\)**  
 The `“ItemsPath”` field’s value is a reference path identifying where in the effective input the array field is found\. For more information, see [ItemsPath](input-output-itemspath.md)\.  
-States within an `"Iterator"` field can only transition to each other, and no state outside the `“ItemsPath”` field can transition to a state within it\.  
-If any iteration fails, entire Map state fails, and all iterations are terminated\.
 
 ** `MaxConcurrency` \(Optional\)**  
 The `“MaxConcurrency”`field’s value is an integer that provides an upper bound on how many invocations of the Iterator may run in parallel\. For instance, a `"MaxConcurrency"` value of 10 will limit your `Map` state to 10 concurrent iterations running at one time\.  
