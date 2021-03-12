@@ -5,13 +5,15 @@ This sample project creates an AWS Batch job poller\. It implements an AWS Step 
 This sample project creates and configures all resources so that your Step Functions workflow will submit an AWS Batch job, and will wait for that job to complete before ending successfully\. 
 
 **Note**  
-You can also implement this pattern without using a Lambda function\. For information about controlling AWS Batch directly, see [AWS Service Integrations](concepts-service-integrations.md)\. 
+You can also implement this pattern without using a Lambda function\. For information about controlling AWS Batch directly, see [Service Integrations with AWS Step Functions ](concepts-service-integrations.md)\. 
 
 This sample project creates the state machine, two Lambda functions, and an AWS Batch queue, and configures the related IAM permissions\. 
 
-**To create the **Job Poller** state machine and provision all resources**
+For more information about how AWS Step Functions can control other AWS services, see [Service Integrations with AWS Step Functions ](concepts-service-integrations.md)\.
 
-1. Open the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/) and choose **Create a state machine**\.
+## Create the State Machine and Provision Resources<a name="sample-project-job-poller-create"></a>
+
+1. Open the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/statemachines) and choose **Create a state machine**\.
 
 1. Choose **Sample Projects**, and then choose **Job Status Poller**\.
 

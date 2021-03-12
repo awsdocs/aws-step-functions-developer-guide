@@ -1,10 +1,10 @@
 # Manage AWS Batch with Step Functions<a name="connect-batch"></a>
 
-Step Functions can control certain AWS services directly from the Amazon States Language\. For more information, see:
+Step Functions can control certain AWS services directly from the Amazon States Language\. For more information, see the following:
 + [Service Integrations](concepts-service-integrations.md)
 + [Pass Parameters to a Service API](connect-parameters.md)
 
-Supported APIs:
+Supported AWS Batch APIs:
 
 **Note**  
 Parameters in Step Functions are expressed in `PascalCase`, even when the native service API is `camelCase`\. 

@@ -2,7 +2,7 @@
 
 A `Choice` state \(`"Type": "Choice"`\) adds branching logic to a state machine\.
 
-In addition to the [common state fields](amazon-states-language-common-fields.md), `Choice` states introduce the following additional fields\.
+In addition to most of the [common state fields](amazon-states-language-common-fields.md), `Choice` states introduce the following additional fields\.
 
 ** `Choices` \(Required\)**  
 An array of [Choice Rules](#amazon-states-language-choice-state-rules) that determines which state the state machine transitions to next\.
@@ -25,11 +25,11 @@ You must specify the `$.type` field\. If the state input doesn't contain the `$.
   "Type": "Choice",
   "Choices": [
     {
-        "Not": {
-          "Variable": "$.type",
-          "StringEquals": "Private"
-        },
-        "Next": "Public"
+      "Not": {
+        "Variable": "$.type",
+        "StringEquals": "Private"
+      },
+      "Next": "Public"
     },
     {
       "Variable": "$.value",
@@ -93,7 +93,7 @@ If there are no matches for the `Choice` state's `Choices`, the state provided i
 ## Choice Rules<a name="amazon-states-language-choice-state-rules"></a>
 
 A `Choice` state must have a `Choices` field whose value is a non\-empty array, and whose every element is an object called a Choice Rule\. A Choice Rule contains the following:
-+ A **comparison** – Two fields that specify an input variable to compare, the type of comparison, and the value to compare the variable to\.
++ A **comparison** – Two fields that specify an input variable to compare, the type of comparison, and the value to compare the variable to\. Choice Rules support comparison between two variables\. Within a Choice Rule, the value of Variable can be compared with another value from the state input by appending `Path` to name of supported comparison operators\. 
 + A **`Next` field** – The value of this field must match a state name in the state machine\.
 
 The following example checks whether the numerical value is equal to `1`\.
@@ -126,6 +126,39 @@ The following example checks whether the string is greater than `MyStringABC`\.
 }
 ```
 
+The following example checks whether the string is null\.
+
+```
+{
+ "Variable": "$.possiblyNullValue",
+ "IsNull": true
+}
+```
+
+The following example shows how the StringEquals rule is only evaluated when `$.keyThatMightNotExist` exists because of the preceding `IsPresent` Choice Rule\.
+
+```
+"And": [
+ {
+ "Variable": "$.keyThatMightNotExist",
+ "IsPresent": true
+ },
+ {
+ "Variable": "$.keyThatMightNotExist",
+ "StringEquals": "foo"
+ }
+]
+```
+
+The following example checks whether a pattern with a wildcard matches\.
+
+```
+{
+ "Variable": "$.foo",
+ "StringMatches": "log-*.txt"
+}
+```
+
 The following example checks whether the timestamp is equal to `2001-01-01T12:00:00Z`\.
 
 ```
@@ -136,28 +169,44 @@ The following example checks whether the timestamp is equal to `2001-01-01T12:00
 }
 ```
 
+The following example compares a variable with another value from the state input\.
+
+```
+{
+ "Variable": "$.foo",
+ "StringEqualsPath": "$.bar"
+}
+```
+
 Step Functions examines each of the Choice Rules in the order listed in the `Choices` field\. Then it transitions to the state specified in the `Next` field of the first Choice Rule in which the variable matches the value according to the comparison operator\.
 
 The following comparison operators are supported:
 + `And`
-+ `BooleanEquals`
++ `BooleanEquals`,`BooleanEqualsPath`
++ `IsBoolean`
++ `IsNull`
++ `IsNumeric`
++ `IsPresent`
++ `IsString`
++ `IsTimestamp`
 + `Not`
-+ `NumericEquals`
-+ `NumericGreaterThan`
-+ `NumericGreaterThanEquals`
-+ `NumericLessThan`
-+ `NumericLessThanEquals`
++ `NumericEquals`,`NumericEqualsPath`
++ `NumericGreaterThan`,`NumericGreaterThanPath`
++ `NumericGreaterThanEquals`,`NumericGreaterThanEqualsPath`
++ `NumericLessThan`,`NumericLessThanPath`
++ `NumericLessThanEquals`,`NumericLessThanEqualsPath`
 + `Or`
-+ `StringEquals`
-+ `StringGreaterThan`
-+ `StringGreaterThanEquals`
-+ `StringLessThan`
-+ `StringLessThanEquals`
-+ `TimestampEquals`
-+ `TimestampGreaterThan`
-+ `TimestampGreaterThanEquals`
-+ `TimestampLessThan`
-+ `TimestampLessThanEquals`
++ `StringEquals`,`StringEqualsPath`
++ `StringGreaterThan`,`StringGreaterThanPath`
++ `StringGreaterThanEquals`,`StringGreaterThanEqualsPath`
++ `StringLessThan`,`StringLessThanPath`
++ `StringLessThanEquals`,`StringLessThanEqualsPath`
++ `StringMatches`
++ `TimestampEquals`,`TimestampEqualsPath`
++ `TimestampGreaterThan`,`TimestampGreaterThanPath`
++ `TimestampGreaterThanEquals`,`TimestampGreaterThanEqualsPath`
++ `TimestampLessThan`,`TimestampLessThanPath`
++ `TimestampLessThanEquals`,`TimestampLessThanEqualsPath`
 
 For each of these operators, the corresponding value must be of the appropriate type: string, number, Boolean, or timestamp\. Step Functions doesn't attempt to match a numeric field to a string value\. However, because timestamp fields are logically strings, it's possible that a field considered to be a timestamp can be matched by a `StringEquals` comparator\.
 
@@ -168,4 +217,5 @@ An uppercase `T` must separate the date and time portions\.
 An uppercase `Z` must denote that a numeric time zone offset isn't present\.
 To understand the behavior of string comparisons, see the [Java `compareTo` documentation](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html#compareTo-java.lang.String-)\.  
 The values of the `And` and `Or` operators must be non\-empty arrays of Choice Rules that must not themselves contain `Next` fields\. Likewise, the value of a `Not` operator must be a single Choice Rule that must not contain `Next` fields\.  
-You can create complex, nested Choice Rules using `And`, `Not`, and `Or`\. However, the `Next` field can appear only in a top\-level Choice Rule\.
+You can create complex, nested Choice Rules using `And`, `Not`, and `Or`\. However, the `Next` field can appear only in a top\-level Choice Rule\.  
+String comparison against patterns with one or more wildcards \(“\*”\) can be performed with the StringMatches comparison operator\. The wildcard character is escaped by using the standard `\\ (Ex: “\\*”)`\. No characters other than “\*” have any special meaning during matching\.

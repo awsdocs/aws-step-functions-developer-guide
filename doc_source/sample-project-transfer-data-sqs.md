@@ -4,7 +4,7 @@ This sample project demonstrates how to read values from an Amazon DynamoDB tabl
 
 In this project, Step Functions uses the Lambda function to populate the DynamoDB table, uses a `for` loop to read each of the entries, and then sends each entry to Amazon SQS\.
 
-**To create the **Transfer Data Records** state machine and provision all resources**
+## Create the State Machine and Provision Resources<a name="sample-project-transfer-data-sqs-create"></a>
 
 1. Open the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/) and choose **Create a state machine**\.
 
@@ -44,7 +44,7 @@ The state machine in this sample project integrates with DynamoDB and Amazon SQS
 
 Browse through this example state machine to see how Step Functions controls DynamoDB and Amazon SQS by connecting to the Amazon Resource Name \(ARN\) in the `Resource` field, and by passing `Parameters` to the service API\.
 
-For more information about how AWS Step Functions can control other AWS services, see [AWS Service Integrations](concepts-service-integrations.md)\.
+For more information about how AWS Step Functions can control other AWS services, see [Service Integrations with AWS Step Functions ](concepts-service-integrations.md)\.
 
 ```
 {
@@ -107,7 +107,7 @@ For more information about how AWS Step Functions can control other AWS services
 }
 ```
 
-For more information about passing parameters and managing results, see:
+For more information about passing parameters and managing results, see the following:
 + [Pass Parameters to a Service API](connect-parameters.md)
 + [ResultPath](input-output-resultpath.md)
 

@@ -1,8 +1,8 @@
-# Use a Map State to Call Lambda Multiple Times<a name="tutorial-creating-map-state-machine"></a>
+# Using a Map State to Call Lambda Multiple Times<a name="tutorial-creating-map-state-machine"></a>
 
-In this tutorial, you will learn how to use a `Map` state to call a AWS Lambda function multiple times, based on the state machine input\.
+In this tutorial, you will learn how to use a `Map` state to call an AWS Lambda function multiple times, based on the state machine input\.
 
-The [Creating a Lambda State Machine](tutorial-creating-lambda-state-machine.md) tutorial walks you though creating a state machine that calls a Lambda function\. If you have completed that tutorial, skip to [Step 4](#create-map-lambda-state-machine-step-4) and use the IAM role and Lambda function that you previously created\.
+The [Creating a Step Functions State Machine That Uses Lambda](tutorial-creating-lambda-state-machine.md) tutorial walks you though creating a state machine that calls a Lambda function\. If you have completed that tutorial, skip to [Step 4](#create-map-lambda-state-machine-step-4) and use the AWS Identity and Access Management \(IAM\) role and Lambda function that you previously created\.
 
 **Topics**
 + [Step 1: Create an IAM Role for Lambda](#create-map-lambda-state-machine-step-1)
@@ -58,7 +58,7 @@ Ensure that your Lambda function is under the same AWS account and AWS Region as
 
    1. For **Function name**, enter `HelloFunction`\.
 
-   1. For **Runtime**, choose **Node\.js 6\.10**\.
+   1. For **Runtime**, choose **Node\.js 12\.x**\.
 
    1. For **Role**, select **Choose an existing role**\.
 
@@ -118,7 +118,7 @@ Use the [Step Functions console](https://console.aws.amazon.com/states/home?regi
 
 1. Open the [Step Functions console](https://console.aws.amazon.com/states/home) and choose **Create a state machine**\.
 
-1. On the **Define state machine** page, choose **Author with code snippets**\. Enter a **Name for your state machine**, for example, `MapLambda`\.
+1. On the **Define state machine** page, choose **Author with code snippets**\. For **Type**, choose **Standard**\. Enter a **Name**, for example, `MapLambda`\.
 **Note**  
 State machine, execution, and activity names must be 1–80 characters in length, must be unique for your account and AWS Region, and must not contain any of the following:  
 Whitespace
@@ -128,7 +128,7 @@ Special characters \(`: ; , \ | ^ ~ $ # % & ` "`\)
 Control characters \(`\\u0000` \- `\\u001f` or `\\u007f` \- `\\u009f`\)\.
 Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with Amazon CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
 
-1. In the **State machine definition** pane, add the following state machine definition using the ARN of [the Lambda function that you created earlier](#create-map-lambda-state-machine-create-lambda-function), for example:
+1. In the **State machine definition** pane, add the following state machine definition using the ARN of [the Lambda function that you created earlier](#create-map-lambda-state-machine-create-lambda-function), as shown in the following example\.
 
    ```
    {
@@ -154,9 +154,9 @@ Step Functions allows you to create state machine, execution, and activity names
 
    This is a description of your state machine using the Amazon States Language\. It defines a `Map` state named `ExampleMapState` that includes a `Task` state \(`CallLambda`\) that calls your Lambda function\. For more information, see [State Machine Structure](amazon-states-language-state-machine-structure.md)\.
 **Note**  
-You can also set up a `Retry` for `Task` states\. As a best practice, ensure production code can handle Lambda service exceptions \(`Lambda.ServiceException` and `Lambda.SdkclientException`\)\. For more information, see:   
-[Handle Lambda Service Exceptions](bp-lambda-serviceexception.md)\. 
-[Retrying after an Error](concepts-error-handling.md#error-handling-retrying-after-an-error)\. 
+You can also set up a `Retry` for `Task` states\. As a best practice, ensure production code can handle Lambda service exceptions \(`Lambda.ServiceException` and `Lambda.SdkClientException`\)\. For more information, see the following:   
+[Handle Lambda service exceptions](bp-lambda-serviceexception.md) 
+[Retrying after an error](concepts-error-handling.md#error-handling-retrying-after-an-error) 
 
    Choose **Next**\.
 
@@ -216,8 +216,8 @@ Step Functions allows you to create state machine, execution, and activity names
 
    The output for each of the Lambda function executions are combined into the output for the state machine\.
 
-For more information on using `Map` states, see the following\.
-+ [](amazon-states-language-map-state.md)
+For more information on using `Map` states, see the following:
++ [Map](amazon-states-language-map-state.md)
 + [Map State Example](amazon-states-language-map-state.md#map-state-examples)
 + [Map State Input and Output Processing](amazon-states-language-map-state.md#amazon-states-language-map-state-output)
 + [ItemsPath](input-output-itemspath.md)

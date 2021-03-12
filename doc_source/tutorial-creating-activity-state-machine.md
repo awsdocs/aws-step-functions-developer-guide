@@ -1,4 +1,4 @@
-# Creating an Activity State Machine<a name="tutorial-creating-activity-state-machine"></a>
+# Creating an Activity State Machine Using Step Functions<a name="tutorial-creating-activity-state-machine"></a>
 
 This tutorial shows you how to create an activity\-based state machine using Java and AWS Step Functions\. Activities allow you to control worker code that runs somewhere else in your state machine\. For an overview, see [Activities](concepts-activities.md) in [How Step Functions Works](how-step-functions-works.md)\. 
 
@@ -7,28 +7,28 @@ To complete this tutorial, you need the following:
 + AWS credentials in the environment or in the standard AWS configuration file\. For more information, see [Set Up Your AWS Credentials](https://docs.aws.amazon.com/AWSSdkDocsJava/latest/DeveloperGuide/set-up-creds.html) in the *AWS SDK for Java Developer Guide*\.
 
 **Topics**
-+ [Step 1: Create a New Activity](#create-activity-state-machine-step-1)
++ [Step 1: Create an Activity](#create-activity-state-machine-step-1)
 + [Step 2: Create a State Machine](#create-activity-state-machine-step-2)
 + [Step 3: Implement a Worker](#create-activity-state-machine-step-3)
 + [Step 4: Start an Execution](#create-activity-state-machine-step-4)
 + [Step 5: Run and Stop the Worker](#create-activity-state-machine-step-5)
 
-## Step 1: Create a New Activity<a name="create-activity-state-machine-step-1"></a>
+## Step 1: Create an Activity<a name="create-activity-state-machine-step-1"></a>
 
-You must make Step Functions aware of the *activity* whose *worker* \(a program\) you want to create\. Step Functions responds with an ARN that establishes an identity for the activity\. Use this identity to coordinate the information passed between your state machine and worker\.
+You must make Step Functions aware of the *activity* whose *worker* \(a program\) you want to create\. Step Functions responds with an Amazon Resource Name\(ARN\) that establishes an identity for the activity\. Use this identity to coordinate the information passed between your state machine and worker\.
 
 **Important**  
 Ensure that your activity task is under the same AWS account as your state machine\.
 
 ### <a name="create-activity-state-machine-new-activity"></a>
 
-1. In the [Step Functions console](https://console.aws.amazon.com/states/home), choose **Activities** in the left navigation panel\.
+1. In the [Step Functions console](https://console.aws.amazon.com/states/home), in the navigation pane on the left, choose **Activities**\.
 
 1. Choose **Create activity**\.
 
 1. Enter an **Activity Name**, for example, `get-greeting`, and then choose **Create Activity**\.
 
-1. When your activity task is created, note its Amazon Resource Name \(ARN\), for example:
+1. When your activity task is created, make a note of its ARN, as shown in the following example\.
 
    ```
    arn:aws:states:us-east-1:123456789012:activity:get-greeting
@@ -40,9 +40,9 @@ Create a state machine that determines when your activity is invoked and when yo
 
 ### <a name="create-activity-state-machine-create"></a>
 
-1. In the [Step Functions console](https://console.aws.amazon.com/states/home), choose **State machines** in the left navigation panel\.
+1. In the [Step Functions console](https://console.aws.amazon.com/states/home), in the navigation pane on the left, choose **State machines**\.
 
-1. On the **State machines** page, choose **Create state machine**, choose **Author with code snippets**, and then enter a name under **Details** \(for example, `ActivityStateMachine)`\.
+1. On the **State machines** page, choose **Create state machine**, and then choose **Author with code snippets**\. For **Type**, choose **Standard**, and then enter a name for your state machine \(for example, `ActivityStateMachine)`\.
 **Note**  
 State machine, execution, and activity names must be 1–80 characters in length, must be unique for your account and AWS Region, and must not contain any of the following:  
 Whitespace
@@ -52,7 +52,7 @@ Special characters \(`: ; , \ | ^ ~ $ # % & ` "`\)
 Control characters \(`\\u0000` \- `\\u001f` or `\\u007f` \- `\\u009f`\)\.
 Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with Amazon CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
 
-   Under **State machine definition**, enter the following code, and include the ARN of [the activity task that you created earlier](#create-activity-state-machine-new-activity) in the `Resource` field\. For example:
+   Under **State machine definition**, enter the following code, and include the ARN of [the activity task that you created earlier](#create-activity-state-machine-new-activity) in the `Resource` field, as shown in the following example\.
 
    ```
    {
@@ -162,7 +162,7 @@ For a more complete example of an activity worker, see [Example Activity Worker 
    ```
 **Note**  
 The `EnvironmentVariableCredentialsProvider` class in this example assumes that the `AWS_ACCESS_KEY_ID` \(or `AWS_ACCESS_KEY`\) and `AWS_SECRET_KEY` \(or `AWS_SECRET_ACCESS_KEY`\) environment variables are set\. For more information about providing the required credentials to the factory, see [AWSCredentialsProvider](https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/auth/AWSCredentialsProvider.html) in the *AWS SDK for Java API Reference* and [Set Up AWS Credentials and Region for Development](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/setup-credentials.html) in the *AWS SDK for Java Developer Guide*\.  
-By default the AWS SDK will wait up to 50 seconds to receive data from the server for any operation\. The `GetActivityTask` operation is a long\-poll operation that will wait up to 60 seconds for the next available task\. To prevent receiving a `SocketTimeoutException` errors, set SocketTimeout to 70 seconds\.
+By default the AWS SDK will wait up to 50 seconds to receive data from the server for any operation\. The `GetActivityTask` operation is a long\-poll operation that will wait up to 60 seconds for the next available task\. To prevent receiving a `SocketTimeoutException` error, set SocketTimeout to 70 seconds\.
 
 1. In the parameter list of the `GetActivityTaskRequest().withActivityArn()` constructor, replace the `ACTIVITY_ARN` value with the ARN of [the activity task that you created earlier](#create-activity-state-machine-new-activity)\.
 

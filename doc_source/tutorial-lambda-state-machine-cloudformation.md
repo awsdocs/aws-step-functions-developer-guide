@@ -1,17 +1,17 @@
-# Creating a Lambda State Machine Using AWS CloudFormation<a name="tutorial-lambda-state-machine-cloudformation"></a>
+# Creating a Lambda state machine for Step Functions using AWS CloudFormation<a name="tutorial-lambda-state-machine-cloudformation"></a>
 
 This tutorial shows you how to create a basic AWS Lambda function using AWS CloudFormation\. You use the AWS CloudFormation console and a YAML *template* to create the *stack* \(IAM roles, the Lambda function, and the state machine\)\. Then you use the AWS Step Functions console to start the state machine execution\. 
 
 For more information, see [Working with CloudFormation Templates](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-guide.html) and the `[AWS::StepFunctions::StateMachine](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-statemachine.html)` resource in the *AWS CloudFormation User Guide*\.
 
 **Topics**
-+ [Step 1: Set Up Your AWS CloudFormation Template](#lambda-state-machine-cfn-step-1)
-+ [Step 2: Use the AWS CloudFormation Template to Create a Lambda State Machine](#lambda-state-machine-cfn-step-2)
-+ [Step 3: Start a State Machine Execution](#lambda-state-machine-cfn-step-3)
++ [Step 1: Set up your AWS CloudFormation yemplate](#lambda-state-machine-cfn-step-1)
++ [Step 2: Use the AWS CloudFormation template to create a Lambda State Machine](#lambda-state-machine-cfn-step-2)
++ [Step 3: Start a State Machine execution](#lambda-state-machine-cfn-step-3)
 
-## Step 1: Set Up Your AWS CloudFormation Template<a name="lambda-state-machine-cfn-step-1"></a>
+## Step 1: Set up your AWS CloudFormation yemplate<a name="lambda-state-machine-cfn-step-1"></a>
 
-Before you use the [example templates](#lambda-state-machine-cfn-step-2), you should understand their parts\.
+Before you use the [example templates](#lambda-state-machine-cfn-step-2), you should understand how to declare the different parts of an AWS CloudFormation template\.
 
 **Topics**
 + [To create an IAM role for Lambda](#lambda-state-machine-cfn-procedure-create-iam-role)
@@ -84,7 +84,7 @@ MyLambdaFunction:
         exports.handler = (event, context, callback) => {
             callback(null, "Hello World!");
         };
-    Runtime: "nodejs8.10"
+    Runtime: "nodejs12.x"
     Timeout: "25"
 ```
 
@@ -105,7 +105,7 @@ MyLambdaFunction:
                 "Code": {
                     "ZipFile": "exports.handler = (event, context, callback) => {\n    callback(null, \"Hello World!\");\n};\n"
                 },
-                "Runtime": "nodejs8.10",
+                "Runtime": "nodejs12.x",
                 "Timeout": "25"
             }
         },
@@ -252,7 +252,7 @@ MyStateMachine:
 
 ------
 
-## Step 2: Use the AWS CloudFormation Template to Create a Lambda State Machine<a name="lambda-state-machine-cfn-step-2"></a>
+## Step 2: Use the AWS CloudFormation template to create a Lambda State Machine<a name="lambda-state-machine-cfn-step-2"></a>
 
 After you understand the parts of the AWS CloudFormation template, you put them together and use the template to create an AWS CloudFormation stack\.
 
@@ -288,7 +288,7 @@ After you understand the parts of the AWS CloudFormation template, you put them 
              exports.handler = (event, context, callback) => {
                  callback(null, "Hello World!");
              };
-         Runtime: "nodejs8.10"
+         Runtime: "nodejs12.x"
          Timeout: "25"
    
      StatesExecutionRole:
@@ -372,7 +372,7 @@ After you understand the parts of the AWS CloudFormation template, you put them 
                    "Code": {
                        "ZipFile": "exports.handler = (event, context, callback) => {\n    callback(null, \"Hello World!\");\n};\n"
                    },
-                   "Runtime": "nodejs8.10",
+                   "Runtime": "nodejs12.x",
                    "Timeout": "25"
                }
            },
@@ -447,7 +447,7 @@ After you understand the parts of the AWS CloudFormation template, you put them 
 
 1. Open the [AWS CloudFormation console](https://console.aws.amazon.com/cloudformation/home) and choose **Create Stack**\.
 
-1. On the **Select Template** page, select **Upload a template to Amazon S3**\. Choose your `MyStateMachine` file, and then choose **Next**\.
+1. On the **Select Template** page, choose **Upload a template to Amazon S3**\. Choose your `MyStateMachine` file, and then choose **Next**\.
 
 1. On the **Specify Details** page, for **Stack name**, enter `MyStateMachine`, and then choose **Next**\.
 
@@ -460,7 +460,7 @@ After you understand the parts of the AWS CloudFormation template, you put them 
 1. \(Optional\) To display the resources in your stack, select the stack and choose the **Resources** tab\.  
 ![\[Display resources\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-lambda-state-machine-display-resources.png)![\[Display resources\]](http://docs.aws.amazon.com/step-functions/latest/dg/)![\[Display resources\]](http://docs.aws.amazon.com/step-functions/latest/dg/)
 
-## Step 3: Start a State Machine Execution<a name="lambda-state-machine-cfn-step-3"></a>
+## Step 3: Start a State Machine execution<a name="lambda-state-machine-cfn-step-3"></a>
 
 After you create your Lambda state machine, you start an execution\.
 

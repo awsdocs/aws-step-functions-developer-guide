@@ -1,9 +1,9 @@
-# Step Functions Local Configuration Options<a name="sfn-local-config-options"></a>
+# Step Functions Local configuration options<a name="sfn-local-config-options"></a>
 
-To use Step Functions Local by starting the jar file, you can set configuration options by either setting them with the AWS CLI, or by including them in the system environment\. For Docker, you must specify these options in a file that you reference when starting Step Functions Local\.
+To use AWS Step Functions Local by starting the JAR file, you can set configuration options by using the AWS Command Line Interface \(AWS CLI\), or by including them in the system environment\. For Docker, you must specify these options in a file that you reference when starting Step Functions Local\.
 
+## Configuration Options<a name="sfn-local-config-options-table"></a>
 
-**Configuration Options**  
 
 | Option | Command Line | Environment | 
 | --- | --- | --- | 
@@ -18,12 +18,13 @@ To use Step Functions Local by starting the jar file, you can set configuration 
 | SageMaker Endpoint | \-sageMakerEndpoint,\-\-sagemaker\-endpoint | SAGE\_MAKER\_ENDPOINT | 
 | SQS Endpoint | \-sqsEndpoint,\-\-sqs\-endpoint | SQS\_ENDPOINT | 
 | SNS Endpoint | \-snsEndpoint,\-\-sns\-endpoint | SNS\_ENDPOINT | 
+| Step Functions Endpoint | \-stepFunctionsEndpoint,\-\-step\-functions\-endpoint | STEP\_FUNCTIONS\_ENDPOINT | 
 
-## Credentials and Configuration for Docker<a name="docker-credentials"></a>
+## Credentials and configuration for Docker<a name="docker-credentials"></a>
 
-To configure Step Functions Local for Docker, create a file: `aws-stepfunctions-local-credentials.txt`\.
+To configure Step Functions Local for Docker, create the following file: `aws-stepfunctions-local-credentials.txt`\.
 
-This file contains your credentials and other configuration options, such as:
+This file contains your credentials and other configuration options, such as the following\.
 
 ```
 AWS_DEFAULT_REGION=AWS_REGION_OF_YOUR_AWS_RESOURCES
@@ -38,9 +39,10 @@ GLUE_ENDPOINT=VALUE
 SAGE_MAKER_ENDPOINT=VALUE
 SQS_ENDPOINT=VALUE
 SNS_ENDPOINT=VALUE
+STEP_FUNCTIONS_ENDPOINT=VALUE
 ```
 
-Once you have configured your credentials and configuration options in `aws-stepfunctions-local-credentials.txt`, start Step Functions with the following command:
+Once you have configured your credentials and configuration options in `aws-stepfunctions-local-credentials.txt`, start Step Functions with the following command\.
 
 ```
 docker run -p 8083:8083 --env-file aws-stepfunctions-local-credentials.txt amazon/aws-stepfunctions-local

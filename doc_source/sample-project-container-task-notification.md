@@ -1,10 +1,10 @@
 # Manage a Container Task \(Amazon ECS, Amazon SNS\)<a name="sample-project-container-task-notification"></a>
 
-This sample project demonstrates how to run an AWS Fargate task, and then send an Amazon SNS notification based on whether that job succeeds or fails\. Deploying this sample project will create a Step Functions state machine, a Fargate cluster, and an Amazon SNS topic\. 
+This sample project demonstrates how to run an AWS Fargate task, and then send an Amazon SNS notification based on whether that job succeeds or fails\. Deploying this sample project will create an AWS Step Functions state machine, a Fargate cluster, and an Amazon SNS topic\. 
 
 In this project, Step Functions uses a state machine to call the Fargate task synchronously\. It then waits for the task to succeed or fail, and it sends an Amazon SNS topic with a message about whether the job succeeded or failed\.
 
-**To create the Manage a container task state machine and provision all resources**
+## Create the State Machine and Provision Resources<a name="sample-project-container-task-create"></a>
 
 1. Open the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/) and choose **Create a state machine**\.
 
@@ -39,7 +39,7 @@ Step Functions allows you to create state machine, execution, and activity names
 
 The state machine in this sample project integrates with AWS Fargate and Amazon SNS by passing parameters directly to those resources\. Browse through this example state machine to see how Step Functions uses a state machine to call the Fargate task synchronously, waits for the task to succeed or fail, and sends an Amazon SNS topic with a message about whether the job succeeded or failed\.
 
-For more information about how AWS Step Functions can control other AWS services, see [AWS Service Integrations](concepts-service-integrations.md)\.
+For more information about how AWS Step Functions can control other AWS services, see [Service Integrations with AWS Step Functions ](concepts-service-integrations.md)\.
 
 ```
 {

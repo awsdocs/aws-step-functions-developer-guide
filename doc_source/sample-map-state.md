@@ -1,19 +1,19 @@
 # Dynamically Process Data with a Map State<a name="sample-map-state"></a>
 
-This sample project demonstrates dynamic parallelism using a `Map` state\. This sample project creates the following\.
+This sample project demonstrates dynamic parallelism using a `Map` state\. This sample project creates the following:
 + Two AWS Lambda functions
-+ An Amazon Simple Queue Service queue
-+ An Amazon Simple Notification Service topic
++ An Amazon Simple Queue Service \(Amazon SQS\) queue
++ An Amazon Simple Notification Service \(Amazon SNS\) topic
 + An Amazon DynamoDB table
 + An AWS Step Functions state machine
 
 In this project, Step Functions uses an AWS Lambda function to pull messages off an Amazon SQS queue, and pass a JSON array of those message to a `Map` state\. For each message in the queue, the state machine writes the message to DynamoDB, invokes the other Lambda function to remove the message from Amazon SQS, and then publishes the message to the Amazon SNS topic\.
 
-For more information on `Map` states and Step Functions service integrations, see the following\.
+For more information on `Map` states and Step Functions service integrations, see the following:
 + [Map](amazon-states-language-map-state.md)
-+ [AWS Service Integrations](concepts-service-integrations.md)
++ [Service Integrations with AWS Step Functions ](concepts-service-integrations.md)
 
-**To create the state machine and provision all resources**
+## Create the State Machine and Provision Resources<a name="sample-map-state-create"></a>
 
 1. Open the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/) and choose **Create a state machine**\.
 
@@ -25,39 +25,39 @@ For more information on `Map` states and Step Functions service integrations, se
 1. Choose **Next**\.
 
    The **Deploy resources** page is displayed, listing the resources that will be created\. For this sample project, the resources include:
-   + An Amazon Simple Queue Service queue
-   + An Amazon Simple Notification Service topic
-   + An Amazon DynamoDB table
-   + Two AWS Lambda functions
-   + An AWS Step Functions state machine
+   + An Amazon SQS queue
+   + An Amazon SNS topic
+   + A DynamoDB table
+   + Two Lambda functions
+   + A Step Functions state machine
 
 1. Choose **Deploy Resources**\.
 **Note**  
 It can take up to 10 minutes for these resources and related IAM permissions to be created\. While the **Deploy resources** page is displayed, you can open the **Stack ID** link to see which resources are being provisioned\.
 
-Once the resources of the sample project have been deployed, you'll need to add items to the Amazon SQS queue and subscribe to the Amazon SNS topic before you start an execution of the state machine\.
+Once the resources of the sample project are deployed, you need to add items to the Amazon SQS queue and subscribe to the Amazon SNS topic before you start an execution of the state machine\.
 
 ## Subscribe to the Amazon SNS Topic<a name="sample-map-subscribe-topic"></a>
 
 1. Open the [Amazon SNS console](https://console.aws.amazon.com/sns/home)\.
 
-1. Select **Topics** and choose the topic that was created by the `Map` state sample project\.
+1. Choose **Topics** and choose the topic that was created by the `Map` state sample project\.
 
    The name will be similar to **MapSampleProj\-SNSTopic\-1CQO4HQ3IR1KN**\.
 
-1. Under **Subscriptions** choose **Create subscription**\.
+1. Under **Subscriptions**, choose **Create subscription**\.
 
    The **Create subscription** page is displayed, listing the **Topic ARN** for the topic\.
 
-1. Under **Protocol** select **Email**\.
+1. Under **Protocol**, choose **Email**\.
 
-1. Under **Endpoint** enter an email address to subscribe to the topic\.
+1. Under **Endpoint**, enter an email address to subscribe to the topic\.
 
-1. Select **Create subscription**\.
+1. Choose **Create subscription**\.
 **Note**  
 You must confirm the subscription in your email before it is active\.
 
-1. Open the **Subscription Confirmation** email in the related account and follow open the **Confirm subscription** URL\.
+1. Open the **Subscription Confirmation** email in the related account and open the **Confirm subscription** URL\.
 
    The **Subscription confirmed\!** page is displayed\.
 
@@ -65,28 +65,28 @@ You must confirm the subscription in your email before it is active\.
 
 1. Open the [Amazon SQS console](https://console.aws.amazon.com/sqs/home)\.
 
-1. Select the queue that was created by the `Map` state sample project\.
+1. Choose the queue that was created by the `Map` state sample project\.
 
    The name will be similar to **MapSampleProj\-SQSQueue\-1UDIC9VZDORN7**\.
 
-1. On the **Queue Actions** drop\-down, select **Send a Message**\.
+1. In the **Queue Actions** list, select **Send a Message**\.
 
-1. On the **Send a Message** window, type a message and select the **Send Message** button\.
+1. On the **Send a Message** window, enter a message and choose **Send Message**\.
 
-1. Select **Send Another Message**\.
+1. Choose **Send Another Message**\.
 
    Continue entering messages until you have several in the Amazon SQS queue\.
 
-1. Select **Close**\.
+1. Choose **Close**\.
 
 ## Start a New Execution<a name="sample-map-start-execution"></a>
 
 **Note**  
-Queues in Amazon Simple Notification Service are eventually consistent\. For best results, wait a few minutes between populating your queue and running an execution of your state machine\.
+Queues in Amazon SNS are eventually consistent\. For best results, wait a few minutes between populating your queue and running an execution of your state machine\.
 
 1. Open the [Step Functions console](https://console.aws.amazon.com/states/home)\.
 
-1. On the **State machines** page, choose the **MapStateStateMachine** state machine that was created by the sample project and select **Start execution**\.
+1. On the **State machines** page, choose the **MapStateStateMachine** state machine that was created by the sample project and choose **Start execution**\.
 
 1. On the **New execution** page, enter an execution name \(optional\), and then choose **Start Execution**\.
 
@@ -94,7 +94,7 @@ Queues in Amazon Simple Notification Service are eventually consistent\. For bes
 **Note**  
 Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with Amazon CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
 
-1. Optionally, you can go to the newly created state machine on the Step Functions **Dashboard**, and then choose **New execution**\.
+1. \(Optional\) Go to the newly created state machine on the Step Functions **Dashboard**, and then choose **New execution**\.
 
 1. When an execution is complete, you can select states on the **Visual workflow** and browse the **Input** and **Output** under **Step details**\.
 
@@ -104,14 +104,14 @@ The state machine in this sample project integrates with Amazon SQS, Amazon SNS,
 
 Browse through this example state machine to see how Step Functions controls Lambda, DynamoDB, Amazon SNS by connecting to the Amazon Resource Name \(ARN\) in the `Resource` field, and by passing `Parameters` to the service API\.
 
-For more information about how AWS Step Functions can control other AWS services, see [AWS Service Integrations](concepts-service-integrations.md)\.
+For more information about how AWS Step Functions can control other AWS services, see [Service Integrations with AWS Step Functions ](concepts-service-integrations.md)\.
 
 ```
 {
   "Comment": "An example of the Amazon States Language for reading messages from an SQS queue and iteratively processing each message.",
   "StartAt": "Read messages from SQS Queue",
   "States": {
-    "Read Messages from SQS Queue": {
+    "Read messages from SQS Queue": {
       "Type": "Task",
       "Resource": "arn:aws:states:::lambda:invoke",
       "OutputPath": "$.Payload",

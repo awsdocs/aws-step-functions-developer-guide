@@ -1,6 +1,6 @@
 # Using Code Snippets to Create a State to Send an Amazon SNS message<a name="tutorial-code-snippet"></a>
 
-Step Functions integrates with certain AWS services, such as Amazon Simple Notification Service \(SNS\)\. In this tutorial, you generate a code snippet that sends a text message using Amazon SNS\. You pass parameters directly to Amazon SNS from your state machine definition\.
+AWS Step Functions integrates with certain AWS services, such as Amazon Simple Notification Service \(Amazon SNS\)\. In this tutorial, you generate a code snippet that sends a text message using Amazon SNS\. You pass parameters directly to Amazon SNS from your state machine definition\.
 
 For more information about how Step Functions integrates with other AWS services directly from the Amazon States Language, see:
 + [Service Integrations](concepts-service-integrations.md)
@@ -18,7 +18,7 @@ To generate a code snippet, you must start by editing a state machine definition
 
 1. Sign in to the AWS Management Console and open the Step Functions console at [https://console\.aws\.amazon\.com/states/home?\#/statemachines/create](https://console.aws.amazon.com/states/home?#/statemachines/create)\.
 
-1. Choose **Author with code snippets**, and then enter a name for your state machine\.
+1. Choose **Author with code snippets**\. For **Type**, choose **Standard**, then enter a name for your state machine\.
 
    The default `HelloWorld` state machine is displayed in the **State machine definition**\.  
 ![\[HelloWorld definition\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-code-snippet-sns.png)
@@ -59,7 +59,7 @@ With these options selected, this is the generated code snippet that's displayed
 ```
 
 **Note**  
-Under the **Task state options** section, you can also configure `Retry`, `Catch`, and `TimeoutSeconds` options\. See [Error Handling](concepts-error-handling.md)\.
+Under the **Task state options** section, you can also configure `Retry`, `Catch`, and `TimeoutSeconds` options\. See [Error handling in Step Functions](concepts-error-handling.md)\.
 
 ## Step 2: Update Your State Machine Definition<a name="tutorial-code-snippet-2"></a>
 

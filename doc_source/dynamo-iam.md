@@ -2,9 +2,9 @@
 
 These example templates show how AWS Step Functions generates IAM policies based on the resources in your state machine definition\. For more information, see:
 + [IAM Policies for Integrated Services](service-integration-iam-templates.md)
-+ [AWS Service Integrations](concepts-service-integrations.md)
++ [Service Integration Patterns](connect-to-resource.md)
 
-*Static resources:*
+*Static resources*
 
 ```
 {
@@ -26,7 +26,7 @@ These example templates show how AWS Step Functions generates IAM policies based
 }
 ```
 
-*Dynamic resources:*
+*Dynamic resources*
 
 ```
 {

@@ -1,10 +1,10 @@
 # Manage AWS Glue Jobs with Step Functions<a name="connect-glue"></a>
 
-Step Functions can control certain AWS services directly from the Amazon States Language\. For more information, see:
+Step Functions can control certain AWS services directly from the Amazon States Language\. For more information, see the following:
 + [Service Integrations](concepts-service-integrations.md)
 + [Pass Parameters to a Service API](connect-parameters.md)
 
-Supported APIs:
+Supported AWS Glue APIs:
 + [https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-jobs-runs.html#aws-glue-api-jobs-runs-StartJobRun](https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-jobs-runs.html#aws-glue-api-jobs-runs-StartJobRun)
 + Supported Parameters:
   +  [https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-jobs-runs.html#aws-glue-api-jobs-runs-StartJobRun](https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-jobs-runs.html#aws-glue-api-jobs-runs-StartJobRun) 

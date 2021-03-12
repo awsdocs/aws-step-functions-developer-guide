@@ -1,8 +1,10 @@
-# Step Functions \(Downloadable Version\) on Your Computer<a name="sfn-local-computer"></a>
+# Step Functions \(downloadable version\) on your computer<a name="sfn-local-computer"></a>
 
-## Run a HelloWorld State Machine Locally<a name="sfn-local-heloworld"></a>
+Use the local version of SFN to configure, develop and test state machines on your computer\. 
 
-Once you have run Step Functions locally with the AWS CLI, you can start a state machine execution\.
+## Run a HelloWorld state machine locally<a name="sfn-local-heloworld"></a>
+
+After you run Step Functions locally with the AWS Command Line Interface \(AWS CLI\), you can start a state machine execution\.
 
 1. Create a state machine from the AWS CLI by escaping the state machine definition\.
 
@@ -18,9 +20,9 @@ Once you have run Step Functions locally with the AWS CLI, you can start a state
      }}" --name "HelloWorld" --role-arn "arn:aws:iam::012345678901:role/DummyRole"
    ```
 **Note**  
-The `role-arn` is not used for Step Functions Local, but you must have it included with the proper syntax\. You can use the ARN from the above example\. 
+The `role-arn` is not used for Step Functions Local, but you must have include it with the proper syntax\. You can use the Amazon Resource Name \(ARN\) from the previous example\. 
 
-   If you successfully create the state machine, Step Functions will respond with the creation date and the state machine ARN:
+   If you successfully create the state machine, Step Functions responds with the creation date and the state machine ARN\.
 
    ```
    {
@@ -37,16 +39,16 @@ The `role-arn` is not used for Step Functions Local, but you must have it includ
 
 ## Step Functions Local with AWS SAM CLI Local<a name="with-lambda-local"></a>
 
-You can use the local version of Step Functions along with a local version of AWS Lambda\. To configure this, you must install and configure the AWS Serverless Application Model \(AWS SAM\)\.
+You can use the local version of Step Functions with a local version of AWS Lambda\. To configure this, you must install and configure AWS SAM\.
 
-For information on configuring and running AWS SAM, see:
+For information about configuring and running AWS SAM, see the following:
 + [Set Up AWS SAM](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-quick-start.html)
 + [Start AWS SAM CLI Local](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-cli-command-reference-sam-local-start-lambda.html)
 
-Once Lambda is running on your local system, you can start Step Functions Local\. From the directory where you extracted your Step Functions local jar files, start Step Functions Local, configuring the local Lambda endpoint:
+When Lambda is running on your local system, you can start Step Functions Local\. From the directory where you extracted your Step Functions local JAR files, start Step Functions Local, configuring the local Lambda endpoint\.
 
 ```
 java -jar StepFunctionsLocal.jar --lambda-endpoint http://127.0.0.1:3001 command
 ```
 
-For more information is running Step Functions Local with AWS Lambda, see [Step Functions and AWS SAM CLI Local](sfn-local-lambda.md)
+For more information about running Step Functions Local with AWS Lambda, see [Step Functions and AWS SAM CLI Local](sfn-local-lambda.md)\.

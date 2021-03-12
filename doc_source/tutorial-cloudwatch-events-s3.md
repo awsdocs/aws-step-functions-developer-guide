@@ -1,12 +1,12 @@
 # Starting a State Machine Execution in Response to Amazon S3 Events<a name="tutorial-cloudwatch-events-s3"></a>
 
-You can use Amazon CloudWatch Events to execute a Step Functions state machine in response to an event or on a schedule\. 
+You can use Amazon CloudWatch Events to execute an AWS Step Functions state machine in response to an event or on a schedule\. 
 
 This tutorial shows you how to configure a state machine as a target for a CloudWatch Events rule\. This will start an execution when files are added to an Amazon S3 bucket\.
 
 For a practical application, you could launch a state machine that performs operations on files that you add to the bucket, such as creating thumbnails or running Amazon Rekognition analysis on image and video files\.
 
-For this tutorial you start an execution of a simple `Helloworld`state machine by adding a file to an Amazon S3 bucket\. Then you review example input of that execution to show what information is included in the input from CloudTrail\.
+For this tutorial you start an execution of a simple `Helloworld`state machine by adding a file to an Amazon Simple Storage Service \(Amazon S3\) bucket\. Then you review example input of that execution to show what information is included in the input from AWS CloudTrail\.
 
 **Topics**
 + [Prerequisite: Create a State Machine](#tutorial-cloudwatch-events-s3-step-1)
@@ -77,7 +77,7 @@ You must configure CloudWatch Events in the same AWS Region as the Amazon S3 buc
 
 1. Choose **Specific operation\(s\)**, and then choose **PutObject**\.
 **Note**  
-If the object size is bigger than the Multipart threshold used in the `PutObject` operation, the AWS CloudTrail API logged will be `CompleteMultipartUpload` instead of `PutObject`\. See, [Multipart Upload Overview](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/mpuoverview.html) in the AWS CloudTrail User Guide\.
+If the object size is bigger than the Multipart threshold used in the `PutObject` operation, the AWS CloudTrail API logged will be `CompleteMultipartUpload` instead of `PutObject`\. See, [Multipart Upload Overview](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/mpuoverview.html) in the *AWS CloudTrail User Guide*\.
 
 1. Choose **Specific bucket\(s\) by name** and enter the bucket name you created in Step 1 \(`username-sfn-tutorial`\)\.
 

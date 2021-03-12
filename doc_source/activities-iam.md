@@ -1,6 +1,6 @@
-# Activities or no Tasks<a name="activities-iam"></a>
+# Activities or No Tasks<a name="activities-iam"></a>
 
-For a state machine that has only Activity tasks, or no tasks at all, use an IAM policy that denies access to all actions and resources\.
+For a state machine that has only `Activity` tasks, or no tasks at all, use an IAM policy that denies access to all actions and resources\.
 
 ```
 {
@@ -15,4 +15,4 @@ For a state machine that has only Activity tasks, or no tasks at all, use an IAM
 }
 ```
 
-For more information on using activity tasks, see: [Activities](concepts-activities.md)\.
+For more information about using` Activity `tasks, see [Activities](concepts-activities.md)\.

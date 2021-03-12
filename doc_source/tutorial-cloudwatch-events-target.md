@@ -1,6 +1,6 @@
 # Periodically Start a State Machine Execution Using CloudWatch Events<a name="tutorial-cloudwatch-events-target"></a>
 
-You can execute a Step Functions state machine in response to an event pattern or on a schedule using Amazon CloudWatch Events\. This tutorial shows you how to set a state machine as a target for a CloudWatch Events rule that starts the execution of a state machine every five minutes\.
+You can execute an AWS Step Functions state machine in response to an event pattern or on a schedule using Amazon CloudWatch Events\. This tutorial shows you how to set a state machine as a target for a CloudWatch Events rule that starts the execution of a state machine every five minutes\.
 
 For more information about setting a Step Functions state machine as a target using the `PutTarget` Amazon CloudWatch Events API action, see [Add a Step Functions state machine as a target](https://docs.aws.amazon.com/AmazonCloudWatchEvents/latest/APIReference/API_PutTargets.html#API_PutTargets_Example_8)\.
 
@@ -24,24 +24,18 @@ After you create your state machine, you can create your CloudWatch Events rule\
 
    The **Step 1: Create rule** page is displayed\.
 
-1. In the **Event source** section, choose **Schedule**, and then enter `5` for **Fixed rate of**\.  
-![\[Event source options\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-cloudwatch-events-target-create-rule-event-source.png)
+1. In the **Event source** section, choose **Schedule**, and then enter `5` for **Fixed rate of**\.
 
-1. In the **Targets** section, choose **Add target**, and then from the list choose **Step Functions state machine**\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-cloudwatch-events-target-create-rule-targets.png)
+1. In the **Targets** section, choose **Add target**, and then from the list choose **Step Functions state machine**\.
 
 1. CloudWatch Events can create the IAM role needed for your event to run:
-   + To create an IAM role automatically, select **Create a new role for this specific resource**\.
+   + To create an IAM role automatically, choose **Create a new role for this specific resource**\.
    + To use an IAM role that you created previously, choose **Use existing role**\.
 
 1. Choose **Configure details**\.
 
    The **Step 2: Configure rule details** page is displayed\.
 
-1. Enter a **Name** for your rule \(for example, `statemachine-event`\), choose **Enabled** for **State**, and then choose **Create rule**\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-cloudwatch-events-target-create-rule-finish.png)
-
-   The rule is created and the **Rules** page is displayed, listing all your CloudWatch Events rules\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-cloudwatch-events-target-create-rule-list.png)
+1. Enter a **Name** for your rule \(for example, `statemachine-event`\), choose **Enabled** for **State**, and then choose **Create rule**\.
 
    A new execution of your state machine starts every five minutes\.

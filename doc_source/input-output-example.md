@@ -2,7 +2,7 @@
 
 Any state other than a `Fail` state can include `InputPath`, `ResultPath` or `OutputPath`\. These allow you to use a path to filter the JSON as it moves through your workflow\. 
 
-For example, start with the AWS Lambda function and state machine described in the [Creating a Lambda State Machine](tutorial-creating-lambda-state-machine.md) tutorial\. Modify the state machine so that it includes the following `InputPath`, `ResultPath`, and `OutputPath`\.
+For example, start with the AWS Lambda function and state machine described in the [Creating a Step Functions State Machine That Uses Lambda](tutorial-creating-lambda-state-machine.md) tutorial\. Modify the state machine so that it includes the following `InputPath`, `ResultPath`, and `OutputPath`\.
 
 ```
 {

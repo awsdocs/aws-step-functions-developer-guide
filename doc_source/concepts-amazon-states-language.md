@@ -65,4 +65,5 @@ To create a state machine on the [Step Functions console](https://console.aws.am
 **Topics**
 + [Example Amazon States Language Specification](#example-amazon-states-language-specification)
 + [State Machine Structure](amazon-states-language-state-machine-structure.md)
++ [Intrinsic functions](amazon-states-language-intrinsic-functions.md)
 + [Common State Fields](amazon-states-language-common-fields.md)

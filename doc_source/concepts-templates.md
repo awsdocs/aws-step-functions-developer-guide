@@ -1,4 +1,4 @@
-# Templates<a name="concepts-templates"></a>
+# Templates in Step Functions<a name="concepts-templates"></a>
 
 In the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/), you can choose one of the following state machine templates to automatically fill the **Code** pane\. Each of the templates is fully functional and you can use any blueprint as the template for your own state machine\.
 
@@ -14,3 +14,4 @@ Choosing any of the templates overwrites the contents of the **Code** pane\.
 + **Parallel** – A state machine that demonstrates how to execute two branches at the same time\.
 + **Catch failure** – A state machine that performs a different task after its primary task fails\. This blueprint demonstrates how to call different tasks depending on the failure type\.
 + **Choice state** – A state machine that makes a choice: It either runs a `Task` state from a set of `Task` states or runs a `Fail` state after the initial state is complete\.
++ **Map state** – A state machine that uses a map state to dynamically process the data in an array\.

@@ -1,4 +1,4 @@
-# Error Handling<a name="concepts-error-handling"></a>
+# Error handling in Step Functions<a name="concepts-error-handling"></a>
 
 Any state can encounter runtime errors\. Errors can happen for various reasons:
 + State machine definition issues \(for example, no matching rule in a `Choice` state\)
@@ -7,12 +7,22 @@ Any state can encounter runtime errors\. Errors can happen for various reasons:
 
 By default, when a state reports an error, AWS Step Functions causes the execution to fail entirely\.
 
-## Error Names<a name="error-handling-error-representation"></a>
+## Error names<a name="error-handling-error-representation"></a>
 
 Step Functions identifies errors in the Amazon States Language using case\-sensitive strings, known as *error names*\. The Amazon States Language defines a set of built\-in strings that name well\-known errors, all beginning with the `States.` prefix\.
 
 ** `States.ALL` **  
 A wildcard that matches any known error name\.
+
+** `States.DataLimitExceeded` **  
+A `States.DataLimitExceeded` exception will be thrown for the following:  
++ When the output of a connector is larger than payload size quota\.
++ When the output of a state is larger than payload size quota\.
++ When, after `Parameters` processing, the input of a state is larger than the payload size quota\.
+For more information on quotas, see [Quotas for Standard Workflows](limits.md) and [Quotas for Express Workflows](express-limits.md)\.
+
+**`States.Runtime`**  
+An execution failed due to some exception that could not be processed\. Often these are caused by errors at runtime, such as attempting to apply `InputPath` or `OutputPath` on a null JSON payload\. A `States.Runtime` error is not retriable, and will always cause the execution to fail\. A retry or catch on `States.ALL` will not catch `States.Runtime` errors\.
 
 ** `States.Timeout` **  
 A `Task` state either ran longer than the `TimeoutSeconds` value, or failed to send a heartbeat for a period longer than the `HeartbeatSeconds` value\.
@@ -25,12 +35,12 @@ A `Task` state failed because it had insufficient privileges to execute the spec
 
 States can report errors with other names\. However, these must not begin with the `States.` prefix\.
 
-As a best practice, ensure production code can handle AWS Lambda service exceptions \(`Lambda.ServiceException` and `Lambda.SdkclientException`\)\. For more information, see [Handle Lambda Service Exceptions](bp-lambda-serviceexception.md)\.
+As a best practice, ensure production code can handle AWS Lambda service exceptions \(`Lambda.ServiceException` and `Lambda.SdkClientException`\)\. For more information, see [Handle Lambda service exceptions](bp-lambda-serviceexception.md)\.
 
 **Note**  
-Unhandled errors in Lambda are reported as `Lambda.Unknown` in the error output\. These include out\-of\-memory errors, function timeouts, and hitting the concurrent Lambda invoke limit\. You can match on `Lambda.Unknown`, `States.ALL`, or `States.TaskFailed` to handle these errors\. For more information about Lambda `Handled` and `Unhandled` errors, see `FunctionError` in the [AWS Lambda Developer Guide](https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_ResponseSyntax)\. 
+Unhandled errors in Lambda are reported as `Lambda.Unknown` in the error output\. These include out\-of\-memory errors and function timeouts\. You can match on `Lambda.Unknown`, `States.ALL`, or `States.TaskFailed` to handle these errors\. When Lambda hits the maximum number of invocations, the error is `Lambda.TooManyRequestsException`\. For more information about Lambda `Handled` and `Unhandled` errors, see `FunctionError` in the [AWS Lambda Developer Guide](https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_ResponseSyntax)\. 
 
-## Retrying after an Error<a name="error-handling-retrying-after-an-error"></a>
+## Retrying after an error<a name="error-handling-retrying-after-an-error"></a>
 
  `Task` and `Parallel` states can have a field named `Retry`, whose value must be an array of objects known as *retriers*\. An individual retrier represents a certain number of retries, usually at increasing time intervals\.
 
@@ -75,11 +85,11 @@ This example of a `Retry` field retries any error except `States.Timeout`\.
 } ]
 ```
 
-### Complex Retry Scenarios<a name="error-handling-complex-retry-scenarios"></a>
+### Complex retry scenarios<a name="error-handling-complex-retry-scenarios"></a>
 
 A retrier's parameters apply across all visits to the retrier in the context of a single\-state execution\. 
 
-Consider the following `Task` state:
+Consider the following `Task` state\.
 
 ```
 "X": {
@@ -106,9 +116,9 @@ This task fails five times in succession, outputting these error names: `ErrorA`
 + The first two errors match the first retrier and cause waits of 1 and 2 seconds\.
 + The third error matches the second retrier and causes a wait of 5 seconds\.
 + The fourth error matches the first retrier and causes a wait of 4 seconds\.
-+ The fifth error also matches the first retrier\. However, it has already reached its limit of two retries \(`MaxAttempts`\) for that particular error \(`ErrorB`\), so it fails and execution is redirected to the `Z` state via the `Catch` field\.
++ The fifth error also matches the first retrier\. However, it has already reached its maximum of two retries \(`MaxAttempts`\) for that particular error \(`ErrorB`\), so it fails and execution is redirected to the `Z` state via the `Catch` field\.
 
-## Fallback States<a name="error-handling-fallback-states"></a>
+## Fallback states<a name="error-handling-fallback-states"></a>
 
  `Task` and `Parallel` states can have a field named `Catch`\. This field's value must be an array of objects, known as *catchers*\.
 
@@ -143,7 +153,7 @@ The following example of a `Catch` field transitions to the state named `Recover
 **Note**  
 Each catcher can specify multiple errors to handle\.
 
-### Error Output<a name="error-handling-error-output"></a>
+### Error output<a name="error-handling-error-output"></a>
 
 When Step Functions transitions to the state specified in a catch name, the object usually contains the field `Cause`\. This field's value is a human\-readable description of the error\. This object is known as the *error output*\.
 
@@ -158,7 +168,21 @@ If you don't specify the `ResultPath` field, it defaults to `$`, which selects a
 
 When a state has both `Retry` and `Catch` fields, Step Functions uses any appropriate retriers first, and only afterward applies the matching catcher transition if the retry policy fails to resolve the error\.
 
-## Examples Using Retry and Using Catch<a name="error-handling-examples"></a>
+### Cause payloads and service integrations<a name="error-handling-integrations-json"></a>
+
+A catcher returns a string payload as an output\. When working with service integrations such as Amazon Athena or AWS CodeBuild, you may want to convert the `Cause` string to JSON\. The following example of a Pass state with intrinsic functions shows how to convert a Cause string to JSON\.
+
+```
+"Handle escaped JSON with JSONtoString": {
+  "Type": "Pass",
+  "Parameters": {
+    "Cause.$": "States.StringToJson($.Cause)"
+  },
+  "Next": "Pass State with Pass Processing"
+},
+```
+
+## Examples using Retry and using Catch<a name="error-handling-examples"></a>
 
 The state machines defined in the following examples assume the existence of two Lambda functions: one that always fails and one that waits long enough to allow a timeout defined in the state machine to occur\.
 
@@ -182,7 +206,7 @@ exports.handler = (event, context, callback) => {
 };
 ```
 
-### Handling a Failure Using Retry<a name="error-handling-handling-failure-using-retry"></a>
+### Handling a failure using Retry<a name="error-handling-handling-failure-using-retry"></a>
 
 This state machine uses a `Retry` field to retry a function that fails and outputs the error name `HandledError`\. The function is retried twice with an exponential backoff between retries\.
 
@@ -229,9 +253,9 @@ This variant uses the predefined error code `States.TaskFailed`, which matches a
 ```
 
 **Note**  
-As a best practice, tasks that reference a Lambda function should handle Lambda service exceptions\. For more information, see [Handle Lambda Service Exceptions](bp-lambda-serviceexception.md)\. 
+As a best practice, tasks that reference a Lambda function should handle Lambda service exceptions\. For more information, see [Handle Lambda service exceptions](bp-lambda-serviceexception.md)\. 
 
-### Handling a Failure Using Catch<a name="error-handling-handling-failure-using-catch"></a>
+### Handling a failure using Catch<a name="error-handling-handling-failure-using-catch"></a>
 
 This example uses a `Catch` field\. When a Lambda function outputs an error, the error is caught and the state machine transitions to the `fallback` state\.
 
@@ -283,7 +307,7 @@ This variant uses the predefined error code `States.TaskFailed`, which matches a
 }
 ```
 
-### Handling a Timeout Using Retry<a name="error-handling-handling-timeout-using-retry"></a>
+### Handling a timeout using Retry<a name="error-handling-handling-timeout-using-retry"></a>
 
 This state machine uses a `Retry` field to retry a function that times out\. The function is retried twice with an exponential backoff between retries\.
 
@@ -308,7 +332,7 @@ This state machine uses a `Retry` field to retry a function that times out\. The
 }
 ```
 
-### Handling a Timeout Using Catch<a name="error-handling-handling-timeout-using-catch"></a>
+### Handling a timeout using Catch<a name="error-handling-handling-timeout-using-catch"></a>
 
 This example uses a `Catch` field\. When a timeout occurs, the state machine transitions to the `fallback` state\.
 

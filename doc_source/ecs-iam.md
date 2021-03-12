@@ -1,16 +1,16 @@
-# Amazon Elastic Container Service/AWS Fargate<a name="ecs-iam"></a>
+# Amazon ECS/AWS Fargate<a name="ecs-iam"></a>
 
 These example templates show how AWS Step Functions generates IAM policies based on the resources in your state machine definition\. For more information, see:
 + [IAM Policies for Integrated Services](service-integration-iam-templates.md)
-+ [AWS Service Integrations](concepts-service-integrations.md)
++ [Service Integration Patterns](connect-to-resource.md)
 
 Because the value for `TaskId` is not known until the task is submitted, Step Functions creates a more privileged `"Resource": "*"` policy\.
 
 **Note**  
-You can only stop Amazon ECS tasks that were started by Step Functions, despite the `"*"` IAM policy\.
+You can only stop Amazon Elastic Container Service \(Amazon ECS\) tasks that were started by Step Functions, despite the `"*"` IAM policy\.
 
 ------
-#### [ Synchronous ]
+#### [ Run a Job \(\.sync\) ]
 
 *Static resources*
 
@@ -84,7 +84,7 @@ You can only stop Amazon ECS tasks that were started by Step Functions, despite 
 ```
 
 ------
-#### [ Asynchronous ]
+#### [ Request Response and Callback \(\.waitForTaskToken\) ]
 
 *Static resources*
 

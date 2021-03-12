@@ -1,8 +1,8 @@
 # Creating Granular IAM Permissions for Non\-Admin Users<a name="concept-create-iam-advanced"></a>
 
-The default managed policies in IAM, such as `ReadOnly`, don't fully cover all types of Step Functions permissions\. This section describes these different types of permissions and provides some example configurations\. 
+The default managed policies in IAM, such as `ReadOnly`, don't fully cover all types of AWS Step Functions permissions\. This section describes these different types of permissions and provides some example configurations\. 
 
-AWS Step Functions has four categories of permissions\. Depending on what access you want to provide to a user, you can control access by using permissions in these categories\. 
+Step Functions has four categories of permissions\. Depending on what access you want to provide to a user, you can control access by using permissions in these categories\. 
 
 [Service\-Level Permissions](#concept-create-iam-advanced-service)  
 Apply to components of the API that don't act on a specific resource\.

@@ -4,7 +4,7 @@ A `Task` state \(`"Type": "Task"`\) represents a single unit of work performed b
 
 All work in your state machine is done by *tasks*\. A task performs work by using an activity or an AWS Lambda function, or by passing parameters to the API actions of other services\.
 
-AWS Step Functions can invoke Lambda functions directly from a task state\. A Lambda function is a cloud\-native task that runs on AWS Lambda\. You can write Lambda functions in a variety of programming languages, using the AWS Management Console or by uploading code to Lambda\. For more information see [Creating a Lambda State Machine](tutorial-creating-lambda-state-machine.md)\.
+AWS Step Functions can invoke Lambda functions directly from a task state\. A Lambda function is a cloud\-native task that runs on AWS Lambda\. You can write Lambda functions in a variety of programming languages, using the AWS Management Console or by uploading code to Lambda\. For more information see [Creating a Step Functions State Machine That Uses Lambda](tutorial-creating-lambda-state-machine.md)\.
 
 **Note**  
 Step Functions can coordinate some AWS services directly from a task state\. For more information see [Service Integrations](concepts-service-integrations.md)\.
@@ -16,16 +16,19 @@ The Amazon States Language represents tasks by setting a state's type to `Task` 
 In addition to the [common state fields](amazon-states-language-common-fields.md), `Task` states have the following fields\.
 
 ** `Resource` \(Required\)**  
-A URI, especially an Amazon Resource Name \(ARN\) that uniquely identifies the specific task to execute\.
+A URI, especially an ARN that uniquely identifies the specific task to execute\.
 
 ** `Parameters` \(Optional\)**  
 Used to pass information to the API actions of connected resources\. The parameters can use a mix of static JSON and [JsonPath](https://github.com/json-path/JsonPath)\. For more information, see [Pass Parameters to a Service API](connect-parameters.md)\.
 
 ** `ResultPath` \(Optional\)**  
-Specifies where \(in the input\) to place the results of executing the task that's specified in `Resource`\. The input is then filtered as specified by the `OutputPath` field \(if present\) before being used as the state's output\. For more information, see [path](concepts-input-output-filtering.md)\.
+Specifies where \(in the input\) to place the results of executing the task that's specified in `Resource`\. The input is then filtered as specified by the `OutputPath` field \(if present\) before being used as the state's output\. For more information, see [Input and Output Processing](concepts-input-output-filtering.md)\.
+
+** `ResultSelector` \(Optional\)**  
+Pass a collection of key value pairs, where the values are static or selected from the result\. For more information, see [ResultSelector](input-output-inputpath-params.md#input-output-resultselector)\.
 
 ** `Retry` \(Optional\)**  
-An array of objects, called Retriers, that define a retry policy if the state encounters runtime errors\. For more information, see [Examples Using Retry and Using Catch](concepts-error-handling.md#error-handling-examples)\.
+An array of objects, called Retriers, that define a retry policy if the state encounters runtime errors\. For more information, see [Examples using Retry and using Catch](concepts-error-handling.md#error-handling-examples)\.
 
 ** `Catch` \(Optional\)**  
 An array of objects, called Catchers, that define a fallback state\. This state is executed if the state encounters runtime errors and its retry policy is exhausted or isn't defined\. For more information, see [Fallback States](concepts-error-handling.md#error-handling-fallback-states)\.
@@ -33,14 +36,28 @@ An array of objects, called Catchers, that define a fallback state\. This state 
 ** `TimeoutSeconds` \(Optional\)**  
 If the task runs longer than the specified seconds, this state fails with a `States.Timeout` error name\. Must be a positive, non\-zero integer\. If not provided, the default value is `99999999`\. The count begins after the task has been started, for example, when `ActivityStarted` or `LambdaFunctionStarted` are logged in the **Execution event history**\.
 
+** `TimeoutSecondsPath` \(Optional\)**  
+ If you want to provide a timeout value dynamically from the state input using a reference path, use `TimeoutSecondsPath`\. When resolved, the reference path must select fields whose values are positive integers\.  
+A `Task` state cannot include both `TimeoutSeconds` and `TimeoutSecondsPath`
+
 ** `HeartbeatSeconds` \(Optional\)**  
 If more time than the specified seconds elapses between heartbeats from the task, this state fails with a `States.Timeout` error name\. Must be a positive, non\-zero integer less than the number of seconds specified in the `TimeoutSeconds` field\. If not provided, the default value is `99999999`\. For Activities, the count begins when `GetActivityTask` receives a token and `ActivityStarted` is logged in the **Execution event history**\.
 
+** `HeartbeatSecondsPath` \(Optional\)**  
+If you want to provide a heartbeat value dynamically from the state input using a reference path, use `HeartbeatSecondsPath`\. When resolved, the reference path must select fields whose values are positive integers\.  
+A `Task` state cannot include both `HeartbeatSeconds` and `HeartbeatSecondsPath`
+
 A `Task` state must set either the `End` field to `true` if the state ends the execution, or must provide a state in the `Next` field that is run when the `Task` state is complete\.
 
-## Task State Example<a name="task-state-example"></a>
+## Task state timeouts and heartbeat intervals<a name="task-state-example"></a>
 
-Here is an example\.
+It's a good practice to set a timeout value and a heartbeat interval for long\-running activities\. This can be done by specifying the timeout and heartbeat values, or by setting them dynamically\.
+
+### Static timeout and heartbeat notification example<a name="task-state-example-static"></a>
+
+When `HelloWorld` completes, the next state \(here called `NextState`\) will be run\.
+
+If this task fails to complete within 300 seconds, or doesn't send heartbeat notifications in intervals of 60 seconds, the task is marked as `failed`\. 
 
 ```
 "ActivityState": {
@@ -52,13 +69,28 @@ Here is an example\.
 }
 ```
 
-In this example, `ActivityState` will schedule the `HelloWorld` activity for execution in the `us-east-1` AWS Region on the caller's AWS account\. When `HelloWorld` completes, the next state \(here called `NextState`\) will be run\.
+### Dynamic task timeout and heartbeat notification example<a name="task-state-example-dynamic"></a>
 
-If this task fails to complete within 300 seconds, or doesn't send heartbeat notifications in intervals of 60 seconds, the task is marked as `failed`\. It's a good practice to set a timeout value and a heartbeat interval for long\-running activities\.
+In this example, when the AWS Glue job completes, the next state will be run\.
+
+If this task fails to complete within the interval set dynamically by the AWS Glue job, or doesn't send heartbeat notifications for the interval set by the AWS Glue job, the task is marked as `failed`\. 
+
+```
+"ActivityState": {
+  "Type": "Task",
+  "Resource": "arn:aws:states:::glue:startJobRun.sync",
+  "Parameters": {
+    "JobName": "myGlueJob"
+  },
+  "TimeoutSecondsPath":  "$.params.maxTime",
+  "HeartbeatSecondsPath": "$.params.heartbeat",
+  "Next": "NextState"
+}
+```
 
 ## Specifying Resource ARNs in Tasks<a name="amazon-states-language-task-state-specifying-resource-arns"></a>
 
-The `Resource` field's Amazon Resource Name \(ARN\) is specified using the following pattern\.
+The `Resource` field's ARN is specified using the following pattern\.
 
 ```
 arn:partition:service:region:account:task_type:name
@@ -78,12 +110,12 @@ In this pattern:
 +  `name` is the registered resource name \(activity name, Lambda function name, or service API action\)\.
 
 **Note**  
-Step Functions doesn't support referencing ARNs across partitions \(for example, "aws\-cn" can't invoke tasks in the "aws" partition, and vice versa\)\.
+Step Functions doesn't support referencing ARNs across partitions, regions, or accounts \(for example, "aws\-cn" can't invoke tasks in the "aws" partition, and vice versa\)\.
 
-## Task Types<a name="task-types"></a>
+## Task types<a name="task-types"></a>
 
 The following task types are supported:
-+  [activity](#amazon-states-language-task-state-activity) 
++  [Activity](#amazon-states-language-task-state-activity) 
 +  [Lambda functions](#amazon-states-language-task-state-lambda) 
 +  [A supported AWS service](concepts-service-integrations.md) 
 
@@ -91,7 +123,7 @@ The following sections provide more detail about each task type\.
 
 ### Activity<a name="amazon-states-language-task-state-activity"></a>
 
-Activities represent workers \(processes or threads\), implemented and hosted by you, that perform a specific task\.
+Activities represent workers \(processes or threads\), implemented and hosted by you, that perform a specific task\. They are supported only by Standard Workflows, not Express Workflows\.
 
 Activity `resource` ARNs use the following syntax\.
 
@@ -106,9 +138,9 @@ You must create activities with Step Functions \(using a [CreateActivity](https:
 
 For more information about creating an activity and implementing workers, see [Activities](concepts-activities.md)\.
 
-### Lambda Functions<a name="amazon-states-language-task-state-lambda"></a>
+### Lambda functions<a name="amazon-states-language-task-state-lambda"></a>
 
-Lambda tasks execute a function using AWS Lambda\. To specify a Lambda function, use the Amazon Resource Name \(ARN\) of the Lambda function in the `Resource` field\.
+Lambda tasks execute a function using AWS Lambda\. To specify a Lambda function, use the ARN of the Lambda function in the `Resource` field\.
 
 Lambda function `Resource` ARNs use the following syntax\.
 
@@ -130,7 +162,7 @@ For example:
 
 After the Lambda function specified in the `Resource` field completes, its output is sent to the state identified in the `Next` field \("NextState"\)\.
 
-### A Supported AWS Service<a name="amazon-states-language-task-state-connector"></a>
+### A supported AWS service<a name="amazon-states-language-task-state-connector"></a>
 
 When you reference a connected resource, Step Functions directly calls the API actions of a supported service\. Specify the service and action in the `Resource` field\.
 

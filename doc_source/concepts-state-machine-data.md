@@ -14,7 +14,7 @@ This section describes how state machine data is formatted and used in AWS Step 
 
 ## Data Format<a name="concepts-state-machine-data-format"></a>
 
-State machine data is represented by JSON text, so you can provide values using any data type supported by JSON: 
+State machine data is represented by JSON text, so you can provide values using any data type supported by JSON\. 
 
 **Note**  
 Numbers in JSON text format conform to JavaScript semantics\. These numbers typically correspond to double\-precision [IEEE\-854](https://standards.ieee.org/findstds/standard/854-1987.html) values\.
@@ -25,7 +25,15 @@ The output of a state becomes the input into the next state\. However, you can r
 
 You can give AWS Step Functions initial input data by passing it to a `[StartExecution](https://docs.aws.amazon.com/step-functions/latest/apireference/API_StartExecution.html)` action when you start an execution, or by passing initial data using the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/)\. Initial data is passed to the state machine's `StartAt` state\. If no input is provided, the default is an empty object \(`{}`\)\.
 
-The output of the execution is returned by the last state \(`terminal`\)\. This output appears as JSON text in the execution's result\. You can retrieve execution results from the execution history using external callers \(for example, in the `[DescribeExecution](https://docs.aws.amazon.com/step-functions/latest/apireference/API_DescribeExecution.html)` action\)\. You can view execution results on the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/)\.
+The output of the execution is returned by the last state \(`terminal`\)\. This output appears as JSON text in the execution's result\. 
+
+For Standard Workflows, you can retrieve execution results from the execution history using external callers \(for example, in the `[DescribeExecution](https://docs.aws.amazon.com/step-functions/latest/apireference/API_DescribeExecution.html)` action\)\. You can view execution results on the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/)\. 
+
+For Express Workflows, if you have enabled logging, you can retrieve results from CloudWatch Logs See [Logging using CloudWatch Logs](cw-logs.md) for more information\.
+
+You should also consider quotas related to your state machine\. For more information, see:
++ [Quotas for Standard Workflows](limits.md)
++ [Quotas for Express Workflows](express-limits.md)
 
 ## State Input/Output<a name="concepts-state-machine-data-state-input-output"></a>
 

@@ -2,10 +2,10 @@
 
 These example templates show how AWS Step Functions generates IAM policies based on the resources in your state machine definition\. For more information, see:
 + [IAM Policies for Integrated Services](service-integration-iam-templates.md)
-+ [AWS Service Integrations](concepts-service-integrations.md)
++ [Service Integration Patterns](connect-to-resource.md)
 
 **Note**  
-For these examples, `[[roleArn]]` refers to the Amazon Resource Name \(ARN\) of the IAM role that Amazon SageMaker uses to access model artifacts and docker images for deployment on ML compute instances, or for batch transform jobs\. For more information, see [Amazon SageMaker Roles](https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html)\.
+For these examples, `[[roleArn]]` refers to the Amazon Resource Name \(ARN\) of the IAM role that SageMaker uses to access model artifacts and docker images for deployment on ML compute instances, or for batch transform jobs\. For more information, see [Amazon SageMaker Roles](https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html)\.
 
 **Topics**
 + [`CreateTrainingJob`](#sagemaker-iam-createtrainingjob)
@@ -13,10 +13,10 @@ For these examples, `[[roleArn]]` refers to the Amazon Resource Name \(ARN\) of 
 
 ## `CreateTrainingJob`<a name="sagemaker-iam-createtrainingjob"></a>
 
-*Static resources:*
+*Static resources*
 
 ------
-#### [ Synchronous ]
+#### [ Run a Job \(\.sync\) ]
 
 ```
 {
@@ -72,7 +72,7 @@ For these examples, `[[roleArn]]` refers to the Amazon Resource Name \(ARN\) of 
 ```
 
 ------
-#### [ Asynchronous ]
+#### [ Request Response and Callback \(\.waitForTaskToken\) ]
 
 ```
 {
@@ -116,10 +116,10 @@ For these examples, `[[roleArn]]` refers to the Amazon Resource Name \(ARN\) of 
 
 ------
 
-*Dynamic resources:*
+*Dynamic resources*
 
 ------
-#### [ Synchronous ]
+#### [ \.sync or \.waitForTaskToken ]
 
 ```
 {
@@ -175,7 +175,7 @@ For these examples, `[[roleArn]]` refers to the Amazon Resource Name \(ARN\) of 
 ```
 
 ------
-#### [ Asynchronous ]
+#### [ Request Response and Callback \(\.waitForTaskToken\) ]
 
 ```
 {
@@ -222,12 +222,12 @@ For these examples, `[[roleArn]]` refers to the Amazon Resource Name \(ARN\) of 
 ## `CreateTransformJob`<a name="sagemaker-iam-createtransformjob"></a>
 
 **Note**  
-AWS Step Functions will not automatically create a policy for `CreateTransformJob` when you create a state machine that integrates with Amazon SageMaker\. You must attach an inline policy to the created role based on one of the following IAM examples\.
+AWS Step Functions will not automatically create a policy for `CreateTransformJob` when you create a state machine that integrates with SageMaker\. You must attach an inline policy to the created role based on one of the following IAM examples\.
 
-*Static resources:*
+*Static resources*
 
 ------
-#### [ Synchronous ]
+#### [ Run a Job \(\.sync\) ]
 
 ```
 {
@@ -283,7 +283,7 @@ AWS Step Functions will not automatically create a policy for `CreateTransformJo
 ```
 
 ------
-#### [ Asynchronous ]
+#### [ Request Response and Callback \(\.waitForTaskToken\) ]
 
 ```
 {
@@ -327,10 +327,10 @@ AWS Step Functions will not automatically create a policy for `CreateTransformJo
 
 ------
 
-*Dynamic resources:*
+*Dynamic resources*
 
 ------
-#### [ Synchronous ]
+#### [ Run a Job \(\.sync\) ]
 
 ```
 {
@@ -386,7 +386,7 @@ AWS Step Functions will not automatically create a policy for `CreateTransformJo
 ```
 
 ------
-#### [ Asynchronous ]
+#### [ Request Response and Callback \(\.waitForTaskToken\) ]
 
 ```
 {

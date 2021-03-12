@@ -1,4 +1,4 @@
-# Deploy an Example Human Approval Project<a name="tutorial-human-approval"></a>
+# Deploying an Example Human Approval Project<a name="tutorial-human-approval"></a>
 
 This tutorial shows you how to deploy a human approval project that allows an AWS Step Functions execution to pause during a task, and wait for a user to respond to an email\. The workflow progresses to the next state once the user has approved the task to proceed\. 
 
@@ -55,7 +55,7 @@ For more information, see [Working with CloudFormation Templates](https://docs.a
 1. \(Optional\) To display the resources in your stack, select the stack and choose the **Resources** tab\.  
 ![\[Display resources\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-human-approval-cf-resources.png)![\[Display resources\]](http://docs.aws.amazon.com/step-functions/latest/dg/)
 
-## Step 3: Approve the Amazon Simple Notification Service Subscription<a name="human-approval-approve-sub"></a>
+## Step 3: Approve the Amazon SNS Subscription<a name="human-approval-approve-sub"></a>
 
 Once the Amazon SNS topic is created, you will receive an email requesting that you confirm subscription\.
 
@@ -70,7 +70,7 @@ Once the Amazon SNS topic is created, you will receive an email requesting that 
 
 ## Step 4: Run an Execution<a name="human-approval-run"></a>
 
-1. Log into the [Step Functions console](https://console.aws.amazon.com/states/home)\.
+1. Sign in to the [Step Functions console](https://console.aws.amazon.com/states/home)\.
 
 1. On the **State machines** page, choose **HumanApprovalLambdaStateMachine**\.
 
@@ -289,7 +289,7 @@ Resources:
       FunctionName: LambdaApprovalFunction
       Handler: index.handler
       Role: !GetAtt "LambdaApiGatewayIAMRole.Arn"
-      Runtime: nodejs8.10
+      Runtime: nodejs12.x
 
   LambdaApiGatewayInvoke:
     Type: "AWS::Lambda::Permission"
@@ -391,7 +391,7 @@ Resources:
     Properties:
       Handler: "index.lambda_handler"
       Role: !GetAtt LambdaSendEmailExecutionRole.Arn
-      Runtime: "nodejs8.10"
+      Runtime: "nodejs12.x"
       Timeout: "25"
       Code:
         ZipFile:

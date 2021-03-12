@@ -11,7 +11,7 @@ Treated as the output of a virtual task to be passed to the next state, and filt
 Specifies where \(in the input\) to place the "output" of the virtual task specified in `Result`\. The input is further filtered as specified by the `OutputPath` field \(if present\) before being used as the state's output\. For more information, see [Input and Output Processing](concepts-input-output-filtering.md)\.
 
 ** `Parameters` \(Optional\)**  
-Create a collection of key\-value pairs that will be passed as input\. Values can be static, or selected from the input with a path\. For more information, see [InputPath and Parameters](input-output-inputpath-params.md)\.
+Create a collection of key\-value pairs that will be passed as input\. Values can be static, or selected from the input with a path\. For more information, see [InputPath, Parameters and ResultSelector](input-output-inputpath-params.md)\.
 
 ## Pass State Example<a name="pass-state-example"></a>
 
@@ -29,7 +29,7 @@ Here is an example of a `Pass` state that injects some fixed data into the state
 }
 ```
 
-Suppose the input to this state is this:
+Suppose the input to this state is the following\.
 
 ```
 {

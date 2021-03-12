@@ -12,11 +12,12 @@ Use `ResultPath` to combine a task result with task input, or to select one of t
 **Note**  
  `ResultPath` is limited to using [reference paths](amazon-states-language-paths.md#amazon-states-language-reference-paths), which limit scope so that it can identify only a single node in JSON\. See [Reference Paths](amazon-states-language-paths.md#amazon-states-language-reference-paths) in the [Amazon States Language](concepts-amazon-states-language.md)\.
 
-These examples are based on the state machine and Lambda function described in the [Creating a Lambda State Machine](tutorial-creating-lambda-state-machine.md) tutorial\. Work through that tutorial and test different outputs by trying various paths in a `ResultPath` field\.
+These examples are based on the state machine and Lambda function described in the [Creating a Step Functions State Machine That Uses Lambda](tutorial-creating-lambda-state-machine.md) tutorial\. Work through that tutorial and test different outputs by trying various paths in a `ResultPath` field\.
 
 **Use `ResultPath` to:**
-+ [Replace Input With Result](#input-output-resultpath-default)
-+ [Include Result With Input](#input-output-resultpath-append)
++ [Replace Input with Result](#input-output-resultpath-default)
++ [Discard Result and Keep Input](#input-output-resultpath-null)
++ [Include Result with Input](#input-output-resultpath-append)
 + [Update a Node in Input with Result](#input-output-resultpath-amend)
 + [Include Error and Input in a `Catch`](#input-output-resultpath-catch)
 
@@ -28,7 +29,7 @@ The following diagram shows how `ResultPath` can completely replace the input wi
 
 ![\[Replace input with ResultPath.\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/input-output-resultpath-replace.png)![\[Replace input with ResultPath.\]](http://docs.aws.amazon.com/step-functions/latest/dg/)![\[Replace input with ResultPath.\]](http://docs.aws.amazon.com/step-functions/latest/dg/)
 
-Using the state machine and Lambda function described in [Creating a Lambda State Machine](tutorial-creating-lambda-state-machine.md), if we pass the following input:
+Using the state machine and Lambda function described in [Creating a Step Functions State Machine That Uses Lambda](tutorial-creating-lambda-state-machine.md), if we pass the following input:
 
 ```
 {
@@ -53,13 +54,21 @@ If `ResultPath` isn't specified in the state, or if `"ResultPath": "$"` is set, 
 **Note**  
 `ResultPath` is used to include content from the result with the input, before passing it to the output\. But, if `ResultPath` isn't specified, the default is to replace the entire input\.
 
+## Discard the Result and Keep the Original Input<a name="input-output-resultpath-null"></a>
+
+If you set `ResultPath` to `null`, it will pass the original input to the output\. Using `"ResultPath": null`, the state's input payload will be copied directly to the output, with no regard for the result\. 
+
+The following diagram shows how a null `ResultPath` will copy the input directly to the output\.
+
+![\[Copy Input to Output with ResultPath.\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/input-output-resultpath-null.png)![\[Copy Input to Output with ResultPath.\]](http://docs.aws.amazon.com/step-functions/latest/dg/)![\[Copy Input to Output with ResultPath.\]](http://docs.aws.amazon.com/step-functions/latest/dg/)
+
 ## Use ResultPath to Include the Result with the Input<a name="input-output-resultpath-append"></a>
 
 The following diagram shows how `ResultPath` can include the result with the input\.
 
 ![\[Include input with ResultPath\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/input-output-resultpath-append.png)![\[Include input with ResultPath\]](http://docs.aws.amazon.com/step-functions/latest/dg/)![\[Include input with ResultPath\]](http://docs.aws.amazon.com/step-functions/latest/dg/)
 
-Using the state machine and Lambda function described in the [Creating a Lambda State Machine](tutorial-creating-lambda-state-machine.md) tutorial, we could pass the following input\.
+Using the state machine and Lambda function described in the [Creating a Step Functions State Machine That Uses Lambda](tutorial-creating-lambda-state-machine.md) tutorial, we could pass the following input\.
 
 ```
 {
@@ -75,7 +84,7 @@ The result of the Lambda function is the following\.
 "Hello, AWS Step Functions!"
 ```
 
-If we want to preserve the input, insert the result of the Lambda function, and then pass the combined JSON to the next state, we could set `ResultPath` to the following\.
+To preserve the input, insert the result of the Lambda function, and then pass the combined JSON to the next state, we could set `ResultPath` to the following\.
 
 ```
 "ResultPath": "$.taskresult"
@@ -114,7 +123,7 @@ Start an execution using the following input\.
 }
 ```
 
-The result of the Lambda function is inserted as a child of the `strings` node in the input:
+The result of the Lambda function is inserted as a child of the `strings` node in the input\.
 
 ```
 {
@@ -137,7 +146,7 @@ The following diagram shows how `ResultPath` can update the value of existing JS
 
 ![\[Replace input with ResultPath\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/input-output-resultpath-amend.png)![\[Replace input with ResultPath\]](http://docs.aws.amazon.com/step-functions/latest/dg/)![\[Replace input with ResultPath\]](http://docs.aws.amazon.com/step-functions/latest/dg/)
 
-Using the example of the state machine and Lambda function described in the [Creating a Lambda State Machine](tutorial-creating-lambda-state-machine.md) tutorial, we could pass the following input\.
+Using the example of the state machine and Lambda function described in the [Creating a Step Functions State Machine That Uses Lambda](tutorial-creating-lambda-state-machine.md) tutorial, we could pass the following input\.
 
 ```
 {
@@ -175,7 +184,7 @@ The value for the `comment` node, `"This is a test of the input and output of a 
 
 ## Use ResultPath to Include Both Error and Input in a `Catch`<a name="input-output-resultpath-catch"></a>
 
-The [Handling Error Conditions Using a State Machine](tutorial-handling-error-conditions.md) tutorial shows how to use a state machine to catch an error\. In some cases, you might want to preserve the original input with the error\. Use `ResultPath` in a `Catch` to include the error with the original input, instead of replacing it: 
+The [Handling Error Conditions Using a Step Functions State Machine](tutorial-handling-error-conditions.md) tutorial shows how to use a state machine to catch an error\. In some cases, you might want to preserve the original input with the error\. Use `ResultPath` in a `Catch` to include the error with the original input, instead of replacing it\. 
 
 ```
 "Catch": [{ 
@@ -202,6 +211,6 @@ The state output when catching an error is the following\.
 }
 ```
 
-For more information about error handling, see:
-+ [Error Handling](concepts-error-handling.md)
-+ [Handling Error Conditions Using a State Machine](tutorial-handling-error-conditions.md)
+For more information about error handling, see the following:
++ [Error handling in Step Functions](concepts-error-handling.md)
++ [Handling Error Conditions Using a Step Functions State Machine](tutorial-handling-error-conditions.md)

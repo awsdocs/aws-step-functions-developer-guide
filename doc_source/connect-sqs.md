@@ -1,13 +1,13 @@
 # Call Amazon SQS with Step Functions<a name="connect-sqs"></a>
 
-Step Functions can control certain AWS services directly from the Amazon States Language\. For more information, see:
+Step Functions can control certain AWS services directly from the Amazon States Language\. For more information, see the following:
 + [Service Integrations](concepts-service-integrations.md)
 + [Pass Parameters to a Service API](connect-parameters.md)
 
-Supported APIs:
+Supported Amazon SQS APIs:
 
 **Note**  
-There is a limit on the maximum input or result data size for a task in Step Functions\. This limits you to 32,768 characters of data when you send to, or receive data from, another service\. See [Limits Related to State Machine Executions](limits.md#service-limits-state-machine-executions)\.
+There is a quota for the maximum input or result data size for a task in Step Functions\. This restricts you to 262,144 bytes of data as a UTF\-8 encoded string when you send to, or receive data from, another service\. See [Quotas Related to State Machine Executions](limits.md#service-limits-state-machine-executions)\.
 + [https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_SendMessage.html](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_SendMessage.html)
 
   Supported parameters: 
@@ -19,7 +19,7 @@ There is a limit on the maximum input or result data size for a task in Step Fun
   + [https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_SendMessage.html#API_SendMessage_RequestParameters](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_SendMessage.html#API_SendMessage_RequestParameters)
 + [https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_SendMessage.html#API_SendMessage_ResponseElements](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_SendMessage.html#API_SendMessage_ResponseElements)
 
-The following includes a `Task` state that sends an Amazon SQS message\.
+The following includes a `Task` state that sends an Amazon Simple Queue Service \(Amazon SQS\) message\.
 
 ```
 {

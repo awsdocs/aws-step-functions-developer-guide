@@ -1,10 +1,10 @@
 # Manage a Batch Job \(AWS Batch, Amazon SNS\)<a name="batch-job-notification"></a>
 
-This sample project demonstrates how to submit an AWS Batch job, and then send an Amazon SNS notification based on whether that job succeeds or fails\. Deploying this sample project creates a Step Functions state machine, an AWS Batch job, and an Amazon SNS topic\. 
+This sample project demonstrates how to submit an AWS Batch job, and then send an Amazon SNS notification based on whether that job succeeds or fails\. Deploying this sample project creates an AWS Step Functions state machine, an AWS Batch job, and an Amazon SNS topic\. 
 
 In this project, Step Functions uses a state machine to call the AWS Batch job synchronously\. It then waits for the job to succeed or fail, and it sends an Amazon SNS topic with a message about whether the job succeeded or failed\.
 
-**To create the Manage a Batch Job state machine and provision all resources**
+## Create the State Machine and Provision Resources<a name="batch-job-create"></a>
 
 1. Open the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/) and choose **Create a state machine**\.
 
@@ -41,7 +41,7 @@ The state machine in this sample project integrates with AWS Batch and Amazon SN
 
 Browse through this example state machine to see how Step Functions controls AWS Batch and Amazon SNS by connecting to the Amazon Resource Name \(ARN\) in the `Resource` field, and by passing `Parameters` to the service API\.
 
-For more information about how AWS Step Functions can control other AWS services, see [AWS Service Integrations](concepts-service-integrations.md)\.
+For more information about how AWS Step Functions can control other AWS services, see [Service Integrations with AWS Step Functions ](concepts-service-integrations.md)\.
 
 ```
 {

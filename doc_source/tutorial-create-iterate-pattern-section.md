@@ -2,9 +2,9 @@
 
 In this tutorial, you implement a design pattern that uses a state machine and an AWS Lambda function to iterate a loop a specific number of times\. 
 
-Use this design pattern any time you need to keep track of the number of loops in a state machine\. This implementation can help you break up large tasks or long\-running executions into smaller chunks, or to end an execution after a specific number of events\. You can use a similar implementation to periodically end and restart a long\-running execution to avoid exceeding service limits for AWS Step Functions, AWS Lambda, or other AWS services\.
+Use this design pattern any time you need to keep track of the number of loops in a state machine\. This implementation can help you break up large tasks or long\-running executions into smaller chunks, or to end an execution after a specific number of events\. You can use a similar implementation to periodically end and restart a long\-running execution to avoid exceeding service quotas for AWS Step Functions, AWS Lambda, or other AWS services\.
 
-Before you begin, go through the [Creating a Lambda State Machine](tutorial-creating-lambda-state-machine.md) tutorial to ensure you have created the necessary IAM role, and are familiar with using Lambda and Step Functions together\.
+Before you begin, go through the [Creating a Step Functions State Machine That Uses Lambda](tutorial-creating-lambda-state-machine.md) tutorial to ensure you have created the necessary IAM role, and are familiar with using Lambda and Step Functions together\.
 
 **Topics**
 + [Step 1: Create a Lambda Function to Iterate a Count](#create-iterate-pattern-step-1)
@@ -28,17 +28,17 @@ Your state machine then implements a `Choice` state that executes some applicati
 
    1. For **Function name**, enter `Iterator`\.
 
-   1. For **Runtime**, choose **Node\.js 6\.10**\.
+   1. For **Runtime**, choose **Node\.js 12\.x**\.
 
    1. For **Role**, select **Use an existing role**\.
 
-   1. For **Existing role**, choose the Lambda role that you created in the [Creating a Lambda State Machine](tutorial-creating-lambda-state-machine.md) tutorial\.
+   1. For **Existing role**, choose the Lambda role that you created in the [Creating a Step Functions State Machine That Uses Lambda](tutorial-creating-lambda-state-machine.md) tutorial\.
 **Note**  
 If the IAM role that you created doesn't appear in the list, the role might still need a few minutes to propagate to Lambda\.
 
    1. Choose **Create function**\.
 
-      When your Lambda function is created, make a note of its Amazon Resource Name \(ARN\) in the upper\-right corner of the page\. For example:
+      When your Lambda function is created, make a note of its Amazon Resource Name \(ARN\) in the upper\-right corner of the page, as shown\.
 
       ```
       arn:aws:lambda:us-east-1:123456789012:function:Iterator
@@ -109,13 +109,15 @@ If you set `index` to `9` for this test, the `index` increments to `10`, and `co
 
 ## Step 3: Create a State Machine<a name="create-iterate-pattern-step-3"></a>
 
-### To create the state machine<a name="create-iterate-pattern-create-state-machine"></a>
+
+
+### <a name="create-iterate-pattern-create-state-machine"></a>
 
 1. Sign in to the [Step Functions console](https://console.aws.amazon.com/states/home), and then choose **Create a state machine**\.
 **Important**  
 Ensure that your state machine is under the same AWS account and Region as the Lambda function you created earlier\.
 
-1. On the **Create a state machine** page, choose **Author with code snippets**\. For **Give a name to your state machine**, enter `IterateCount`\.
+1. On the **Define state machine** page, choose **Author with code snippets**\. For **Type**, choose **Standard**\. For **Name**, enter `IterateCount`\.
 **Note**  
 State machine, execution, and activity names must be 1–80 characters in length, must be unique for your account and AWS Region, and must not contain any of the following:  
 Whitespace
@@ -252,7 +254,7 @@ If you delete the IAM role that Step Functions creates, Step Functions can't rec
 
 After you create your state machine, you can start an execution\.
 
-### To start a new execution<a name="create-iterate-pattern-start-execution"></a>
+### <a name="create-iterate-pattern-start-execution"></a>
 
 1. On the **IterateCount** page, choose **New execution**\.
 

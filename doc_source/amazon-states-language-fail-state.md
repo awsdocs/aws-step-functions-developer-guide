@@ -12,7 +12,7 @@ Provides an error name that can be used for error handling \(`Retry/Catch`\), op
 
 Because `Fail` states always exit the state machine, they have no `Next` field and don't require an `End` field\.
 
-For example:
+The following is an example\.
 
 ```
 "FailState": {

@@ -1,0 +1,5 @@
+# Amazon CloudWatch Logs resource policy size restrictions<a name="bp-cwl"></a>
+
+CloudWatch Logs resource policies are limited to 5120 characters\. When CloudWatch Logs detects that a policy approaches this size limit, it automatically enables log groups that start with `/aws/vendedlogs/`\.
+
+When you create a state machine with logging enabled, Step Functions must update your CloudWatch Logs resource policy with the log group you specify\. To avoid reaching the CloudWatch Logs resource policy size limit, prefix your CloudWatch Logs log group names with `/aws/vendedlogs/`\. When you create a log group in the Step Functions console, the log group names are prefixed with `/aws/vendedlogs/states`\. For more information, see [Enabling Logging from Certain AWS Services](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AWS-logs-and-resource-policy.html)\. 

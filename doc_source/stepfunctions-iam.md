@@ -19,7 +19,7 @@ For a state machine that calls `StartExecution` for a single nested workflow exe
 }
 ```
 
-For more information, see:
+For more information, see the following:
 + [Service Integrations](concepts-service-integrations.md)
 + [Pass Parameters to a Service API](connect-parameters.md)
 + [AWS Step Functions](connect-stepfunctions.md)
@@ -85,4 +85,4 @@ For more information, see:
 
 ------
 
-For more information on nested workflow executions, see: [Start Workflow Executions From a Task State](concepts-nested-workflows.md)\.
+For more information about nested workflow executions, see [Start Workflow Executions from a Task State](concepts-nested-workflows.md)\.

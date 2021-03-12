@@ -1,13 +1,13 @@
 # Call Amazon SNS with Step Functions<a name="connect-sns"></a>
 
-Step Functions can control certain AWS services directly from the Amazon States Language\. For more information, see:
+Step Functions can control certain AWS services directly from the Amazon States Language\. For more information, see the following:
 + [Service Integrations](concepts-service-integrations.md)
 + [Pass Parameters to a Service API](connect-parameters.md)
 
-Supported APIs:
+Supported Amazon SNS APIs:
 
 **Note**  
-There is a limit on the maximum input or result data size for a task in Step Functions\. This limits you to 32,768 characters of data when you send to, or receive data from, another service\. See [Limits Related to State Machine Executions](limits.md#service-limits-state-machine-executions)\.
+There is a quota for the maximum input or result data size for a task in Step Functions\. This restricts you to 262,144 bytes of data as a UTF\-8 encoded string when you send to, or receive data from, another service\. See [Quotas Related to State Machine Executions](limits.md#service-limits-state-machine-executions)\.
 + [https://docs.aws.amazon.com/sns/latest/api/API_Publish.html](https://docs.aws.amazon.com/sns/latest/api/API_Publish.html)
   + [Request syntax](https://docs.aws.amazon.com/sns/latest/api/API_Publish.html#API_Publish_Example_1_Request)
   + Supported Parameters
@@ -20,7 +20,7 @@ There is a limit on the maximum input or result data size for a task in Step Fun
     + [https://docs.aws.amazon.com/sns/latest/api/API_Publish.html#API_Publish_RequestParameters](https://docs.aws.amazon.com/sns/latest/api/API_Publish.html#API_Publish_RequestParameters)
   + [Response syntax](https://docs.aws.amazon.com/sns/latest/api/API_Publish.html#API_Publish_Example_1_Response)
 
-The following includes a `Task` state that publishes an Amazon SNS topic\.
+The following includes a `Task` state that publishes to an Amazon Simple Notification Service \(Amazon SNS\) topic\.
 
 ```
 {
@@ -49,7 +49,7 @@ The following includes a `Task` state that publishes an Amazon SNS topic\.
 }
 ```
 
-The following includes a `Task` state that publishes an Amazon SNS topic, and then waits for the task token to be returned\. See [Wait for a Callback with the Task Token](connect-to-resource.md#connect-wait-token)\.
+The following includes a `Task` state that publishes to an Amazon SNS topic, and then waits for the task token to be returned\. See [Wait for a Callback with the Task Token](connect-to-resource.md#connect-wait-token)\.
 
 ```
 {  

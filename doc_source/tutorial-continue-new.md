@@ -1,8 +1,8 @@
-# Continue as a New Execution<a name="tutorial-continue-new"></a>
+# Continuing as a New Execution<a name="tutorial-continue-new"></a>
 
 This tutorial shows you how to create a state machine with a Lambda function that can start a new execution, continuing your ongoing work in that new execution\.
 
-AWS Step Functions is designed to run workflows that have a finite duration and number of steps\. Executions are limited to a duration of one year, and a maximum of 25,000 events \(see [Limits](limits.md)\)\. 
+AWS Step Functions is designed to run workflows that have a finite duration and number of steps\. Executions have a maximum duration of one year, and a maximum of 25,000 events \(see [Quotas for Standard Workflows](limits.md)\)\. 
 
 However, you can create a state machine that uses an AWS Lambda function to start a new execution, before allowing the current execution to terminate\. This enables you to have a state machine that can break large jobs into smaller workflows, or to have a state machine that runs indefinitely\.
 
@@ -15,16 +15,16 @@ The state machine you'll create implements the following states\.
 
 | State | Purpose | 
 | --- | --- | 
-| ConfigureCount |  A `[Pass](amazon-states-language-pass-state.md)` state that configures the `count`, `index`, and `step` values that the `Iterator` Lambda function uses to step through iterations of work\.  | 
-|  `Iterator`  |  A `[Task](amazon-states-language-task-state.md)` state that references the `Iterator` Lambda function\.  | 
-| IsCountReached | A [Choice](amazon-states-language-choice-state.md) state that uses a Boolean value from the Iterator function to decide if the state machine should continue the example work, or move to the ShouldRestart choice state\. | 
+| ConfigureCount |  A `Pass` state that configures the `count`, `index`, and `step` values that the `Iterator` Lambda function uses to step through iterations of work\.  | 
+|  `Iterator`  |  A `Task` state that references the `Iterator` Lambda function\.  | 
+| IsCountReached | A Choice state that uses a Boolean value from the Iterator function to decide if the state machine should continue the example work, or move to the ShouldRestart choice state\. | 
 | ExampleWork | In this example, ExampleWork is a Pass state that represents the Task state that would perform work in an actual implementation\. | 
-| ShouldRestart | A [Choice](amazon-states-language-choice-state.md) state that uses the executionCount value to decide if it should end one execution and start another, or simply end\.  | 
-| Restart | A [Task](amazon-states-language-task-state.md) state that uses a Lambda function to start a new execution of your state machine\. Like the Iterator function, this function also decrements a count\. It passes that value to the input of the new execution\.  | 
+| ShouldRestart | A Choice state that uses the executionCount value to decide if it should end one execution and start another, or simply end\.  | 
+| Restart | A Task state that uses a Lambda function to start a new execution of your state machine\. Like the Iterator function, this function also decrements a count\. It passes that value to the input of the new execution\.  | 
 
 ## Prerequisites<a name="tutorial-continue-new-prereq"></a>
 
-Before you begin, go through the [Creating a Lambda State Machine](tutorial-creating-lambda-state-machine.md) tutorial to ensure you have created an initial IAM role, and that you are familiar with using Lambda and Step Functions together\.
+Before you begin, go through the [Creating a Step Functions State Machine That Uses Lambda](tutorial-creating-lambda-state-machine.md) tutorial to ensure you have created an initial IAM role, and that you are familiar with using Lambda and Step Functions together\.
 
 **Topics**
 + [Prerequisites](#tutorial-continue-new-prereq)
@@ -45,7 +45,7 @@ This section and the [Iterating a Loop Using Lambda](tutorial-create-iterate-pat
 
 Your state machine then implements a `Choice` state that executes some application logic if `continue` is `true`, or moves on to `ShouldRestart` if `continue` is `false`\.
 
-### To create the Iterate Lambda function<a name="tutorial-continue-new-create-lambda-function"></a>
+### Create the Iterate Lambda function<a name="tutorial-continue-new-create-lambda-function"></a>
 
 1. Open the [Lambda console](https://console.aws.amazon.com/lambda/home), and then choose **Create function**\.
 
@@ -59,7 +59,7 @@ Your state machine then implements a `Choice` state that executes some applicati
 
    1. For **Role**, select **Choose an existing role**\.
 
-   1. For **Existing role**, choose the Lambda role that you created in the [Creating a Lambda State Machine](tutorial-creating-lambda-state-machine.md) tutorial\.
+   1. For **Existing role**, choose the Lambda role that you created in the [Creating a Step Functions State Machine That Uses Lambda](tutorial-creating-lambda-state-machine.md) tutorial\.
 **Note**  
 If the IAM role that you created doesn't appear in the list, the role might still need a few minutes to propagate to Lambda\.
 
@@ -190,7 +190,7 @@ If you set `index` to `9` for this test, the `index` increments to `10`, and `co
 Now that you've created your two Lambda functions, create a state machine\. In this state machine, the `ShouldRestart` and `Restart` states are how you break your work across multiple executions\.
 
 **Example ShouldRestart Choice state**  
-This excerpt of your state machine shows the `ShouldRestart` `[Choice](amazon-states-language-choice-state.md)` state\. This state determines whether you should restart the execution\.  
+This excerpt of your state machine shows the `ShouldRestart` `Choice` state\. This state determines whether you should restart the execution\.  
 
 ```
 "ShouldRestart": {
@@ -207,7 +207,7 @@ This excerpt of your state machine shows the `ShouldRestart` `[Choice](amazon-st
 The `$.restart.executionCount` value is included in the input of the initial execution\. It's decremented by one each time the `Restart` function is called, and then placed into the input for each subsequent execution\.
 
 **Example Restart Task state**  
-This excerpt of your state machine shows the `Restart` `[Task](amazon-states-language-task-state.md)` state\. This state uses the Lambda function you created earlier to restart the execution, and to decrement the count to track the remaining number of executions to start\.  
+This excerpt of your state machine shows the `Restart` `Task` state\. This state uses the Lambda function you created earlier to restart the execution, and to decrement the count to track the remaining number of executions to start\.  
 
 ```
 "Restart": {
@@ -219,7 +219,7 @@ This excerpt of your state machine shows the `Restart` `[Task](amazon-states-lan
 
 1. On the Step Functions console, choose **Create a state machine**\.
 
-1. Select **Author with code snippets**, and enter `ContinueAsNew` as your state machine name\.
+1. Select **Author with code snippets**\. For **Type**, choose **Standard**, and enter `ContinueAsNew` as your state machine name\.
 
 1. Paste the following into the `Code` pane\.  
 **Example ContinueAsNew state machine**  

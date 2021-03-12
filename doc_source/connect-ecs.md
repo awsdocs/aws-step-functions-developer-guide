@@ -1,10 +1,10 @@
 # Manage Amazon ECS or Fargate Tasks with Step Functions<a name="connect-ecs"></a>
 
-Step Functions can control certain AWS services directly from the Amazon States Language\. For more information, see:
+Step Functions can control certain AWS services directly from the Amazon States Language\. For more information, see the following:
 + [Service Integrations](concepts-service-integrations.md)
 + [Pass Parameters to a Service API](connect-parameters.md)
 
-Supported Amazon ECS APIs and syntax:
+Supported Amazon ECS/Fargate APIs and syntax:
 
 **Note**  
 Parameters in Step Functions are expressed in `PascalCase`, even when the native service API is `camelCase`\. 
@@ -19,6 +19,7 @@ Parameters in Step Functions are expressed in `PascalCase`, even when the native
     + [https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html#ECS-RunTask-request-placementConstraints](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html#ECS-RunTask-request-placementConstraints)
     + [https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html#ECS-RunTask-request-placementStrategy](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html#ECS-RunTask-request-placementStrategy)
     + [https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html#ECS-RunTask-request-platformVersion](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html#ECS-RunTask-request-platformVersion)
+    + [https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html#ECS-RunTask-request-propagateTags](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html#ECS-RunTask-request-propagateTags)
     + [https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html#ECS-RunTask-request-taskDefinition](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html#ECS-RunTask-request-taskDefinition)
   + [Response syntax](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html#API_RunTask_ResponseSyntax)
 
@@ -27,11 +28,11 @@ For the `Overrides` parameter, Step Functions does not support `executionRoleArn
 
 ## Passing Data to an Amazon ECS Task<a name="connect-ecs-pass-to"></a>
 
-Step Functions can control certain AWS services directly from the Amazon States Language\. For more information, see:
+Step Functions can control certain AWS services directly from the Amazon States Language\. For more information, see the following:
 + [Service Integrations](concepts-service-integrations.md)
 + [Pass Parameters to a Service API](connect-parameters.md)
 
-You can use `overrides` to override the default command for a container, and pass input to your Amazon ECS tasks\. See [https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ContainerOverride.html](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ContainerOverride.html)\. In the example, we have used JsonPath to pass values to the Task from the input to the Task state\.
+You can use `overrides` to override the default command for a container, and pass input to your Amazon ECS tasks\. See [https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ContainerOverride.html](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ContainerOverride.html)\. In the example, we have used JsonPath to pass values to the `Task` from the input to the `Task` state\.
 
 The following includes a `Task` state that runs an Amazon ECS task and waits for it to complete\.
 
@@ -62,7 +63,7 @@ The following includes a `Task` state that runs an Amazon ECS task and waits for
 
 The `"Command.$": "$.commands"` line in `ContainerOverrides` passes the commands from the state input to the container\.
 
-For the previous example, if the input to the execution is the following\.
+For the previous example, each of the commands will be passed as a container override if the input to the execution is the following\.
 
 ```
 {

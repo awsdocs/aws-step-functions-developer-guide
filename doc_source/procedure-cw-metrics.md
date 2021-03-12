@@ -10,7 +10,7 @@ Monitoring is an important part of maintaining the reliability, availability, an
 
 The next step is to establish a baseline for normal Step Functions performance in your environment\. To do this, measure performance at various times and under different load conditions\. As you monitor Step Functions, consider storing historical monitoring data\. Such data can give you a baseline to compare against current performance data, to identify normal performance patterns and performance anomalies, and to devise ways to address issues\.
 
-For example, with Step Functions, you can monitor how many activities or Lambda tasks fail due to a heartbeat timeout\. When performance falls outside your established baseline, you might have to change your heartbeat interval\.
+For example, with Step Functions, you can monitor how many activities or AWS Lambda tasks fail due to a heartbeat timeout\. When performance falls outside your established baseline, you might have to change your heartbeat interval\.
 
 To establish a baseline you should, at a minimum, monitor the following metrics:
 +  `ActivitiesStarted` 
@@ -56,7 +56,7 @@ The `AWS/States` namespace includes the following metrics for Step Functions exe
 | Metric | Description | 
 | --- | --- | 
 | ExecutionTime | The interval, in milliseconds, between the time the execution starts and the time it closes\. | 
-| ExecutionThrottled | The number of StateEntered events and retries that have been throttled\. This is related to StateTransition throttling\. For more information, see [Limits Related to State Throttling](https://docs.aws.amazon.com/step-functions/latest/dg/limits.html#service-limits-api-state-throttling) in the AWS Step Functions Developer Guide\. | 
+| ExecutionThrottled | The number of StateEntered events and retries that have been throttled\. This is related to StateTransition throttling\. For more information, see [Quotas Related to State Throttling](https://docs.aws.amazon.com/step-functions/latest/dg/limits.html#service-limits-api-state-throttling) in the AWS Step Functions Developer Guide\. | 
 | ExecutionsAborted | The number of aborted or terminated executions\. | 
 | ExecutionsFailed | The number of failed executions\. | 
 | ExecutionsStarted | The number of started executions\. | 
@@ -119,7 +119,7 @@ The `AWS/States` namespace includes the following metrics for Step Functions Lam
 
 ## Service Integration Metrics<a name="cloudwatch-step-functions-service-integration-metrics"></a>
 
-The `AWS/States` namespace includes the following metrics for Step Functions service integrations\. For more information see [AWS Service Integrations](concepts-service-integrations.md)\. 
+The `AWS/States` namespace includes the following metrics for Step Functions service integrations\. For more information, see [Service Integrations with AWS Step Functions ](concepts-service-integrations.md)\. 
 
 
 |  Metric  |  Description  | 

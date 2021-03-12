@@ -1,8 +1,8 @@
-# Creating a Lambda State Machine<a name="tutorial-creating-lambda-state-machine"></a>
+# Creating a Step Functions State Machine That Uses Lambda<a name="tutorial-creating-lambda-state-machine"></a>
 
 In this tutorial, you create an AWS Step Functions state machine that uses an AWS Lambda function to implement a `Task` state\. A `Task` state performs a single unit of work\.
 
-Lambda is well suited for implementing `Task` states, because Lambda functions are *stateless* \(they have a predictable input\-output relationship\), easy to write, and don't require deploying code to a server instance\. You can write code in the AWS Management Console or your favorite editor, and AWS handles the details of providing a computing environment for your function and running it\.
+Lambda is well suited for implementing `Task` states, because Lambda functions are *stateless* \(they have a predictable input\-output relationship\), easy to write, and don't require deploying code to a server instance\. You can write code in the AWS Management Console or your favorite editor\. AWS handles the details of providing a computing environment for your function and running it\.
 
 **Topics**
 + [Step 1: Create an IAM Role for Lambda](#create-lambda-state-machine-step-1)
@@ -58,7 +58,7 @@ Ensure that your Lambda function is under the same AWS account and AWS Region as
 
    1. For **Function name**, enter `HelloFunction`\.
 
-   1. For **Runtime**, choose **Node\.js 6\.10**\.
+   1. For **Runtime**, choose **Node\.js 12\.x**\.
 
    1. For **Role**, select **Choose an existing role**\.
 
@@ -68,7 +68,7 @@ If the IAM role that you created doesn't appear in the list, the role might stil
 
    1. Choose **Create function**\.
 
-      When your Lambda function is created, note its Amazon Resource Name \(ARN\) in the upper\-right corner of the page\. For example:
+      When your Lambda function is created, make a note of its Amazon Resource Name \(ARN\) in the upper\-right corner of the page, as shown in the example\.
 
       ```
       arn:aws:lambda:us-east-1:123456789012:function:HelloFunction
@@ -118,7 +118,7 @@ Use the [Step Functions console](https://console.aws.amazon.com/states/home?regi
 
 1. Open the [Step Functions console](https://console.aws.amazon.com/states/home) and choose **Create a state machine**\.
 
-1. On the **Define state machine** page, choose **Author with code snippets**\. Enter a **Name for your state machine**, for example, `LambdaStateMachine`\.
+1. On the **Define state machine** page, choose **Author with code snippets**\. For **Type**, choose **Standard**\. Enter a **Name for your state machine**, for example, `LambdaStateMachine`\.
 **Note**  
 State machine, execution, and activity names must be 1–80 characters in length, must be unique for your account and AWS Region, and must not contain any of the following:  
 Whitespace
@@ -128,7 +128,7 @@ Special characters \(`: ; , \ | ^ ~ $ # % & ` "`\)
 Control characters \(`\\u0000` \- `\\u001f` or `\\u007f` \- `\\u009f`\)\.
 Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with Amazon CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
 
-1. In the **State machine definition** pane, add the following state machine definition using the ARN of [the Lambda function that you created earlier](#create-lambda-state-machine-create-lambda-function), for example:
+1. In the **State machine definition** pane, add the following state machine definition using the ARN of [the Lambda function that you created earlier](#create-lambda-state-machine-create-lambda-function), as shown in the following example\.
 
    ```
    {
@@ -146,9 +146,9 @@ Step Functions allows you to create state machine, execution, and activity names
 
    This is a description of your state machine using the Amazon States Language\. It defines a single `Task` state named `HelloWorld`\. For more information, see [State Machine Structure](amazon-states-language-state-machine-structure.md)\.
 **Note**  
-You can also set up a `Retry` for `Task` states\. As a best practice, ensure production code can handle Lambda service exceptions \(`Lambda.ServiceException` and `Lambda.SdkclientException`\)\. For more information, see:   
-[Handle Lambda Service Exceptions](bp-lambda-serviceexception.md)\. 
-[Retrying after an Error](concepts-error-handling.md#error-handling-retrying-after-an-error)\. 
+You can also set up a `Retry` for `Task` states\. As a best practice, ensure production code can handle Lambda service exceptions \(`Lambda.ServiceException` and `Lambda.SdkClientException`\)\. For more information, see the following:   
+[Handle Lambda service exceptions](bp-lambda-serviceexception.md) 
+[Retrying after an error](concepts-error-handling.md#error-handling-retrying-after-an-error) 
 
    Choose **Next**\.
 
@@ -158,7 +158,7 @@ You can also set up a `Retry` for `Task` states\. As a best practice, ensure pro
 **Note**  
 If you delete the IAM role that Step Functions creates, Step Functions can't recreate it later\. Similarly, if you modify the role \(for example, by removing Step Functions from the principals in the IAM policy\), Step Functions can't restore its original settings later\. 
 
-1. Select **Next**\.
+1. Choose **Next**\.
 
 ## Step 5: Start a New Execution<a name="create-lambda-state-machine-step-5"></a>
 

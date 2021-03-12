@@ -1,8 +1,12 @@
-# IAM Policy for AWS Lambda<a name="lambda-iam"></a>
+# AWS Lambda<a name="lambda-iam"></a>
 
-AWS Step Functions generates an IAM policy based on your state machine definition\. For a state machine with two Lambda task states that call `function1` and `function2`, a policy with `lambda:Invoke` permissions for the two functions must be used\. 
+These example templates show how AWS Step Functions generates IAM policies based on the resources in your state machine definition\. For more information, see:
++ [IAM Policies for Integrated Services](service-integration-iam-templates.md)
++ [Service Integration Patterns](connect-to-resource.md)
 
-For example:
+AWS Step Functions generates an IAM policy based on your state machine definition\. For a state machine with two AWS Lambda task states that call `function1` and `function2`, a policy with `lambda:Invoke` permissions for the two functions must be used\. 
+
+This is shown in the following example\.
 
 ```
 {

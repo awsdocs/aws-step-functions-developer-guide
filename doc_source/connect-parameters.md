@@ -10,28 +10,28 @@ For example, to set the `RetryStrategy` parameter for the `SubmitJob` API for AW
 
 ```
 "RetryStrategy": {
-          "attempts": 5
-        }
+  "attempts": 5
+}
 ```
 
-You can also pass multiple parameters with static JSON\. As a more complete example, the following are the `"Resource"` and `"Parameters"` fields of the specification of a task that publishes an Amazon SNS topic\.
+You can also pass multiple parameters with static JSON\. As a more complete example, the following are the `"Resource"` and `"Parameters"` fields of the specification of a task that publishes to an Amazon SNS topic\.
 
 ```
 "Resource": "arn:aws:states:::sns:publish",
-     "Parameters": {
-       "TopicArn": "arn:aws:sns:us-east-1:123456789012:myTopic",
-       "Message": "test message",
-       "MessageAttributes": {
-         "my attribute no 1": {
-           "DataType": "String",
-           "StringValue": "value of my attribute no 1"
-         },
-         "my attribute no 2": {
-           "DataType": "String",
-           "StringValue": "value of my attribute no 2"
-         }
+  "Parameters": {
+     "TopicArn": "arn:aws:sns:us-east-1:123456789012:myTopic",
+     "Message": "test message",
+     "MessageAttributes": {
+       "my attribute no 1": {
+         "DataType": "String",
+         "StringValue": "value of my attribute no 1"
+       },
+       "my attribute no 2": {
+         "DataType": "String",
+         "StringValue": "value of my attribute no 2"
        }
-     },
+     }
+  },
 ```
 
 ## Pass State Input as Parameters Using Paths<a name="connect-parameters-path"></a>
@@ -40,7 +40,7 @@ You can pass portions of the state input into parameters by using [paths](amazon
 
 To specify that a parameter use a path to reference a JSON node in the input, end the parameter name with `.$`\. For example, if you have text in your state input in a node named `message`, you could pass that to a parameter by referencing the input JSON with a path\. 
 
-Using the following state input:
+Using the following state input\.
 
 ```
 {
@@ -53,21 +53,23 @@ Using the following state input:
 }
 ```
 
-You could pass the message `foo` as a parameter using: the following\.
+You could pass the message `foo` as a parameter using the following\.
 
 ```
 "Parameters": {"Message.$": "$.input.message"},
 ```
 
-For more information about using parameters in Step Functions, see:
+For more information about using parameters in Step Functions, see the following:
 + [Input and Output Processing](concepts-input-output-filtering.md)
-+ [InputPath and Parameters](input-output-inputpath-params.md)
++ [InputPath, Parameters and ResultSelector](input-output-inputpath-params.md)
 
 ## Pass Context Object Nodes as Parameters<a name="connect-parameters-context"></a>
 
 In addition to static content, and nodes from the state input, you can pass nodes from the context object as parameters\. The context object is dynamic JSON data that exists during a state machine execution\. It includes information about your state machine and the current execution\. You can access the context object using a path in the `"Parameters"` field of a state definition\.
 
-For more information about the context object and how to access that data from a `"Parameters"` field, see:
-+ [The Context Object](input-output-contextobject.md)
+
+
+For more information about the context object and how to access that data from a `"Parameters"` field, see the following:
++ [Context Object](input-output-contextobject.md)
 + [Accessing the Context Object](input-output-contextobject.md#contextobject-access)
 + [Get a Token from the Context Object](connect-to-resource.md#wait-token-contextobject)

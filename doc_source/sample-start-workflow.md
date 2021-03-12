@@ -1,8 +1,8 @@
-# Start a Workflow Within a Workflow \(AWS Step Functions, AWS Lambda\)<a name="sample-start-workflow"></a>
+# Start a Workflow within a Workflow \(Step Functions, Lambda\)<a name="sample-start-workflow"></a>
 
-This sample project demonstrates how to use a state machine to launch other state machine executions\. See [Start Workflow Executions From a Task State](concepts-nested-workflows.md)\.
+This sample project demonstrates how to use an AWS Step Functions state machine to launch other state machine executions\. See [Start Workflow Executions from a Task State](concepts-nested-workflows.md)\.
 
-**To create the Start a Workflow Within a Workflow state machine and provision all resources**
+## Create the State Machine and Provision Resources<a name="sample-start-workflow-create"></a>
 
 1. Open the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/) and choose **Create a state machine**\.
 
@@ -39,7 +39,7 @@ The state machine in this sample project integrates another state machine and AW
 
 Browse through this example state machine to see how Step Functions calls the `[StartExecution](https://docs.aws.amazon.com/step-functions/latest/apireference/API_StartExecution.html)` API action for the other state machine\. It launches two instances of the other state machine in parallel: one using the [Run a Job](connect-to-resource.md#connect-sync) pattern and one using the [Wait for a Callback with the Task Token](connect-to-resource.md#connect-wait-token) pattern\.
 
-For more information about how AWS Step Functions can control other AWS services, see [AWS Service Integrations](concepts-service-integrations.md)\.
+For more information about how AWS Step Functions can control other AWS services, see [Service Integrations with AWS Step Functions ](concepts-service-integrations.md)\.
 
 ```
 {

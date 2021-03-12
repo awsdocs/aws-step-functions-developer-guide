@@ -2,12 +2,6 @@
 
 Activities are an AWS Step Functions feature that enables you to have a task in your state machine where the work is performed by a *worker* that can be hosted on Amazon Elastic Compute Cloud \(Amazon EC2\), Amazon Elastic Container Service \(Amazon ECS\), mobile devices—basically anywhere\.
 
-**Topics**
-+ [Overview](#activities-overview)
-+ [Waiting for an Activity Task to Complete](#activities-wait)
-+ [Next Steps](#activities-nextsteps)
-+ [Example Activity Worker in Ruby](example-ruby-activity-worker.md)
-
 ## Overview<a name="activities-overview"></a>
 
 In AWS Step Functions, activities are a way to associate code running somewhere \(known as an *activity worker*\) with a specific task in a state machine\. You can create an activity using the Step Functions console, or by calling `[CreateActivity](https://docs.aws.amazon.com/step-functions/latest/apireference/API_CreateActivity.html)`\. This provides an Amazon Resource Name \(ARN\) for your task state\. Use this ARN to poll the task state for work in your activity worker\. 
@@ -30,7 +24,7 @@ The following are the Step Functions APIs that are related to activities:
 + `[SendTaskSuccess](https://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskSuccess.html)`
 
 **Note**  
-Polling for activity tasks with `GetActivityTask` can cause latency in some implementations\. See [Avoid Latency When Polling for Activity Tasks](bp-activity-pollers.md)\.
+Polling for activity tasks with `GetActivityTask` can cause latency in some implementations\. See [Avoid latency when polling for activity tasks](bp-activity-pollers.md)\.
 
 ## Waiting for an Activity Task to Complete<a name="activities-wait"></a>
 
@@ -44,7 +38,7 @@ For example, if you need a workflow that waits for the outcome of a long process
 
 1. Implement an activity worker that polls for work by using `[GetActivityTask](https://docs.aws.amazon.com/step-functions/latest/apireference/API_GetActivityTask.html)`, referencing that activity ARN\. 
 
-1. Use `[SendTaskHeartbeat](https://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskHeartbeat.html)` periodically within the time you set in `[HeartbeatSeconds](amazon-states-language-task-state.md)` in your state machine task definition to keep the task from timing out\.
+1. Use `[SendTaskHeartbeat](https://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskHeartbeat.html)` periodically within the time you set in `HeartbeatSeconds` in your state machine task definition to keep the task from timing out\.
 
 1. Start an execution of your state machine\.
 
@@ -54,4 +48,6 @@ The execution pauses at the activity task state and waits for your activity work
 
 ## Next Steps<a name="activities-nextsteps"></a>
 
-For a detailed look at creating a state machine that uses an activity worker, see [Creating an Activity State Machine](tutorial-creating-activity-state-machine.md)\.
+For a more detailed look at creating state machines that use an activity workers, see:
++ [Creating an Activity State Machine Using Step Functions](tutorial-creating-activity-state-machine.md)
++ [Example Activity Worker in Ruby](example-ruby-activity-worker.md)

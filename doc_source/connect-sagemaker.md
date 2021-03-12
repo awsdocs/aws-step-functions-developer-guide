@@ -1,10 +1,73 @@
-# Manage Amazon SageMaker Training Jobs with Step Functions<a name="connect-sagemaker"></a>
+# Manage SageMaker with Step Functions<a name="connect-sagemaker"></a>
 
-Step Functions can control certain AWS services directly from the Amazon States Language\. For more information, see:
+Step Functions can control certain AWS services directly from the Amazon States Language\. For more information, see the following:
 + [Service Integrations](concepts-service-integrations.md)
 + [Pass Parameters to a Service API](connect-parameters.md)
 
-Supported Amazon SageMaker APIs and syntax:
+Supported SageMaker APIs and syntax:
++ [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateEndpoint.html](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateEndpoint.html)
+  + [Request syntax](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateEndpoint.html#API_CreateEndpoint_RequestSyntax)
+  + Supported parameters:
+    + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateEndpoint.html#API_CreateEndpoint_RequestParameters](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateEndpoint.html#API_CreateEndpoint_RequestParameters)
+    + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateEndpoint.html#API_CreateEndpoint_RequestParameters](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateEndpoint.html#API_CreateEndpoint_RequestParameters)
+    + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateEndpoint.html#API_CreateEndpoint_RequestParameters](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateEndpoint.html#API_CreateEndpoint_RequestParameters)
+  + [Response syntax](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateEndpoint.html#API_CreateEndpoint_ResponseSyntax)
++ [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateEndpointConfig.html](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateEndpointConfig.html)
+  + [Request syntax](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateEndpointConfig.html#API_CreateEndpointConfig_RequestSyntax)
+  + Supported parameters:
+    + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateEndpointConfig.html#API_CreateEndpointConfig_RequestParameters](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateEndpointConfig.html#API_CreateEndpointConfig_RequestParameters)
+    + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateEndpointConfig.html#API_CreateEndpointConfig_RequestParameters](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateEndpointConfig.html#API_CreateEndpointConfig_RequestParameters)
+    + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateEndpointConfig.html#API_CreateEndpointConfig_RequestParameters](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateEndpointConfig.html#API_CreateEndpointConfig_RequestParameters)
+    + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateEndpointConfig.html#API_CreateEndpointConfig_RequestParameters](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateEndpointConfig.html#API_CreateEndpointConfig_RequestParameters)
+  + [Response syntax](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateEndpointConfig.html#API_CreateEndpointConfig_ResponseSyntax)
++ [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateHyperParameterTuningJob.html](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateHyperParameterTuningJob.html)
+  + [Request syntax](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateHyperParameterTuningJob.html#API_CreateHyperParameterTuningJob_RequestSyntax)
+  + Supported parameters:
+    + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateHyperParameterTuningJob.html#API_CreateHyperParameterTuningJob_RequestParameters](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateHyperParameterTuningJob.html#API_CreateHyperParameterTuningJob_RequestParameters)
+    + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateHyperParameterTuningJob.html#API_CreateHyperParameterTuningJob_RequestParameters](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateHyperParameterTuningJob.html#API_CreateHyperParameterTuningJob_RequestParameters)
+    + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateHyperParameterTuningJob.html#API_CreateHyperParameterTuningJob_RequestParameters](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateHyperParameterTuningJob.html#API_CreateHyperParameterTuningJob_RequestParameters)
+    + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateHyperParameterTuningJob.html#API_CreateHyperParameterTuningJob_RequestParameters](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateHyperParameterTuningJob.html#API_CreateHyperParameterTuningJob_RequestParameters)
+    + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateHyperParameterTuningJob.html#API_CreateHyperParameterTuningJob_RequestParameters](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateHyperParameterTuningJob.html#API_CreateHyperParameterTuningJob_RequestParameters)
+  + [Response syntax](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateHyperParameterTuningJob.html#API_CreateHyperParameterTuningJob_ResponseSyntax)
++ [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateLabelingJob.html](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateLabelingJob.html)
+  + [Request syntax](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateLabelingJob.html#API_CreateLabelingJob_RequestSyntax)
+  + Supported parameters:
+    + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateLabelingJob.html#API_CreateLabelingJob_RequestParameters](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateLabelingJob.html#API_CreateLabelingJob_RequestParameters)
+    + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateLabelingJob.html#API_CreateLabelingJob_RequestParameters](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateLabelingJob.html#API_CreateLabelingJob_RequestParameters)
+    + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateLabelingJob.html#API_CreateLabelingJob_RequestParameters](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateLabelingJob.html#API_CreateLabelingJob_RequestParameters)
+    + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateLabelingJob.html#API_CreateLabelingJob_RequestParameters](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateLabelingJob.html#API_CreateLabelingJob_RequestParameters)
+    + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateLabelingJob.html#API_CreateLabelingJob_RequestParameters](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateLabelingJob.html#API_CreateLabelingJob_RequestParameters)
+    + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateLabelingJob.html#API_CreateLabelingJob_RequestParameters](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateLabelingJob.html#API_CreateLabelingJob_RequestParameters)
+    + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateLabelingJob.html#API_CreateLabelingJob_RequestParameters](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateLabelingJob.html#API_CreateLabelingJob_RequestParameters)
+    + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateLabelingJob.html#API_CreateLabelingJob_RequestParameters](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateLabelingJob.html#API_CreateLabelingJob_RequestParameters)
+    + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateLabelingJob.html#API_CreateLabelingJob_RequestParameters](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateLabelingJob.html#API_CreateLabelingJob_RequestParameters)
+    + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateLabelingJob.html#API_CreateLabelingJob_RequestParameters](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateLabelingJob.html#API_CreateLabelingJob_RequestParameters)
+  + [Response syntax](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateLabelingJob.html#API_CreateLabelingJob_ResponseSyntax)
++ [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateModel.html](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateModel.html)
+  + [Request syntax](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateModel.html#API_CreateModel_RequestSyntax)
+  + Supported parameters:
+    + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateModel.html#API_CreateModel_RequestParameters](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateModel.html#API_CreateModel_RequestParameters)
+    + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateModel.html#API_CreateModel_RequestParameters](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateModel.html#API_CreateModel_RequestParameters)
+    + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateModel.html#API_CreateModel_RequestParameters](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateModel.html#API_CreateModel_RequestParameters)
+    + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateModel.html#API_CreateModel_RequestParameters](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateModel.html#API_CreateModel_RequestParameters)
+    + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateModel.html#API_CreateModel_RequestParameters](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateModel.html#API_CreateModel_RequestParameters)
+    + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateModel.html#API_CreateModel_RequestParameters](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateModel.html#API_CreateModel_RequestParameters)
+    + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateModel.html#API_CreateModel_RequestParameters](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateModel.html#API_CreateModel_RequestParameters)
++ [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateProcessingJob.html](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateProcessingJob.html)
+  + [Request syntax](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateProcessingJob.html#API_CreateProcessingJob_RequestSyntax)
+  + Supported parameters:
+    + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateProcessingJob.html#API_CreateProcessingJob_RequestParameters](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateProcessingJob.html#API_CreateProcessingJob_RequestParameters)
+    + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateProcessingJob.html#API_CreateProcessingJob_RequestParameters](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateProcessingJob.html#API_CreateProcessingJob_RequestParameters)
+    + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateProcessingJob.html#API_CreateProcessingJob_RequestParameters](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateProcessingJob.html#API_CreateProcessingJob_RequestParameters)
+    + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateProcessingJob.html#API_CreateProcessingJob_RequestParameters](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateProcessingJob.html#API_CreateProcessingJob_RequestParameters)
+    + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateProcessingJob.html#API_CreateProcessingJob_RequestParameters](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateProcessingJob.html#API_CreateProcessingJob_RequestParameters)
+    + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateProcessingJob.html#API_CreateProcessingJob_RequestParameters](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateProcessingJob.html#API_CreateProcessingJob_RequestParameters)
+    + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateProcessingJob.html#API_CreateProcessingJob_RequestParameters](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateProcessingJob.html#API_CreateProcessingJob_RequestParameters)
+    + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateProcessingJob.html#API_CreateProcessingJob_RequestParameters](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateProcessingJob.html#API_CreateProcessingJob_RequestParameters)
+    + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateProcessingJob.html#API_CreateProcessingJob_RequestParameters](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateProcessingJob.html#API_CreateProcessingJob_RequestParameters)
+    + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateProcessingJob.html#API_CreateProcessingJob_RequestParameters](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateProcessingJob.html#API_CreateProcessingJob_RequestParameters)
+    + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateProcessingJob.html#API_CreateProcessingJob_RequestParameters](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateProcessingJob.html#API_CreateProcessingJob_RequestParameters)
+  + [Response syntax](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateProcessingJob.html#API_CreateProcessingJob_ResponseSyntax)
 + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateTrainingJob.html](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateTrainingJob.html)
   + [Request syntax](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateTrainingJob.html#API_CreateTrainingJob_RequestSyntax)
   + Supported parameters:
@@ -20,6 +83,8 @@ Supported Amazon SageMaker APIs and syntax:
     + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateTrainingJob.html#API_CreateTrainingJob_RequestParameters](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateTrainingJob.html#API_CreateTrainingJob_RequestParameters)
   + [Response syntax](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateTrainingJob.html#API_CreateTrainingJob_ResponseSyntax)
 + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateTransformJob.html](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateTransformJob.html)
+**Note**  
+AWS Step Functions will not automatically create a policy for `CreateTransformJob`\. You must attach an inline policy to the created role\. For more information, see this example IAM policy: [`CreateTrainingJob`](sagemaker-iam.md#sagemaker-iam-createtrainingjob)\.
   + [Request syntax](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateTransformJob.html#API_CreateTransformJob_RequestSyntax)
   + Supported parameters:
     + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateTransformJob.html#API_CreateTransformJob_RequestParameters](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateTransformJob.html#API_CreateTransformJob_RequestParameters)
@@ -33,10 +98,14 @@ Supported Amazon SageMaker APIs and syntax:
     + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateTransformJob.html#API_CreateTransformJob_RequestParameters](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateTransformJob.html#API_CreateTransformJob_RequestParameters)
     + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateTransformJob.html#API_CreateTransformJob_RequestParameters](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateTransformJob.html#API_CreateTransformJob_RequestParameters)
   + [Response syntax](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateTransformJob.html#API_CreateTransformJob_ResponseSyntax)
-**Note**  
-When you create a state machine that integrates with Amazon SageMaker, AWS Step Functions will not automatically create a policy for `CreateTransformJob`\. You must attach an inline policy to the created role\. For more information, see this example IAM policy: [`CreateTrainingJob`](sagemaker-iam.md#sagemaker-iam-createtrainingjob)\.
++ [https://docs.aws.amazon.com/sagemaker/latest/dg/API_UpdateEndpoint.html](https://docs.aws.amazon.com/sagemaker/latest/dg/API_UpdateEndpoint.html)
+  + [Request syntax](https://docs.aws.amazon.com/sagemaker/latest/dg/API_UpdateEndpoint.html#API_UpdateEndpoint_RequestSyntax)
+  + Supported parameters:
+    + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_UpdateEndpoint.html#API_UpdateEndpoint_RequestParameters](https://docs.aws.amazon.com/sagemaker/latest/dg/API_UpdateEndpoint.html#API_UpdateEndpoint_RequestParameters)
+    + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_UpdateEndpoint.html#API_UpdateEndpoint_RequestParameters](https://docs.aws.amazon.com/sagemaker/latest/dg/API_UpdateEndpoint.html#API_UpdateEndpoint_RequestParameters)
+  + [Response syntax](https://docs.aws.amazon.com/sagemaker/latest/dg/API_UpdateEndpoint.html#API_UpdateEndpoint_ResponseSyntax)
 
-## Amazon SageMaker Transform Job Example<a name="sagemaker-example-transform"></a>
+## SageMaker Transform Job Example<a name="sagemaker-example-transform"></a>
 
 The following includes a `Task` state that creates an Amazon SageMaker transform job, specifying the Amazon S3 location for `DataSource` and `TransformOutput`\.
 
@@ -70,7 +139,7 @@ The following includes a `Task` state that creates an Amazon SageMaker transform
 },
 ```
 
-## Amazon SageMaker Training Job Example<a name="sagemaker-example-training"></a>
+## SageMaker Training Job Example<a name="sagemaker-example-training"></a>
 
 The following includes a `Task` state that creates an Amazon SageMaker training job\.
 
@@ -158,6 +227,142 @@ The following includes a `Task` state that creates an Amazon SageMaker training 
       ],
       "Next":"Delete Interim Data Job"
    }
+}
+```
+
+## SageMaker Labeling Job Example<a name="sagemaker-example-labeling"></a>
+
+The following includes a `Task` state that creates an Amazon SageMaker labeling job\.
+
+```
+{
+  "StartAt": "SageMaker CreaateLabelingJob",
+  "TimeoutSeconds": 3600,
+  "States": {
+    "SageMaker CreaateLabelingJob": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::sagemaker:createLabelingJob.sync",
+      "Parameters": {
+        "HumanTaskConfig": {
+          "AnnotationConsolidationConfig": {
+            "AnnotationConsolidationLambdaArn": "arn:aws:lambda:us-west-2:123456789012:function:ACS-TextMultiClass"
+          },
+          "NumberOfHumanWorkersPerDataObject": 1,
+          "PreHumanTaskLambdaArn": "arn:aws:lambda:us-west-2:123456789012:function:PRE-TextMultiClass",
+          "TaskDescription": "Classify the following text",
+          "TaskKeywords": [
+            "tc",
+            "Labeling"
+          ],
+          "TaskTimeLimitInSeconds": 300,
+          "TaskTitle": "Classify short bits of text",
+          "UiConfig": {
+            "UiTemplateS3Uri": "s3://s3bucket-example/TextClassification.template"
+          },
+          "WorkteamArn": "arn:aws:sagemaker:us-west-2:123456789012:workteam/private-crowd/ExampleTesting"
+        },
+        "InputConfig": {
+          "DataAttributes": {
+            "ContentClassifiers": [
+              "FreeOfPersonallyIdentifiableInformation",
+              "FreeOfAdultContent"
+            ]
+          },
+          "DataSource": {
+            "S3DataSource": {
+              "ManifestS3Uri": "s3://s3bucket-example/manifest.json"
+            }
+          }
+        },
+        "LabelAttributeName": "Categories",
+        "LabelCategoryConfigS3Uri": "s3://s3bucket-example/labelcategories.json",
+        "LabelingJobName": "example-job-name",
+        "OutputConfig": {
+          "S3OutputPath": "s3://s3bucket-example/output"
+        },
+        "RoleArn": "arn:aws:iam::123456789012:role/service-role/AmazonSageMaker-ExecutionRole",
+        "StoppingConditions": {
+          "MaxHumanLabeledObjectCount": 10000,
+          "MaxPercentageOfInputDatasetLabeled": 100
+        }
+      },
+      "Next": "ValidateOutput"
+    },
+    "ValidateOutput": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Not": {
+            "Variable": "$.LabelingJobArn",
+            "StringEquals": ""
+          },
+          "Next": "Succeed"
+        }
+      ],
+      "Default": "Fail"
+    },
+    "Succeed": {
+      "Type": "Succeed"
+    },
+    "Fail": {
+      "Type": "Fail",
+      "Error": "InvalidOutput",
+      "Cause": "Output is not what was expected. This could be due to a service outage or a misconfigured service integration."
+    }
+  }
+}
+```
+
+## SageMaker Processing Job Example<a name="sagemaker-example-processing"></a>
+
+The following includes a `Task` state that creates an Amazon SageMaker processing job\.
+
+```
+{
+  "StartAt": "SageMaker CreateProcessingJob Sync",
+  "TimeoutSeconds": 3600,
+  "States": {
+    "SageMaker CreateProcessingJob Sync": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::sagemaker:createProcessingJob.sync",
+      "Parameters": {
+        "AppSpecification": {
+          "ImageUri": "737474898029.dkr.ecr.sa-east-1.amazonaws.com/sagemaker-scikit-learn:0.20.0-cpu-py3"
+        },
+        "ProcessingResources": {
+          "ClusterConfig": {
+            "InstanceCount": 1,
+            "InstanceType": "ml.t3.medium",
+            "VolumeSizeInGB": 10
+          }
+        },
+        "RoleArn": "arn:aws:iam::123456789012:role/SM-003-CreateProcessingJobAPIExecutionRole",
+        "ProcessingJobName.$": "$.id"
+      },
+      "Next": "ValidateOutput"
+    },
+    "ValidateOutput": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Not": {
+            "Variable": "$.ProcessingJobArn",
+            "StringEquals": ""
+          },
+          "Next": "Succeed"
+        }
+      ],
+      "Default": "Fail"
+    },
+    "Succeed": {
+      "Type": "Succeed"
+    },
+    "Fail": {
+      "Type": "Fail",
+      "Error": "InvalidConnectorOutput",
+      "Cause": "Connector output is not what was expected. This could be due to a service outage or a misconfigured connector."
+    }
+  }
 }
 ```
 

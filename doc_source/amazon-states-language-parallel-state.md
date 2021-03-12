@@ -10,15 +10,16 @@ An array of objects that specify state machines to execute in parallel\. Each su
 ** `ResultPath` \(Optional\)**  
 Specifies where \(in the input\) to place the output of the branches\. The input is then filtered as specified by the `OutputPath` field \(if present\) before being used as the state's output\. For more information, see [Input and Output Processing](concepts-input-output-filtering.md)\.
 
+** `ResultSelector` \(Optional\)**  
+Pass a collection of key value pairs, where the values are static or selected from the result\. For more information, see [ResultSelector](input-output-inputpath-params.md#input-output-resultselector)\.
+
 ** `Retry` \(Optional\)**  
-An array of objects, called Retriers, that define a retry policy in case the state encounters runtime errors\. For more information, see [Examples Using Retry and Using Catch](concepts-error-handling.md#error-handling-examples)\.
+An array of objects, called Retriers, that define a retry policy in case the state encounters runtime errors\. For more information, see [Examples using Retry and using Catch](concepts-error-handling.md#error-handling-examples)\.
 
 ** `Catch` \(Optional\)**  
 An array of objects, called Catchers, that define a fallback state that is executed if the state encounters runtime errors and its retry policy is exhausted or isn't defined\. For more information, see [Fallback States](concepts-error-handling.md#error-handling-fallback-states)\.
 
 A `Parallel` state causes AWS Step Functions to execute each branch, starting with the state named in that branch's `StartAt` field, as concurrently as possible, and wait until all branches terminate \(reach a terminal state\) before processing the `Parallel` state's `Next` field\.
-
-Here is an example\.
 
 ## Parallel State Example<a name="parallel-example"></a>
 
@@ -75,31 +76,31 @@ A `Parallel` state provides each branch with a copy of its own input data \(subj
   "StartAt": "FunWithMath",
   "States": {
     "FunWithMath": {
-    "Type": "Parallel",
-    "End": true,
-    "Branches": [
-      {
-        "StartAt": "Add",
-        "States": {
-          "Add": {
-            "Type": "Task",
-            "Resource": "arn:aws:swf:us-east-1:123456789012:task:Add",
-            "End": true
+      "Type": "Parallel",
+      "End": true,
+      "Branches": [
+        {
+          "StartAt": "Add",
+          "States": {
+            "Add": {
+              "Type": "Task",
+              "Resource": "arn:aws:swf:us-east-1:123456789012:task:Add",
+              "End": true
+            }
+          }
+        },
+        {
+          "StartAt": "Subtract",
+          "States": {
+            "Subtract": {
+              "Type": "Task",
+              "Resource": "arn:aws:swf:us-east-1:123456789012:task:Subtract",
+              "End": true
+            }
           }
         }
-      },
-      {
-        "StartAt": "Subtract",
-        "States": {
-          "Subtract": {
-            "Type": "Task",
-            "Resource": "arn:aws:swf:us-east-1:123456789012:task:Subtract",
-            "End": true
-          }
-        }
-      }
-    ]
-   }
+      ]
+    }
   }
 }
 ```

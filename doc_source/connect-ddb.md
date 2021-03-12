@@ -1,13 +1,13 @@
 # Call DynamoDB APIs with Step Functions<a name="connect-ddb"></a>
 
-Step Functions can control certain AWS services directly from the Amazon States Language\. For more information, see:
+Step Functions can control certain AWS services directly from the Amazon States Language\. For more information, see the following:
 + [Service Integrations](concepts-service-integrations.md)
 + [Pass Parameters to a Service API](connect-parameters.md)
 
 **Note**  
-There is a limit on the maximum input or result data size for a task in Step Functions\. This limits you to 32,768 characters of data when you send to, or receive data from, another service\. See [Limits Related to State Machine Executions](limits.md#service-limits-state-machine-executions)\.
+There is a quota for the maximum input or result data size for a task in Step Functions\. This restricts you to 262,144 bytes of data as a UTF\-8 encoded string when you send to, or receive data from, another service\. See [Quotas Related to State Machine Executions](limits.md#service-limits-state-machine-executions)\.
 
-Supported DynamoDB APIs and syntax:
+Supported Amazon DynamoDB APIs and syntax:
 + [https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_GetItem.html](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_GetItem.html)
   + [Request syntax](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_GetItem.html#API_GetItem_RequestSyntax)
   + Supported parameters:
@@ -64,7 +64,7 @@ Supported DynamoDB APIs and syntax:
     + [https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_UpdateItem.html#API_UpdateItem_RequestParameters](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_UpdateItem.html#API_UpdateItem_RequestParameters)
   + [Response syntax](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_UpdateItem.html#API_UpdateItem_ResponseSyntax)
 
-The following is a `Task` state that retrieves a message from Amazon DynamoDB\.
+The following is a `Task` state that retrieves a message from DynamoDB\.
 
 ```
     "Read Next Message from DynamoDB": {
