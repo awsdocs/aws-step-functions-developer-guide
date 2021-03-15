@@ -90,7 +90,7 @@ For detailed information on X\-Ray sampling rules and how to configure the vario
 
 ### Integrating upstream services 
 
-In order to integrate the execution of a step function (express, sync, or normal) with an upstream service you need to set the traceHeader. This is done for you if you are using a HTTP API in API Gateway, however if using as Lambda and SDK you need to set the traceHeader on the StartExecution or StartSyncExecution calls yourself. It is important to note the format here, it has to be ```p{ASCII}*``` as stated in the API/SDKs docs but it also needs tobe ```Root={TRACE_ID};Sampled={1 or 0}``` for the step function to use the same trace id. If your using lambda then replace the TRACE_ID with the trace Id in your current segment and set the Sampled (1 = true and 0 = false) according to your sampling mode. Providing the trace id in this format will mean you get a complete trace. Here is python example: 
+In order to integrate the execution of a Step Function (express, sync, or normal) with an upstream service you need to set the traceHeader. This is done for you if you are using a HTTP API in API Gateway, however if using a Lambda and/or SDK then you need to set the traceHeader on the StartExecution or StartSyncExecution calls yourself. It is important to note the format here, it has to be ```p{ASCII}*``` as stated in the API/SDKs docs but it also needs tobe ```Root={TRACE_ID};Sampled={1 or 0}``` for the step function to use the same trace id. If your using lambda then replace the TRACE_ID with the trace Id in your current segment and set the Sampled (1 = true and 0 = false) according to your sampling mode. Providing the trace id in this format will mean you get a complete trace. Here is python example: 
 
 
 ```python
