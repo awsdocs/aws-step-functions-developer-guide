@@ -88,6 +88,35 @@ Some parts of existing sampling rules, such as the name and priority, cannot be 
 
 For detailed information on X\-Ray sampling rules and how to configure the various parameters, see [Configuring sampling rules in the X\-Ray console](https://docs.aws.amazon.com/xray/latest/devguide/xray-console-sampling.html)\. 
 
+### Integrating upstream services 
+
+In order to integrate the execution of a step function (express, sync, or normal) with an upstream service you need to set the traceHeader. This is done for you if you are using a HTTP API in API Gateway, however if using as Lambda and SDK you need to set the traceHeader on the StartExecution or StartSyncExecution calls yourself. It is important to note the format here, it has to be ```p{ASCII}*``` as stated in the API/SDKs docs but it also needs tobe ```Root={TRACE_ID};Sampled={1 or 0}``` for the step function to use the same trace id. If your using lambda then replace the TRACE_ID with the trace Id in your current segment and set the Sampled (1 = true and 0 = false) according to your sampling mode. Providing the trace id in this format will mean you get a complete trace. Here is python example: 
+
+
+```python
+
+    state_machine = config.get_string_paramter("STATE_MACHINE_ARN")
+
+    if (xray_recorder.current_subsegment() is not None and 
+        xray_recorder.current_subsegment().sampled) :
+        trace_id = "Root={};Sampled=1".format(
+            xray_recorder.current_subsegment().trace_id
+        )
+    else:
+        trace_id = "Root=not enabled;Sampled=0"
+
+    LOGGER.info("trace %s", trace_id)
+
+    # execute it
+    response = states.start_sync_execution(
+        stateMachineArn=state_machine,
+        input=event['body'],
+        name=context.aws_request_id,
+        traceHeader=trace_id
+    )
+    LOGGER.info(response)
+```
+
 ## Concepts<a name="xray-concepts"></a>
 
 ### The X\-Ray console<a name="xray-concepts-console"></a>
