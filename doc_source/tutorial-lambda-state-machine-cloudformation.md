@@ -5,11 +5,11 @@ This tutorial shows you how to create a basic AWS Lambda function using AWS Clou
 For more information, see [Working with CloudFormation Templates](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-guide.html) and the `[AWS::StepFunctions::StateMachine](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-statemachine.html)` resource in the *AWS CloudFormation User Guide*\.
 
 **Topics**
-+ [Step 1: Set up your AWS CloudFormation yemplate](#lambda-state-machine-cfn-step-1)
++ [Step 1: Set up your AWS CloudFormation template](#lambda-state-machine-cfn-step-1)
 + [Step 2: Use the AWS CloudFormation template to create a Lambda State Machine](#lambda-state-machine-cfn-step-2)
 + [Step 3: Start a State Machine execution](#lambda-state-machine-cfn-step-3)
 
-## Step 1: Set up your AWS CloudFormation yemplate<a name="lambda-state-machine-cfn-step-1"></a>
+## Step 1: Set up your AWS CloudFormation template<a name="lambda-state-machine-cfn-step-1"></a>
 
 Before you use the [example templates](#lambda-state-machine-cfn-step-2), you should understand how to declare the different parts of an AWS CloudFormation template\.
 
