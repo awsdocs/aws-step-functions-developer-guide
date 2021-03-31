@@ -175,7 +175,7 @@ The following includes a `Task` state that scales a cluster up or down for an in
 ```
 "ModifyInstanceFleetByName": {
     "Type": "Task",
-    "Resource": "arn:aws::states:::elasticmapreduce:modifyInstanceFleetByName",
+    "Resource": "arn:aws:states:::elasticmapreduce:modifyInstanceFleetByName",
     "Parameters": {
         "ClusterId": "j-1234567890123",
         "InstanceFleetName": "MyCoreFleet",
