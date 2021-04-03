@@ -198,8 +198,8 @@ An example response:
 ## Error handling<a name="connect-api-gateway-errors"></a>
 
 When an error occurs, an `error` and `cause` is returned as follows: 
-+ If the HTTP status code is available, then the error will be returned in the format `APIGateway.<HTTP Status Code>`\.
-+ If the HTTP status code is not available, then the error will be returned in the format `APIGateway.<Exception>`\.
++ If the HTTP status code is available, then the error will be returned in the format `ApiGateway.<HTTP Status Code>`\.
++ If the HTTP status code is not available, then the error will be returned in the format `ApiGateway.<Exception>`\.
 
 In both cases, the `cause` is returned as a string\.
 
@@ -207,7 +207,7 @@ The following example shows a response where an error has occurred:
 
 ```
 {
-    "error": "APIGateway.403", 
+    "error": "ApiGateway.403", 
     "cause": "{\"message\":\"Missing Authentication Token\"}"
 }
 ```
