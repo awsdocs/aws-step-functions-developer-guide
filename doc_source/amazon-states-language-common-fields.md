@@ -16,4 +16,4 @@ Holds a human\-readable description of the state\.
 A [path](concepts-input-output-filtering.md) that selects a portion of the state's input to be passed to the state's task for processing\. If omitted, it has the value `$` which designates the entire input\. For more information, see [Input and Output Processing](concepts-input-output-filtering.md)\)\.
 
 ** `OutputPath` \(Optional\)**  
-A [path](concepts-input-output-filtering.md) that selects a portion of the state's input to be passed to the state's output\. If omitted, it has the value `$` which designates the entire input\. For more information, see [Input and Output Processing](concepts-input-output-filtering.md)\.
+A [path](concepts-input-output-filtering.md) that selects a portion of the state's input to be passed to the state's output\. If omitted, it has the value `$` which designates the entire output\. For more information, see [Input and Output Processing](concepts-input-output-filtering.md)\.
