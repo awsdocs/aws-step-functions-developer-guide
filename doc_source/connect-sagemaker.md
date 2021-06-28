@@ -236,7 +236,7 @@ The following includes a `Task` state that creates an Amazon SageMaker labeling 
 
 ```
 {
-  "StartAt": "SageMaker CreaateLabelingJob",
+  "StartAt": "SageMaker CreateLabelingJob",
   "TimeoutSeconds": 3600,
   "States": {
     "SageMaker CreaateLabelingJob": {
