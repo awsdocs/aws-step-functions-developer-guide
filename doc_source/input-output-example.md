@@ -1,4 +1,4 @@
-# InputPath, ResultPath and `OutputPath` Example<a name="input-output-example"></a>
+# InputPath, ResultPath and OutputPath Example<a name="input-output-example"></a>
 
 Any state other than a `Fail` state can include `InputPath`, `ResultPath` or `OutputPath`\. These allow you to use a path to filter the JSON as it moves through your workflow\. 
 
