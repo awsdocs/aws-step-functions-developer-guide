@@ -46,7 +46,9 @@ For more information, see the following:
                 "states:DescribeExecution",
                 "states:StopExecution"
             ],
-            "Resource": "*"
+            "Resource": [
+                "arn:aws:states:[[region]]:[[accountId]]:execution:[[stateMachineName]]:*"
+            ]
         },
         {
             "Effect": "Allow",
