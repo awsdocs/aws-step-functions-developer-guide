@@ -18,10 +18,10 @@ These example templates show how AWS Step Functions generates IAM policies based
     {
         "Effect": "Allow",
         "Action": [
-            "athena:startQueryExecution",
-            "athena:stopQueryExecution",
-            "athena:getQueryExecution",
-            "athena:getDataCatalog"
+            "athena:StartQueryExecution",
+            "athena:StopQueryExecution",
+            "athena:GetQueryExecution",
+            "athena:GetDataCatalog"
         ],
         "Resource": [
             "arn:aws:athena:{{region}}:{{accountId}}:workgroup/[[workGroup]]",
@@ -97,8 +97,8 @@ These example templates show how AWS Step Functions generates IAM policies based
     {
         "Effect": "Allow",
         "Action": [
-            "athena:startQueryExecution",
-            "athena:getDataCatalog"
+            "athena:StartQueryExecution",
+            "athena:GetDataCatalog"
         ],
         "Resource": [
             "arn:aws:athena:{{region}}:{{accountId}}:workgroup/[[workGroup]]",
@@ -178,10 +178,10 @@ These example templates show how AWS Step Functions generates IAM policies based
     {
         "Effect": "Allow",
         "Action": [
-            "athena:startQueryExecution",
-            "athena:stopQueryExecution",
-            "athena:getQueryExecution",
-            "athena:getDataCatalog"
+            "athena:StartQueryExecution",
+            "athena:StopQueryExecution",
+            "athena:GetQueryExecution",
+            "athena:GetDataCatalog"
         ],
         "Resource": [
             "arn:aws:athena:{{region}}:{{accountId}}:workgroup/*",
@@ -257,8 +257,8 @@ These example templates show how AWS Step Functions generates IAM policies based
     {
         "Effect": "Allow",
         "Action": [
-            "athena:startQueryExecution",
-            "athena:getDataCatalog"
+            "athena:StartQueryExecution",
+            "athena:GetDataCatalog"
         ],
         "Resource": [
             "arn:aws:athena:{{region}}:{{accountId}}:workgroup/*",
@@ -337,7 +337,7 @@ These example templates show how AWS Step Functions generates IAM policies based
     {
         "Effect": "Allow",
         "Action": [
-            "athena:stopQueryExecution"
+            "athena:StopQueryExecution"
         ],
         "Resource": [
             "arn:aws:athena:{{region}}:{{accountId}}:workgroup/*"
@@ -358,7 +358,7 @@ These example templates show how AWS Step Functions generates IAM policies based
     {
         "Effect": "Allow",
         "Action": [
-            "athena:getQueryExecution"
+            "athena:GetQueryExecution"
         ],
         "Resource": [
             "arn:aws:athena:{{region}}:{{accountId}}:workgroup/*"
@@ -379,7 +379,7 @@ These example templates show how AWS Step Functions generates IAM policies based
     {
         "Effect": "Allow",
         "Action": [
-            "athena:getQueryResults"
+            "athena:GetQueryResults"
         ],
         "Resource": [
             "arn:aws:athena:{{region}}:{{accountId}}:workgroup/*"
