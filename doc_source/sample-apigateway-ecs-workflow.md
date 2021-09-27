@@ -107,7 +107,7 @@ For more information about how AWS Step Functions can control other AWS services
       "Resource": "arn:<PARTITION>:states:::sns:publish",
       "Parameters": {
         "Message": "Call was not successful",
-        "TopicArn": "<SNS_TOPIC_ARN<"
+        "TopicArn": "<SNS_TOPIC_ARN>"
       },
       "End": true
     }
