@@ -10,5 +10,6 @@ The topics below contain resources that teach you how to create, test, and debug
 + [Development Options](development-options.md)
 + [Step Functions and AWS SAM](concepts-sam-sfn.md)
 + [Creating a Lambda State Machine Using AWS CloudFormation](tutorial-lambda-state-machine-cloudformation.md)
++ [Creating a Lambda State Machine Using the AWS CDK](tutorial-lambda-state-machine-cdk.md)
 + [Data Science SDK](concepts-python-sdk.md)
 + [Setting Up Step Functions Local \(Downloadable Version\)](sfn-local.md)

@@ -117,9 +117,12 @@ The `AWS/States` namespace includes the following metrics for Step Functions Lam
 | --- | --- | 
 |  `LambdaFunctionArn`  |  The ARN of the Lambda function\.  | 
 
+**Note**  
+Lambda Function Metrics are emitted for Task states that specify the Lambda function ARN in the ` Resource` field\. Task states that use `"Resource": "arn:aws:states:::lambda:invoke"` emit Service Integration Metrics instead\. For more information, see [Invoke Lambda with Step Functions](connect-lambda.md)\. 
+
 ## Service Integration Metrics<a name="cloudwatch-step-functions-service-integration-metrics"></a>
 
-The `AWS/States` namespace includes the following metrics for Step Functions service integrations\. For more information, see [Service Integrations with AWS Step Functions ](concepts-service-integrations.md)\. 
+The `AWS/States` namespace includes the following metrics for Step Functions service integrations\. For more information, see [Using AWS Step Functions with other services](concepts-service-integrations.md)\. 
 
 
 |  Metric  |  Description  | 

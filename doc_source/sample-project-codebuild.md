@@ -39,7 +39,7 @@ The state machine in this sample project integrates with CodeBuild and Amazon SN
 
  Browse through this example state machine to see how Step Functions uses a state machine to build a CodeBuild project, and then sends an Amazon SNS topic with a message about whether the job succeeded or failed\.
 
-For more information about how Step Functions can control other AWS services, see [Service Integrations with AWS Step Functions ](concepts-service-integrations.md)\.
+For more information about how Step Functions can control other AWS services, see [Using AWS Step Functions with other services](concepts-service-integrations.md)\.
 
 ```
 {
@@ -95,4 +95,4 @@ For more information about how Step Functions can control other AWS services, se
 }
 ```
 
-For information about how to configure IAM when using Step Functions with other AWS services, see [IAM Policies for Integrated Services](service-integration-iam-templates.md)\.
+For information about how to configure IAM when using Step Functions with other AWS services, see [IAM Policies for integrated services](service-integration-iam-templates.md)\.

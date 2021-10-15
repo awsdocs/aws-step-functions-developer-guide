@@ -84,7 +84,7 @@ A `Parallel` state provides each branch with a copy of its own input data \(subj
           "States": {
             "Add": {
               "Type": "Task",
-              "Resource": "arn:aws:swf:us-east-1:123456789012:task:Add",
+              "Resource": "arn:aws:states:us-east-1:123456789012:activity:Add",
               "End": true
             }
           }
@@ -94,7 +94,7 @@ A `Parallel` state provides each branch with a copy of its own input data \(subj
           "States": {
             "Subtract": {
               "Type": "Task",
-              "Resource": "arn:aws:swf:us-east-1:123456789012:task:Subtract",
+              "Resource": "arn:aws:states:us-east-1:123456789012:activity:Subtract",
               "End": true
             }
           }

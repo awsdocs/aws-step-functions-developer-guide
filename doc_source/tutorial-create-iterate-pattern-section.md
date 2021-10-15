@@ -47,7 +47,7 @@ If the IAM role that you created doesn't appear in the list, the role might stil
 1. Copy the following code for the Lambda function into the **Configuration** section of the ***Iterator*** page in the Lambda console\.
 
    ```
-   exports.iterator = function iterator (event, context, callback) {
+   exports.handler = function iterator (event, context, callback) {
      let index = event.iterator.index
      let step = event.iterator.step
      let count = event.iterator.count

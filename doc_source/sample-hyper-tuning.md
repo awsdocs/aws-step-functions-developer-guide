@@ -9,7 +9,7 @@ This sample project demonstrates using SageMaker to tune the hyperparameters of 
 In this project, Step Functions uses a Lambda function to seed an Amazon S3 bucket with a test dataset\. It then creates a hyperparameter tuning job using the [SageMaker service integration](connect-sagemaker.md)\. It then uses a Lambda function to extract the data path, saves the tuning model, extracts the model name, and then runs a batch transform job to perform inference in SageMaker\.
 
 For more information about SageMaker and Step Functions service integrations, see the following:
-+ [Service Integrations with AWS Step Functions ](concepts-service-integrations.md)
++ [Using AWS Step Functions with other services](concepts-service-integrations.md)
 + [Manage SageMaker with Step Functions](connect-sagemaker.md)
 
 **Note**  
@@ -59,7 +59,7 @@ The state machine in this sample project integrates with SageMaker and AWS Lambd
 
 Browse through this example state machine to see how Step Functions controls Lambda and SageMaker\.
 
-For more information about how AWS Step Functions can control other AWS services, see [Service Integrations with AWS Step Functions ](concepts-service-integrations.md)\.
+For more information about how AWS Step Functions can control other AWS services, see [Using AWS Step Functions with other services](concepts-service-integrations.md)\.
 
 ```
 {
@@ -215,7 +215,7 @@ For more information about how AWS Step Functions can control other AWS services
 }
 ```
 
-For information about how to configure IAM when using Step Functions with other AWS services, see [IAM Policies for Integrated Services](service-integration-iam-templates.md)\.
+For information about how to configure IAM when using Step Functions with other AWS services, see [IAM Policies for integrated services](service-integration-iam-templates.md)\.
 
 ## IAM Examples<a name="sample-hyper-tuning-iam-example"></a>
 
@@ -328,4 +328,4 @@ The following IAM policy allows the Lambda function to seed the Amazon S3 bucket
 }
 ```
 
-For information about how to configure IAM when using Step Functions with other AWS services, see [IAM Policies for Integrated Services](service-integration-iam-templates.md)\.
+For information about how to configure IAM when using Step Functions with other AWS services, see [IAM Policies for integrated services](service-integration-iam-templates.md)\.

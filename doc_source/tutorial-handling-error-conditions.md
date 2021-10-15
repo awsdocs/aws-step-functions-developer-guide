@@ -108,18 +108,10 @@ Use the [Step Functions console](https://console.aws.amazon.com/states/home?regi
 
 1. Open the [Step Functions console](https://console.aws.amazon.com/states/home) and choose **Create state machine**\.
 
-1. On the **Create a state machine** page, choose **Templates**, and then choose **Catch failure**\.   
+1. On the **Create a state machine** page, choose **Start with a template**, and then choose **Catch failure**\.   
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-create-state-machine-catch-failure.png)
 
-1. Under **Type**, choose **Standard**\. Enter a **Name** for your state machine, for example, `Catchfailure`\.
-**Note**  
-State machine, execution, and activity names must be 1–80 characters in length, must be unique for your account and AWS Region, and must not contain any of the following:  
-Whitespace
-Wildcard characters \(`? *`\)
-Bracket characters \(`< > { } [ ]`\)
-Special characters \(`: ; , \ | ^ ~ $ # % & ` "`\)
-Control characters \(`\\u0000` \- `\\u001f` or `\\u007f` \- `\\u009f`\)\.
-Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with Amazon CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
+1. Under **Type**, choose **Standard**\.
 
 1. In the **Code** pane, add the ARN of [the Lambda function that you created earlier](#using-state-machine-error-conditions-simulate) to the `Resource` field, as shown in the following example\.
 
@@ -175,11 +167,9 @@ Unhandled errors in Lambda are reported as `Lambda.Unknown` in the error output\
 
 1. Choose **Next**\.
 
-1. Create or enter an IAM role:
-   + To create an IAM role for Step Functions, select **Create an IAM role for me**, and enter a **Name** for your role\.
-   + If you have [previously created an IAM role](procedure-create-iam-role.md) with the correct permissions for your state machine, select **Choose an existing IAM role**\. Select a role from the list, or provide an ARN for that role\. 
-**Note**  
-If you delete the IAM role that Step Functions creates, Step Functions can't recreate it later\. Similarly, if you modify the role \(for example, by removing Step Functions from the principals in the IAM policy\), Step Functions can't restore its original settings later\. 
+1. Enter a **Name** for your state machine, or use the default name, `Catchfailure`\.
+
+1. Choose **Choose an existing role**, **MyLambdaRole** in the dropdown list\.
 
 1. Choose **Create state machine**\.
 
@@ -189,7 +179,7 @@ After you create your state machine, you can start an execution\.
 
 ### <a name="using-state-machine-error-conditions-start-executino"></a>
 
-1. On the ***CatchStateMachine*** page, choose **New execution**\.
+1. On the ***CatchStateMachine*** page, choose **Start execution**\.
 
    The **New execution** page is displayed\.
 

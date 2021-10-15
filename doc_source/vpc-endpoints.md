@@ -1,6 +1,6 @@
 # Amazon VPC Endpoints for Step Functions<a name="vpc-endpoints"></a>
 
-If you use Amazon Virtual Private Cloud \(Amazon VPC\) to host your AWS resources, you can establish a connection between your Amazon VPC and AWS Step Functions workflows\. You can use this connection with your Step Functions workflows without crossing the public internet\.
+If you use Amazon Virtual Private Cloud \(Amazon VPC\) to host your AWS resources, you can establish a connection between your Amazon VPC and AWS Step Functions workflows\. You can use this connection with your Step Functions workflows without crossing the public internet\. Amazon VPC endpoints are supported by Standard Workflows and Express Workflows, but not Synchronous Express Workflows\. For more information, see [Synchronous and Asynchronous Express Workflows](concepts-express-synchronous.md)\. 
 
 Amazon VPC lets you launch AWS resources in a custom virtual network\. You can use a VPC to control your network settings, such as the IP address range, subnets, route tables, and network gateways\. For more information about VPCs, see the [Amazon VPC User Guide](https://docs.aws.amazon.com/vpc/latest/userguide/)\.
 

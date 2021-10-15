@@ -4,6 +4,9 @@ The `InputPath`, `Parameters` and `ResultSelector` fields provide a way to manip
 
 AWS Step Functions applies the `InputPath` field first, and then the `Parameters` field\. You can first filter your raw input to a selection you want using `InputPath`, and then apply `Parameters` to manipulate that input further, or add new values\. You can then use the `ResultSelector` field to manipulate the state's output before `ResultPath` is applied\.
 
+**Tip**  
+Use the [ data flow simulator in the Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/simulator) to test JSON path syntax, to better understand how data is manipulated within a state, and to see how data is passed between states\.
+
 ## InputPath<a name="input-output-inputpath"></a>
 
 Use `InputPath` to select a portion of the state input\. 
@@ -56,6 +59,10 @@ If you apply the path `$.a[0:2]`, the following is the result\.
 
 ## Parameters<a name="input-output-parameters"></a>
 
+This section describes the different ways you can use the Parameters field\. 
+
+### Key\-value pairs<a name="input-output-parameters-keyvalue"></a>
+
 Use the `Parameters` field to create a collection of key\-value pairs that are passed as input\. The values of each can either be static values that you include in your state machine definition, or selected from either the input or the context object with a path\. For key\-value pairs where the value is selected using a path, the key name must end in `.$`\. 
 
 For example, suppose you provide the following input\. 
@@ -104,10 +111,15 @@ Given the previous input and the `Parameters` field, this is the JSON that is pa
 
 In addition to the input, you can access a special JSON object, known as the context object\. The context object includes information about your state machine execution\. See [Context Object](input-output-contextobject.md)\.
 
-**Note**  
-The `Parameters` field can also pass information to connected resources\. For example, if your task state is orchestrating an AWS Batch job, you can pass the relevant API parameters directly to the API actions of that service\. For more information, see:  
-[Pass Parameters to a Service API](connect-parameters.md)
-[Service Integrations](concepts-service-integrations.md)
+### Connected resources<a name="input-output-parameters-connected"></a>
+
+The `Parameters` field can also pass information to connected resources\. For example, if your task state is orchestrating an AWS Batch job, you can pass the relevant API parameters directly to the API actions of that service\. For more information, see:
++ [Pass Parameters to a Service API](connect-parameters.md)
++ [Working with other services](concepts-service-integrations.md)
+
+### Amazon S3<a name="input-output-parameters-s3"></a>
+
+Alternatively, if the Lambda function data you are passing between states might grow to more than 262,144 bytes, we recommend using Amazon S3 to store the data, and parse the Amazon Resource Name \(ARN\) of the bucket in the `Payload` parameter to get the bucket name and key value\. Alternatively, you can adjust your implementation to pass smaller payloads in your executions\. For more information, see [Use Amazon S3 ARNs instead of passing large payloads](avoid-exec-failures.md)\.
 
 ## ResultSelector<a name="input-output-resultselector"></a>
 

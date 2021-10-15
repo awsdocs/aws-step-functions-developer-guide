@@ -233,7 +233,7 @@ Choose **Sampling** to view details about the sampling rate and configuration\. 
 ------
 #### [ Encryption ]
 
-Choose **Encryption** to modify the encryption settings\. You can use the default setting, where X\-Ray encrypts traces and date at rest, or, if needed, you can choose a customer master key\. Standard [AWS KMS](https://docs.aws.amazon.com/https://docs.aws.amazon.com/kms/latest/developerguide/) charges apply in the latter case\.
+Choose **Encryption** to modify the encryption settings\. You can use the default setting, where X\-Ray encrypts traces and date at rest, or, if needed, you can choose a customer master key\. Standard [AWS KMS](https://docs.aws.amazon.com/kms/latest/developerguide/) charges apply in the latter case\.
 
 ![\[Encryption settings\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/xray-tracing-encryption.png)
 

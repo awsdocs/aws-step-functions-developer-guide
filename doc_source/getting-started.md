@@ -1,15 +1,15 @@
 # Getting started with AWS Step Functions<a name="getting-started"></a>
 
-In this tutorial, you learn the basics of working with Step Functions\. You sign in to the Step Functions console, where you create a state machine that uses two [`Pass` states](https://docs.aws.amazon.com/step-functions/latest/dg/concepts-states.html)\. You then start a new execution and review the execution details\. You then change one of the `Pass` state’s result and view the changes\. Finally, you perform a clean\-up step, where you delete your state machine\. At the end of this tutorial, you'll know how to create, test, debug, and delete a state machine\. 
+In this tutorial, you learn the basics of working with Step Functions\. You sign in to the Step Functions console, where you create a state machine that uses two [`Pass` states](concepts-states.md)\. You then start a new execution and review the execution details\. You then change one of the `Pass` state’s result and view the changes\. Finally, you perform a clean\-up step, where you delete your state machine\. At the end of this tutorial, you'll know how to create, test, debug, and delete a state machine\. 
 
-Make sure to complete the [prerequisites for this tutorial](https://docs.aws.amazon.com/step-functions/latest/dg/setting-up-prereq.html)\.
+Make sure to complete the [prerequisites for this tutorial](sfn-prerequisites.md)\.
 
 **Topics**
 + [Step 1: Create a state machine](#create-state-machine)
 + [Step 2: Start a new execution](#start-new-execution)
 + [Step 3: Update a state machine](#update-state-machine)
 + [Step 4: Clean up](#clean-up)
-+ [Next Steps](#next-steps)
++ [Next steps](#next-steps)
 
 ## Step 1: Create a state machine<a name="create-state-machine"></a>
 
@@ -19,11 +19,13 @@ For more information about state machine structure and common states, see the fo
 + [State machine structure](amazon-states-language-state-machine-structure.md)
 + [Common states](amazon-states-language-common-fields.md)
 
-**To create a state machine from a predefined ***Hello world*** template**
+**To create a state machine**
 
-1. Sign in to the [Step Functions console](https://console.aws.amazon.com/states/home?#/statemachines/create)\.
+1. Sign in to the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/statemachines/create)\.
 
-1. On the **Define a state machine** page, choose **Start with a template**, and then choose **Hello world**\.
+1. Choose **Create state machine**\.
+
+1. On the **Choose authoring method** page, choose **Design your workflow visually**\. 
 
 1. Under **Type**, choose **Standard**\.
 
@@ -31,11 +33,14 @@ For more information about state machine structure and common states, see the fo
 
    For a side\-by\-side comparison of both workflows, under **Type**, choose **Help me decide**\.
 
+1. Choose Next\. This will open Workflow Studio\.  
+![\[Workflow Studio\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/wfs_getstarted_01.png)
+
+1. Select the **Flow** panel, then drag a `Pass` state to the empty state labelled **Drag first state here**\.
+
 1. Under **Definition**, review the state machine's workflow\.
 
-   The state machine has two panes: a *code pane* and a *visual workflow pane*\. The code pane is where you define the workflow for your application\. The visual workflow pane is where Step Functions shows a graph of your workflow as a series of steps\.
-
-   In the code pane, Step Functions populates the workflow using the [Amazon States Language](https://docs.aws.amazon.com/step-functions/latest/dg/concepts-amazon-states-language.html) and starting with a comment that describes the state machine\. In the code, two `Pass` states are defined in JSON: one state is named `Hello`, and the other state is named `World`\.
+1. In the code for this workflow, two `Pass` states are defined\. One `Pass` state is named Hello, and the other `Pass` state is named World\. 
 
    ```
    {
@@ -44,7 +49,6 @@ For more information about state machine structure and common states, see the fo
      "States": {
        "Hello": {
          "Type": "Pass",
-         "Result": "Hello",
          "Next": "World"
        },
        "World": {
@@ -56,18 +60,15 @@ For more information about state machine structure and common states, see the fo
    }
    ```
 
-   In the visual workflow pane, Step Functions renders a graph of the workflow as a series of steps\.  
-![\[Visual Workflow.\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-getting-started-visual-pane-render.png)
+1. Choose **Next**\. You can see view the Amazon States Language workflow definition\.
 
-   If the graph doesn't appear in the visual workflow pane, choose the refresh icon in the top left corner\.
-
-1. Choose **Next**\.
+1. Choose **Next**\. Give your workflow the name `HelloWorld`\.
 
 1. Under **Permissions**, select **Create a new IAM role**\.
 
    When you create a state machine, you select an IAM role that defines which resources the state machine has permission to access during its execution\. Choose from the following options:
    + **Create a new IAM role** – Select this option when you want Step Functions to create a new IAM role for you based on the definition of your state machine and its configuration details\.
-   + **Choose an existing role** – Select this option if youpreviously created an IAM role for Step Functions and your state machine has the correct permissions\.
+   + **Choose an existing role** – Select this option if you previously created an IAM role for Step Functions and your state machine has the correct permissions\.
    + **Enter a role ARN** – Select this option if you know the ARN details for the IAM role that you want to use for Step Functions\.
 
 1. Choose **Create state machine**\.
@@ -96,7 +97,7 @@ State machine executions are instances where you run your workflow to perform ta
 
 Change a `Pass` state's result, and update your state machine for future exceptions\. Then view your changes in the visual workflow pane\. An exception is an event that disrupts a step in your workflow\. 
 
-When you update a state machine, your updates are *eventually consistent*\. After a few seconds or minutes, all newly started executions will reflect your state machine's updated definition and `roleARN`\. All currently running executions will run to completion under the previous defintion and `roleARN` before updating\.
+When you update a state machine, your updates are *eventually consistent*\. After a few seconds or minutes, all newly started executions will reflect your state machine's updated definition and `roleARN`\. All currently running executions will run to completion under the previous definition and `roleARN` before updating\.
 
 **To change a `Pass` state's result**
 
@@ -173,7 +174,7 @@ If you're done with this tutorial, delete your state machine and the execution r
 
    Now that you completed this tutorial, you know how to create, test, debug, and delete a state machine\.
 
-## Next Steps<a name="next-steps"></a>
+## Next steps<a name="next-steps"></a>
 
 For more tutorials about working with Step Functions, try the following:
 + [Create a Lambda State Machine](tutorial-creating-lambda-state-machine.md)

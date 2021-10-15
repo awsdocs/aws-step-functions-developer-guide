@@ -3,11 +3,11 @@
 This sample project creates a task timer\. It implements an AWS Step Functions state machine that implements a `Wait` state, and uses an AWS Lambda function that sends an Amazon Simple Notification Service \(Amazon SNS\) notification\. A `Wait` state is a state type that waits for a trigger to perform a single unit of work\.
 
 **Note**  
-This sample project implements an AWS Lambda function to send an Amazon Simple Notification Service \(Amazon SNS\) notification\. You can also send an Amazon SNS notification directly from the Amazon States Language\. See [Service Integrations with AWS Step Functions ](concepts-service-integrations.md)\.
+This sample project implements an AWS Lambda function to send an Amazon Simple Notification Service \(Amazon SNS\) notification\. You can also send an Amazon SNS notification directly from the Amazon States Language\. See [Using AWS Step Functions with other services](concepts-service-integrations.md)\.
 
 This sample project creates the state machine, a Lambda function, and an Amazon SNS topic, and configures the related AWS Identity and Access Management \(IAM\) permissions\. For more information about the resources that are created with the **Task Timer** sample project, see the following:
 
-For more information about how AWS Step Functions can control other AWS services, see [Service Integrations with AWS Step Functions ](concepts-service-integrations.md)\.
+For more information about how AWS Step Functions can control other AWS services, see [Using AWS Step Functions with other services](concepts-service-integrations.md)\.
 + [AWS CloudFormation User Guide](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/)
 + [Amazon Simple Notification Service Developer Guide](https://docs.aws.amazon.com/sns/latest/dg/)
 + [AWS Lambda Developer Guide](https://docs.aws.amazon.com/lambda/latest/dg/)

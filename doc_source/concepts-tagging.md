@@ -1,8 +1,8 @@
 # Tagging in Step Functions<a name="concepts-tagging"></a>
 
-AWS Step Functions supports tagging of state machines \(both Standard and Express\) and activities\. This can help you track and manage the costs associated with your resources, and provide better security in your AWS Identity and Access Management \(IAM\) policies\. Tagging Step Functions resources allows them to be managed by AWS Resource Groups\. For more information on Resource Groups, see the [AWS Resource Groups User Guide](https://docs.aws.amazon.com/ARG/latest/userguide/)\.
+AWS Step Functions supports tagging of state machines \(both Standard and Express\) and activities\. This can help you track and manage the costs associated with your resources, and provide better security in your AWS Identity and Access Management \(IAM\) policies\. Tagging Step Functions resources allows them to be managed by AWS Resource Groups\. For more information on Resource Groups, see the [AWS Resource Groups User Guide](https://docs.aws.amazon.com/ARG/latest/userguide/)\. 
 
-To review the restrictions related to resource tagging, see [Restrictions Related to Tagging](limits-overview.md#sfn-limits-tagging)\.
+To review the restrictions related to resource tagging, see [Restrictions related to tagging](limits-overview.md#sfn-limits-tagging)\.
 
 **Topics**
 + [Tagging for Cost Allocation](#tagging-cost)

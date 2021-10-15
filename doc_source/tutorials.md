@@ -2,7 +2,7 @@
 
 The tutorials in this section can help you understand different aspects of working with AWS Step Functions\. 
 
-To complete these tutorials, you need an AWS account\. If you don't have an AWS account, navigate to [http://aws\.amazon\.com/](https://aws.amazon.com/) and choose **Sign In to the Console**\.
+To complete these tutorials, you need an AWS account\. If you don't have an AWS account, navigate to [https://aws\.amazon\.com/](https://aws.amazon.com/) and choose **Create an AWS Account**\.
 
 **Topics**
 + [Create a Step Functions State Machine That Uses Lambda](tutorial-creating-lambda-state-machine.md)
@@ -18,3 +18,4 @@ To complete these tutorials, you need an AWS account\. If you don't have an AWS 
 + [Using a Map State to Call Lambda Multiple Times](tutorial-creating-map-state-machine.md)
 + [View X\-Ray traces in Step Functions](tutorial-xray-traces.md)
 + [Create a Step Functions State Machine Using AWS SAM](tutorial-state-machine-using-sam.md)
++ [Gather Amazon S3 bucket info using AWS SDK service integrations](tutorial-gather-s3-bucket-info-using-aws-sdk-service-integrations.md)

@@ -39,5 +39,5 @@ To learn more, see the following:
 + Go through a step\-by\-step tutorial [Create a Step Functions State Machine Using AWS SAM](tutorial-state-machine-using-sam.md)\.
 + Specify a [AWS::Serverless::StateMachine](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-statemachine.html) resource\.
 + Find [AWS SAM Policy Templates](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-policy-templates.html) to use\.
-+ Use [AWS Toolkit for Visual Studio](https://docs.aws.amazon.com/toolkit-for-vscode/latest/userguide/stepfunctions.html) with Step Functions 
++ Use [AWS Toolkit for Visual Studio Code](https://docs.aws.amazon.com/toolkit-for-vscode/latest/userguide/stepfunctions.html) with Step Functions\. 
 + The [AWS SAM CLI reference\.](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-command-reference.html)

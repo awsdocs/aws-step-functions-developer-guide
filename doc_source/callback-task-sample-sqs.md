@@ -16,7 +16,7 @@ When this sample project is deployed and an execution is started, the following 
 
 To learn how to implement the callback pattern in Step Functions, see [Wait for a Callback with the Task Token](connect-to-resource.md#connect-wait-token)\.
 
-For more information about how AWS Step Functions can control other AWS services, see [Service Integrations with AWS Step Functions ](concepts-service-integrations.md)\.
+For more information about how AWS Step Functions can control other AWS services, see [Using AWS Step Functions with other services](concepts-service-integrations.md)\.
 
 ## Create State Machine and Provision Resources<a name="callback-task-sample-sqs-create"></a>
 

@@ -1,8 +1,8 @@
 # Starting a State Machine Execution in Response to Amazon S3 Events<a name="tutorial-cloudwatch-events-s3"></a>
 
-You can use Amazon CloudWatch Events to execute an AWS Step Functions state machine in response to an event or on a schedule\. 
+You can use Amazon EventBridge to execute an AWS Step Functions state machine in response to an event or on a schedule\. 
 
-This tutorial shows you how to configure a state machine as a target for a CloudWatch Events rule\. This will start an execution when files are added to an Amazon S3 bucket\.
+This tutorial shows you how to configure a state machine as a target for a Amazon EventBridge rule\. This will start an execution when files are added to an Amazon S3 bucket\.
 
 For a practical application, you could launch a state machine that performs operations on files that you add to the bucket, such as creating thumbnails or running Amazon Rekognition analysis on image and video files\.
 
@@ -12,19 +12,19 @@ For this tutorial you start an execution of a simple `Helloworld`state machine b
 + [Prerequisite: Create a State Machine](#tutorial-cloudwatch-events-s3-step-1)
 + [Step 1: Create a Bucket in Amazon S3](#tutorial-cloudwatch-events-s3-bucket)
 + [Step 2: Create a Trail in AWS CloudTrail](#tutorial-cloudwatch-events-s3-trail)
-+ [Step 3: Create a CloudWatch Events Rule](#tutorial-cloudwatch-events-s3-cwe)
-+ [Step 4: Test the CloudWatch Rule](#tutorial-cloudwatch-events-test-rule)
++ [Step 3: Create a Amazon EventBridge Rule](#tutorial-cloudwatch-events-s3-cwe)
++ [Step 4: Test the Rule](#tutorial-cloudwatch-events-test-rule)
 + [Example of Execution Input](#tutorial-cloudwatch-events-example)
 
 ## Prerequisite: Create a State Machine<a name="tutorial-cloudwatch-events-s3-step-1"></a>
 
-Before you can configure a CloudWatch Events target, you must create a state machine\.
+Before you can configure a Amazon EventBridge target, you must create a state machine\.
 + To create a basic state machine, use the [Getting Started](getting-started.md) tutorial\.
 + If you already have a `Helloworld`state machine, proceed to the next step\.
 
 ## Step 1: Create a Bucket in Amazon S3<a name="tutorial-cloudwatch-events-s3-bucket"></a>
 
-Now that you have a `Helloworld` state machine, you need an Amazon S3 bucket\. In Step 3 of this tutorial, you set up a rule so that when a file is added to this bucket, CloudWatch Events triggers an execution of the state machine\.
+Now that you have a `Helloworld` state machine, you need an Amazon S3 bucket\. In Step 3 of this tutorial, you set up a rule so that when a file is added to this bucket, Amazon EventBridge triggers an execution of the state machine\.
 
 1. Navigate to the [Amazon S3 console](https://console.aws.amazon.com/s3/), and then choose **Create bucket**\.
 
@@ -38,42 +38,44 @@ Bucket names must be unique across all existing bucket names in all AWS Regions 
 
 After you create an Amazon S3 bucket, create a trail in CloudTrail\.
 
-For API events in Amazon S3 to match your CloudWatch Events rule, you must configure a trail in CloudTrail to receive those events\.
+For API events in Amazon S3 to match your Amazon EventBridge rule, you must configure a trail in CloudTrail to receive those events\.
 
-1. Navigate to the [AWS CloudTrail console](https://console.aws.amazon.com/cloudtrail/), choose **View trails**, and then choose **Create trail**\.
+1. Open the [AWS CloudTrail console](https://console.aws.amazon.com/cloudtrail/)\.
+
+1. Choose **Trails**, and then choose **Create trail**\.
 
 1. For **Trail name**, enter `S3Event`\.
 
-1. On the **S3** tab, choose **Add S3 bucket**\.
+1. Choose **Use existing S3 bucket**\.
 
-1. For **Bucket name**, enter the name of the Amazon S3 bucket you created earlier: `username-sfn-tutorial` \([Step 1: Create a Bucket in Amazon S3](#tutorial-cloudwatch-events-s3-bucket)\)\.
+1. For **Trail log bucket name**, enter the name of the Amazon S3 bucket you created earlier: `username-sfn-tutorial` \([Step 1: Create a Bucket in Amazon S3](#tutorial-cloudwatch-events-s3-bucket)\)\.
 
-1. Under **Storage location**, choose **Yes** next to **Create a new S3 bucket**\.
-
-1. For **S3 bucket**, enter a name for a new bucket to store information about the actions of the Amazon S3 bucket you created earlier\.
+1. Select **Enabled** in **Log file SSE\-KMS encryption** to disable encryption\.
 **Note**  
-This bucket name must be unique across all of Amazon S3\. Include your *username* in the bucket name so that the name will be unique: `username-sfn-tutorial-storage`\.
+You can optionally choose to enable encryption in **Log file SSE\-KMS encryption**, and enter any name in **AWS KMS alias** to create a key\.
 
-1. Choose **Create**\.
+1. Choose **Next**, **Next**, **Create trail**\.
 
-## Step 3: Create a CloudWatch Events Rule<a name="tutorial-cloudwatch-events-s3-cwe"></a>
+## Step 3: Create a Amazon EventBridge Rule<a name="tutorial-cloudwatch-events-s3-cwe"></a>
 
-After you have a state machine, and have created the Amazon S3 bucket and a trail in AWS CloudTrail, create your Amazon CloudWatch Events rule\.
+After you have a state machine, and have created the Amazon S3 bucket and a trail in AWS CloudTrail, create your Amazon EventBridge rule\.
 
 **Note**  
-You must configure CloudWatch Events in the same AWS Region as the Amazon S3 bucket\.
+You must configure Amazon EventBridge in the same AWS Region as the Amazon S3 bucket\.
 
 ### To create the rule<a name="tutorial-cloudwatch-events-s3-create-rule"></a>
 
-1. Navigate to the [CloudWatch console](https://console.aws.amazon.com/cloudwatch/), choose **Events**, and then choose **Create Rule**\.
+1. Navigate to the [Amazon EventBridge console](https://console.aws.amazon.com/events/), choose **Create rule**\.
 
-   The **Step 1: Create rule** page is displayed\.
+1. In **Define pattern**, choose **Event pattern**\.
 
-1. In **Event source**, choose **Event Pattern**\.
+1. In **Event matching pattern**, choose **Pre\-defined pattern by service**\.
 
-1. For **Service Name**, choose **Simple Storage Service \(S3\)**\.
+1. In **Service provider**, choose **AWS**\.
 
-1. For **Event Type**, choose **Object Level Operations**\.
+1. In **Service name**, choose **Simple Storage Service \(S3\)**\.
+
+1. For **Event type**, choose **Object Level Operations**\.
 
 1. Choose **Specific operation\(s\)**, and then choose **PutObject**\.
 **Note**  
@@ -81,32 +83,24 @@ If the object size is bigger than the Multipart threshold used in the `PutObject
 
 1. Choose **Specific bucket\(s\) by name** and enter the bucket name you created in Step 1 \(`username-sfn-tutorial`\)\.
 
-The **Event Source** page should look like the following\.
-
-![\[Create rule\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-cloudwatch-events-s3-source.png)
-
 ### To create the target<a name="tutorial-cloudwatch-events-s3-create-rule2"></a>
 
-1. In the **Targets** section, choose **Add target**\.
+1. Choose **Step Functions state machine** in the dropdown list, and in the **State machine** list, choose the state machine from Step 1 \(`Helloworld`\)\.
 
-1. From the list, choose **Step Functions state machine**, and in the **State machine** list, choose the state machine from Step 1 \(`Helloworld`\)\.
-
-1. CloudWatch Events can create the IAM role that your event needs to run:
+1. Amazon EventBridge can create the IAM role that your event needs to run:
    + To create an IAM role automatically, choose **Create a new role for this specific resource**\.
    + To use an IAM role that you created before, choose **Use existing role**\.
 
-1. Choose **Configure details**\.
-
-   The **Step 2: Configure rule details** page is displayed\.
+1. Choose **Create**\.
 
 1. Enter a **Name** for your rule \(for example, `S3StepFunctions`\), choose **Enabled** for **State**, and then choose **Create rule**\.
 
    The **Configure rule details** section should look like the following\.  
 ![\[Configure rule details\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-cloudwatch-events-s3-details.png)
 
-   The rule is created and the **Rules** page is displayed, listing all your CloudWatch Events rules\.
+   The rule is created and the **Rules** page is displayed, listing all your Amazon EventBridge rules\.
 
-## Step 4: Test the CloudWatch Rule<a name="tutorial-cloudwatch-events-test-rule"></a>
+## Step 4: Test the Rule<a name="tutorial-cloudwatch-events-test-rule"></a>
 
 Now that everything is in place, test adding a file to the Amazon S3 bucket, and then look at the input of the resulting state machine execution\.
 
@@ -120,7 +114,7 @@ Now that everything is in place, test adding a file to the Amazon S3 bucket, and
 
 1. Check the execution for your state machine\.
 
-   Navigate to the [Step Functions console and select the state machine used in your CloudWatch Events rule \(`Helloworld`\)](https://console.aws.amazon.com/states/)\.
+   Navigate to the [Step Functions console and select the state machine used in your Amazon EventBridge rule \(`Helloworld`\)](https://console.aws.amazon.com/states/)\.
 
 1. Select the most recent execution of that state machine and expand the **Input** section\.
 

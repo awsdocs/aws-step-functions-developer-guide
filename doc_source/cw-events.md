@@ -1,6 +1,6 @@
 # EventBridge \(CloudWatch Events\) for Step Functions execution status changes<a name="cw-events"></a>
 
-Amazon EventBridge is an AWS service that enables you to respond to state changes in an AWS resource\. You can use AWS Step Functions with EventBridge in two ways\. 
+Amazon EventBridge is an AWS service that enables you to respond to state changes in an AWS resource\. You can use AWS Step Functions Standard Workflows with EventBridge, while Express Workflows do not emit events to EventBridge\. There are two ways to use Step Functions Standard Workflows with EventBridge\.
 
 You can configure Step Functions to emit EventBridge events when an execution status changes\. This enables you to monitor your workflows without having to constantly poll using the [https://docs.aws.amazon.com/step-functions/latest/apireference/API_DescribeExecution.html](https://docs.aws.amazon.com/step-functions/latest/apireference/API_DescribeExecution.html) API\. Based on changes in state machine executions you can use an EventBridge target to start new state machine executions, call AWS Lambda functions, publish messages to Amazon Simple Notification Service \(Amazon SNS\) topics, and more\.
 

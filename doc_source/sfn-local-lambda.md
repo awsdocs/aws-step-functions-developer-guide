@@ -30,13 +30,13 @@ Before installing the AWS SAM CLI, you need to install the AWS CLI and Docker\. 
 
    
 
-   This creates a `sam-app` directory, and builds an environment that includes a Python\-based Hello World Lambdafunction\.
+   This creates a `sam-app` directory, and builds an environment that includes a Python\-based Hello World Lambda function\.
 
    
 
 ## Step 2: Test AWS SAM CLI Local<a name="test-local-lambda"></a>
 
-Now that you have installed AWS SAM and created the Hello World Lambda function,test it\. In the `sam-app` directory, enter the following\.
+Now that you have installed AWS SAM and created the Hello World Lambda function, test it\. In the `sam-app` directory, enter the following\.
 
 ```
 sam local start-api

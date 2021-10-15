@@ -1,4 +1,4 @@
-# Sample Projects for Step Functions<a name="create-sample-projects"></a>
+# Sample projects for Step Functions<a name="create-sample-projects"></a>
 
 In the [AWS Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/), you can choose one of the following state machine sample projects to automatically create the state machine **Code**, **Visual Workflow**, and all related AWS resources for the project\. 
 
@@ -13,7 +13,7 @@ Each of the sample projects provisions a fully functional state machine, and cre
 + [Callback Pattern Example \(Amazon SQS, Amazon SNS, Lambda\)](callback-task-sample-sqs.md)
 + [Manage an Amazon EMR Job](sample-emr-job.md)
 + [Start a Workflow within a Workflow \(Step Functions, Lambda\)](sample-start-workflow.md)
-+ [Dynamically Process Data with a Map State](sample-map-state.md)
++ [Dynamically process data with a Map state](sample-map-state.md)
 + [Train a Machine Learning Model](sample-train-model.md)
 + [Tune a Machine Learning Model](sample-hyper-tuning.md)
 + [Process High\-Volume Messages from Amazon SQS \(Express Workflows\)](sample-project-express-high-volume-sqs.md)
@@ -25,4 +25,9 @@ Each of the sample projects provisions a fully functional state machine, and cre
 + [Manage an Amazon EKS cluster](sample-eks-cluster.md)
 + [Make a call to API Gateway](sample-apigateway-workflow.md)
 + [Call a microservice with API Gateway](sample-apigateway-ecs-workflow.md)
++ [Send a custom event to EventBridge](sample-eventbridge-custom-event.md)
 + [Invoke Synchronous Express Workflows](synchronous-execution.md)
++ [Run ETL/ELT workflows](sample-etl-orchestration.md)
++ [Use Step Functions and AWS Batch with error handling](sample-batch-error-handling.md)
++ [Fan out an AWS Batch job](sample-batch-fan-out.md)
++ [AWS Batch with Lambda](sample-batch-lambda.md)

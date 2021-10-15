@@ -18,7 +18,7 @@ The name of the state to transition to if none of the transitions in `Choices` i
 The following is an example of a `Choice` state and other states that it transitions to\.
 
 **Note**  
-You must specify the `$.type` field\. If the state input doesn't contain the `$.type` field, the execution fails and an error is displayed in the execution history\.
+You must specify the `$.type` field\. If the state input doesn't contain the `$.type` field, the execution fails and an error is displayed in the execution history\. You can only specify a string in the `StringEquals` field that matches a literal value\. For example, `"StringEquals": "Buy"`\.
 
 ```
 "ChoiceStateX": {

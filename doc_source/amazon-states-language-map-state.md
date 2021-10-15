@@ -11,7 +11,7 @@ The `Iterator` field’s value is an object that defines a state machine which w
 
 ** `ItemsPath` \(Optional\)**  
 The `ItemsPath` field’s value is a reference path identifying where in the effective input the array field is found\. For more information, see [ItemsPath](input-output-itemspath.md)\.  
-States within an `Iterator` field can only transition to each other, and no state outside the `ItemsPath` field can transition to a state within it\.  
+States within an `Iterator` field can only transition to each other, and no state outside the `Iterator` field can transition to a state within it\.  
 If any iteration fails, entire Map state fails, and all iterations are terminated\.
 
 ** `MaxConcurrency` \(Optional\)**  
@@ -152,4 +152,4 @@ When complete, the output of the `Map` state is a JSON array, where each item is
 + [Map State Example with Parameters](#map-state-example-params)
 + [Input and Output Processing in Step Functions](concepts-input-output-filtering.md)
 + [Context Object Data for Map States](input-output-contextobject.md#contextobject-map)
-+ [Dynamically Process Data with a Map State](sample-map-state.md)
++ [Dynamically process data with a Map state](sample-map-state.md)

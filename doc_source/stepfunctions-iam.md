@@ -20,7 +20,7 @@ For a state machine that calls `StartExecution` for a single nested workflow exe
 ```
 
 For more information, see the following:
-+ [Service Integrations](concepts-service-integrations.md)
++ [Working with other services](concepts-service-integrations.md)
 + [Pass Parameters to a Service API](connect-parameters.md)
 + [AWS Step Functions](connect-stepfunctions.md)
 

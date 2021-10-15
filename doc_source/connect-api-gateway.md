@@ -1,8 +1,11 @@
 # Call API Gateway with Step Functions<a name="connect-api-gateway"></a>
 
-Step Functions can control certain AWS services directly from the Amazon States Language\. For more information, see the following:
-+ [Service Integrations](concepts-service-integrations.md)
+Step Functions can control certain AWS services directly from the Amazon States Language\. For more information about working with AWS Step Functions and its integrations, see the following:
++ [Working with other services](concepts-service-integrations.md)
 + [Pass Parameters to a Service API](connect-parameters.md)
+
+**How the Optimized API Gateway integration is different than the API Gateway AWS SDK integration**  
+`apigateway:invoke:` has no equivalent in the AWS SDK service integration\. Instead, the Optimized API Gateway service calls your API Gateway endpoint directly\.
 
 You use Amazon API Gateway to create, publish, maintain, and monitor HTTP and REST APIs\. To integrate with API Gateway, you define a `Task` state in Step Functions that directly calls an API Gateway HTTP or API Gateway REST endpoint, without writing code or relying on other infrastructure\. A `Task` state definition includes all the necessary information for the API call\. You can also select different authorization methods\.
 
@@ -63,7 +66,20 @@ When you create your `Task` state definition, Step Functions validates the param
   + Query strings allow a list of values associated with the same key\. 
 + `RequestBody`
   + Type: `JSON` or `String`
-  + The HTTP Request body\. Its type can be either a `JSON` object or `String`\. 
+  + The HTTP Request body\. Its type can be either a `JSON` object or `String`\. `RequestBody` is only supported for `PATCH`, `POST`, and `PUT` HTTP methods\.
++ `AllowNullValues`
+  + Type: `BOOLEAN`
+  + Setting `AllowNullValues` to `true` will allow you to pass null values such as the following:
+
+    ```
+    {
+        "NewPet": {
+            "type": "turtle",
+            "price": 123,
+            "name": null
+        }
+    }
+    ```
 + `AuthType`
   + Type: `JSON`
   + The authentication method\. The default method is `NO_AUTH`\. The allowed values are: 

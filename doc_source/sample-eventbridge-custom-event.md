@@ -1,0 +1,113 @@
+# Send a custom event to EventBridge<a name="sample-eventbridge-custom-event"></a>
+
+This sample project demonstrates how to use Step Functions to send a custom event to an event bus that matches a rule with multiple targets \(Amazon EventBridge, AWS Lambda, Amazon Simple Notification Service, Amazon Simple Queue Service\)\. This sample project creates the following:
++ Amazon EventBridge
++ An Amazon SNS topic
++ An Amazon SQS queue
++ A Lambda function
++ Related AWS Identity and Access Management \(IAM\) roles
+
+For more information about Step Functions and Step Functions service integrations, see the following:
++ [Using AWS Step Functions with other services](concepts-service-integrations.md)
++ [Call EventBridge with Step Functions](connect-eventbridge.md)
+
+**Note**  
+This sample project may incur charges\.  
+For new AWS users, a free usage tier is available\. On this tier, services are free below a certain level of usage\. For more information about AWS costs and the Free Tier, see [EventBridge Pricing](https://aws.amazon.com/eventbridge/pricing/)\.
+
+## Create the State Machine and Provision Resources<a name="sample-eventbridge-custom-event-create"></a>
+
+1. Open the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/) and choose **Create a state machine**\.
+
+1. Choose **Run a sample project**, and then choose **Send a custom event to EventBridge**\.
+
+   The state machine **Code** and **Visual Workflow** are displayed\.  
+![\[Training model workflow.\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/sample-eventbridge.png)
+
+1. Choose **Next**\.
+
+   The **Deploy resources** page is displayed, listing the resources that will be created\. For this sample project, the resources include:
+   + An AWS Step Functions state machine
+   + An EventBridge event bus
+   + An EventBridge rule
+   + An Amazon SNS topic
+   + An Amazon SQS queue
+   + A Lambda Function
+   + Related IAM roles
+
+1. Choose **Deploy Resources**\.
+**Note**  
+It can take up to 25 minutes for these resources and related IAM permissions to be created\. While the **Deploy resources** page is displayed, you can open the **Stack ID** link to see which resources are being provisioned\.
+
+## Start a New Execution<a name="sample-eventbridge-custom-event-start-execution"></a>
+
+1. Open the [Step Functions console](https://console.aws.amazon.com/states/home)\.
+
+1. On the **State machines** page, choose the **EventBridgeStateMachine** state machine that was created by the sample project, and then choose **Start execution**\.
+
+1. On the **New execution** page, enter an execution name \(optional\), and then choose **Start Execution**\.
+
+1. \(Optional\) To help identify your execution, you can specify an ID for it in the **Enter an execution name** box\. If you don't enter an ID, Step Functions generates a unique ID automatically\.
+**Note**  
+Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with Amazon CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
+
+1. \(Optional\) Go to the newly created state machine on the Step Functions **Dashboard**, and then choose **New execution**\.
+
+1. When an execution is complete, you can select states on the **Visual workflow** and browse the **Input** and **Output** under **Step details**\.
+
+## Example State Machine Code<a name="sample-eventbridge-custom-event-code-examples"></a>
+
+The state machine in this sample project integrates with EventBridge by sending a custom event to an EventBridge event bus\. The event sent to the event bus matches an EventBridge rule that triggers a Lambda function that sends messages to an Amazon SNS topic and an Amazon SQS queue\.
+
+Browse through this example state machine to see how Step Functions manages EventBridge\.
+
+For more information about how AWS Step Functions can control other AWS services, see [Using AWS Step Functions with other services](concepts-service-integrations.md)\.
+
+```
+{
+  "Comment": "An example of the Amazon States Language for sending a custom event to Amazon EventBridge",
+  "StartAt": "Send a custom event",
+  "States": {
+    "Send a custom event": {
+      "Resource": "arn:<PARTITION>:states:::events:putEvents",
+      "Type": "Task",
+      "Parameters": {
+        "Entries": [{
+          "Detail": {
+            "Message": "Hello from Step Functions!"
+          },
+          "DetailType": "MessageFromStepFunctions",
+          "EventBusName": "<EVENT_BUS_NAME>",
+          "Source": "my.statemachine"
+        }]
+      },
+      "End": true
+    }
+  }
+}
+```
+
+For information about how to configure IAM when using Step Functions with other AWS services, see [IAM Policies for integrated services](service-integration-iam-templates.md)\.
+
+## IAM Example<a name="sample-eventbridge-custom-event-iam-example"></a>
+
+These example AWS Identity and Access Management \(IAM\) policies generated by the sample project include the least privilege necessary to execute the state machine and related resources\. We recommend that you include only those permissions that are necessary in your IAM policies\. 
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Action": [
+                "events:PutEvents"
+            ],
+            "Resource": [
+                "arn:aws:events:us-east-1:1234567890:event-bus/stepfunctions-sampleproject-eventbus"
+            ],
+            "Effect": "Allow"
+        }
+    ]
+}
+```
+
+For information about how to configure IAM when using Step Functions with other AWS services, see [IAM Policies for integrated services](service-integration-iam-templates.md)\.

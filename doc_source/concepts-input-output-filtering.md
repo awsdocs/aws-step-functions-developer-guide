@@ -17,6 +17,9 @@ The following diagram shows how JSON information moves through a task state\. `I
 
  Each can use [paths](amazon-states-language-paths.md) to select portions of the JSON from the input or the result\. A path is a string, beginning with `$`, that identifies nodes within JSON text\. Step Functions paths use [JsonPath](https://github.com/json-path/JsonPath) syntax\.
 
+**Tip**  
+Use the [ data flow simulator in the Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/simulator) to test JSON path syntax, to better understand how data is manipulated within a state, and to see how data is passed between states\.
+
 **Topics**
 + [Paths](amazon-states-language-paths.md)
 + [InputPath, Parameters and ResultSelector](input-output-inputpath-params.md)

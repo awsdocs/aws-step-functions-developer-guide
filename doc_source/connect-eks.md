@@ -1,19 +1,24 @@
 # Call Amazon EKS with Step Functions<a name="connect-eks"></a>
 
-Step Functions can control certain AWS services directly from the Amazon States Language\. For more information, see the following:
-+ [Service Integrations](concepts-service-integrations.md)
+Step Functions can control certain AWS services directly from the Amazon States Language\. For more information about working with AWS Step Functions and its integrations, see the following:
++ [Working with other services](concepts-service-integrations.md)
 + [Pass Parameters to a Service API](connect-parameters.md)
 
-For information on how to configure IAM when using Step Functions with other AWS services, see [IAM Policies for Integrated Services](service-integration-iam-templates.md)\.
+**How the Optimized Amazon EKS integration is different than the Amazon EKS AWS SDK integration**  
+The [Run a Job \(\.sync\)](connect-to-resource.md#connect-sync) integration pattern is supported\.
+There are no optimizations for the [Request Response](connect-to-resource.md#connect-default) integration pattern\.
+The [Wait for a Callback with the Task Token](connect-to-resource.md#connect-wait-token) integration pattern is not supported\.
+
+For information on how to configure IAM when using Step Functions with other AWS services, see [IAM Policies for integrated services](service-integration-iam-templates.md)\.
 
 Step Functions provides two types of service integration APIs for integrating with Amazon Elastic Kubernetes Service\. One lets you use the Amazon EKS APIs to create and manage an Amazon EKS cluster\. The other lets you interact with your cluster using the Kubernetes API and run jobs as part of your application’s workflow\. You can use the Kubernetes API integrations with Amazon EKS clusters created using Step Functions, with Amazon EKS clusters created by the **eksctl** tool or the [Amazon EKS console](https://console.aws.amazon.com/eks/home), or similar methods\. The Step Functions EKS integration supports only Kubernetes APIs with public endpoint access\. For  more information, see [Creating an Amazon EKS cluster](https://docs.aws.amazon.com/eks/latest/userguide/create-cluster.html) in the Amazon EKS User Guide\.
 
 Step Functions does not terminate an Amazon EKS cluster automatically if execution is stopped\. If your state machine stops before your Amazon EKS cluster has terminated, your cluster may continue running indefinitely, and can accrue additional charges\. To avoid this, ensure that any Amazon EKS cluster you create is terminated properly\. For more information, see:
 + [Deleting a cluster](https://docs.aws.amazon.com/eks/latest/userguide/create-cluster.html) in the Amazon EKS User Guide\.
-+ [Run a Job](connect-to-resource.md#connect-sync) in Service Integration Patterns\.
++ [Run a Job \(\.sync\)](connect-to-resource.md#connect-sync) in Service Integration Patterns\.
 
 **Note**  
-There is a quota for the maximum input or result data size for a task in Step Functions\. This restricts you to 262,144 bytes of data as a UTF\-8 encoded string when you send to, or receive data from, another service\. See [Quotas Related to State Machine Executions](limits.md#service-limits-state-machine-executions)\.
+There is a quota for the maximum input or result data size for a task in Step Functions\. This restricts you to 262,144 bytes of data as a UTF\-8 encoded string when you send to, or receive data from, another service\. See [Quotas related to state machine executions](limits-overview.md#service-limits-state-machine-executions)\.
 
 ## Kubernetes API integrations<a name="connect-eks-kubernetes-apis"></a>
 
@@ -194,6 +199,33 @@ The following includes a `Task` state that uses `eks:call` to list the pods belo
         "QueryParameters": {
           "labelSelector": [
             "job-name=example-job"
+          ]
+        }
+      },
+      "End": true
+    }
+  }
+}
+```
+
+The following includes a `Task` state that uses `eks:call` to delete the job `example-job`, and sets the `propagationPolicy` to ensure the job's pods are also deleted\.
+
+```
+{
+  "StartAt": "Call EKS",
+  "States": {
+    "Call EKS": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::eks:call",
+      "Parameters": {
+        "ClusterName": "MyCluster",
+        "CertificateAuthority": "ANPAJ2UCCR6DPCEXAMPLE",
+        "Endpoint": "https://444455556666.yl4.us-east-1.eks.amazonaws.com",
+        "Method": "DELETE",
+        "Path": "/apis/batch/v1/namespaces/default/jobs/example-job",
+        "QueryParameters": {
+          "propagationPolicy": [
+            "Foreground"
           ]
         }
       },

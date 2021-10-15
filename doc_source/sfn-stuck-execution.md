@@ -15,3 +15,6 @@ To avoid this, specify a reasonable timeout when you create a task in your state
 ```
 
 For more information, see [Task](amazon-states-language-task-state.md) in the Amazon States Language documentation\.
+
+**Note**  
+You can set a timeout for your state machine using the `TimeoutSeconds` field in your Amazon States Language definition\. For more information, see [State Machine Structure](amazon-states-language-state-machine-structure.md)\.

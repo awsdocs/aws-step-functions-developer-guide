@@ -9,5 +9,4 @@ You can configure several other services to invoke state machines\. You can only
 +  [AWS Step Functions](https://docs.aws.amazon.com/step-functions/latest/dg/connect-stepfunctions.html) 
 
 Step Functions invocations are governed by the `StartExecution` quota\. For more information, see:
-+ [Quotas for Standard Workflows](limits.md)
-+ [Quotas for Express Workflows](express-limits.md)
++ [Quotas](limits-overview.md)

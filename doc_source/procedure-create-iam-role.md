@@ -30,7 +30,7 @@ Step Functions can control other services directly in a task state\. Attach inli
 
 1. Use the **Visual editor** or the **JSON** tab to create policies for your role\.
 
-For more information about how AWS Step Functions can control other AWS services, see [Service Integrations with AWS Step Functions ](concepts-service-integrations.md)\.
+For more information about how AWS Step Functions can control other AWS services, see [Using AWS Step Functions with other services](concepts-service-integrations.md)\.
 
 **Note**  
-For examples of IAM policies created by the Step Functions console, see [IAM Policies for Integrated Services](service-integration-iam-templates.md)\.
+For examples of IAM policies created by the Step Functions console, see [IAM Policies for integrated services](service-integration-iam-templates.md)\.

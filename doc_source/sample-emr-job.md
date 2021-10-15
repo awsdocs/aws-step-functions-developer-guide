@@ -40,7 +40,7 @@ Step Functions allows you to create state machine, execution, and activity names
 
 The state machine in this sample project integrates with Amazon EMR by passing parameters directly to those resources\. Browse through this example state machine to see how Step Functions uses a state machine to call the Amazon EMR task synchronously, waits for the task to succeed or fail, and terminates the cluster\.
 
-For more information about how AWS Step Functions can control other AWS services, see [Service Integrations with AWS Step Functions ](concepts-service-integrations.md)\.
+For more information about how AWS Step Functions can control other AWS services, see [Using AWS Step Functions with other services](concepts-service-integrations.md)\.
 
 ```
 {
@@ -222,4 +222,4 @@ The following policy ensures that `addStep` has sufficient permissions\.
 }
 ```
 
-For information about how to configure IAM when using Step Functions with other AWS services, see [IAM Policies for Integrated Services](service-integration-iam-templates.md)\.
+For information about how to configure IAM when using Step Functions with other AWS services, see [IAM Policies for integrated services](service-integration-iam-templates.md)\.

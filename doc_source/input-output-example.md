@@ -51,7 +51,7 @@ This line in the state machine definition limits the task input to only the `lam
 "ResultPath": "$.data.lambdaresult",
 ```
 
-This `ResultPath` tells the state machine to insert the result of the Lambda function into a node named `lambdaresult`, as a child of the `data` node in the original state machine input\. Without further processing with `OutputPath`, the input of the state now includes the result of the Lambda function with the original input\.
+This `ResultPath` tells the state machine to insert the result of the Lambda function into a node named `lambdaresult`, as a child of the `data` node in the original state machine input\. Without further processing with `OutputPath`, the output of the state now includes the result of the Lambda function with the original input\.
 
 ```
 {
