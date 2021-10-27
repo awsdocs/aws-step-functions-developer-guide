@@ -7,14 +7,14 @@ Step Functions is based on state machines and tasks\. A state machine is a workf
 With Step Functions' built\-in controls, you examine the state of each step in your workflow to make sure that your application runs in order and as expected\. Depending on your use case, you can have Step Functions call AWS services, such as Lambda, to perform tasks\. You can create workflows that process and publish machine learning models\. You can have Step Functions control AWS services, such as [AWS Glue](https://aws.amazon.com/glue/), to create extract, transform, and load \(ETL\) workflows\. You also can create long\-running, automated workflows for applications that require human interaction\. 
 
 **Topics**
-+ [AWS SDK and Optimized integrations](#welcome-integrations)
++ [AWS SDK and Optimized integrations](#optimized-integrations)
 + [Standard and Express workflows](#welcome-workflows)
 + [Use cases](#application)
 + [Service integrations](#welcome-integrations)
 + [Supported regions](#supported-regions)
 + [Is this your first time using Step Functions?](#welcome-overview)
 
-## AWS SDK and Optimized integrations<a name="welcome-integrations"></a>
+## AWS SDK and Optimized integrations<a name="optimized-integrations"></a>
 
 To call other AWS services, you can use Step Functions's AWS SDK integrations, or you can use one of Step Functions's Optimized integrations\.
 + The [AWS SDK integrations](supported-services-awssdk.md) let you call any of the over two hundred AWS services directly from your state machine, giving you access to over nine thousand API actions\.
