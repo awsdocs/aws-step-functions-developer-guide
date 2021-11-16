@@ -25,7 +25,8 @@ The context object includes information about the state machine, state, executio
         "RetryCount": Number
     },
     "StateMachine": {
-        "Id": "String"
+        "Id": "String",
+        "Name": "String"
     },
     "Task": {
         "Token": "String"
@@ -55,7 +56,7 @@ Content from a running execution includes specifics in the following format\.
     },
     "StateMachine": {
         "Id": "arn:aws:states:us-east-1:123456789012:stateMachine:stateMachineName",
-        "Name": "name"
+        "Name": "stateMachineName"
     },
     "Task": {
         "Token": "h7XRiCdLtd/83p1E0dMccoxlzFhglsdkzpK9mBVKZsp7d9yrT1W"
