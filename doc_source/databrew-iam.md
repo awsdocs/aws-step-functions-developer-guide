@@ -17,7 +17,7 @@ These example templates show how AWS Step Functions generates IAM policies based
                 "databrew:startJobRun",
                 "databrew:listJobRuns",
                 "databrew:stopJobRun"
-            ]
+            ],
             "Resource": [
                 "arn:aws:databrew:{{region}}:{{accountId}}:job/*"
             ]
@@ -37,7 +37,7 @@ These example templates show how AWS Step Functions generates IAM policies based
             "Effect": "Allow",
             "Action": [
                 "databrew:startJobRun"
-            ]
+            ],
             "Resource": [
                 "arn:aws:databrew:{{region}}:{{accountId}}:job/*"
             ]
