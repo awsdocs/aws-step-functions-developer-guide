@@ -2,7 +2,7 @@
 
 Amazon EventBridge is an AWS service that enables you to respond to state changes in an AWS resource\. You can use AWS Step Functions Standard Workflows with EventBridge, while Express Workflows do not emit events to EventBridge\. There are two ways to use Step Functions Standard Workflows with EventBridge\.
 
-You can configure Step Functions to emit EventBridge events when an execution status changes\. This enables you to monitor your workflows without having to constantly poll using the [https://docs.aws.amazon.com/step-functions/latest/apireference/API_DescribeExecution.html](https://docs.aws.amazon.com/step-functions/latest/apireference/API_DescribeExecution.html) API\. Based on changes in state machine executions you can use an EventBridge target to start new state machine executions, call AWS Lambda functions, publish messages to Amazon Simple Notification Service \(Amazon SNS\) topics, and more\.
+You can configure EventBridge rules to react to events emitted when a Step Functions execution status changes\. This enables you to monitor your workflows without having to constantly poll using the [https://docs.aws.amazon.com/step-functions/latest/apireference/API_DescribeExecution.html](https://docs.aws.amazon.com/step-functions/latest/apireference/API_DescribeExecution.html) API\. Based on changes in state machine executions you can use an EventBridge target to start new state machine executions, call AWS Lambda functions, publish messages to Amazon Simple Notification Service \(Amazon SNS\) topics, and more\.
 
 You can also configure a Step Functions state machine as a target in EventBridge\. This enables you to trigger an execution of a Step Functions workflow in response to an event from another AWS service\.
 
