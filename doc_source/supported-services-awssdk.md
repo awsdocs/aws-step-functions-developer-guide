@@ -231,7 +231,7 @@ See the [Gather Amazon S3 bucket info using AWS SDK service integrations](tutori
 | Amazon Route 53 | arn:aws:states:::aws\-sdk:route53:\[apiAction\] | 
 | Amazon Route 53 Domains | arn:aws:states:::aws\-sdk:route53domains:\[apiAction\] | 
 | Amazon Route 53 Resolver | arn:aws:states:::aws\-sdk:route53resolver:\[apiAction\] | 
-| Amazon S3 Control | arn:aws:states:::aws\-sdk:s3outposts:\[apiAction\] | 
+| Amazon S3 on Outposts | arn:aws:states:::aws\-sdk:s3outposts:\[apiAction\] | 
 | Amazon SageMaker Feature Store Runtime | arn:aws:states:::aws\-sdk:sagemakerfeaturestoreruntime:\[apiAction\] | 
 | Amazon SageMaker Runtime | arn:aws:states:::aws\-sdk:sagemakerruntime:\[apiAction\] | 
 | Amazon SageMaker | arn:aws:states:::aws\-sdk:sagemaker:\[apiAction\] | 
