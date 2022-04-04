@@ -81,7 +81,7 @@ State machine executions are instances where you run your workflow to perform ta
 
 1. On the **Helloworld** page, choose **Start execution**\.
 
-1. **Optional \-** On the **New execution** page, in the **exection ID** field, you can enter a name of your choice\.
+1. **Optional \-** On the **New execution** page, in the **execution ID** field, you can enter a name of your choice\.
 
    Make sure that the execution name doesn’t contain any non\-ASCII characters\. If you don’t specify your own execution ID, Step Functions generates a unique execution ID for you\.
 
