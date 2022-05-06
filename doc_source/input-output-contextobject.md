@@ -17,6 +17,8 @@ The context object includes information about the state machine, state, executio
     "Execution": {
         "Id": "String",
         "Input": {},
+        "Name": "String",
+        "RoleArn": "String",
         "StartTime": "Format: ISO 8601"
     },
     "State": {
@@ -25,7 +27,8 @@ The context object includes information about the state machine, state, executio
         "RetryCount": Number
     },
     "StateMachine": {
-        "Id": "String"
+        "Id": "String",
+        "Name": "String"
     },
     "Task": {
         "Token": "String"
