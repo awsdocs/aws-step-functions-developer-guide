@@ -1,7 +1,7 @@
 # AWS Glue DataBrew<a name="databrew-iam"></a>
 
 These example templates show how AWS Step Functions generates IAM policies based on the resources in your state machine definition\. For more information, see:
-+ [IAM Policies for Integrated Services](service-integration-iam-templates.md)
++ [IAM Policies for integrated services](service-integration-iam-templates.md)
 + [Service Integration Patterns](connect-to-resource.md)
 
 ------
@@ -17,7 +17,7 @@ These example templates show how AWS Step Functions generates IAM policies based
                 "databrew:startJobRun",
                 "databrew:listJobRuns",
                 "databrew:stopJobRun"
-            ]
+            ],
             "Resource": [
                 "arn:aws:databrew:{{region}}:{{accountId}}:job/*"
             ]
@@ -37,7 +37,7 @@ These example templates show how AWS Step Functions generates IAM policies based
             "Effect": "Allow",
             "Action": [
                 "databrew:startJobRun"
-            ]
+            ],
             "Resource": [
                 "arn:aws:databrew:{{region}}:{{accountId}}:job/*"
             ]

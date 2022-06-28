@@ -5,13 +5,13 @@ A `Pass` state \(`"Type": "Pass"`\) passes its input to its output, without perf
 In addition to the [common state fields](amazon-states-language-common-fields.md), `Pass` states allow the following fields\.
 
 ** `Result` \(Optional\)**  
-Treated as the output of a virtual task to be passed to the next state, and filtered as specified by the `ResultPath` field \(if present\)\.
+Refers to the output of a virtual task that is passed on to the next state\. If you include the `ResultPath` field in your state machine definition, `Result` is placed as specified by `ResultPath` and passed on to the next state\.
 
 ** `ResultPath` \(Optional\)**  
-Specifies where \(in the input\) to place the "output" of the virtual task specified in `Result`\. The input is further filtered as specified by the `OutputPath` field \(if present\) before being used as the state's output\. For more information, see [Input and Output Processing](concepts-input-output-filtering.md)\.
+Specifies where to place the *output* \(relative to the input\) of the virtual task specified in `Result`\. The input is further filtered as specified by the `OutputPath` field \(if present\) before being used as the state's output\. For more information, see [Input and Output Processing](concepts-input-output-filtering.md)\.
 
 ** `Parameters` \(Optional\)**  
-Create a collection of key\-value pairs that will be passed as input\. Values can be static, or selected from the input with a path\. For more information, see [InputPath, Parameters and ResultSelector](input-output-inputpath-params.md)\.
+Creates a collection of key\-value pairs that will be passed as input\. You can specify `Parameters` as a static value or select from the input using a path\. For more information, see [InputPath, Parameters and ResultSelector](input-output-inputpath-params.md)\.
 
 ## Pass State Example<a name="pass-state-example"></a>
 

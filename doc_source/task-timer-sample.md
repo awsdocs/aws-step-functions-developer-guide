@@ -3,11 +3,11 @@
 This sample project creates a task timer\. It implements an AWS Step Functions state machine that implements a `Wait` state, and uses an AWS Lambda function that sends an Amazon Simple Notification Service \(Amazon SNS\) notification\. A `Wait` state is a state type that waits for a trigger to perform a single unit of work\.
 
 **Note**  
-This sample project implements an AWS Lambda function to send an Amazon Simple Notification Service \(Amazon SNS\) notification\. You can also send an Amazon SNS notification directly from the Amazon States Language\. See [Service Integrations with AWS Step Functions ](concepts-service-integrations.md)\.
+This sample project implements an AWS Lambda function to send an Amazon Simple Notification Service \(Amazon SNS\) notification\. You can also send an Amazon SNS notification directly from the Amazon States Language\. See [Using AWS Step Functions with other services](concepts-service-integrations.md)\.
 
 This sample project creates the state machine, a Lambda function, and an Amazon SNS topic, and configures the related AWS Identity and Access Management \(IAM\) permissions\. For more information about the resources that are created with the **Task Timer** sample project, see the following:
 
-For more information about how AWS Step Functions can control other AWS services, see [Service Integrations with AWS Step Functions ](concepts-service-integrations.md)\.
+For more information about how AWS Step Functions can control other AWS services, see [Using AWS Step Functions with other services](concepts-service-integrations.md)\.
 + [AWS CloudFormation User Guide](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/)
 + [Amazon Simple Notification Service Developer Guide](https://docs.aws.amazon.com/sns/latest/dg/)
 + [AWS Lambda Developer Guide](https://docs.aws.amazon.com/lambda/latest/dg/)
@@ -15,24 +15,26 @@ For more information about how AWS Step Functions can control other AWS services
 
 **To create the Task Timer state machine and provision all resources**
 
-1. Open the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/) and choose **Create a state machine**\.
+1. Open the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/) and choose **Create state machine**\.
 
-1. Choose **Sample Projects**, and then choose **Task Timer**\.
+1. Choose **Run a sample project**, and then choose **Task Timer**\.
 
-   The state machine **Code** and **Visual Workflow** are displayed\.  
+   The state machine **Definition** and **Visual Workflow** are displayed\.  
 ![\[Task timer visual workflow.\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-create-state-machine-task-timer-preview.png)
 **Note**  
-The **Code** section in this state machine references the AWS resources that will be created for this sample project\.
+The **Definition** section in this state machine references the AWS resources that will be created for this sample project\.
 
-1. Choose **Create Sample Project**\.
+1. Choose **Next**\.
 
-   The **Create Project Resources** page is displayed, listing the resources that will be created\. For this sample project, the resources include:
+   The **Deploy resources** page is displayed, listing the resources that will be created\. For this sample project, the resources include:
    + A SendToSNS Lambda function
    + A TaskTimerTopic Amazon SNS topic
-**Note**  
-It can take up to 10 minutes for these resources and related IAM permissions to be created\. While the **Create Project Resources** page displays **Creating resources**, you can open the **Stack ID:** link to see which resources are being provisioned\.
 
-   When complete, the **New execution** page is displayed, with example input similar to the following\.
+1. Choose **Deploy resources**\.
+**Note**  
+It can take up to 10 minutes for these resources and related IAM permissions to be created\. While the **Deploy resources** page is displayed, you can open the **Stack ID** link to see which resources are being provisioned\.
+
+   When complete, the **Start execution** dialog box is displayed, with example input similar to the following\.
 
    ```
    {

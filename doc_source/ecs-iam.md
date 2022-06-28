@@ -1,7 +1,7 @@
 # Amazon ECS/AWS Fargate<a name="ecs-iam"></a>
 
 These example templates show how AWS Step Functions generates IAM policies based on the resources in your state machine definition\. For more information, see:
-+ [IAM Policies for Integrated Services](service-integration-iam-templates.md)
++ [IAM Policies for integrated services](service-integration-iam-templates.md)
 + [Service Integration Patterns](connect-to-resource.md)
 
 Because the value for `TaskId` is not known until the task is submitted, Step Functions creates a more privileged `"Resource": "*"` policy\.
@@ -124,3 +124,5 @@ You can only stop Amazon Elastic Container Service \(Amazon ECS\) tasks that wer
 ```
 
 ------
+
+If your scheduled Amazon ECS tasks require the use of a task execution role, a task role, or a task role override, then you must add `iam:PassRole` permissions for each task execution role, task role, or task role override to the CloudWatch Events IAM role of the calling entity, which in this case is Step Functions\.

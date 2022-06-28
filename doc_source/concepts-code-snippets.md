@@ -16,6 +16,6 @@ After you configure your AWS Batch options, you can specify error handling optio
 For more information, see [Error names](concepts-error-handling.md#error-handling-error-representation) in Amazon States Language\.
 
 To learn more about Step Functions service integrations, see the following:
-+ [Service Integrations with AWS Step Functions ](concepts-service-integrations.md)
-+ [Supported AWS Service Integrations for Step Functions](connect-supported-services.md)
++ [Using AWS Step Functions with other services](concepts-service-integrations.md)
++ [Optimized integrations for Step Functions](connect-supported-services.md)
 + [Using Code Snippets](tutorial-code-snippet.md)

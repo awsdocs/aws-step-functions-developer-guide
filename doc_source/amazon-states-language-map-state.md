@@ -11,12 +11,13 @@ The `Iterator` field’s value is an object that defines a state machine which w
 
 ** `ItemsPath` \(Optional\)**  
 The `ItemsPath` field’s value is a reference path identifying where in the effective input the array field is found\. For more information, see [ItemsPath](input-output-itemspath.md)\.  
-States within an `Iterator` field can only transition to each other, and no state outside the `ItemsPath` field can transition to a state within it\.  
+States within an `Iterator` field can only transition to each other, and no state outside the `Iterator` field can transition to a state within it\.  
 If any iteration fails, entire Map state fails, and all iterations are terminated\.
 
 ** `MaxConcurrency` \(Optional\)**  
 The `MaxConcurrency`field’s value is an integer that provides an upper bound on how many invocations of the Iterator may run in parallel\. For instance, a `MaxConcurrency` value of 10 will limit your `Map` state to 10 concurrent iterations running at one time\.  
-Concurrent iterations may be limited\. When this occurs, some iterations will not begin until previous iterations have completed\. The likelihood of this occurring increases when your input array has more than 40 items\.
+Concurrent iterations may be limited\. When this occurs, some iterations will not begin until previous iterations have completed\. The likelihood of this occurring increases when your input array has more than 40 items\.  
+To achieve a higher number of concurrency, consider using nested state machines that cascade `Map` states\. For example, to achieve a concurrency of 1024 you could build a state machine that contains a `Map` state that iterates 32 times, then nest that state machine into the `Map` state of a higher level state machine that iterates 32 times\.
 The default value is `0`, which places no quota on parallelism and iterations are invoked as concurrently as possible\.   
 A `MaxConcurrency` value of `1` invokes the `Iterator` once for each array element in the order of their appearance in the input, and will not start a new iteration until the previous has completed\.
 
@@ -27,7 +28,8 @@ Specifies where \(in the input\) to place the output of the branches\. The input
 Pass a collection of key value pairs, where the values are static or selected from the result\. For more information, see [ResultSelector](input-output-inputpath-params.md#input-output-resultselector)\.
 
 ** `Retry` \(Optional\)**  
-An array of objects, called Retriers, that define a retry policy in case the state encounters runtime errors\. For more information, see [Examples using Retry and using Catch](concepts-error-handling.md#error-handling-examples)\.
+An array of objects, called Retriers, that define a retry policy in case the state encounters runtime errors\. For more information, see [Examples using Retry and using Catch](concepts-error-handling.md#error-handling-examples)\.  
+If you define Retriers for the `Map` state, the retry policy applies to all the `Map` state iterations instead of only the failed iterations\. For example, if your `Map` state contains three iterations out of which one fails, and you've defined the `Retry` field for the `Map` state, the retry policy applies to all the `Map` state iterations instead of only the failed iteration\.
 
 ** `Catch` \(Optional\)**  
 An array of objects, called Catchers, that define a fallback state that is executed if the state encounters runtime errors and its retry policy is exhausted or isn't defined\. For more information, see [Fallback States](concepts-error-handling.md#error-handling-fallback-states)\.
@@ -152,4 +154,4 @@ When complete, the output of the `Map` state is a JSON array, where each item is
 + [Map State Example with Parameters](#map-state-example-params)
 + [Input and Output Processing in Step Functions](concepts-input-output-filtering.md)
 + [Context Object Data for Map States](input-output-contextobject.md#contextobject-map)
-+ [Dynamically Process Data with a Map State](sample-map-state.md)
++ [Dynamically process data with a Map state](sample-map-state.md)

@@ -2,6 +2,13 @@
 
 The Amazon States Language provides several Intrinsics to allow basic operations without `Task` states\. Intrinsics are constructs that look like functions in programming languages and can be used to help Payload Builders process the data going to and from Task Resources\.
 
+**Note**  
+To indicate the use of intrinsic functions, you must specify `.$` in the key value in your state machine definitions, as shown in the following example:  
+
+```
+"KeyId.$": "States.Array($.Id)"
+```
+
 ** `States.Format`**  
  Supports string construction from literal and interpolated values, and takes one or more arguments\. The Value of the first argument must be a string, and may include zero or more instances of the character sequence `{}`\. There must be as many remaining arguments in the Invocation as there are occurrences of `{}`\. The interpreter returns the first\-argument string with each `{}` replaced by the Value of the positionally\-corresponding argument in the Intrinsic invocation\.  
  Example: given the following input:   
@@ -59,18 +66,39 @@ Which would return `{\"foo\": \"bar\"}`
 
 ** `States.Array`**  
 This intrinsic takes zero or more arguments\. The interpreter returns a JSON array containing the Values of the arguments, in the order provided\. For example, given the following input:  
+For example, if you use the following payload:  
 
 ```
 {
-  "Id": 123456
+  "Parameters": {
+    "foo.$": "States.Array('Foo', 2022, $.someJson, null)"
+  }
 }
 ```
-You could use  
+And provide the following input for the above payload:  
 
 ```
-"BuildId.$": "States.Array($.Id)"
+{
+  "someJson": {
+    "random": "abcdefg"
+  },
+  "zebra": "stripe"
+}
 ```
-Which would return `“BuildId”: [123456]`
+The new payload after processing is:  
+
+```
+{
+  "foo": [
+    "Foo",
+    2022,
+    {
+      "random": "abcdefg"
+    },
+    null
+  ]
+}
+```
 
 ## Reserved characters in intrinsic functions<a name="amazon-states-language-intrinsic-functions-escapes"></a>
 

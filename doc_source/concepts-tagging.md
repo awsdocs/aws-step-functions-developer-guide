@@ -1,8 +1,8 @@
 # Tagging in Step Functions<a name="concepts-tagging"></a>
 
-AWS Step Functions supports tagging of state machines \(both Standard and Express\) and activities\. This can help you track and manage the costs associated with your resources, and provide better security in your AWS Identity and Access Management \(IAM\) policies\. Tagging Step Functions resources allows them to be managed by AWS Resource Groups\. For more information on Resource Groups, see the [AWS Resource Groups User Guide](https://docs.aws.amazon.com/ARG/latest/userguide/)\.
+AWS Step Functions supports tagging of state machines \(both Standard and Express\) and activities\. This can help you track and manage the costs associated with your resources, and provide better security in your AWS Identity and Access Management \(IAM\) policies\. Tagging Step Functions resources allows them to be managed by AWS Resource Groups\. For more information on Resource Groups, see the [AWS Resource Groups User Guide](https://docs.aws.amazon.com/ARG/latest/userguide/)\. 
 
-To review the restrictions related to resource tagging, see [Restrictions Related to Tagging](limits-overview.md#sfn-limits-tagging)\.
+To review the restrictions related to resource tagging, see [Restrictions related to tagging](limits-overview.md#sfn-limits-tagging)\.
 
 **Topics**
 + [Tagging for Cost Allocation](#tagging-cost)
@@ -12,7 +12,7 @@ To review the restrictions related to resource tagging, see [Restrictions Relate
 
 ## Tagging for Cost Allocation<a name="tagging-cost"></a>
 
-To organize and identify your Step Functions resources for cost allocation, you can add metadata *tags* that identify the purpose of a state machine or activity\. This is especially useful when you have many resources\. You can use cost allocation tags to organize your AWS bill to reflect your own cost structure\. To do this, sign up to get your AWS account bill to include the tag keys and values\. For more information, see [Setting Up a Monthly Cost Allocation Report](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/configurecostallocreport.html#allocation-report) in the *AWS Billing and Cost Management User Guide*\.
+To organize and identify your Step Functions resources for cost allocation, you can add metadata *tags* that identify the purpose of a state machine or activity\. This is especially useful when you have many resources\. You can use cost allocation tags to organize your AWS bill to reflect your own cost structure\. To do this, sign up to get your AWS account bill to include the tag keys and values\. For more information, see [Setting Up a Monthly Cost Allocation Report](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/configurecostallocreport.html#allocation-report) in the *AWS Billing User Guide*\.
 
 For example, you could add tags that represent the cost center and purpose of your Step Functions resources, as follows\.
 
