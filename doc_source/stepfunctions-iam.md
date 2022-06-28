@@ -47,7 +47,8 @@ For more information, see the following:
                 "states:StopExecution"
             ],
             "Resource": [
-               "arn:aws:states:[[region]]:[[accountId]]:execution:[[stateMachineName]]:*"
+
+                "arn:aws:states:[[region]]:[[accountId]]:execution:[[stateMachineName]]:*"
             ]
         },
         {
@@ -78,7 +79,7 @@ For more information, see the following:
                 "states:StartExecution"
             ],
             "Resource": [
-                "arn:aws:states:[[region]]:[[accountId]]:stateMachine:[[stateMachineName]]"
+               "arn:aws:states:[[region]]:[[accountId]]:stateMachine:[[stateMachineName]]"
             ]
         }
     ]
