@@ -346,9 +346,6 @@ Amazon OpenSearch Service is the successor of the Amazon Elasticsearch service, 
 
 The following table lists the unsupported API actions for AWS SDK service integrations\. The right column contains the API actions that are currently not supported for the service listed in the left column\. 
 
-
-| Service name | Unsupported API action | 
-| --- | --- | 
 | AWS Application Discovery Service |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/step-functions/latest/dg/supported-services-awssdk.html)  | 
 | AWS CodeDeploy |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/step-functions/latest/dg/supported-services-awssdk.html)  | 
 | Amazon Comprehend Medical | DetectEntities | 
@@ -373,3 +370,4 @@ The following table lists the unsupported API actions for AWS SDK service integr
 The following AWS SDK service integrations are now deprecated:
 + AWS Mobile
 + Amazon Macie
+
