@@ -1,6 +1,6 @@
 # Call other AWS services<a name="connect-to-services"></a>
 
-AWS Step Functions integrates with AWS services, letting you call each service's API actions from your workflow\. You can use Step Functions' [AWS SDK integrations](supported-services-awssdk.md) to call any of the over two hundred AWS services directly from your state machine, giving you access to over nine thousand API actions\. Or you can use [Step Functions's Optimized integrations](connect-supported-services.md), each of which has been customized to provide special functionality for your workflow\. Some API actions are available in both types of integration\. In this case, it's recommended that you use the Optimized integration\. 
+AWS Step Functions integrates with AWS services, letting you call each service's API actions from your workflow\. You can use Step Functions' [AWS SDK integrations](supported-services-awssdk.md) to call any of the over two hundred AWS services directly from your state machine, giving you access to over nine thousand API actions\. Or you can use [Step Functions' Optimized integrations](connect-supported-services.md), each of which has been customized to provide special functionality for your workflow\. Some API actions are available in both types of integration\. In this case, it's recommended that you use the Optimized integration\. 
 
 You coordinate these services directly from a `Task` state in the Amazon States Language\. For example, using Step Functions, you can call other services to: 
 + Invoke an AWS Lambda function\.
@@ -15,7 +15,7 @@ You coordinate these services directly from a `Task` state in the Amazon States 
 
 ## Optimized integrations<a name="connect-to-services-optimized"></a>
 
- Optimized integrations have been customized by Step Functions to provide special functionality for a workflow context\. For example, [Lambda `Invoke`](connect-lambda.md) converts its API output from an escaped JSON to a JSON object\. [AWS Batch `SubmitJob`](connect-batch.md) lets you pause execution until the job is complete\. The first set of optimized integrations was released in 2018, and there are now over fifty APIs\. 
+ Optimized integrations have been customized by Step Functions to provide special functionality for a workflow context\. For example, [Lambda `Invoke`](connect-lambda.md) converts its API output from an escaped JSON to a JSON object\. [AWS Batch`SubmitJob`](connect-batch.md) lets you pause execution until the job is complete\. The first set of optimized integrations was released in 2018, and there are now over fifty APIs\. 
 
 ## AWS SDK integrations<a name="connect-to-services-awssdk"></a>
 

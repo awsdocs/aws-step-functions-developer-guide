@@ -1,6 +1,6 @@
 # Development options<a name="development-options"></a>
 
-You can implement your AWS Step Functions state machines in several ways, such as using the console, the SDKs, or a local version for testing and development\. 
+You can implement your AWS Step Functions state machines in several ways, such as using the console, the SDKs, or a local version of Step Functions for testing and development\. 
 
 **Topics**
 + [Step Functions console](#development-options-console)
@@ -17,28 +17,28 @@ You can implement your AWS Step Functions state machines in several ways, such a
 
 ## Step Functions console<a name="development-options-console"></a>
 
-You can define a state machine using the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/)\. You can write complex state machines in the cloud without using a local development environment by using AWS Lambda to supply code for your tasks, and the Step Functions console to define your state machine using the Amazon States Language\.
+You can define a state machine using the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/)\. You can write complex state machines in the cloud without using a local development environment by using AWS Lambda to supply code for your tasks\. Once written, you can then use the Step Functions console to define your state machine using the Amazon States Language\.
 
 The [Creating a Lambda State Machine](tutorial-creating-lambda-state-machine.md) tutorial uses this technique to create a simple state machine, execute it, and view its results\.
 
 ### Data flow simulator<a name="development-options-console-simulator"></a>
 
- You can design, implement and debug workflows in the Step Functions console\. Knowing how JsonPath input and output processing work can help you understand how to control the flow of data through your state machine\. Use the [ data flow simulator in the Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/simulator) to learn how information flows from state to state and to understand how to filter and manipulate date\. This tool lets you simulate each of the [fields](concepts-input-output-filtering.md) that Step Functions uses to process data, such as `InputPath`, `Parameters`, `ResultSelector`, `OutputPath`, and `ResultPath`\.
+You can design, implement and debug workflows in the Step Functions console\. You can also control the flow of data through your workflow by learning about and using `JsonPath` input and output processing\. Use the [ data flow simulator in the Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/simulator) to learn how information flows from state to state, and to understand how to filter and manipulate data\. This tool simulates each of the [fields](concepts-input-output-filtering.md) that Step Functions uses to process data, such as `InputPath`, `Parameters`, `ResultSelector`, `OutputPath`, and `ResultPath`\.
 
 ## AWS SDKs<a name="development-options-aws-sdk"></a>
 
-Step Functions is supported by the AWS SDKs for Java, \.NET, Ruby, PHP, Python \(Boto 3\), JavaScript, Go, and C\+\+\. These SDKs provide a convenient way to use the Step Functions HTTPS API actions in various programming languages\.
+Step Functions is supported by the AWS SDKs for Java, \.NET, Ruby, PHP, Python \(Boto 3\), JavaScript, Go, and C\+\+\. These SDKs provide a convenient way to use the Step Functions HTTPS API actions in multiple programming languages\.
 
 You can develop state machines, activities, or state machine starters using the API actions exposed by these SDK libraries\. You can also access visibility operations using these libraries to develop your own Step Functions monitoring and reporting tools\.
 
 To use Step Functions with other AWS services, see the reference documentation for the current AWS SDKs and [Tools for Amazon Web Services](http://aws.amazon.com/tools/)\.
 
 **Note**  
-Step Functions supports only an HTTPS endpoint\.
+Step Functions only supports  HTTPS endpoints\.
 
 ## Standard and Express workflows<a name="development-options-standard-express"></a>
 
-When you create a new state machine, you must select a `Type` of either **Standard** or **Express**\. In both cases, you define your state machine using the Amazon States Language\. Your state machine executions will behave differently, depending on which **Type** you select\. The **Type** you choose cannot be changed after your state machine is created\.
+When you create a new state machine, you must select a `Type` of either **Standard** or **Express**\. In both cases, you define your state machine using the Amazon States Language\. Your state machine executions will behave differently, depending on which **Type** you select\. The **Type** you choose can't be changed after your state machine is created\.
 
 See [Logging using CloudWatch Logs](cw-logs.md) for more information\.
 
@@ -52,37 +52,37 @@ For detailed information about API actions, see the [AWS Step Functions API Refe
 
 ## Development environments<a name="development-options-environments"></a>
 
-You must set up a development environment that's appropriate to the programming language that you plan to use\.
+You must set up a development environment that is compatible with the programming language that you plan to use\.
 
-For example, to develop for Step Functions using Java, you should install a Java development environment \(such as the AWS SDK for Java\) on each of your development workstations\. If you use Eclipse IDE for Java Developers, you should also install the AWS Toolkit for Eclipse\. This Eclipse plugin adds features that are useful for developing on AWS\.
+For example, to develop for Step Functions using Java, you must install a Java development environment, such as the AWS SDK for Java, on each of your development workstations\. If you use Eclipse IDE for Java Developers, you should also install the AWS Toolkit for Eclipse\. This Eclipse plugin adds features that are useful for developing on AWS\.
 
-If your programming language requires a runtime environment, you must set up the environment on each computer where these processes run\.
+If your programming language requires a runtime environment, you must set up the environment on each computer where these processes will run\.
 
 ## Endpoints<a name="development-options-endpoints"></a>
 
-To reduce latency and to store data in a location that meets your requirements, Step Functions provides endpoints in different AWS Regions\.
+To reduce latency and store data in a location that meets your requirements, Step Functions provides endpoints in different AWS Regions\.
 
-Each endpoint in Step Functions is completely independent\. A state machine or activity exists only within the Region where it was created\. Any state machines and activities that you create in one Region don't share any data or attributes with those created in another Region\. For example, you can register a state machine named `STATES-Flows-1` in two different Regions, but the two state machines won't share data or attributes with each other because they are completely independent from each other\.
+Each endpoint in Step Functions is completely independent\. A state machine or activity exists only within the Region where it was created\. Any state machines and activities that you create in one Region don't share any data or attributes with those created in another Region\. For example, you can register a state machine named `STATES-Flows-1` in two different Regions\. The `STATES-Flows-1` state machine in one region won't share data or attributes with the `STATES-Flow-1` state machine in the other region\.
 
 For a list of Step Functions endpoints, see [Regions and Endpoints: AWS Step Functions](https://docs.aws.amazon.com/general/latest/gr/rande.html#step-functions_region) in the *AWS General Reference*\.
 
 ## AWS CLI<a name="development-options-aws-cli"></a>
 
-You can access many Step Functions features from the AWS Command Line Interface \(AWS CLI\)\. The AWS CLI provides an alternative to using the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/) or, in some cases, to programming using the Step Functions API actions\. For example, you can use the AWS CLI to create a state machine and then list your state machines\.
+You can access many Step Functions features from the AWS Command Line Interface \(AWS CLI\)\. The AWS CLI is an alternative to using the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/) or, in some cases, to programming using the Step Functions API actions\. For example, you can use the AWS CLI to create a state machine and then list your existing state machines\.
 
-The Step Functions commands in the AWS CLI enable you to start and manage executions, poll for activities, record task heartbeats, and so on\. For a complete list of Step Functions commands and the descriptions of the available arguments and examples showing their use, see the *AWS CLI Command Reference*\.
+You can use Step Functions commands in the AWS CLI to start and manage executions, poll for activities, record task heartbeats, and more\. For a complete list of Step Functions commands, descriptions of the available arguments, and examples showing their use, see the *AWS CLI Command Reference*\.
 
-The AWS CLI commands follow the Amazon States Language closely, so you can use the AWS CLI to learn about the Step Functions API actions\. You can also use your existing API knowledge to prototype code or perform Step Functions actions from the command line\.
+AWS CLI commands follow the Amazon States Language closely, so you can use the AWS CLI to learn about the Step Functions API actions\. You can also use your existing API knowledge to prototype code or perform Step Functions actions from the command line\.
 
 ## Step Functions Local<a name="development-options-local"></a>
 
 For testing and development purposes, you can install and run Step Functions on your local machine\. With Step Functions Local, you can start an execution on any machine\. 
 
-The local version of Step Functions can invoke AWS Lambda functions, both in AWS and running locally\. You can also coordinate other [supported AWS services](concepts-service-integrations.md)\. For more information, see [Setting Up Step Functions Local \(Downloadable Version\)](sfn-local.md)\.
+The local version of Step Functions can invoke AWS Lambda functions, both in AWS and when running locally\. You can also coordinate other [supported AWS services](concepts-service-integrations.md)\. For more information, see [Testing Step Functions State Machines Locally](sfn-local.md)\.
 
 ## AWS Toolkit for Visual Studio Code<a name="development-options-toolkit"></a>
 
- You can use VS Code to interact with remote state machines, and develop state machines locally\. You can create or update state machines, list existing state machines, execute them, and download them\. VS Code also lets you create new state machines from templates, see a visualization of your state machine, and provides code snippets, code completion, and code validation\. 
+You can use VS Code to interact with remote state machines and develop state machines locally\. You can create or update state machines, list existing state machines, and execute or download a state machine\. VS Code also lets you create new state machines from templates, see a visualization of your state machine, and provides code snippets, code completion, and code validation\. 
 
 For more information, see [the AWS Toolkit for Visual Studio Code User Guide](https://docs.aws.amazon.com/toolkit-for-vscode/latest/userguide/bulding-stepfunctions.html) 
 
@@ -96,7 +96,7 @@ For more information, see [AWS Step Functions and AWS SAM](concepts-sam-sfn.md)\
 
 ## Definition format support<a name="development-options-format"></a>
 
-Step Functions offers a variety of tooling that lets you provide your state machine definitions in different formats\. An Amazon States Language \(ASL\) definition that specifies the details of your state machine can be provided in either string form or as a serialized object using JSON or YAML\. 
+Step Functions offers a variety of tools that lets you provide your state machine definitions in different formats\. An Amazon States Language \(ASL\) definition that specifies the details of your state machine can be provided as either a string, or as a serialized object using JSON or YAML\. 
 
 **Note**  
 YAML allows single line comments\. Any YAML comments provided in the state machine definition portion of a template will not be carried forward into the created resource’s definition\. Instead, you can use the `Comment` property within the state machine definition\. For more information, see the [State Machine Structure](amazon-states-language-state-machine-structure.md) page\.

@@ -14,9 +14,6 @@ Each of these service integration patterns is controlled by how you create a URI
 
 For information about configuring AWS Identity and Access Management \(IAM\) for integrated services, see [IAM Policies for integrated services](service-integration-iam-templates.md)\.
 
-**Note**  
-Lambda invocations will use the `.sync` service integration pattern, even if you did not specify it\. If you want to invoke Lambda asynchronously, you can use the `InvocationType` parameter\. For more information, see [Invoke Lambda with Step Functions](connect-lambda.md)
-
 ## Request Response<a name="connect-default"></a>
 
 When you specify a service in the `"Resource"` string of your task state, and you *only* provide the resource, Step Functions will wait for an HTTP response and then progress to the next state\. Step Functions will not wait for a job to complete\.
@@ -74,9 +71,17 @@ Service integrations that use the `.sync` pattern require additional IAM permiss
 
 ## Wait for a Callback with the Task Token<a name="connect-wait-token"></a>
 
-Callback tasks provide a way to pause a workflow until a task token is returned\. A task might need to wait for a human approval, integrate with a third party, or call legacy systems\. For tasks like these, you can pause Step Functions indefinitely, and wait for an external process or workflow to complete\. For these situations Step Functions allows you to pass a task token to the AWS SDK service integrations, and also to to some Optimized integrations integrated services\. The task will pause until it receives that task token back with a [https://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskSuccess.html](https://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskSuccess.html) or [https://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskFailure.html](https://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskFailure.html) call\.
+Callback tasks provide a way to pause a workflow until a task token is returned\. A task might need to wait for a human approval, integrate with a third party, or call legacy systems\. For tasks like these, you can pause Step Functions indefinitely, and wait for an external process or workflow to complete\. For these situations Step Functions allows you to pass a task token to the AWS SDK service integrations, and also to some Optimized integrations integrated services\. The task will pause until it receives that task token back with a [https://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskSuccess.html](https://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskSuccess.html) or [https://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskFailure.html](https://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskFailure.html) call\.
+
+If a `Task` state using the callback task token times out, a new random token is generated\. You can access the task tokens from the [context object](input-output-contextobject.md#contextobject-access)\.
+
+**Note**  
+A task token must contain at least one character, and cannot exceed 1024 characters\.
 
 To use `.waitForTaskToken` with an AWS SDK integration, the API you use must have a parameter field in which to place the task token\.
+
+**Note**  
+You must pass task tokens from principals within the same AWS account\. The tokens won't work if you send them from principals in a different AWS account\.
 
 To see a list of what integrated services support waiting for a task token \(`.waitForTaskToken`\), see [Optimized integrations for Step Functions](connect-supported-services.md)\.
 
@@ -181,7 +186,7 @@ A task that is waiting for a task token will wait until the execution reaches th
 
 ```
 {
-  "StartAt": "Push based to SQS",
+  "StartAt": "Push to SQS",
   "States": {
     "Push to SQS": {
       "Type": "Task",

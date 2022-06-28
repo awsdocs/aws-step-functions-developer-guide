@@ -4,7 +4,7 @@ These example templates show how AWS Step Functions generates IAM policies based
 + [IAM Policies for integrated services](service-integration-iam-templates.md)
 + [Service Integration Patterns](connect-to-resource.md)
 
-AWS Batch doesn't support resource\-level access control\. You must use `"Resource": "*"`\.
+Because AWS Batch provides partial support for resource\-level access control, you must use `"Resource": "*"`\.
 
 ------
 #### [ Run a Job \(\.sync\) ]
@@ -38,7 +38,7 @@ AWS Batch doesn't support resource\-level access control\. You must use `"Resour
 ```
 
 ------
-#### [ Request Response and Callback \(\.waitForTaskToken\) ]
+#### [ Request Response ]
 
 ```
 {

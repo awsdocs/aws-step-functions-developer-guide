@@ -1,14 +1,14 @@
 # Creating a Lambda State Machine for Step Functions Using the AWS CDK<a name="tutorial-lambda-state-machine-cdk"></a>
 
-This tutorial shows you how to create a AWS Step Functions state machine containing an AWS Lambda function using the AWS Cloud Development Kit \(CDK\)\. The AWS CDK is an Infrastructure as Code \(IAC\) framework that lets you define AWS infrastructure using a full\-fledged programming language\. You write an app in one of the CDK's supported languages, containing one or more stacks, then synthesize it to an AWS CloudFormation template and deploy it to your AWS account\. We'll use it to define a AWS Step Functions state machine containing a AWS Lambda function, then use the AWS Management Console to initiate execution\. 
+This tutorial shows you how to create a AWS Step Functions state machine containing an AWS Lambda function using the AWS Cloud Development Kit \(CDK\)\. The AWS CDK is an Infrastructure as Code \(IAC\) framework that lets you define AWS infrastructure using a full\-fledged programming language\. You can write an app in one of the CDK's supported languages containing one or more stacks\. Then, you can synthesize it to an AWS CloudFormation template and deploy it to your AWS account\. We'll use this method to define a AWS Step Functions state machine containing a AWS Lambda function, then use the AWS Management Console to initiate execution\. 
 
-Before embarking on this tutorial, set up your AWS CDK development environment as described in [Getting Started With the AWS CDK \- Prerequisites](https://docs.aws.amazon.com/cdk/latest/guide/getting_started.html#getting_started_prerequisites), then install the AWS CDK by issuing:
+Before you begin this tutorial, you must set up your AWS CDK development environment as described in [Getting Started With the AWS CDK \- Prerequisites](https://docs.aws.amazon.com/cdk/latest/guide/getting_started.html#getting_started_prerequisites) Then, install the AWS CDK with the following command at the AWS CLI:
 
 ```
 npm install -g aws-cdk
 ```
 
-This tutorial produces essentially the same result as [Creating a Lambda state machine for Step Functions using AWS CloudFormation](tutorial-lambda-state-machine-cloudformation.md)\. The main difference between that tutorial and this one is that the AWS CDK doesn't require you to create any IAM roles; the AWS CDK does it for you\. The AWS CDK version also includes a Succeed step to illustrate how to add additional steps to your state machine\.
+This tutorial produces the same result as [Creating a Lambda state machine for Step Functions using AWS CloudFormation](tutorial-lambda-state-machine-cloudformation.md)\. However, in this tutorial, the AWS CDK doesn't require you to create any IAM roles; the AWS CDK does it for you\. The AWS CDK version also includes a Succeed step to illustrate how to add additional steps to your state machine\.
 
 **Topics**
 + [Step 1: Set Up Your AWS CDK Project](#lambda-state-machine-cdk-step-1)
@@ -20,6 +20,9 @@ This tutorial produces essentially the same result as [Creating a Lambda state m
 ## Step 1: Set Up Your AWS CDK Project<a name="lambda-state-machine-cdk-step-1"></a>
 
 First, create a directory for your new AWS CDK app and initialize the project\.
+
+**Note**  
+Be sure to name the directory `step`\. The AWS CDK application template uses the name of the directory to generate names for source files and classes\. If you use a different name, your app will not match this tutorial\.
 
 ------
 #### [ TypeScript ]
@@ -75,10 +78,7 @@ cdk init --language csharp
 
 ------
 
-**Note**  
-Be sure to name the directory `step`\. The AWS CDK application template uses the name of the directory to generate names for source files and classes\. If you use a different name, your app will not match this tutorial\.
-
-Now install the construct library modules for AWS Lambda and AWS Step Functions\.
+Next, install the construct library modules for AWS Lambda and AWS Step Functions\.
 
 ------
 #### [ TypeScript ]
@@ -105,7 +105,7 @@ python -m pip install aws-cdk.aws-stepfunctions-tasks
 ------
 #### [ Java ]
 
-Edit the project's `pom.xml` to add the following dependencies inside the existing `<dependencies>` container\.
+Edit the project's `pom.xml` file to add the following dependencies inside the existing `<dependencies>` container\.
 
 ```
         <dependency>
@@ -140,7 +140,7 @@ You may also install the indicated packages using the Visual Studio NuGet GUI, a
 
 ------
 
-Once you have installed the modules, you can use them in your AWS CDK app by importing the following packages\.
+Once you've installed these modules, you can use them in your AWS CDK app by importing the following packages:
 
 ------
 #### [ TypeScript ]
@@ -191,11 +191,11 @@ Amazon.CDK.AWS.StepFunctions.Tasks
 
 ## Step 2: Use the AWS CDK to Create a Lambda State Machine<a name="lambda-state-machine-cdk-step-2"></a>
 
-First, we'll present the individual pieces of code that define the Lambda function and the Step Functions state machine, then explain how to put them together into your AWS CDK app\. Then you'll see how to synthesize and deploy these resources\.
+First, we'll present the individual pieces of code that define the Lambda function and the Step Functions state machine\. Then, we'll explain how to put them together in your AWS CDK app\. Finally, you'll see how to synthesize and deploy these resources\.
 
 ### To create a Lambda function<a name="lambda-state-machine-cdk-create-function"></a>
 
-This is the AWS CDK code that defines the lambda function, providing its source code inline\.
+The following AWS CDK code defines the Lambda function, providing its source code inline\.
 
 ------
 #### [ TypeScript ]
@@ -235,7 +235,7 @@ const helloFunction = new lambda.Function(this, 'MyLambdaFunction', {
 ```
 hello_function = lambda_.Function(self, "MyLambdaFunction",
                                   code=lambda_.Code.from_inline("""
-                        exports.handler = (event, context, callback) = > {
+                        exports.handler = (event, context, callback) => {
                           callback(null, "Hello World!");
                         }"""),
                                   runtime=lambda_.Runtime.NODEJS_12_X,
@@ -267,21 +267,21 @@ var helloFunction = new Function(this, "MyLambdaFunction", new FunctionProps
         callback(null, 'Hello World!');
       }"),
     Runtime = Runtime.NODEJS_12_X,
-    Handler = "index.hnadler",
+    Handler = "index.handler",
     Timeout = Duration.Seconds(25)
 });
 ```
 
 ------
 
-You can see in this short snippet:
+You can see in this short example code:
 + The function's logical name, `MyLambdaFunction`\.
 + The source code for the function, embedded as a string in the source code of the AWS CDK app\.
 + Other function attributes, such as the runtime to be used \(Node 12\.x\), the function's entry point, and a timeout\.
 
 ### To create a Lambda state machine<a name="lambda-state-machine-cdk-create"></a>
 
-Our state machine has two states: our Lambda function task, and a success state\. The function requires that we create a Step Functions [Task](amazon-states-language-task-state.md) that invokes our function, then use that as the first step in our state machine\. The success state is added to the state machine using that task's `next()` method\. The code for this is as follows\.
+Our state machine has two states: our Lambda function task, and a success state\. The function requires that we create a Step Functions [Task](amazon-states-language-task-state.md) that invokes our function\. This task state is used as the first step in our state machine The success state is added to the state machine using that task's `next()` method\. The following code both invokes the function `MyLambdaTask`, then uses the `next()` method to set a success state of `GreetedWorld`
 
 ------
 #### [ TypeScript ]
@@ -343,12 +343,12 @@ var stateMachine = new StateMachine(this, "MyStateMachine", new StateMachineProp
 
 ### To build and deploy the AWS CDK app<a name="lambda-state-machine-cdk-app"></a>
 
-In the AWS CDK project you created, edit the file containing the definition of the stack to look like the code below\. You'll recognize the definitions of the Lambda function and the Step Functions state machine from above\.
+In your newly created AWS CDK project, edit the file that contains the stack's definition to look like the following example code\. You'll recognize the definitions of the Lambda function and the Step Functions state machine from previous sections\.
 
 ------
 #### [ TypeScript ]
 
-Update `lib/step-stack.ts` to read as follows\.
+Update `lib/step-stack.ts` with the following code:
 
 ```
 import * as cdk from '@aws-cdk/core';
@@ -384,7 +384,7 @@ export class StepStack extends cdk.Stack {
 ------
 #### [ JavaScript ]
 
-Update `lib/step-stack.js` to read as follows\.
+Update `lib/step-stack.js` with the following code\.
 
 ```
 const cdk = require('@aws-cdk/core');
@@ -422,7 +422,7 @@ module.exports = { StepStack }
 ------
 #### [ Python ]
 
-Update `step/step_stack.py` to read as follows\.
+Update `step/step_stack.py` with the following code\.
 
 ```
 from aws_cdk import core as cdk
@@ -438,7 +438,7 @@ class StepStack(cdk.Stack):
 
         hello_function = lambda_.Function(self, "MyLambdaFunction",
                                           code=lambda_.Code.from_inline("""
-                                exports.handler = (event, context, callback) = > {
+                                exports.handler = (event, context, callback) => {
                                     callback(null, "Hello World!");
                                 }"""),
                                           runtime=lambda_.Runtime.NODEJS_12_X,
@@ -454,7 +454,7 @@ class StepStack(cdk.Stack):
 ------
 #### [ Java ]
 
-Update `src/main/java/com.myorg/StepStack.java` to read as follows\.
+Update `src/main/java/com.myorg/StepStack.java` with the following code\.
 
 ```
 package com.myorg;
@@ -500,7 +500,7 @@ public class StepStack extends Stack {
 ------
 #### [ C\# ]
 
-Update `scr/Step/StepStack.cs` to read as follows\.
+Update `scr/Step/StepStack.cs` with the following code\.
 
 ```
 using Amazon.CDK;
@@ -521,7 +521,7 @@ namespace Step
                     callback(null, 'Hello World!');
                   }"),
                 Runtime = Runtime.NODEJS_12_X,
-                Handler = "index.hnadler",
+                Handler = "index.handler",
                 Timeout = Duration.Seconds(25)
             });
 
@@ -539,13 +539,13 @@ namespace Step
 
 ------
 
-Save the source file, then issue `cdk synth` in the app's main directory\. The AWS CDK runs the app and synthesizes an AWS CloudFormation template from it, then displays the template\.
+Save the source file\.Then, run the `cdk synth` command in the app's main directory\. The AWS CDK runs the app and synthesizes an AWS CloudFormation template from it\. The AWS CDK then displays the template\.
 
 To actually deploy the Lambda function and the Step Functions state machine to your AWS account, issue `cdk deploy`\. You'll be asked to approve the IAM policies the AWS CDK has generated\.
 
 ## Step 3: Start a State Machine Execution<a name="lambda-state-machine-cdk-step-3"></a>
 
-After you create your Lambda state machine, you start an execution\.
+After you create your Lambda state machine, you can start an execution\.
 
 ### To start the state machine execution<a name="to-start-the-state-machine-execution"></a>
 
@@ -555,7 +555,7 @@ After you create your Lambda state machine, you start an execution\.
 
    The **New execution** page is displayed\.
 
-1. \(Optional\) To help identify your execution, you can specify an ID for it in the **Enter an execution name** box\. If you don't enter an ID, Step Functions generates a unique ID automatically\.
+1. \(Optional\) To identify your execution, you can specify a name for it in the **Name** box\. By default, Step Functions generates a unique execution name automatically\.
 **Note**  
 Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with Amazon CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
 
@@ -569,7 +569,7 @@ Step Functions allows you to create state machine, execution, and activity names
 
 ## Step 4: Clean Up<a name="lambda-state-machine-cdk-step-4"></a>
 
-When you're done trying out your state machine, you can tear down both the machine and the Lambda function using the AWS CDK\. Issue `cdk destroy` in your app's main directory\.
+After you've tested your state machine, we recommend that you remove both your state machine and the related Lambda function to free up resources in your AWS account\. Run the `cdk destroy` command in your app's main directory to remove your state machine\.
 
 ## Next steps<a name="lambda-state-machine-cdk-next-steps"></a>
 

@@ -22,7 +22,9 @@ To call other AWS services, you can use Step Functions's AWS SDK integrations, o
 
 ## Standard and Express workflows<a name="welcome-workflows"></a>
 
-Step Functions has two workflow types\. Standard workflows have exactly\-once workflow execution and can run for up to one year\. Express workflows have at\-least\-once workflow execution and can run for up to five minutes\. Executions are instances where you run your workflow to perform tasks\. Standard workflows are ideal for long\-running, auditable workflows, as they show execution history and visual debugging\. Express workflows are ideal for high\-event\-rate workloads, such as streaming data processing and IoT data ingestion\.
+Step Functions has two workflow types\. Standard workflows have exactly\-once workflow execution and can run for up to one year\. This means that each step in a Standard workflow will execute exactly\-once\. Express workflows, however, have at\-least\-once workflow execution and can run for up to five minutes\. This means that it's possible that one or more steps in an Express Workflow can execute more than once, while each step in the workflow executes at\-least\-once\.
+
+Executions are instances where you run your workflow to perform tasks\. Standard workflows are ideal for long\-running, auditable workflows, as they show execution history and visual debugging\. Express workflows are ideal for high\-event\-rate workloads, such as streaming data processing and IoT data ingestion\.
 
 ### Standard workflows<a name="welcome-standard"></a>
 + 2,000 per second execution rate

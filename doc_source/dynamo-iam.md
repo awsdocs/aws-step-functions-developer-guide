@@ -45,3 +45,5 @@ These example templates show how AWS Step Functions generates IAM policies based
     ]
 }
 ```
+
+For more information about the IAM policies for all DynamoDB API actions, see [IAM policies with DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/using-identity-based-policies.html) in the *Amazon DynamoDB Developer Guide*\. Additionally, for information about the IAM policies for PartiQL for DynamoDB, see [IAM policies with PartiQL for DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ql-iam.html) in the *Amazon DynamoDB Developer Guide*\.

@@ -1,30 +1,30 @@
-# Step Functions Local configuration options<a name="sfn-local-config-options"></a>
+# Setting Configuration Options for Step Functions Local<a name="sfn-local-config-options"></a>
 
-To use AWS Step Functions Local by starting the JAR file, you can set configuration options by using the AWS Command Line Interface \(AWS CLI\), or by including them in the system environment\. For Docker, you must specify these options in a file that you reference when starting Step Functions Local\.
+When you start AWS Step Functions Local  by using the JAR file, you can set configuration options by using the AWS Command Line Interface \(AWS CLI\), or by including them in the system environment\. For Docker, you must specify these options in a file that you reference when starting Step Functions Local\.
 
 ## Configuration Options<a name="sfn-local-config-options-table"></a>
 
 
 | Option | Command Line | Environment | 
 | --- | --- | --- | 
-| Account | \-account,\-\-aws\-account | AWS\_ACCOUNT\_ID | 
-| Region | \-region,\-\-aws\-region | AWS\_DEFAULT\_REGION | 
-| Wait Time Scale | \-waitTimeScale,\-\-wait\-time\-scale | WAIT\_TIME\_SCALE | 
-| Lambda Endpoint | \-lambdaEndpoint,\-\-lambda\-endpoint | LAMBDA\_ENDPOINT | 
-| Batch Endpoint | \-batchEndpoint,\-\-batch\-endpoint | BATCH\_ENDPOINT | 
-| DynamoDB Endpoint | \-dynamoDBEndpoint,\-\-dynamodb\-endpoint | DYNAMODB\_ENDPOINT | 
-| ECS Endpoint  | \-ecsEndpoint,\-\-ecs\-endpoint | ECS\_ENDPOINT | 
-| Glue Endpoint | \-glueEndpoint,\-\-glue\-endpoint | GLUE\_ENDPOINT | 
-| SageMaker Endpoint | \-sageMakerEndpoint,\-\-sagemaker\-endpoint | SAGE\_MAKER\_ENDPOINT | 
-| SQS Endpoint | \-sqsEndpoint,\-\-sqs\-endpoint | SQS\_ENDPOINT | 
-| SNS Endpoint | \-snsEndpoint,\-\-sns\-endpoint | SNS\_ENDPOINT | 
-| Step Functions Endpoint | \-stepFunctionsEndpoint,\-\-step\-functions\-endpoint | STEP\_FUNCTIONS\_ENDPOINT | 
+| Account | \-account, \-\-aws\-account | AWS\_ACCOUNT\_ID | 
+| Region | \-region, \-\-aws\-region | AWS\_DEFAULT\_REGION | 
+| Wait Time Scale | \-waitTimeScale, \-\-wait\-time\-scale | WAIT\_TIME\_SCALE | 
+| Lambda Endpoint | \-lambdaEndpoint, \-\-lambda\-endpoint | LAMBDA\_ENDPOINT | 
+| Batch Endpoint | \-batchEndpoint, \-\-batch\-endpoint | BATCH\_ENDPOINT | 
+| DynamoDB Endpoint | \-dynamoDBEndpoint, \-\-dynamodb\-endpoint | DYNAMODB\_ENDPOINT | 
+| ECS Endpoint  | \-ecsEndpoint, \-\-ecs\-endpoint | ECS\_ENDPOINT | 
+| Glue Endpoint | \-glueEndpoint, \-\-glue\-endpoint | GLUE\_ENDPOINT | 
+| SageMaker Endpoint | \-sageMakerEndpoint, \-\-sagemaker\-endpoint | SAGE\_MAKER\_ENDPOINT | 
+| SQS Endpoint | \-sqsEndpoint, \-\-sqs\-endpoint | SQS\_ENDPOINT | 
+| SNS Endpoint | \-snsEndpoint, \-\-sns\-endpoint | SNS\_ENDPOINT | 
+| Step Functions Endpoint | \-stepFunctionsEndpoint, \-\-step\-functions\-endpoint | STEP\_FUNCTIONS\_ENDPOINT | 
 
 ## Credentials and configuration for Docker<a name="docker-credentials"></a>
 
 To configure Step Functions Local for Docker, create the following file: `aws-stepfunctions-local-credentials.txt`\.
 
-This file contains your credentials and other configuration options, such as the following\.
+This file contains your credentials and other configuration options\. The following can be used as a template when creating the `aws-stepfunctions-local-credentials.txt` file\.
 
 ```
 AWS_DEFAULT_REGION=AWS_REGION_OF_YOUR_AWS_RESOURCES
@@ -47,3 +47,6 @@ Once you have configured your credentials and configuration options in `aws-step
 ```
 docker run -p 8083:8083 --env-file aws-stepfunctions-local-credentials.txt amazon/aws-stepfunctions-local
 ```
+
+**Note**  
+ It is recommended to use the special DNS name `host.docker.internal`, which resolves to the internal IP address that the host uses, such as `http://host.docker.internal:8000`\. For more information, see Docker documentation for Mac and Windows at [Networking features in Docker Desktop for Mac](https://docs.docker.com/desktop/mac/networking/#use-cases-and-workaround) and [Networking features in Docker Desktop for Windows](https://docs.docker.com/desktop/windows/networking/) respectively\. 

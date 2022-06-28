@@ -27,10 +27,10 @@ If a particular stage of your state machine execution or activity execution take
 
 | Resource | Default quota | Can be increased to | 
 | --- | --- | --- | 
-| Maximum number of registered state machines | 10,000 | Tens of thousands | 
+| Maximum number of registered state machines | 10,000 | 22,000 to 23,000 | 
 |  Maximum number of registered activities  |  10,000  |  Tens of thousands  | 
 |  Maximum request size  |  1 MB per request\. This is the total data size per Step Functions API request, including the request header and all other associated request data\.  |  Hard quota   | 
-|  Maximum open executions per account  | 1,000,000 executions per AWS account\. Exceeding this will cause an ExecutionLimitExceeded error\. Does not apply to Express Workflows\. |  Millions  | 
+|  Maximum open executions per account  | 1,000,000 executions per AWS Region\. Exceeding this will cause an ExecutionLimitExceeded error\. Does not apply to Express Workflows\. |  Millions  | 
 |   Synchronous Express Workflows concurrent executions   |   1,000\-3,700 \(varies per region\)    |   Tens of thousands\. Synchronous Express Workflows do not contribute to the existing account capacity limits\. For more information, see [Synchronous and Asynchronous Express Workflows](concepts-express-synchronous.md)\.   | 
 
 ## Quotas related to state throttling<a name="service-limits-api-state-throttling"></a>
@@ -73,7 +73,7 @@ The following table describes quotas related to state machine executions\. State
 | Quota | Standard | Express | 
 | --- | --- | --- | 
 |  Maximum execution time  |  1 year\. If an execution runs for more than the 1\-year maximum, it will fail with a `States.Timeout` error and emit a `ExecutionsTimedOut` CloudWatch metric\.  |  5 minutes\. If an execution runs for more than the 5\-minute maximum, it will fail with a `States.Timeout` error and emit a `ExecutionsTimedOut` CloudWatch metric\.  | 
-|  Maximum execution history size  | 25,000 events\. If the execution history reaches this quota, the execution will fail\. To avoid this, see [Avoid Reaching the history quota](bp-history-limit.md)\. | Unlimited\. | 
+|  Maximum execution history size  | 25,000 events in a single state machine execution history\. If the execution history reaches this quota, the execution will fail\. To avoid this, see [Avoid reaching the history quota](bp-history-limit.md)\. | Unlimited\. | 
 |  Maximum execution idle time  |  1 year \(constrained by the maximum execution time\)  |  5 minutes \(constrained by the maximum execution time\)  | 
 | Execution history retention time |  90 days\. After this time, you can no longer retrieve or view the execution history\. There is no further quota for the number of closed executions that Step Functions retains\.  |  To see execution history, Amazon CloudWatch Logs logging must be configured\. For more information, [Logging using CloudWatch Logs](cw-logs.md)\.  | 
 
@@ -118,7 +118,7 @@ These quotas are soft quotas and can be increased\.
 | StopExecution | 1,000 | 200 | 500 | 25 | 
 | TagResource | 200 | 1 | 200 | 1 | 
 | UntagResource | 200 | 1 | 200 | 1 | 
-| UpdateStateMachine | 100 | 1 | 200 | 1 | 
+| UpdateStateMachine | 100 | 1 | 100 | 1 | 
 
 ## Restrictions related to tagging<a name="sfn-limits-tagging"></a>
 

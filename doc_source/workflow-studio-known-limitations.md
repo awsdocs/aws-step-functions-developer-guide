@@ -11,27 +11,13 @@ You cannot use dynamic ARNs in the `Resource` section of a [Task](amazon-states-
 **Note**  
 State machine definitions that contain AWS CloudFormation references cannot be saved\. However, you can copy or export the definition for use elsewhere\.
 
-## A task token is not added to the state definition when you select `Wait for callback` in Workflow Studio<a name="workflow-studio-known-limitations-tasktoken"></a>
+## Workflow Studio does not automatically save workflows<a name="workflow-studio-known-limitations-browser-autosave"></a>
 
- When you select **Wait for callback**, Workflow Studio adds `.waitForTaskToken` to the resource, but no task token is added to the state definition\. To add a task token: 
+Currently, Workflow Studio doesn't automatically save your workflows\. In case of an AWS console timeout, you could lose your work\. Therefore, we recommend that you save your workflows or export their Amazon States Language definition frequently\. 
 
-1. On the **Configuration** tab, make sure the **Wait for a callback** option is selected\.
+On the console, you can save a workflow after creating it or save the updates made to an existing workflow on its edit page\. In either scenarios, your state machine definition must be valid to save it\.
 
-1.  Finish editing your state machine in Workflow Studio, then choose **Next** if you're creating a new state machine, or choose **Apply and exit** if you're editing an existing state machine\. 
-
-1.  Choose **Generate code snippet**, then choose the task state for which you want to use **Wait for callback**\. 
-
-1.  Choose **Wait for a callback with task token**, then copy the added text\. This text will be similar to `"TaskToken.$": "$$.Task.Token"`\. 
-
-1.  Paste this text in the appropriate field in the editor\. 
-
-You can now finish creating or updating your state machine\.
-
-## Some service states are not available in Workflow Studio<a name="workflow-studio-known-limitations-missing-states"></a>
-
-Some service states are not currently available in Workflow Studio\. Instead, after you creat or edit your state machine in Workflow Studio, you can use [code snippets](concepts-code-snippets.md) to add the state to your state machine definition\. Code snippets can be found in the drop down menu on your state machine's code pane\.
-
-![\[Dynamic resource IDs.\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/wfe-snippets.png)
+For information about console session expiry, see [AWS Management Console FAQs](http://aws.amazon.com/console/faq-console/)\.
 
 ## Workflow Studio does not support Internet Explorer 11<a name="workflow-studio-known-limitations-browser"></a>
 

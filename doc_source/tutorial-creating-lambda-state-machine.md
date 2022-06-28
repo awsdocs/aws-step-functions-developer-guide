@@ -1,98 +1,70 @@
 # Creating a Step Functions State Machine That Uses Lambda<a name="tutorial-creating-lambda-state-machine"></a>
 
-In this tutorial, you create an AWS Step Functions state machine that uses an AWS Lambda function to implement a `Task` state\. A `Task` state performs a single unit of work\.
+In this tutorial, you will create a single\-step workflow using AWS Step Functions to invoke an AWS Lambda function\.
 
-Lambda is well suited for implementing `Task` states, because Lambda functions are *stateless* \(they have a predictable input\-output relationship\), easy to write, and don't require deploying code to a server instance\. You can write code in the AWS Management Console or your favorite editor\. AWS handles the details of providing a computing environment for your function and running it\.
+**Note**  
+In Step Functions, a workflow is called a *state machine*, which is a series of event\-driven steps\. Each step in a workflow is called a *state*\. A `Task` state represents a unit of work that another AWS service, such as AWS Lambda, performs\. A `Task` state can call any AWS service or API\. For more information, see:  
+[What is AWS Step Functions?](welcome.md)
+[Call other AWS services](connect-to-services.md)
+
+Lambda is well\-suited for `Task` states, because Lambda functions are *serverless* and easy to write\. You can write code in the AWS Management Console or your favorite editor\. AWS handles the details of providing a computing environment for your function and running it\.
 
 **Topics**
-+ [Step 1: Create an IAM Role for Lambda](#create-lambda-state-machine-step-1)
-+ [Step 2: Create a Lambda Function](#create-lambda-state-machine-step-2)
-+ [Step 3: Test the Lambda Function](#create-lambda-state-machine-step-3)
-+ [Step 4: Create a State Machine](#create-lambda-state-machine-step-4)
-+ [Step 5: Start a New Execution](#create-lambda-state-machine-step-5)
++ [Step 1: Create a Lambda Function](#create-lambda-state-machine-step-2)
++ [Step 2: Test the Lambda Function](#create-lambda-state-machine-step-3)
++ [Step 3: Create a State Machine](#create-lambda-state-machine-step-4)
++ [Step 4: Start a New Execution](#create-lambda-state-machine-step-5)
 
-## Step 1: Create an IAM Role for Lambda<a name="create-lambda-state-machine-step-1"></a>
+## Step 1: Create a Lambda Function<a name="create-lambda-state-machine-step-2"></a>
 
-Both AWS Lambda and AWS Step Functions can execute code and access AWS resources \(for example, data stored in Amazon S3 buckets\)\. To maintain security, you must grant Lambda and Step Functions access to these resources\.
-
-Lambda requires you to assign an AWS Identity and Access Management \(IAM\) role when you create a Lambda function, in the same way Step Functions requires you to assign an IAM role when you create a state machine\.
-
-### <a name="create-lambda-state-machine-to-create-a-role-for-use-with-lambda"></a>
-
-You use the IAM console to create a service\-linked role\.
-
-**To create a role \(console\)**
-
-1. Sign in to the AWS Management Console and open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
-
-1. In the navigation pane of the IAM console, choose **Roles**\. Then choose **Create role**\.
-
-1. Choose the **AWS Service** role type, and then choose **Lambda**\.
-
-1. Choose the **Lambda** use case\. Use cases are defined by the service to include the trust policy required by the service\. Then choose **Next: Permissions**\.
-
-1. Choose one or more permissions policies to attach to the role \(for example, `AWSLambdaBasicExecutionRole`\)\. See [AWS Lambda Permissions Model](https://docs.aws.amazon.com/lambda/latest/dg/intro-permission-model.html)\.
-
-    Select the box next to the policy that assigns the permissions that you want the role to have, and then choose **Next: Review**\.
-
-1. Enter a **Role name**\.
-
-1. \(Optional\) For **Role description**, edit the description for the new service\-linked role\.
-
-1. Review the role, and then choose **Create role**\.
-
-## Step 2: Create a Lambda Function<a name="create-lambda-state-machine-step-2"></a>
-
-Your Lambda function receives input \(a name\) and returns a greeting that includes the input value\.
+Your Lambda function receives event data and returns a greeting message\.
 
 ### <a name="create-lambda-state-machine-create-lambda-function"></a>
 
 **Important**  
 Ensure that your Lambda function is under the same AWS account and AWS Region as your state machine\.
 
-1. Open the [Lambda console](https://console.aws.amazon.com/lambda/home) and choose **Create a function**\.
+1. Open the [Lambda console](https://console.aws.amazon.com/lambda/home) and choose **Create function**\.
 
-1. In the **Create function** section, choose **Author from scratch**\.
+1. On the **Create function** page, choose **Author from scratch**\.
 
 1. In the **Basic information** section, configure your Lambda function:
 
    1. For **Function name**, enter `HelloFunction`\.
 
-   1. For **Runtime**, choose **Node\.js 12\.x**\.
+   1. For **Runtime**, choose **Node\.js 14\.x**\.
 
-   1. For **Role**, select **Choose an existing role**\.
-
-   1. For **Existing role**, select [the Lambda role that you created earlier](#create-lambda-state-machine-to-create-a-role-for-use-with-lambda)\.
-**Note**  
-If the IAM role that you created doesn't appear in the list, the role might still need a few minutes to propagate to Lambda\.
+   1. In **Change default execution role**, choose **Create a new role with basic Lambda permissions**\.
 
    1. Choose **Create function**\.
 
-      When your Lambda function is created, make a note of its Amazon Resource Name \(ARN\) in the upper\-right corner of the page, as shown in the example\.
+   1. After your Lambda function is created, copy the function's Amazon Resource Name \(ARN\) displayed in the upper\-right corner of the page\. To copy the ARN, click ![\[copy Amazon Resource Name\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-sm-using-lambda-copy-icon.png)![\[copy Amazon Resource Name\]](http://docs.aws.amazon.com/step-functions/latest/dg/)![\[copy Amazon Resource Name\]](http://docs.aws.amazon.com/step-functions/latest/dg/)\. The following is an example ARN:
 
       ```
       arn:aws:lambda:us-east-1:123456789012:function:HelloFunction
       ```
 
-1. Copy the following code for the Lambda function into the **Function code** section of the ***HelloFunction*** page\.
+1. Copy the following code for the Lambda function into the **Code source** section of the ***HelloFunction*** page\.
 
    ```
    exports.handler = (event, context, callback) => {
-       callback(null, "Hello, " + event.who + "!");
+       callback(null, "Hello from " + event.who + "!");
    };
    ```
 
    This code assembles a greeting using the `who` field of the input data, which is provided by the `event` object passed into your function\. You add input data for this function later, when you [start a new execution](#create-lambda-state-machine-start-execution)\. The `callback` method returns the assembled greeting from your function\.
 
-1. Choose **Save**\.
+1. Choose **Deploy**\.
 
-## Step 3: Test the Lambda Function<a name="create-lambda-state-machine-step-3"></a>
+## Step 2: Test the Lambda Function<a name="create-lambda-state-machine-step-3"></a>
 
 Test your Lambda function to see it in operation\.
 
 ### <a name="create-lambda-state-machine-test-lambda-function"></a>
 
-1. For **Select a test event**, choose **Configure test event**\. For **Event name**, enter `HelloFunction`\.
+1. Choose **Test**\.
+
+1. In the **Configure test event** dialog box, enter `HelloEvent` in the **Event name** box\.
 
 1. Replace the example data with the following\.
 
@@ -102,23 +74,52 @@ Test your Lambda function to see it in operation\.
    }
    ```
 
-   The `"who"` entry corresponds to the `event.who` field in your Lambda function, completing the greeting\. You will use the same input data when running the function as a Step Functions task\.
+   The `"who"` entry corresponds to the `event.who` field in your Lambda function, completing the greeting\. You will input the same input data when you run your state machine\.
 
 1. Choose **Create**\.
 
-1. On the ***HelloFunction*** page, **Test** your Lambda function using the new data\.
+1. On the ***HelloFunction*** page, choose **Test** to test your Lambda function using the new data\.
 
-   The results of the test are displayed at the top of the page\. Expand **Details** to see the output\.
+   The results of the test are displayed in the **Execution results** tab\. 
 
-## Step 4: Create a State Machine<a name="create-lambda-state-machine-step-4"></a>
+1. Choose the **Execution results** tab to see the output\.
 
-Use the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/) to create a state machine with a `Task` state\. Add a reference to your Lambda function in the `Task` state\. The Lambda function is invoked when an execution of the state machine reaches the `Task` state\.
+## Step 3: Create a State Machine<a name="create-lambda-state-machine-step-4"></a>
+
+Use the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/) to create a state machine that invokes [the Lambda function that you created earlier in Step 1](#create-lambda-state-machine-create-lambda-function)\.
 
 ### <a name="create-lambda-state-machine-create"></a>
 
 1. Open the [Step Functions console](https://console.aws.amazon.com/states/home) and choose **Create a state machine**\.
+**Important**  
+Ensure that your state machine is under the same AWS account and Region as the Lambda function you created earlier\.
 
-1. On the **Define state machine** page, choose **Author with code snippets**\. For **Type**, choose **Standard**\. Enter a **Name for your state machine**, for example, `LambdaStateMachine`\.
+1. On the **Choose authoring method** page, choose ** Design your workflow visually**\.
+
+1. For **Type**, retain the default selection, that is, **Standard**\.
+
+1. Choose **Next**\. This will open Workflow Studio\.
+
+1. From the States browser on the left, choose the **Actions** panel\.
+
+   1. Drag and drop the **AWS Lambda Invoke** API into the empty state labelled **Drag first state here**\.  
+![\[States browser\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-create-state-machine-states-browser.png)
+
+1. In the ** Inspector** panel on the right, configure the Lambda function and its name:
+
+   1. Choose **Configuration**, and then edit the **State name**, if required\.
+
+   1. In the **API Parameters** section, choose [the Lambda function that you created earlier](#create-lambda-state-machine-create-lambda-function) in the **Function name** dropdown list\.
+
+   1. Retain the default selection in the **Payload** dropdown list\.
+
+1. Choose **Next**\.
+
+1. On the **Review generated code** page, review the state machine's Amazon States Language \(ASL\) definition, which is automatically generated based on your selections in the **Actions** and ** Inspector** panel\.
+
+1. Choose **Next**\.
+
+1. Enter a **Name for your state machine**, for example, `LambdaStateMachine`\.
 **Note**  
 State machine, execution, and activity names must be 1–80 characters in length, must be unique for your account and AWS Region, and must not contain any of the following:  
 Whitespace
@@ -128,39 +129,11 @@ Special characters \(`: ; , \ | ^ ~ $ # % & ` "`\)
 Control characters \(`\\u0000` \- `\\u001f` or `\\u007f` \- `\\u009f`\)\.
 Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with Amazon CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
 
-1. In the **State machine definition** pane, add the following state machine definition using the ARN of [the Lambda function that you created earlier](#create-lambda-state-machine-create-lambda-function), as shown in the following example\.
+1. In **Execution role**, under the **Permissions** section, choose **Create new role**\.
 
-   ```
-   {
-     "Comment": "A Hello World example of the Amazon States Language using an AWS Lambda function",
-     "StartAt": "HelloWorld",
-     "States": {
-       "HelloWorld": {
-         "Type": "Task",
-         "Resource": "arn:aws:lambda:us-east-1:123456789012:function:HelloFunction",
-         "End": true
-       }
-     }
-   }
-   ```
+1. Choose **Create state machine**\.
 
-   This is a description of your state machine using the Amazon States Language\. It defines a single `Task` state named `HelloWorld`\. For more information, see [State Machine Structure](amazon-states-language-state-machine-structure.md)\.
-**Note**  
-You can also set up a `Retry` for `Task` states\. As a best practice, ensure production code can handle Lambda service exceptions \(`Lambda.ServiceException` and `Lambda.SdkClientException`\)\. For more information, see the following:   
-[Handle Lambda service exceptions](bp-lambda-serviceexception.md) 
-[Retrying after an error](concepts-error-handling.md#error-handling-retrying-after-an-error) 
-
-   Choose **Next**\.
-
-1. Create or enter an IAM role:
-   + To create an IAM role for Step Functions, select **Create an IAM role for me**, and enter a **Name** for your role\.
-   + If you have [previously created an IAM role](procedure-create-iam-role.md) with the correct permissions for your state machine, select **Choose an existing IAM role**\. Select a role from the list, or provide an ARN for that role\. 
-**Note**  
-If you delete the IAM role that Step Functions creates, Step Functions can't recreate it later\. Similarly, if you modify the role \(for example, by removing Step Functions from the principals in the IAM policy\), Step Functions can't restore its original settings later\. 
-
-1. Choose **Next**\.
-
-## Step 5: Start a New Execution<a name="create-lambda-state-machine-step-5"></a>
+## Step 4: Start a New Execution<a name="create-lambda-state-machine-step-5"></a>
 
 After you create your state machine, you start an execution\.
 
@@ -168,9 +141,9 @@ After you create your state machine, you start an execution\.
 
 1. On the ***LambdaStateMachine*** page, choose **Start execution**\.
 
-   The **New execution** page is displayed\.
+   The **Start execution** dialog box is displayed\.
 
-1. \(Optional\) To help identify your execution, you can specify an ID for it in the **Enter an execution name** box\. If you don't enter an ID, Step Functions generates a unique ID automatically\.
+1. \(Optional\) To identify your execution, you can specify a name for it in the **Name** box\. By default, Step Functions generates a unique execution name automatically\.
 **Note**  
 Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with Amazon CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
 
@@ -188,5 +161,8 @@ Step Functions allows you to create state machine, execution, and activity names
 
    A new execution of your state machine starts, and a new page showing your running execution is displayed\.
 
-1. To view the results of your execution, expand the **Output** section under **Execution details**\.  
+1. To view the results of your execution, choose the **Execution output** tab\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-console-state-machine-execution-output.png)
+
+**Note**  
+You can also pass payloads while invoking Lambda from a state machine\. For more information and examples about invoking Lambda by passing payload in the `Parameters` field, see [Invoke Lambda with Step Functions](connect-lambda.md)\.

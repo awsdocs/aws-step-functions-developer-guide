@@ -5,7 +5,7 @@ Step Functions can control certain AWS services directly from the Amazon States 
 + [Pass Parameters to a Service API](connect-parameters.md)
 
 **How the Optimized Amazon EMR integration is different than the Amazon EMR AWS SDK integration**  
- THe Optimized Amazon EMR service integration has a customized set of APIs that wrap the underlying Amazon EMR APIs, described below\. Because of this, it differs significantly from the Amazon EMR AWS SDK service integration\. In addition, the [Run a Job \(\.sync\)](connect-to-resource.md#connect-sync) integration pattern is supported\.
+ The Optimized Amazon EMR service integration has a customized set of APIs that wrap the underlying Amazon EMR APIs, described below\. Because of this, it differs significantly from the Amazon EMR AWS SDK service integration\. In addition, the [Run a Job \(\.sync\)](connect-to-resource.md#connect-sync) integration pattern is supported\.
 
 To integrate AWS Step Functions with Amazon EMR, you use the provided Amazon EMR service integration APIs\.  The service integration APIs are similar to the corresponding Amazon EMR APIs, with some differences in the fields that are passed and in the responses that are returned\.
 
@@ -178,13 +178,13 @@ The following includes a `Task` state that scales a cluster up or down for an in
 ```
 "ModifyInstanceFleetByName": {
     "Type": "Task",
-    "Resource": "arn:aws::states:::elasticmapreduce:modifyInstanceFleetByName",
+    "Resource": "arn:aws:states:::elasticmapreduce:modifyInstanceFleetByName",
     "Parameters": {
         "ClusterId": "j-1234567890123",
         "InstanceFleetName": "MyCoreFleet",
         "InstanceFleet": {
             "TargetOnDemandCapacity": 8,
-           "TargetSpotCapacity": 0
+            "TargetSpotCapacity": 0
         }
     },
     "End": true
