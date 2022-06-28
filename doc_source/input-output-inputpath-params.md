@@ -123,7 +123,10 @@ Alternatively, if the Lambda function data you are passing between states might 
 
 ## ResultSelector<a name="input-output-resultselector"></a>
 
- Use the `ResultSelector` field to manipulate a state's result before `ResultPath` is applied\. The `ResultSelector` field lets you create a collection of key value pairs, where the values are static or selected from the state's result\. The output of `ResultSelector` replaces the state's result and is passed to `ResultPath`\.
+ Use the `ResultSelector` field to manipulate a state's result before `ResultPath` is applied\. The `ResultSelector` field lets you create a collection of key value pairs, where the values are static or selected from the state's result\. Using the `ResultSelector` field, you can choose what parts of a state's result you want to pass to the `ResultPath` field\.
+
+**Note**  
+With the `ResultPath` field, you can add the output of the `ResultSelector` field to the original input\.
 
 `ResultSelector` is an optional field in the following states:
 + [Map](amazon-states-language-map-state.md)

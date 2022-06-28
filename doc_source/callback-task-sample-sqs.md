@@ -32,7 +32,7 @@ For more information about how AWS Step Functions can control other AWS services
    The **Create Project Resources** page is displayed, listing the resources that will be created\. For this sample project the resources include:
    + An Amazon SQS message queue\.
    + A Lambda function, that calls the Step Functions API action [https://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskSuccess.html](https://docs.aws.amazon.com/step-functions/latest/apireference/API_SendTaskSuccess.html)\.
-   + An Amazon SNS topic to notify success or failure when the workflow can continues\.
+   + An Amazon SNS topic to notify success or failure when the workflow can continue\.
 **Note**  
 It can take up to 10 minutes for these resources and related IAM permissions to be created\. While the **Create Project Resources** page displays **Creating resources**, you can open the **Stack ID:** link to see which resources are being provisioned\.
 

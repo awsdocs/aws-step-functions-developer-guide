@@ -14,7 +14,7 @@ Lambda errors are reported as `Lambda.ErrorName`\. To retry a Lambda service exc
 ```
 
 **Note**  
-Unhandled errors in Lambda are reported as `Lambda.Unknown` in the error output\. These include out\-of\-memory errors and function timeouts\. You can match on `Lambda.Unknown`, `States.ALL`, or `States.TaskFailed` to handle these errors\. When Lambda hits the maximum number of invocations, the error is `Lambda.TooManyRequestsException`\. For more information about Lambda `Handled` and `Unhandled` errors, see `FunctionError` in the [AWS Lambda Developer Guide](https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_ResponseSyntax)\. 
+Unhandled errors in Lambda are reported as `Lambda.Unknown` in the error output\. These include out\-of\-memory errors and function timeouts\. You can match on `Lambda.Unknown`, `States.ALL`, or `States.TaskFailed` to handle these errors\. When Lambda hits the maximum number of invocations, the error is `Lambda.TooManyRequestsException`\. For more information about Lambda function errors, see [Error handling and automatic retries](https://docs.aws.amazon.com/lambda/latest/dg/invocation-retries.html) in the *AWS Lambda Developer Guide*\. 
 
 For more information, see the following:
 + [Retrying after an error](concepts-error-handling.md#error-handling-retrying-after-an-error)

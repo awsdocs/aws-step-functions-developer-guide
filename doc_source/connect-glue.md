@@ -4,7 +4,7 @@ Step Functions can control certain AWS services directly from the Amazon States 
 + [Working with other services](concepts-service-integrations.md)
 + [Pass Parameters to a Service API](connect-parameters.md)
 
-**How the Optimized AWS Glue integration is different than the AWS Glue AWS SDK integration**  
+**How the Optimized AWS Glue integration is different than the AWS GlueAWS SDK integration**  
 The [Run a Job \(\.sync\)](connect-to-resource.md#connect-sync) integration pattern is available\.
 The `JobName` field is extracted from the request and inserted into the response, which normally only contains `JobRunID`\.
 

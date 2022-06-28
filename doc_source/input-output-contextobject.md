@@ -17,6 +17,8 @@ The context object includes information about the state machine, state, executio
     "Execution": {
         "Id": "String",
         "Input": {},
+        "Name": "String",
+        "RoleArn": "String",
         "StartTime": "Format: ISO 8601"
     },
     "State": {
@@ -25,7 +27,8 @@ The context object includes information about the state machine, state, executio
         "RetryCount": Number
     },
     "StateMachine": {
-        "Id": "String"
+        "Id": "String",
+        "Name": "String"
     },
     "Task": {
         "Token": "String"
@@ -70,7 +73,10 @@ For context object data related to `Map` states, see [Context Object Data for Ma
 
 To access the context object, first specify the parameter name by appending `.$` to the end, as you do when selecting state input with a path\. Then, to access context object data instead of the input, prepend the path with `$$.`\. This tells AWS Step Functions to use the path to select a node in the context object\. 
 
-This example task state uses a path to retrieve and pass the execution Amazon Resource Name \(ARN\) to an Amazon Simple Queue Service \(Amazon SQS\) message\.
+The following examples show how you can access context objects, such as execution ID, name, and start time\.
+
+**Example to retrieve and pass the execution Amazon Resource Name \(ARN\) to an Amazon Simple Queue Service \(Amazon SQS\) message**  
+This example `Task` state uses a path to retrieve and pass the execution Amazon Resource Name \(ARN\) to an Amazon Simple Queue Service \(Amazon SQS\) message\.  
 
 ```
 {
@@ -93,14 +99,34 @@ This example task state uses a path to retrieve and pass the execution Amazon Re
 **Note**  
 For more information about using the task token when calling an integrated service, see [Wait for a Callback with the Task Token](connect-to-resource.md#connect-wait-token)\.
 
+**Example to access the execution start time and name in a `Pass` state**  
+
+```
+{
+  "Comment": "Accessing context object in a state machine",
+  "StartAt": "Get execution context data",
+  "States": {
+    "Get execution context data": {
+      "Type": "Pass",
+      "Parameters": {
+        "startTime.$": "$$.Execution.StartTime",
+        "execName.$": "$$.Execution.Name"
+      },
+      "ResultPath": "$.executionContext",
+      "End": true
+    }
+  }
+}
+```
+
 ## Context Object Data for Map States<a name="contextobject-map"></a>
 
-There are two additional items available in the context object when processing a [`Map` state](amazon-states-language-map-state.md): `Index` and `Value`\. The `Index` contains the index number for the array item that is being processed in the current iteration\. Within a `Map` state, the context object includes the following\.
+There are two additional items available in the context object when processing a [`Map` state](amazon-states-language-map-state.md): `Index` and `Value`\. For each `Map` state iteration, `Index` contains the index number for the array item that is being currently processed, while `Value` contains the array item being processed\. Within a `Map` state, the context object includes the following data:
 
 ```
 "Map": {
    "Item": {
-      "Index": "Number",
+      "Index": Number,
       "Value": "String"
    }
 }
@@ -154,27 +180,28 @@ If you execute the previous state machine with the following input, `Index` and 
 ]
 ```
 
-The output for the execution is the following\.
+The output for the execution returns the values of `Index` and `Value` items for each of the three iterations as follows:
 
 ```
 [
   {
+    "ContextIndex": 0,
     "ContextValue": {
       "who": "bob"
-    },
-    "ContextIndex": 0
+    }
   },
   {
+    "ContextIndex": 1,
     "ContextValue": {
       "who": "meg"
-    },
-    "ContextIndex": 1
+    }
   },
   {
+    
+    "ContextIndex": 2,
     "ContextValue": {
       "who": "joe"
-    },
-    "ContextIndex": 2
+    }
   }
 ]
 ```

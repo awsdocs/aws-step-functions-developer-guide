@@ -12,36 +12,54 @@ By default, when a state reports an error, AWS Step Functions causes the executi
 Step Functions identifies errors in the Amazon States Language using case\-sensitive strings, known as *error names*\. The Amazon States Language defines a set of built\-in strings that name well\-known errors, all beginning with the `States.` prefix\.
 
 ** `States.ALL` **  
-A wildcard that matches any known error name\.
+A wildcard that matches any known error name\.  
+This error type can't catch the `States.DataLimitExceeded` terminal error type and runtime error types\. For more information about these error types, see [`States.DataLimitExceeded`](#error-data-limit-exceed) and [`States.Runtime`](#states-runtime-error)\.
+
+** `States.BranchFailed` **  
+A branch of a `Parallel` state failed\.
 
 ** `States.DataLimitExceeded` **  
 A `States.DataLimitExceeded` exception will be thrown for the following:  
 + When the output of a connector is larger than payload size quota\.
 + When the output of a state is larger than payload size quota\.
 + When, after `Parameters` processing, the input of a state is larger than the payload size quota\.
-For more information on quotas, see [Quotas](limits-overview.md)\.
+For more information on quotas, see [Quotas](limits-overview.md)\.  
+This is a terminal error that can't be caught by the `States.ALL` error type\.
+
+** `States.HeartbeatTimeout` **  
+A `Task` state failed to send a heartbeat for a period longer than the `HeartbeatSeconds` value\.  
+This error is only available inside the `Catch` and `Retry` fields\.
+
+** `States.IntrinsicFailure` **  
+This error occurs when the attempt to invoke an intrinsic function within a payload template fails\.
+
+** `States.NoChoiceMatched` **  
+This runtime error occurs if a `Choice` state fails to match the input with the conditions defined in the Choice Rule and no Default transition is specified\.
+
+** `States.ParameterPathFailure` **  
+This error occurs when within a state's `Parameters` field, an attempt to replace a field whose name ends in `.$` using a path fails\.
+
+** `States.Permissions` **  
+A `Task` state failed because it had insufficient privileges to execute the specified code\.
+
+** `States.ResultPathMatchFailure` **  
+A state's `ResultPath` field cannot be applied to the input the state received\.
 
 **`States.Runtime`**  
 An execution failed due to some exception that could not be processed\. Often these are caused by errors at runtime, such as attempting to apply `InputPath` or `OutputPath` on a null JSON payload\. A `States.Runtime` error is not retriable, and will always cause the execution to fail\. A retry or catch on `States.ALL` will not catch `States.Runtime` errors\.
 
-** `States.HeartbeatTimeout` **  
-A `Task` state failed to send a heartbeat for a period longer than the `HeartbeatSeconds` value\.
-
-** `States.Timeout` **  
-A `Task` state either ran longer than the `TimeoutSeconds` value, or failed to send a heartbeat for a period longer than the `HeartbeatSeconds` value\.
-
 ** `States.TaskFailed` **  
 A `Task` state failed during the execution\. When used in a retry or catch, `States.TaskFailed` acts as a wildcard that matches any known error name except for `States.Timeout`\.
 
-** `States.Permissions` **  
-A `Task` state failed because it had insufficient privileges to execute the specified code\.
+** `States.Timeout` **  
+A `Task` state either ran longer than the `TimeoutSeconds` value, or failed to send a heartbeat for a period longer than the `HeartbeatSeconds` value\.
 
 States can report errors with other names\. However, these must not begin with the `States.` prefix\.
 
 As a best practice, ensure production code can handle AWS Lambda service exceptions \(`Lambda.ServiceException` and `Lambda.SdkClientException`\)\. For more information, see [Handle Lambda service exceptions](bp-lambda-serviceexception.md)\.
 
 **Note**  
-Unhandled errors in Lambda are reported as `Lambda.Unknown` in the error output\. These include out\-of\-memory errors and function timeouts\. You can match on `Lambda.Unknown`, `States.ALL`, or `States.TaskFailed` to handle these errors\. When Lambda hits the maximum number of invocations, the error is `Lambda.TooManyRequestsException`\. For more information about Lambda `Handled` and `Unhandled` errors, see `FunctionError` in the [AWS Lambda Developer Guide](https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_ResponseSyntax)\. 
+Unhandled errors in Lambda are reported as `Lambda.Unknown` in the error output\. These include out\-of\-memory errors and function timeouts\. You can match on `Lambda.Unknown`, `States.ALL`, or `States.TaskFailed` to handle these errors\. When Lambda hits the maximum number of invocations, the error is `Lambda.TooManyRequestsException`\. For more information about Lambda function errors, see [Error handling and automatic retries](https://docs.aws.amazon.com/lambda/latest/dg/invocation-retries.html) in the *AWS Lambda Developer Guide*\. 
 
 ## Retrying after an error<a name="error-handling-retrying-after-an-error"></a>
 
@@ -119,6 +137,7 @@ This task fails five times in succession, outputting these error names: `ErrorA`
 + The first two errors match the first retrier and cause waits of 1 and 2 seconds\.
 + The third error matches the second retrier and causes a wait of 5 seconds\.
 + The fourth error matches the first retrier and causes a wait of 4 seconds\.
++ The fourth error also matches the first retrier\. However, it has already reached its maximum of two retries \(`MaxAttempts`\) for that particular error \(`ErrorB`\), so that retrier fails and the execution is redirected to the `Z` state through the `Catch` field\.
 + The fifth error also matches the first retrier\. However, it has already reached its maximum of two retries \(`MaxAttempts`\) for that particular error \(`ErrorB`\), so it fails and execution is redirected to the `Z` state via the `Catch` field\.
 
 ## Fallback states<a name="error-handling-fallback-states"></a>
@@ -189,7 +208,7 @@ A catcher returns a string payload as an output\. When working with service inte
 
 The state machines defined in the following examples assume the existence of two Lambda functions: one that always fails and one that waits long enough to allow a timeout defined in the state machine to occur\.
 
-This is a definition of a Lambda function that always fails, returning the message `error`\. In the state machine examples that follow, this Lambda function is named `FailFunction`\.
+This is a definition of a Node\.js Lambda function that always fails, returning the message `error`\. In the state machine examples that follow, this Lambda function is named `FailFunction`\. For information about creating a Lambda function, see [Step 1: Create a Lambda Function](tutorial-creating-lambda-state-machine.md#create-lambda-state-machine-step-2) section\.
 
 ```
 exports.handler = (event, context, callback) => {
@@ -197,7 +216,7 @@ exports.handler = (event, context, callback) => {
 };
 ```
 
-This is a definition of a Lambda function that sleeps for 10 seconds\. In the state machine examples that follow, this Lambda function is named `sleep10`\.
+This is a definition of a Node\.js Lambda function that sleeps for 10 seconds\. In the state machine examples that follow, this Lambda function is named `sleep10`\.
 
 **Note**  
 When you create this Lambda function in the Lambda console, remember to change the **Timeout** value in the **Advanced settings** section from 3 seconds \(default\) to 11 seconds\.
@@ -312,7 +331,7 @@ This variant uses the predefined error code `States.TaskFailed`, which matches a
 
 ### Handling a timeout using Retry<a name="error-handling-handling-timeout-using-retry"></a>
 
-This state machine uses a `Retry` field to retry a function that times out\. The function is retried twice with an exponential backoff between retries\.
+This state machine uses a `Retry` field to retry a `Task` state that times out based on the timeout value specfied in `TimeoutSeconds`\. The Lambda function invocation in this `Task` state is retried twice with an exponential backoff between retries\.
 
 ```
 {

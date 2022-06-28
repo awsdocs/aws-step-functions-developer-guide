@@ -135,6 +135,8 @@ The following code example shows how to invoke API Gateway using Step Functions\
 You can use the following authentication methods:
 + **No authorization**: Call the API directly with no authorization method\.
 + **IAM role**: With this method, Step Functions assumes the role of the state machine, signs the request with [Signature Version 4](https://docs.aws.amazon.com/general/latest/gr/sigv4_signing.html) \(SigV4\), then calls the API\.
+**Note**  
+Cross\-account support is unavailable for this authentication method\.
 + **Resource policy**: Step Functions authenticates the request, and then calls the API\. You must attach a resource policy to the API which specifies the following:
 
   1. The state machine that will invoke API Gateway\.
@@ -179,7 +181,7 @@ The API Gateway integration supports two service integration patterns:
           "RequestBody": {
               "billId": "my-new-bill"
           },
-          "AuthType": "IAM_AUTH"
+          "AuthType": "IAM_ROLE"
       } 
   }
   ```
@@ -214,8 +216,8 @@ An example response:
 ## Error handling<a name="connect-api-gateway-errors"></a>
 
 When an error occurs, an `error` and `cause` is returned as follows: 
-+ If the HTTP status code is available, then the error will be returned in the format `APIGateway.<HTTP Status Code>`\.
-+ If the HTTP status code is not available, then the error will be returned in the format `APIGateway.<Exception>`\.
++ If the HTTP status code is available, then the error will be returned in the format `ApiGateway.<HTTP Status Code>`\.
++ If the HTTP status code is not available, then the error will be returned in the format `ApiGateway.<Exception>`\.
 
 In both cases, the `cause` is returned as a string\.
 
@@ -223,7 +225,7 @@ The following example shows a response where an error has occurred:
 
 ```
 {
-    "error": "APIGateway.403", 
+    "error": "ApiGateway.403", 
     "cause": "{\"message\":\"Missing Authentication Token\"}"
 }
 ```

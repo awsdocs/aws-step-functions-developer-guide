@@ -1,6 +1,6 @@
 # Amazon Virtual Private Cloud Endpoint Policies for Step Functions<a name="vpc-iam"></a>
 
-You can create a Amazon VPC endpoint policy for Step Functions in which you specify the following:
+You can create an Amazon VPC endpoint policy for Step Functions in which you specify the following:
 + The principal that can perform actions\.
 + The actions that can be performed\.
 + The resources on which the actions can be performed\.
@@ -22,7 +22,7 @@ The following example shows an Amazon VPC endpoint policy that allows one IAM us
             "Resource": "*",
             "Effect": "Allow",
             "Principal": {
-              "AWS": "arn:aws:iam:123456789012:user/MyUser"
+              "AWS": "arn:aws:iam::123456789012:user/MyUser"
             }
         },
         {

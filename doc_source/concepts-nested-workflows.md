@@ -38,7 +38,7 @@ The `StartExecution` API action quotas can limit the number of executions that y
 
 ## Associate Workflow Executions<a name="nested-execution-startid"></a>
 
-To associate a started workflow execution with the execution that started it, pass the execution ID from the context object to the execution input\. You can access the ID from the context object from your `Task` state in a running execution\. Pass the execution ID by appending `.$` to the parameter name, and referencing the ID in the context object with `$$.Execution.Id`\.
+To associate a started workflow execution with the execution that started it, pass the execution ID from the [context object](input-output-contextobject.md) to the execution input\. You can access the ID from the context object from your `Task` state in a running execution\. Pass the execution ID by appending `.$` to the parameter name, and referencing the ID in the context object with `$$.Execution.Id`\.
 
 ```
 "AWS_STEP_FUNCTIONS_STARTED_BY_EXECUTION_ID.$": "$$.Execution.Id"

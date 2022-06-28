@@ -26,5 +26,5 @@ Use the [ data flow simulator in the Step Functions console](https://console.aws
 + [ItemsPath](input-output-itemspath.md)
 + [ResultPath](input-output-resultpath.md)
 + [OutputPath](input-output-outputpath.md)
-+ [InputPath, ResultPath and `OutputPath` Example](input-output-example.md)
++ [InputPath, ResultPath and OutputPath Examples](input-output-example.md)
 + [Context Object](input-output-contextobject.md)

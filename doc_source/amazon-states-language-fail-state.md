@@ -5,10 +5,13 @@ A `Fail` state \(`"Type": "Fail"`\) stops the execution of the state machine and
 The `Fail` state only allows the use of `Type` and `Comment` fields from the set of [common state fields](amazon-states-language-common-fields.md)\. In addition, the `Fail` state allows the following fields\.
 
 ** `Cause` \(Optional\)**  
-Provides a custom failure string that can be used for operational or diagnostic purposes\.
+A custom failure string that you can specify for operational or diagnostic purposes\.
 
 ** `Error` \(Optional\)**  
-Provides an error name that can be used for operational or diagnostic purposes\.
+An error name that you can provide for operational or diagnostic purposes\.
+
+**Note**  
+You cannot specify values for the `Cause` and `Error` fields by appending `.$` to these fields, such as `Cause.$` and `Error.$`\.
 
 Because `Fail` states always exit the state machine, they have no `Next` field and don't require an `End` field\.
 

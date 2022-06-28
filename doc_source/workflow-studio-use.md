@@ -4,25 +4,36 @@ Learn to create, edit and run workflows using Step Functions Workflow Studio\. A
 
 ## Create a workflow<a name="workflow-studio-components-create"></a>
 
-To create a workflow with the Workflow Studio:
-
 1. Sign in to the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/)\.
+
+1. Choose **Create state machine**\.
 
 1. On the **Choose authoring method** page, choose **Design your workflow visually**\.  
 ![\[Step Functions console authoring method selection\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/wfs_main_03_graph_editor_create.png)
 
-1.  Under **Type**, choose `Standard` or `Express`, and then choose **Next**\. `Standard` is recommended for your first state machine\. 
+1.  Under **Type**, choose `Standard` or `Express`, and then choose **Next**\.
+
+   `Standard` is recommended for your first state machine\.
 
 1. Design your workflow using Workflow Studio, then choose **Next**\.
 **Note**  
 If you see errors in your workflow, you can stay in Workflow Studio and correct the errors, or you can proceed to the next step and correct the errors in code\.
 
-1. On the **Review generated code** page, you can view the generated Amazon States Language definition of your workflow\. If you want to make changes, you can do this in the **Definition** panel\. You can also access code snippets under **Generate code snippet**\. When you are done, choose **Next**\.
+1. On the **Review generated code** page, you can view the generated Amazon States Language definition of your workflow\. If you want to make changes, you can do this in the **Definition** area\. You can also access code snippets under **Generate code snippet**\. 
 
-1. Under **Permissions**, select **Create a new IAM role**\.
-   + **Create a new IAM role** – Choose this option when you want Step Functions to create a new IAM role for you based on the definition of your state machine and its configuration details\.
-   + **Choose an existing role** – Choose this option if you previously created an IAM role for Step Functions and your state machine has the correct permissions\.
-   + **Enter a role ARN** – Choose this option if you know the ARN details for the IAM role that you want to use for Step Functions\.
+1. Choose **Next**\.
+
+1. In the **Name** box, enter a name for your state machine, for example, `MyStateMachine`\.
+**Note**  
+State machine, execution, and activity names must be 1–80 characters in length, must be unique for your account and AWS Region, and must not contain any of the following:  
+Whitespace
+Wildcard characters \(`? *`\)
+Bracket characters \(`< > { } [ ]`\)
+Special characters \(`: ; , \ | ^ ~ $ # % & ` "`\)
+Control characters \(`\\u0000` \- `\\u001f` or `\\u007f` \- `\\u009f`\)\.
+Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with Amazon CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
+
+1. In **Execution role**, under the **Permissions** section, choose **Create new role**\.
 
 1. Choose **Create state machine**\.
 
@@ -30,21 +41,23 @@ You can now run your new workflow\.
 
 ## Design a workflow<a name="workflow-studio-build"></a>
 
-If you know the name of the state you want to add, use the search feature at the top to find it in the actions and flows\.
+If you know the name of the state you want to add, use the search box at the top of the states browser to find that state in the **Actions** and **Flow** panels\.
 
 ![\[Step Functions Workflow Studio search\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/wfe-design-01.png)
 
-Otherwise, choose a state from the states browser and drag and drop it into the canvas, placing it where you want in your workflow\. You can also re\-order states in your workflow by dragging them to a different location in your workflow\. As you drag a state onto the canvas, a line appears wherever you can drop it in your workflow\. Once a state is dropped onto the canvas, its code is auto\-generated and added inside your workflow definition\.
+Otherwise, choose a state from the states browser and drag and drop it onto the canvas, placing it where you want in your workflow\. You can also re\-order states in your workflow by dragging them to a different location in your workflow\. As you drag a state onto the canvas, a line appears wherever you can drop it in your workflow\. After a state is dropped onto the canvas, its code is auto\-generated and added inside your workflow definition\.
 
 ![\[Step Functions Workflow Studio add state to canvas\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/wfe-design-02.png)
 
-Once you drop a state into the canvas, you can configure it using the **Form** panel\. For example, the Lambda Invoke state **Configuration** consists of the following sections:
+After you drop a state onto the canvas, you can configure it using the **Form** panel on the right\. This panel further contains the **Configuration**, **Input**, **Output**, and **Error Handling** tabs for each of the state or API action that you place on the canvas\. For example, the **Configuration** tab for Lambda Invoke API action consists of the following sections:
 
 ![\[Configuration options\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/wfs_config_01.png)
 
 1. The **State name** identifies the state\. You can use your own name or accept the default generated name\.
 
 1. The **API** shows which API the action uses\. 
+
+1. The **Integration type** dropdown list provides options to choose the type of service integrations available in Step Functions\. The integration type you choose is used to call API actions of a specific AWS service from your workflow\.
 
 1. The **Function name** provides options to:
    +  **Enter a function name**: You can enter your function name or its ARN\. 
@@ -77,7 +90,7 @@ To delete a state, you can use backspace, right\-click and choose **Delete state
 
 As your workflow grows, it may not fit in the canvas\. You can: 
 
-1. Use the controls on the side panels to shrink or close the panels\.
+1. Use the controls on the side panels to resize or close the panels\.
 
 1. Use the controls at the top of the canvas to zoom the workflow graph in or out\.
 
@@ -85,15 +98,15 @@ As your workflow grows, it may not fit in the canvas\. You can:
 
 ## Run your workflow<a name="workflow-studio-components-create-run"></a>
 
-After you create or edit your workflow with the Workflow Studio you can run it and view its execution in the Step Functions console:
+After you create or edit your workflow with the Workflow Studio, you can run it and view its execution in the [Step Functions console](https://console.aws.amazon.com/states/home):
 
 1. Choose your workflow in the Step Functions console\.
 
-1. Choose **Start execution**\. The **Start execution** dialog is displayed\.
+1. Choose **Start execution**\. The **Start execution** dialog box is displayed\.
 
 1. Choose **Start execution** to run the workflow\.
 
-1. You can see the execution results for each state in the **Graph inspector**\. Select each step to view details about its execution\.
+1. You can see the execution results for each state in the **Graph inspector**\. Choose each step to view details about its execution\.
 
 ## Edit your workflow<a name="workflow-studio-components-create-edit"></a>
 
@@ -120,9 +133,9 @@ You can export your workflow's Amazon States Language code, and also a graph of 
 
 1.  Choose your workflow in the Step Functions console\. 
 
-1.  Choose **Definition**\. 
-
 1.  \(optional\) Choose **Edit**\. 
+
+1.  Choose **Definition**\. 
 
 1. In the workflow definition:
    + To export your workflow's code, select it, then copy it to its destination\.
@@ -149,10 +162,10 @@ You can use Workflow Studio to prototype new workflows that contain placeholder 
 **Note**  
 If you see errors in your workflow, you can stay in Workflow Studio and correct the errors, or you can proceed to the next step and correct the errors in code\.
 
-   1.  On the `Review generated code` page, you can view the generated Amazon States Language definition of your workflow\. If needed, make any changes under **Definition**, then choose **Next**\.
+   1.  On the **Review generated code** page, you can view the generated Amazon States Language definition of your workflow\. If needed, make any changes under **Definition**, then choose **Next**\.
 
    1. Specify your workflow settings, then choose **Create state machine**\. 
 
 You now have created a new workflow with placeholder resources that can be used to prototype\. You can export your workflow definition and the graph of your workflow\.
 + To export your workflow definition, select and copy it to your clipboard\. You can paste this definition and use it as the starting point for local development with the [AWS Toolkit for Visual Studio Code](https://docs.aws.amazon.com/toolkit-for-vscode/latest/userguide/bulding-stepfunctions.html)\.
-+ To export the graph of your workflow to an SVG or PNG file, choose **Export** and select the format you want to use\.
++ To export the graph of your workflow to an SVG or PNG file, choose **Export** and choose the format you want to use\.
