@@ -3,14 +3,33 @@
 AWS Step Functions integrates with certain AWS services, such as Amazon Simple Notification Service \(Amazon SNS\)\. In this tutorial, you generate a code snippet that sends a text message using Amazon SNS\. You pass parameters directly to Amazon SNS from your state machine definition\.
 
 For more information about how Step Functions integrates with other AWS services directly from the Amazon States Language, see:
-+ [Service Integrations](concepts-service-integrations.md)
++ [Working with other services](concepts-service-integrations.md)
 + [Code Snippets](concepts-code-snippets.md)
 + [Pass Parameters to a Service API](connect-parameters.md)
 
 **Topics**
++ [\(Optional\) Prerequisites](#tutorial-code-snippet-pre)
 + [Step 1: Generate a Code Snippet](#tutorial-code-snippet-1)
 + [Step 2: Update Your State Machine Definition](#tutorial-code-snippet-2)
 + [Step 3: Start an Execution](#tutorial-code-snippet-3)
+
+## \(Optional\) Prerequisites<a name="tutorial-code-snippet-pre"></a>
+
+If you're using an existing role in AWS Identity and Access Management \(IAM\), you'll need to attach `SNS:Publish` permissions\. You can use the [AmazonSNSFullAccess](https://console.aws.amazon.com/iam/home?#/policies/arn:aws:iam::aws:policy/arn:aws:iam::aws:policy/AmazonSNSFullAccess$jsonEditor) AWS\-managed policy to attach full permissions for Amazon SNS\.
+
+**To attach permissions to a role**
+
+1. Open the [Roles page](https://console.aws.amazon.com/iam/home?#/roles)\.
+
+1. Choose a role\.
+
+1. Choose **Attach policies**\.
+
+1. Type `AmazonSNSFullAccess` in the **Filter policies** text field\.
+
+1. Select the **AmazonSNSFullAccess** role\.
+
+1. Choose **Attach policy**\.
 
 ## Step 1: Generate a Code Snippet<a name="tutorial-code-snippet-1"></a>
 

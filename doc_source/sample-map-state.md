@@ -1,4 +1,4 @@
-# Dynamically Process Data with a Map State<a name="sample-map-state"></a>
+# Dynamically process data with a Map state<a name="sample-map-state"></a>
 
 This sample project demonstrates dynamic parallelism using a `Map` state\. This sample project creates the following:
 + Two AWS Lambda functions
@@ -11,13 +11,13 @@ In this project, Step Functions uses an AWS Lambda function to pull messages off
 
 For more information on `Map` states and Step Functions service integrations, see the following:
 + [Map](amazon-states-language-map-state.md)
-+ [Service Integrations with AWS Step Functions ](concepts-service-integrations.md)
++ [Using AWS Step Functions with other services](concepts-service-integrations.md)
 
-## Create the State Machine and Provision Resources<a name="sample-map-state-create"></a>
+## Create the state machine and provision resources<a name="sample-map-state-create"></a>
 
 1. Open the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/) and choose **Create a state machine**\.
 
-1. Choose **Sample Projects**, and then choose **Iterate steps with a Map state**\.
+1. Choose **Sample Projects**, and then choose **Dynamically process data with a Map state**\.
 
    The state machine **Code** and **Visual Workflow** are displayed\.  
 ![\[Map state workflow.\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/sample-map.png)
@@ -37,7 +37,7 @@ It can take up to 10 minutes for these resources and related IAM permissions to 
 
 Once the resources of the sample project are deployed, you need to add items to the Amazon SQS queue and subscribe to the Amazon SNS topic before you start an execution of the state machine\.
 
-## Subscribe to the Amazon SNS Topic<a name="sample-map-subscribe-topic"></a>
+## Subscribe to the Amazon SNS topic<a name="sample-map-subscribe-topic"></a>
 
 1. Open the [Amazon SNS console](https://console.aws.amazon.com/sns/home)\.
 
@@ -61,7 +61,7 @@ You must confirm the subscription in your email before it is active\.
 
    The **Subscription confirmed\!** page is displayed\.
 
-## Add Messages to the Amazon SQS Queue<a name="sample-map-create-queue"></a>
+## Add messages to the Amazon SQS queue<a name="sample-map-create-queue"></a>
 
 1. Open the [Amazon SQS console](https://console.aws.amazon.com/sqs/home)\.
 
@@ -79,7 +79,7 @@ You must confirm the subscription in your email before it is active\.
 
 1. Choose **Close**\.
 
-## Start a New Execution<a name="sample-map-start-execution"></a>
+## Start a new execution<a name="sample-map-start-execution"></a>
 
 **Note**  
 Queues in Amazon SNS are eventually consistent\. For best results, wait a few minutes between populating your queue and running an execution of your state machine\.
@@ -90,7 +90,7 @@ Queues in Amazon SNS are eventually consistent\. For best results, wait a few mi
 
 1. On the **New execution** page, enter an execution name \(optional\), and then choose **Start Execution**\.
 
-1. \(Optional\) To help identify your execution, you can specify an ID for it in the **Enter an execution name** box\. If you don't enter an ID, Step Functions generates a unique ID automatically\.
+1. \(Optional\) To identify your execution, you can specify a name for it in the **Name** box\. By default, Step Functions generates a unique execution name automatically\.
 **Note**  
 Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with Amazon CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
 
@@ -98,13 +98,13 @@ Step Functions allows you to create state machine, execution, and activity names
 
 1. When an execution is complete, you can select states on the **Visual workflow** and browse the **Input** and **Output** under **Step details**\.
 
-## Example State Machine Code<a name="sample-map-code-examples"></a>
+## Example state machine code<a name="sample-map-code-examples"></a>
 
 The state machine in this sample project integrates with Amazon SQS, Amazon SNS, and Lambda by passing parameters directly to those resources\. 
 
 Browse through this example state machine to see how Step Functions controls Lambda, DynamoDB, Amazon SNS by connecting to the Amazon Resource Name \(ARN\) in the `Resource` field, and by passing `Parameters` to the service API\.
 
-For more information about how AWS Step Functions can control other AWS services, see [Service Integrations with AWS Step Functions ](concepts-service-integrations.md)\.
+For more information about how AWS Step Functions can control other AWS services, see [Using AWS Step Functions with other services](concepts-service-integrations.md)\.
 
 ```
 {
@@ -194,7 +194,7 @@ For more information about how AWS Step Functions can control other AWS services
 }
 ```
 
-## IAM Example<a name="sample-map-iam-example"></a>
+## IAM example<a name="sample-map-iam-example"></a>
 
 This example AWS Identity and Access Management \(IAM\) policy generated by the sample project includes the least privilege necessary to execute the state machine and related resources\. We recommend that you include only those permissions that are necessary in your IAM policies\. 
 
@@ -234,4 +234,4 @@ This example AWS Identity and Access Management \(IAM\) policy generated by the 
 }
 ```
 
-For information about how to configure IAM when using Step Functions with other AWS services, see [IAM Policies for Integrated Services](service-integration-iam-templates.md)\.
+For information about how to configure IAM when using Step Functions with other AWS services, see [IAM Policies for integrated services](service-integration-iam-templates.md)\.

@@ -8,4 +8,4 @@ Step Functions always encrypts your data at rest\. Data in AWS Step Functions is
 
 ## Encryption in transit<a name="security-encryption-in-transit"></a>
 
-Step Functions encrypts data in transit between the service and other integrated AWS services \(see [Service Integrations with AWS Step Functions ](concepts-service-integrations.md)\)\. All data that passes between Step Functions and integrated services is encrypted using Transport Layer Security \(TLS\)\.
+Step Functions encrypts data in transit between the service and other integrated AWS services \(see [Using AWS Step Functions with other services](concepts-service-integrations.md)\)\. All data that passes between Step Functions and integrated services is encrypted using Transport Layer Security \(TLS\)\.

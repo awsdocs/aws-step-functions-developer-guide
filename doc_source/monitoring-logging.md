@@ -1,6 +1,6 @@
-# Logging and Monitoring in AWS Step Functions<a name="monitoring-logging"></a>
+# Logging and monitoring in AWS Step Functions<a name="monitoring-logging"></a>
 
-This section provides information about logging and monitoring in AWS Step Functions\.
+ Logging and monitoring are important for maintaining the reliability, availability, and performance of Step Functions and your AWS solutions\. There are several tools available to use with Step Functions: 
 
 **Topics**
 + [Amazon CloudWatch Metrics](procedure-cw-metrics.md)

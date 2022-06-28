@@ -5,7 +5,7 @@ This section provides information about AWS Step Functions security and authenti
 **Topics**
 + [Data protection in AWS Step Functions](data-protection.md)
 + [Identity and Access Management in AWS Step Functions](auth-and-access-control-sfn.md)
-+ [Logging and Monitoring in AWS Step Functions](monitoring-logging.md)
++ [Logging and Monitoring](security-monitoring-logging.md)
 + [Compliance Validation for AWS Step Functions](SFN-compliance.md)
 + [Resilience in AWS Step Functions](disaster-recovery-resiliency.md)
 + [Infrastructure Security in AWS Step Functions](infrastructure-security.md)

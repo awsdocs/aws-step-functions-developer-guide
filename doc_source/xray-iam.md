@@ -1,7 +1,7 @@
 # X\-Ray<a name="xray-iam"></a>
 
 These example templates show how AWS Step Functions generates IAM policies based on the resources in your state machine definition\. For more information, see:
-+ [IAM Policies for Integrated Services](service-integration-iam-templates.md)
++ [IAM Policies for integrated services](service-integration-iam-templates.md)
 + [Service Integration Patterns](connect-to-resource.md)
 
 To enable X\-Ray tracing, you will need an IAM policy with suitable permissions to allow tracing\. If your state machine uses other integrated services, you may need additional IAM policies\. See the IAM policies for your specific service integrations\.

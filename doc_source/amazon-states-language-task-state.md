@@ -7,7 +7,7 @@ All work in your state machine is done by *tasks*\. A task performs work by usin
 AWS Step Functions can invoke Lambda functions directly from a task state\. A Lambda function is a cloud\-native task that runs on AWS Lambda\. You can write Lambda functions in a variety of programming languages, using the AWS Management Console or by uploading code to Lambda\. For more information see [Creating a Step Functions State Machine That Uses Lambda](tutorial-creating-lambda-state-machine.md)\.
 
 **Note**  
-Step Functions can coordinate some AWS services directly from a task state\. For more information see [Service Integrations](concepts-service-integrations.md)\.
+Step Functions can coordinate some AWS services directly from a task state\. For more information see [Working with other services](concepts-service-integrations.md)\.
 
 An activity consists of program code that waits for an operator to perform an action or to provide input\. You can host activities on Amazon EC2, on Amazon ECS, or even on mobile devices\. Activities poll Step Functions using the `GetActivityTask` and `SendTaskSuccess`, `SendTaskFailure`, and `SendTaskHeartbeat` API actions\.
 
@@ -106,7 +106,7 @@ In this pattern:
 +  `task_type` is the type of task to run\. It is one of the following values:
   +  `activity` – An [activity](#amazon-states-language-task-state-activity)\.
   +  `function` – A [Lambda function](#amazon-states-language-task-state-lambda)\.
-  +  `servicename` – The name of a supported connected service \(see [Supported AWS Service Integrations for Step Functions](connect-supported-services.md)\)\.
+  +  `servicename` – The name of a supported connected service \(see [Optimized integrations for Step Functions](connect-supported-services.md)\)\.
 +  `name` is the registered resource name \(activity name, Lambda function name, or service API action\)\.
 
 **Note**  
@@ -173,7 +173,7 @@ arn:partition:states:region:account:servicename:APIname
 ```
 
 **Note**  
-To create a synchronous connection to a connected resource, append `.sync` to the *APIname* entry in the ARN\. For more information, see [Service Integrations](concepts-service-integrations.md)\.
+To create a synchronous connection to a connected resource, append `.sync` to the *APIname* entry in the ARN\. For more information, see [Working with other services](concepts-service-integrations.md)\.
 
 For example:
 

@@ -2,9 +2,13 @@
 
 Step Functions integrates with its own API as a service integration\. This allows Step Functions to start a new execution of a state machine directly from the task state of a running execution\. When building new workflows, use [nested workflow executions](concepts-nested-workflows.md) to reduce the complexity of your main workflows and to reuse common processes\.
 
+**How the Optimized Step Functions integration is different than the Step Functions AWS SDK integration**  
+The [Run a Job \(\.sync\)](connect-to-resource.md#connect-sync) integration pattern is available\.
+Note that there are no optimizations for the [Request Response](connect-to-resource.md#connect-default) or [Wait for a Callback with the Task Token](connect-to-resource.md#connect-wait-token) integration patterns\.
+
 For more information, see the following:
 + [Start Executions from a Task](concepts-nested-workflows.md)
-+ [Service Integrations](concepts-service-integrations.md)
++ [Working with other services](concepts-service-integrations.md)
 + [Pass Parameters to a Service API](connect-parameters.md)
 
 Supported Step Functions APIs and syntax:
@@ -116,4 +120,4 @@ For startExecution\.sync:2:
 }
 ```
 
-For information on how to configure IAM when using Step Functions with other AWS services, see [IAM Policies for Integrated Services](service-integration-iam-templates.md)\.
+For information on how to configure IAM when using Step Functions with other AWS services, see [IAM Policies for integrated services](service-integration-iam-templates.md)\.

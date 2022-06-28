@@ -32,8 +32,7 @@ For Standard Workflows, you can retrieve execution results from the execution hi
 For Express Workflows, if you have enabled logging, you can retrieve results from CloudWatch Logs See [Logging using CloudWatch Logs](cw-logs.md) for more information\.
 
 You should also consider quotas related to your state machine\. For more information, see:
-+ [Quotas for Standard Workflows](limits.md)
-+ [Quotas for Express Workflows](express-limits.md)
++ [Quotas](limits-overview.md)
 
 ## State Input/Output<a name="concepts-state-machine-data-state-input-output"></a>
 

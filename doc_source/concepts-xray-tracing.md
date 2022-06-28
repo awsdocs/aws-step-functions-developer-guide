@@ -30,9 +30,9 @@ You can add data to a trace for up to seven days, and query trace data going bac
 
 You can enable X\-Ray tracing when creating a new state machine by selecting **Enable X\-Ray tracing** on the **Specify details** page\.
 
-1. Open the Step Functions console and choose **Create a state machine**\.
+1. Open the [Step Functions console](https://console.aws.amazon.com/states/home) and choose **Create state machine**\.
 
-1. On the **Define state machine** page, choose either **Author with code snippets** or **Start with a template**\. If you choose to run a sample project, you cannot enable X\-Ray tracing during creation, and you will need to enable X\-Ray tracing after your state machine has been created\. See **Enable X\-Ray in an existing state machine** for more information\.
+1. On the **Choose authoring method** page, choose an appropriate option to create your state machine\. If you choose **Run a sample project**, you cannot enable X\-Ray tracing during the state machine creation, and you will need to enable X\-Ray tracing after your state machine has been created\. For more information about enabling X\-Ray in an existing state machine, see [Enable X\-Ray in an existing state machine](#xray-concept-enable-existing)\.
 
    Choose **Next**\.
 
@@ -49,7 +49,7 @@ If you choose to use an existing IAM role, you should ensure that X\-Ray writes 
 
 To enable X\-Ray in an existing state machine:
 
-1. In the Step Functions console, select the state machine for which you want to enable tracing\.
+1. In the [Step Functions console](https://console.aws.amazon.com/states/home), select the state machine for which you want to enable tracing\.
 
 1. Choose **Edit**\.
 
@@ -233,7 +233,7 @@ Choose **Sampling** to view details about the sampling rate and configuration\. 
 ------
 #### [ Encryption ]
 
-Choose **Encryption** to modify the encryption settings\. You can use the default setting, where X\-Ray encrypts traces and date at rest, or, if needed, you can choose a customer master key\. Standard [AWS KMS](https://docs.aws.amazon.com/https://docs.aws.amazon.com/kms/latest/developerguide/) charges apply in the latter case\.
+Choose **Encryption** to modify the encryption settings\. You can use the default setting, where X\-Ray encrypts traces and date at rest, or, if needed, you can choose a customer master key\. Standard [AWS KMS](https://docs.aws.amazon.com/kms/latest/developerguide/) charges apply in the latter case\.
 
 ![\[Encryption settings\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/xray-tracing-encryption.png)
 

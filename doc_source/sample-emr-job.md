@@ -28,7 +28,7 @@ It can take up to 10 minutes for these resources and related AWS Identity and Ac
 
 1. On the **New execution** page, enter an execution name \(optional\), and then choose **Start Execution**\.
 
-1. \(Optional\) To help identify your execution, you can specify an ID for it in the **Enter an execution name** box\. If you don't enter an ID, Step Functions generates a unique ID automatically\.
+1. \(Optional\) To identify your execution, you can specify a name for it in the **Name** box\. By default, Step Functions generates a unique execution name automatically\.
 **Note**  
 Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with Amazon CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
 
@@ -40,7 +40,7 @@ Step Functions allows you to create state machine, execution, and activity names
 
 The state machine in this sample project integrates with Amazon EMR by passing parameters directly to those resources\. Browse through this example state machine to see how Step Functions uses a state machine to call the Amazon EMR task synchronously, waits for the task to succeed or fail, and terminates the cluster\.
 
-For more information about how AWS Step Functions can control other AWS services, see [Service Integrations with AWS Step Functions ](concepts-service-integrations.md)\.
+For more information about how AWS Step Functions can control other AWS services, see [Using AWS Step Functions with other services](concepts-service-integrations.md)\.
 
 ```
 {
@@ -222,4 +222,4 @@ The following policy ensures that `addStep` has sufficient permissions\.
 }
 ```
 
-For information about how to configure IAM when using Step Functions with other AWS services, see [IAM Policies for Integrated Services](service-integration-iam-templates.md)\.
+For information about how to configure IAM when using Step Functions with other AWS services, see [IAM Policies for integrated services](service-integration-iam-templates.md)\.
