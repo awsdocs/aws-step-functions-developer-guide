@@ -26,7 +26,10 @@ Execution history events may contain either input or output properties in their 
 
 ## IAM Policies for logging to CloudWatch Logs<a name="cloudwatch-iam-policy"></a>
 
-You will also need to configure your IAM role to have the proper permission to log to CloudWatch Logs\. The following is an example policy you can use to configure your permissions\.
+You will also need to configure your state machine's execution IAM role to have the proper permission to log to CloudWatch Logs as shown in the following example\.
+
+**IAM policy example**  
+The following is an example policy you can use to configure your permissions\.
 
 ```
 {
@@ -40,6 +43,7 @@ You will also need to configure your IAM role to have the proper permission to l
                 "logs:UpdateLogDelivery",
                 "logs:DeleteLogDelivery",
                 "logs:ListLogDeliveries",
+                "logs:PutLogEvents",
                 "logs:PutResourcePolicy",
                 "logs:DescribeResourcePolicies",
                 "logs:DescribeLogGroups"
@@ -49,3 +53,13 @@ You will also need to configure your IAM role to have the proper permission to l
     ]
 }
 ```
+
+If you're unable to access the CloudWatch Logs, make sure you've done the following:
+
+1. Configured your state machine's execution IAM role to have the proper permission to log to CloudWatch Logs\.
+
+   If you're using the `[CreateStateMachine](https://docs.aws.amazon.com/step-functions/latest/apireference/API_CreateStateMachine.html)` or `[UpdateStateMachine](https://docs.aws.amazon.com/step-functions/latest/apireference/API_UpdateStateMachine.html)` requests, make sure you've specified the IAM role in the `roleArn` parameter containing the permissions as shown in the [preceding example](#iam-policy-eg-for-cwl)\.
+
+1. Checked the CloudWatch Logs resource policy doesn't exceed the 5120 character limit for CloudWatch Logs resource policies\.
+
+   If you've exceeded the character limit, remove unnecessary permissions from the CloudWatch Logs resource policy, or prefix the log group name with `/aws/vendedlogs`, which will grant permissions to the log group without appending more characters to the resource policy\. When you create a log group in the Step Functions console, the log group names are prefixed with `/aws/vendedlogs/states`\. For more information, see [Amazon CloudWatch Logs resource policy size restrictions](bp-cwl.md)\.

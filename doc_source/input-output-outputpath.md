@@ -9,6 +9,6 @@ Use the [ data flow simulator in the Step Functions console](https://console.aws
 
 For more information, see the following:
 + [Paths in the Amazon States Language](amazon-states-language-paths.md)
-+ [InputPath, ResultPath and `OutputPath` Example](input-output-example.md)
++ [InputPath, ResultPath and OutputPath Examples](input-output-example.md)
 + [Pass Static JSON as Parameters](connect-parameters.md#connect-parameters-json)
 + [Input and Output Processing in Step Functions](concepts-input-output-filtering.md)

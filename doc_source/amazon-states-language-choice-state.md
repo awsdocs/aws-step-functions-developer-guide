@@ -92,7 +92,7 @@ If there are no matches for the `Choice` state's `Choices`, the state provided i
 
 ## Choice Rules<a name="amazon-states-language-choice-state-rules"></a>
 
-A `Choice` state must have a `Choices` field whose value is a non\-empty array, and whose every element is an object called a Choice Rule\. A Choice Rule contains the following:
+A `Choice` state must have a `Choices` field whose value is a non\-empty array\. Each element in this array is an object called Choice Rule, which contains the following:
 + A **comparison** – Two fields that specify an input variable to compare, the type of comparison, and the value to compare the variable to\. Choice Rules support comparison between two variables\. Within a Choice Rule, the value of Variable can be compared with another value from the state input by appending `Path` to name of supported comparison operators\. 
 + A **`Next` field** – The value of this field must match a state name in the state machine\.
 

@@ -105,7 +105,7 @@ The following example includes a `Task` state that runs a job, waits for it to c
         "Endpoint": "https://AKIAIOSFODNN7EXAMPLE.yl4.us-east-1.eks.amazonaws.com",
         "LogOptions": {
           "RetrieveLogs": true
-        }
+        },
         "Job": {
           "apiVersion": "batch/v1",
           "kind": "Job",

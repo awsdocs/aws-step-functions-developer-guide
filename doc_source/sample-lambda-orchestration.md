@@ -21,19 +21,21 @@ For new AWS users, a free usage tier is available\. On this tier, services are f
 
 ## Create the State Machine and Provision Resources<a name="sample-lambda-orchestration-create"></a>
 
-1. Open the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/) and choose **Create a state machine**\.
+1. Open the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/) and choose **Create state machine**\.
 
-1. Choose **Sample Projects**, and then choose **Lambda orchestration example**\.
+1. On the **Choose authoring method** page, choose **Run a sample project**\.
 
-   The state machine **Code** and **Visual Workflow** are displayed\.  
+1. Choose **Orchestrate Lambda functions**\.
+
+   The state machine **Definition** and **Visual Workflow** are displayed\.  
 ![\[Training model workflow.\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/sample-lambda-orchestration.png)
 
 1. Choose **Next**\.
 
    The **Deploy resources** page is displayed, listing the resources that will be created\. For this sample project, the resources include:
-   + Five Lambda functions
    + A state machine
    + An Amazon SQS queue
+   + Five Lambda functions
    + An Amazon SNS topic
    + Related IAM roles
 
@@ -43,19 +45,15 @@ It can take up to 10 minutes for these resources and related IAM permissions to 
 
 ## Start a New Execution<a name="sample-lambda-orchestration-start-execution"></a>
 
-1. Open the [Step Functions console](https://console.aws.amazon.com/states/home)\.
+After all the resources are provisioned and deployed, the **Start execution** dialog box is displayed\.
 
-1. On the **State machines** page, choose the **StockTradingStateMachine** state machine that was created by the sample project, and then choose **Start execution**\.
-
-1. On the **New execution** page, enter an execution name \(optional\), and then choose **Start Execution**\.
-
-1. \(Optional\) To help identify your execution, you can specify an ID for it in the **Enter an execution name** box\. If you don't enter an ID, Step Functions generates a unique ID automatically\.
+1. \(Optional\) To identify your execution, you can specify a name for it in the **Name** box\. By default, Step Functions generates a unique execution name automatically\.
 **Note**  
 Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with Amazon CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
 
-1. \(Optional\) Go to the newly created state machine on the Step Functions **Dashboard**, and then choose **New execution**\.
+1. Choose **Start execution**\.
 
-1. When an execution is complete, you can select states on the **Visual workflow** and browse the **Input** and **Output** under **Step details**\.
+1. \(Optional\) After the execution is complete, choose individual states on the **Graph inspector**, and then choose the **Step input** and **Step output** tabs to view each state's input and output respectively\.
 
 ## Example State Machine Code<a name="sample-lambda-orchestration-code-examples"></a>
 

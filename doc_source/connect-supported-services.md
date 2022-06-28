@@ -1,6 +1,6 @@
 # Optimized integrations for Step Functions<a name="connect-supported-services"></a>
 
-The following topics include the supported APIs, parameters, and request/response syntax in the Amazon States Language for coordinating other AWS services\. The topics also provide example code\. You can call Optimized integrations services directly from the Amazon States Language in the `Resource` field of a task state\. 
+The following topics include the supported APIs, parameters, and request/response syntax in the Amazon States Language for coordinating other AWS services\. The topics also provide example code\. You can call Optimized integrations services directly from the Amazon States Language in the `Resource` field of a `Task` state\. 
 
 You can use three service integration patterns:
 + [Default response](connect-to-resource.md#connect-default)

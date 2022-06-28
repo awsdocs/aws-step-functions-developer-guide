@@ -1,6 +1,6 @@
 # Start an Athena query<a name="sample-athena-query"></a>
 
-This sample project demonstrates how to use Step Functions and Amazon Athena to start an Athena query and send a notification with query results\. This sample project creates the following:
+This sample project, which is based on standard workflows, demonstrates how to use Step Functions and Amazon Athena to start an Athena query and send a notification with query results\. This sample project creates the following:
 + An Amazon Athena query
 + An AWS Glue crawler
 + An Amazon Simple Notification Service topic
@@ -45,7 +45,7 @@ It can take up to 10 minutes for these resources and related IAM permissions to 
 
 1. On the **New execution** page, enter an execution name \(optional\), and then choose **Start Execution**\.
 
-1. \(Optional\) To help identify your execution, you can specify an ID for it in the **Enter an execution name** box\. If you don't enter an ID, Step Functions generates a unique ID automatically\.
+1. \(Optional\) To identify your execution, you can specify a name for it in the **Name** box\. By default, Step Functions generates a unique execution name automatically\.
 **Note**  
 Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with Amazon CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
 

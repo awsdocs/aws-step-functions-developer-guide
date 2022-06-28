@@ -5,20 +5,21 @@ A `Wait` state \(`"Type": "Wait"`\) delays the state machine from continuing for
 In addition to the [common state fields](amazon-states-language-common-fields.md), `Wait` states have one of the following fields\.
 
 ** `Seconds` **  
-A time, in seconds, to wait before beginning the state specified in the `Next` field\.
+A time, in seconds, to wait before beginning the state specified in the `Next` field\. You must specify time as a positive, integer value\.
 
 ** `Timestamp` **  
 An absolute time to wait until beginning the state specified in the `Next` field\.  
 Timestamps must conform to the RFC3339 profile of ISO 8601, with the further restrictions that an uppercase `T` must separate the date and time portions, and an uppercase `Z` must denote that a numeric time zone offset is not present, for example, `2016-08-18T17:33:00Z`\.
 
 ** `SecondsPath` **  
-A time, in seconds, to wait before beginning the state specified in the `Next` field, specified using a [path](concepts-input-output-filtering.md) from the state's input data\.
+A time, in seconds, to wait before beginning the state specified in the `Next` field, specified using a [path](concepts-input-output-filtering.md) from the state's input data\.  
+You must specify an integer value for this field\.
 
 ** `TimestampPath` **  
 An absolute time to wait until beginning the state specified in the `Next` field, specified using a [path](concepts-input-output-filtering.md) from the state's input data\.
 
 **Note**  
-You must specify exactly one of `Seconds`, `Timestamp`, `SecondsPath`, or `TimestampPath`\.
+You must specify exactly one of `Seconds`, `Timestamp`, `SecondsPath`, or `TimestampPath`\. In addition, the maximum wait time that you can specify for Standard Workflows and Express workflows is one year and five minutes respectively\.
 
 ## Wait State Examples<a name="wait-state-example"></a>
 
@@ -32,7 +33,7 @@ The following `Wait` state introduces a 10\-second delay into a state machine\.
 }
 ```
 
-In the next example, the `Wait` state waits until an absolute time: March 14th, 2016, at 1:59 PM UTC\.
+In the next example, the `Wait` state waits until an absolute time: March 14, 2016, at 1:59 PM UTC\.
 
 ```
 "wait_until" : {

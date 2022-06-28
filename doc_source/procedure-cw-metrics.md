@@ -56,12 +56,23 @@ The `AWS/States` namespace includes the following metrics for Step Functions exe
 | Metric | Description | 
 | --- | --- | 
 | ExecutionTime | The interval, in milliseconds, between the time the execution starts and the time it closes\. | 
-| ExecutionThrottled | The number of StateEntered events and retries that have been throttled\. This is related to StateTransition throttling\. For more information, see [Quotas Related to State Throttling](https://docs.aws.amazon.com/step-functions/latest/dg/limits.html#service-limits-api-state-throttling) in the AWS Step Functions Developer Guide\. | 
+| ExecutionThrottled | The number of StateEntered events and retries that have been throttled\. This is related to StateTransition throttling\. For more information, see [Quotas related to state throttling](limits-overview.md#service-limits-api-state-throttling)in the AWS Step Functions Developer Guide\. | 
 | ExecutionsAborted | The number of aborted or terminated executions\. | 
 | ExecutionsFailed | The number of failed executions\. | 
 | ExecutionsStarted | The number of started executions\. | 
 | ExecutionsSucceeded | The number of successfully completed executions\. | 
 | ExecutionsTimedOut | The number of executions that time out for any reason\. | 
+
+### Execution Metrics for Express Workflows<a name="cloudwatch-step-functions-execution-metrics-express-wf"></a>
+
+The `AWS/States` namespace includes the following metrics for Step Functions Express Workflows' executions\.
+
+
+| Metric | Description | 
+| --- | --- | 
+|  ExpressExecutionMemory  |  The total memory consumed by an Express Workflow\.  | 
+| ExpressExecutionBilledDuration |  The duration for which an Express Workflow is charged\.  | 
+| ExpressExecutionBilledMemory | The amount of consumed memory for which an Express Workflow is charged\. | 
 
 ### Dimension for Step Functions Execution Metrics<a name="cloudwatch-step-functions-execution-metrics-dimensions"></a>
 

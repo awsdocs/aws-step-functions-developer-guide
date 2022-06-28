@@ -1,9 +1,9 @@
-# Step Functions and AWS SAM CLI Local<a name="sfn-local-lambda"></a>
+# Testing Step Functions and AWS SAM CLI Local<a name="sfn-local-lambda"></a>
 
 With both AWS Step Functions and AWS Lambda running on your local machine, you can test your state machine and Lambda functions without deploying your code to AWS\. 
 
-For more information, see the following:
-+ [Setting Up Step Functions Local \(Downloadable Version\)](sfn-local.md)
+For more information, see the following topics:
++ [Testing Step Functions State Machines Locally](sfn-local.md)
 + [Set Up AWS SAM](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-quick-start.html)
 
 **Topics**
@@ -36,13 +36,13 @@ Before installing the AWS SAM CLI, you need to install the AWS CLI and Docker\. 
 
 ## Step 2: Test AWS SAM CLI Local<a name="test-local-lambda"></a>
 
-Now that you have installed AWS SAM and created the Hello World Lambda function, test it\. In the `sam-app` directory, enter the following\.
+Now that you have installed AWS SAM and created the Hello World Lambda function, you can test the function\. In the `sam-app` directory, enter the following command:
 
 ```
 sam local start-api
 ```
 
-This launches a local instance of your Lambda function\.
+This launches a local instance of your Lambda function\. You should see output simillar to the following:
 
 ```
 2019-01-31 16:40:27 Found credentials in shared credentials file: ~/.aws/credentials
@@ -51,13 +51,13 @@ This launches a local instance of your Lambda function\.
 2019-01-31 16:40:27  * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
 ```
 
-Open a browser and enter the following\.
+Open a browser and enter the following:
 
 ```
 http://127.0.0.1:3000/hello
 ```
 
-This show output from your function\.
+This will output a response simillar to the following:
 
 ```
 {"message": "hello world", "location": "72.21.198.66"}
@@ -67,13 +67,13 @@ Enter **CTRL\+C** to end the Lambda API\.
 
 ## Step 3: Start AWS SAM CLI Local<a name="start-local-lambda"></a>
 
-Now that you've tested that the function works, start AWS SAM CLI Local\. In the `sam-app` directory, enter the following\.
+Now that you've tested that the function works, start AWS SAM CLI Local\. In the `sam-app` directory, enter the following command:
 
 ```
 sam local start-lambda
 ```
 
-This starts AWS SAM CLI Local and provides the endpoint to use\.
+This starts AWS SAM CLI Local and provides the endpoint to use, similar to the following output:
 
 ```
 2019-01-29 15:33:32 Found credentials in shared credentials file: ~/.aws/credentials
@@ -85,13 +85,13 @@ This starts AWS SAM CLI Local and provides the endpoint to use\.
 
 ### JAR File<a name="start-local-jar"></a>
 
-If you're using the `.jar` file version of Step Functions Local, start Step Functions specifying the Lambda endpoint\. In the directory where you extracted the `.jar` files, enter the following\.
+If you're using the `.jar` file version of Step Functions Local, start Step Functions and specify the Lambda endpoint\. In the directory where you extracted the `.jar` files, enter the following command:
 
 ```
 java -jar StepFunctionsLocal.jar --lambda-endpoint http://localhost:3001
 ```
 
-When Step Functions Local starts, it checks the environment, and then the credentials configured in your `~/.aws/credentials` file\. By default, it starts using a fake user ID, and is listed as `region us-east-1`\.
+When Step Functions Local starts, it checks the environment, and then the credentials configured in your `~/.aws/credentials` file\. By default, it starts using a fictitious user ID, and is listed as `region us-east-1`\.
 
 ```
 2019-01-29 15:38:06.324: Failed to load credentials from environment because Unable to load AWS credentials from environment variables (AWS_ACCESS_KEY_ID (or AWS_ACCESS_KEY) and AWS_SECRET_KEY (or AWS_SECRET_ACCESS_KEY))
@@ -101,20 +101,20 @@ When Step Functions Local starts, it checks the environment, and then the creden
 
 ### Docker<a name="start-local-docker"></a>
 
-If you're using the Docker version of Step Functions Local, launch Step Functions with the following command\.
+If you're using the Docker version of Step Functions Local, launch Step Functions with the following command:
 
 ```
 docker run -p 8083:8083 amazon/aws-stepfunctions-local
 ```
 
-For information about installing the Docker version of Step Functions, see [Step Functions \(downloadable version\) and Docker](sfn-local-docker.md)\.
+For information about installing the Docker version of Step Functions, see [Setting Up Step Functions Local \(Downloadable Version\) and Docker](sfn-local-docker.md)\.
 
 **Note**  
-You can specify the endpoint through the command line or by setting environment variables if you launch Step Functions from the `.jar` file\. For the Docker version, you must specify the endpoints and credentials in a text file\. See [Step Functions Local configuration options](sfn-local-config-options.md)\.
+You can specify the endpoint through the command line or by setting environment variables if you launch Step Functions from the `.jar` file\. For the Docker version, you must specify the endpoints and credentials in a text file\. See [Setting Configuration Options for Step Functions Local](sfn-local-config-options.md)\.
 
 ## Step 5: Create a State Machine That References Your AWS SAM CLI Local Function<a name="create-local-statemachine"></a>
 
-Once Step Functions Local is running, create a state machine that references the `HelloWorldFunction`that you initialized in [Step 1: Set Up AWS SAM](#install-sam)\.
+Once Step Functions Local is running, create a state machine that references the `HelloWorldFunction` that you initialized in [Step 1: Set Up AWS SAM](#install-sam)\.
 
 ```
 aws stepfunctions --endpoint http://localhost:8083 create-state-machine --definition "{\
@@ -142,13 +142,13 @@ This will create a state machine and provide an Amazon Resource Name \(ARN\) tha
 
 ## Step 6: Start an Execution of Your Local State Machine<a name="run-local-statemachine"></a>
 
-Once you have created a state machine, start an execution referencing the endpoint and state machine ARN\.
+Once you have created a state machine, start an execution\. You'll need to reference the endpoint and state machine ARN when using the following **aws stepfunctions** command:
 
 ```
 aws stepfunctions --endpoint http://localhost:8083 start-execution --state-machine arn:aws:states:us-east-1:123456789012:stateMachine:HelloWorld --name test
 ```
 
-This starts an execution of your `HelloWorld` state machine and gives it the name `test`\.
+This starts an execution named `test` of your `HelloWorld` state machine\.
 
 ```
 {
@@ -157,13 +157,13 @@ This starts an execution of your `HelloWorld` state machine and gives it the nam
 }
 ```
 
-Now that Step Functions is running locally, you can interact with it using the AWS CLI\. For example, to get information about this execution, use the following\.
+Now that Step Functions is running locally, you can interact with it using the AWS CLI\. For example, to get information about this execution, use the following command:
 
 ```
 aws stepfunctions --endpoint http://localhost:8083 describe-execution --execution-arn arn:aws:states:us-east-1:123456789012:execution:HelloWorld:test
 ```
 
-Calling `describe-execution` for an execution provides more complete details, as follows\.
+Calling `describe-execution` for an execution provides more complete details, similar to the following output:
 
 ```
 {

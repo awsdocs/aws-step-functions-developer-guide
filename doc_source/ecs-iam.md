@@ -124,3 +124,5 @@ You can only stop Amazon Elastic Container Service \(Amazon ECS\) tasks that wer
 ```
 
 ------
+
+If your scheduled Amazon ECS tasks require the use of a task execution role, a task role, or a task role override, then you must add `iam:PassRole` permissions for each task execution role, task role, or task role override to the CloudWatch Events IAM role of the calling entity, which in this case is Step Functions\.

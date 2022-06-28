@@ -6,7 +6,7 @@ Step Functions can control certain AWS services directly from the Amazon States 
 
 Supported AWS Batch APIs:
 
-**How the Optimized AWS Batch integration is different than the AWS Batch AWS SDK integration**  
+**How the Optimized AWS Batch integration is different than the AWS BatchAWS SDK integration**  
 The [Run a Job \(\.sync\)](connect-to-resource.md#connect-sync) integration pattern is available\.
 Note that there are no optimizations for the [Request Response](connect-to-resource.md#connect-default) or [Wait for a Callback with the Task Token](connect-to-resource.md#connect-wait-token) integration patterns\.
 

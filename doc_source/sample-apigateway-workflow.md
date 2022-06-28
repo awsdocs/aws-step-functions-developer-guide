@@ -10,9 +10,9 @@ For more information about API Gateway and Step Functions service integrations, 
 
 ## Create the State Machine and Provision Resources<a name="sample-apigateway-workflow-create"></a>
 
-1. Open the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/) and choose **Create a state machine**\.
+1. Open the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/) and choose **Create state machine**\.
 
-1. Choose **Sample Projects**, and then choose **Start an API Gateway query**\.
+1. Choose **Run a sample project**, and then choose **Make a call to API Gateway**\.
 
    The state machine **Code** and **Visual Workflow** are displayed\.  
 ![\[Training model workflow.\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/sample-apigateway-workflow.png)
@@ -36,7 +36,7 @@ It can take up to 10 minutes for these resources and related IAM permissions to 
 
 1. On the **New execution** page, enter an execution name \(optional\), and then choose **Start Execution**\.
 
-1. \(Optional\) To help identify your execution, you can specify an ID for it in the **Enter an execution name** box\. If you don't enter an ID, Step Functions generates a unique ID automatically\.
+1. \(Optional\) To identify your execution, you can specify a name for it in the **Name** box\. By default, Step Functions generates a unique execution name automatically\.
 **Note**  
 Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with Amazon CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
 
