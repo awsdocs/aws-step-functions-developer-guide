@@ -1,4 +1,4 @@
-# How Step Functions Works<a name="how-step-functions-works"></a>
+# How Step Functions works<a name="how-step-functions-works"></a>
 
 This section describes important concepts to help you get familiar with AWS Step Functions and understand how it works\.
 
@@ -10,8 +10,6 @@ This section describes important concepts to help you get familiar with AWS Step
 + [Input and Output Processing](concepts-input-output-filtering.md)
 + [Executions](concepts-state-machine-executions.md)
 + [Error handling](concepts-error-handling.md)
-+ [Service Integrations](concepts-service-integrations.md)
 + [Invoke Step Functions](concepts-invoke-sfn.md)
 + [Read Consistency](concepts-read-consistency.md)
-+ [Templates in Step Functions](concepts-templates.md)
 + [Tagging in Step Functions](concepts-tagging.md)

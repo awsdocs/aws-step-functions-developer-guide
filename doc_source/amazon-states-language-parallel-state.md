@@ -84,7 +84,7 @@ A `Parallel` state provides each branch with a copy of its own input data \(subj
           "States": {
             "Add": {
               "Type": "Task",
-              "Resource": "arn:aws:swf:us-east-1:123456789012:task:Add",
+              "Resource": "arn:aws:states:us-east-1:123456789012:activity:Add",
               "End": true
             }
           }
@@ -94,7 +94,7 @@ A `Parallel` state provides each branch with a copy of its own input data \(subj
           "States": {
             "Subtract": {
               "Type": "Task",
-              "Resource": "arn:aws:swf:us-east-1:123456789012:task:Subtract",
+              "Resource": "arn:aws:states:us-east-1:123456789012:activity:Subtract",
               "End": true
             }
           }
@@ -105,7 +105,7 @@ A `Parallel` state provides each branch with a copy of its own input data \(subj
 }
 ```
 
-If the `FunWithMath` state was given the array `[3, 2]` as input, then both the `Add` and `Subtract` states receive that array as input\. The output of `Add` would be `5`, that of `Subtract` would be `1`, and the output of the `Parallel` state would be an array\.
+If the `FunWithMath` state was given the array `[3, 2]` as input, then both the `Add` and `Subtract` states receive that array as input\. The output of the `Add` and `Subtract` tasks would be the sum of and difference between the array elements 3 and 2, which is `5` and `1`, while the output of the `Parallel` state would be an array\.
 
 ```
 [ 5, 1 ]

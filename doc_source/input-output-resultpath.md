@@ -21,6 +21,9 @@ These examples are based on the state machine and Lambda function described in t
 + [Update a Node in Input with Result](#input-output-resultpath-amend)
 + [Include Error and Input in a `Catch`](#input-output-resultpath-catch)
 
+**Tip**  
+Use the [ data flow simulator in the Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/simulator) to test JSON path syntax, to better understand how data is manipulated within a state, and to see how data is passed between states\.
+
 ## Use ResultPath to Replace the Input with the Result<a name="input-output-resultpath-default"></a>
 
 If you don't specify a `ResultPath`, the default behavior is as if you had specified `"ResultPath": "$"`\. Because this tells the state to replace the entire input with the result, the state input is completely replaced by the result coming from the task result\.

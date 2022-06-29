@@ -1,6 +1,6 @@
 # Creating an Activity State Machine Using Step Functions<a name="tutorial-creating-activity-state-machine"></a>
 
-This tutorial shows you how to create an activity\-based state machine using Java and AWS Step Functions\. Activities allow you to control worker code that runs somewhere else in your state machine\. For an overview, see [Activities](concepts-activities.md) in [How Step Functions Works](how-step-functions-works.md)\. 
+This tutorial shows you how to create an activity\-based state machine using Java and AWS Step Functions\. Activities allow you to control worker code that runs somewhere else from your state machine\. For an overview, see [Activities](concepts-activities.md) in [How Step Functions works](how-step-functions-works.md)\. 
 
 To complete this tutorial, you need the following:
 + The [SDK for Java](https://aws.amazon.com/sdk-for-java/)\. The example activity in this tutorial is a Java application that uses the AWS SDK for Java to communicate with AWS\.
@@ -176,7 +176,7 @@ When you start the execution of the state machine, your worker polls Step Functi
 
    The **New execution** page is displayed\.
 
-1. \(Optional\) To help identify your execution, you can specify an ID for it in the **Enter an execution name** box\. If you don't enter an ID, Step Functions generates a unique ID automatically\.
+1. \(Optional\) To identify your execution, you can specify a name for it in the **Name** box\. By default, Step Functions generates a unique execution name automatically\.
 **Note**  
 Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with Amazon CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
 
