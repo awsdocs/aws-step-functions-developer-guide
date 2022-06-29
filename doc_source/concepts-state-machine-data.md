@@ -29,7 +29,7 @@ The output of the execution is returned by the last state \(`terminal`\)\. This 
 
 For Standard Workflows, you can retrieve execution results from the execution history using external callers \(for example, in the `[DescribeExecution](https://docs.aws.amazon.com/step-functions/latest/apireference/API_DescribeExecution.html)` action\)\. You can view execution results on the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/)\. 
 
-For Express Workflows, if you have enabled logging, you can retrieve results from CloudWatch Logs See [Logging using CloudWatch Logs](cw-logs.md) for more information\.
+For Express Workflows, if you have enabled logging, you can retrieve results from CloudWatch Logs\. See [Logging using CloudWatch Logs](cw-logs.md) for more information\.
 
 You should also consider quotas related to your state machine\. For more information, see:
 + [Quotas](limits-overview.md)
