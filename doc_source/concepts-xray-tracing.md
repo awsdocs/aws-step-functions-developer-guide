@@ -88,9 +88,13 @@ Some parts of existing sampling rules, such as the name and priority, cannot be 
 
 For detailed information on X\-Ray sampling rules and how to configure the various parameters, see [Configuring sampling rules in the X\-Ray console](https://docs.aws.amazon.com/xray/latest/devguide/xray-console-sampling.html)\. 
 
-### Integrating upstream services 
+### Integrate upstream services 
 
-In order to integrate the execution of a Step Function (express, sync, or normal) with an upstream service you need to set the traceHeader. This is done for you if you are using a HTTP API in API Gateway, however if using a Lambda and/or SDK then you need to set the traceHeader on the StartExecution or StartSyncExecution calls yourself. It is important to note the format here, it has to be ```p{ASCII}*``` as stated in the API/SDKs docs but it also needs tobe ```Root={TRACE_ID};Sampled={1 or 0}``` for the step function to use the same trace id. If your using lambda then replace the TRACE_ID with the trace Id in your current segment and set the Sampled (1 = true and 0 = false) according to your sampling mode. Providing the trace id in this format will mean you get a complete trace. Here is python example: 
+To integrate the execution of Step Functions workfloes, such as Express, Synchronous, and Standard workflows, with an upstream service, you need to set the `traceHeader`. This is automatically done for you if you are using an HTTP API in API Gateway. However if you're using a Lambda and/or an SDK, you need to set the `traceHeader` on the StartExecution or StartSyncExecution calls yourself.
+
+You must specify the `traceHeader` format asI ```p{ASCII}*```. Additionally, to let Step Functions use the same trace ID, you must specify the format as ```Root={TRACE_ID};Sampled={1 or 0}```. If you're using a Lambda function, replace the `TRACE_ID` with the trace Id in your current segment and set the Sampled field as `1` if your sampling mode is true and `0` if your sampling mode is false. Providing the trace ID in this format ensures that you'll get a complete trace.
+
+The following is an example written in Python to showcase how to specify the `traceHeader`: 
 
 
 ```python
