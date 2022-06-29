@@ -88,6 +88,39 @@ Some parts of existing sampling rules, such as the name and priority, cannot be 
 
 For detailed information on X\-Ray sampling rules and how to configure the various parameters, see [Configuring sampling rules in the X\-Ray console](https://docs.aws.amazon.com/xray/latest/devguide/xray-console-sampling.html)\. 
 
+### Integrate upstream services 
+
+To integrate the execution of Step Functions workfloes, such as Express, Synchronous, and Standard workflows, with an upstream service, you need to set the `traceHeader`. This is automatically done for you if you are using an HTTP API in API Gateway. However if you're using a Lambda and/or an SDK, you need to set the `traceHeader` on the StartExecution or StartSyncExecution calls yourself.
+
+You must specify the `traceHeader` format asI ```p{ASCII}*```. Additionally, to let Step Functions use the same trace ID, you must specify the format as ```Root={TRACE_ID};Sampled={1 or 0}```. If you're using a Lambda function, replace the `TRACE_ID` with the trace Id in your current segment and set the Sampled field as `1` if your sampling mode is true and `0` if your sampling mode is false. Providing the trace ID in this format ensures that you'll get a complete trace.
+
+The following is an example written in Python to showcase how to specify the `traceHeader`: 
+
+
+```python
+
+    state_machine = config.get_string_paramter("STATE_MACHINE_ARN")
+
+    if (xray_recorder.current_subsegment() is not None and 
+        xray_recorder.current_subsegment().sampled) :
+        trace_id = "Root={};Sampled=1".format(
+            xray_recorder.current_subsegment().trace_id
+        )
+    else:
+        trace_id = "Root=not enabled;Sampled=0"
+
+    LOGGER.info("trace %s", trace_id)
+
+    # execute it
+    response = states.start_sync_execution(
+        stateMachineArn=state_machine,
+        input=event['body'],
+        name=context.aws_request_id,
+        traceHeader=trace_id
+    )
+    LOGGER.info(response)
+```
+
 ## Concepts<a name="xray-concepts"></a>
 
 ### The X\-Ray console<a name="xray-concepts-console"></a>
