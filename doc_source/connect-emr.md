@@ -1,14 +1,17 @@
 # Call Amazon EMR with Step Functions<a name="connect-emr"></a>
 
-Step Functions can control certain AWS services directly from the Amazon States Language\. For more information, see the following:
-+ [Service Integrations](concepts-service-integrations.md)
+Step Functions can control certain AWS services directly from the Amazon States Language\. For more information about working with AWS Step Functions and its integrations, see the following:
++ [Working with other services](concepts-service-integrations.md)
 + [Pass Parameters to a Service API](connect-parameters.md)
+
+**How the Optimized Amazon EMR integration is different than the Amazon EMR AWS SDK integration**  
+ The Optimized Amazon EMR service integration has a customized set of APIs that wrap the underlying Amazon EMR APIs, described below\. Because of this, it differs significantly from the Amazon EMR AWS SDK service integration\. In addition, the [Run a Job \(\.sync\)](connect-to-resource.md#connect-sync) integration pattern is supported\.
 
 To integrate AWS Step Functions with Amazon EMR, you use the provided Amazon EMR service integration APIs\.  The service integration APIs are similar to the corresponding Amazon EMR APIs, with some differences in the fields that are passed and in the responses that are returned\.
 
 Step Functions does not terminate an Amazon EMR cluster automatically if execution is stopped\. If your state machine stops before your Amazon EMR cluster has terminated, your cluster may continue running indefinitely, and can accrue additional charges\. To avoid this, ensure that any Amazon EMR cluster you create is terminated properly\. For more information, see:
 + [Control Cluster Termination](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-termination.html) in the Amazon EMR User Guide\.
-+ The Service Integration Patterns [Run a Job](connect-to-resource.md#connect-sync) section\.
++ The Service Integration Patterns [Run a Job \(\.sync\)](connect-to-resource.md#connect-sync) section\.
 
 **Note**  
 As of `emr-5.28.0`, you can specify the parameter `StepConcurrencyLevel` when creating a cluster to allow multiple steps to run in parallel on a single cluster\. You can use the Step Functions `Map` and `Parallel` states to submit work in parallel to the cluster\.
@@ -175,17 +178,17 @@ The following includes a `Task` state that scales a cluster up or down for an in
 ```
 "ModifyInstanceFleetByName": {
     "Type": "Task",
-    "Resource": "arn:aws::states:::elasticmapreduce:modifyInstanceFleetByName",
+    "Resource": "arn:aws:states:::elasticmapreduce:modifyInstanceFleetByName",
     "Parameters": {
         "ClusterId": "j-1234567890123",
         "InstanceFleetName": "MyCoreFleet",
         "InstanceFleet": {
             "TargetOnDemandCapacity": 8,
-           "TargetSpotCapacity": 0
+            "TargetSpotCapacity": 0
         }
     },
     "End": true
 }
 ```
 
-For information on how to configure IAM when using Step Functions with other AWS services, see [IAM Policies for Integrated Services](service-integration-iam-templates.md)\.
+For information on how to configure IAM when using Step Functions with other AWS services, see [IAM Policies for integrated services](service-integration-iam-templates.md)\.

@@ -1,11 +1,16 @@
 # Call DynamoDB APIs with Step Functions<a name="connect-ddb"></a>
 
-Step Functions can control certain AWS services directly from the Amazon States Language\. For more information, see the following:
-+ [Service Integrations](concepts-service-integrations.md)
+Step Functions can control certain AWS services directly from the Amazon States Language\. For more information about working with AWS Step Functions and its integrations, see the following:
++ [Working with other services](concepts-service-integrations.md)
 + [Pass Parameters to a Service API](connect-parameters.md)
 
 **Note**  
-There is a quota for the maximum input or result data size for a task in Step Functions\. This restricts you to 262,144 bytes of data as a UTF\-8 encoded string when you send to, or receive data from, another service\. See [Quotas Related to State Machine Executions](limits.md#service-limits-state-machine-executions)\.
+There is a quota for the maximum input or result data size for a task in Step Functions\. This restricts you to 262,144 bytes of data as a UTF\-8 encoded string when you send to, or receive data from, another service\. See [Quotas related to state machine executions](limits-overview.md#service-limits-state-machine-executions)\.
+
+**How the optimized DynamoDB integration is different than the DynamoDB AWS SDK integration**  
+There is no optimization for the [Request Response](connect-to-resource.md#connect-default) integration pattern\.
+The [Wait for a Callback with the Task Token](connect-to-resource.md#connect-wait-token) integration pattern is not supported\.
+Only [https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/ API_GetItem.html](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/ API_GetItem.html), [https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/ API_PutItem.html](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/ API_PutItem.html), and [https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/ API_UpdateItem.html](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/ API_UpdateItem.html) API actions are available through optimized integration\. Other API actions, such as [https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_CreateTable.html](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_CreateTable.html) are available using the DynamoDB AWS SDK integration\.
 
 Supported Amazon DynamoDB APIs and syntax:
 + [https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_GetItem.html](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_GetItem.html)
@@ -48,7 +53,7 @@ Supported Amazon DynamoDB APIs and syntax:
     + [https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_DeleteItem.html#API_DeleteItem_RequestParameters](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_DeleteItem.html#API_DeleteItem_RequestParameters)
   + [Response syntax](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_DeleteItem.html#API_DeleteItem_ResponseSyntax)
 + [https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_UpdateItem.html](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_UpdateItem.html)
-  + [Request syntax](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_PutItem.html#API_UpdateItem_RequestSyntax)
+  + [Request syntax](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_UpdateItem.html#API_UpdateItem_RequestSyntax)
   + Supported parameters:
     + [https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_UpdateItem.html#API_UpdateItem_RequestParameters](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_UpdateItem.html#API_UpdateItem_RequestParameters)
     + [https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_UpdateItem.html#API_UpdateItem_RequestParameters](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_UpdateItem.html#API_UpdateItem_RequestParameters)
@@ -86,4 +91,4 @@ You cannot pass a map or list to DynamoDB inside a map\.
 
 To see this state in a working example, see the [Transfer Data Records \(Lambda, DynamoDB, Amazon SQS\)](sample-project-transfer-data-sqs.md) sample project\.
 
-For information on how to configure IAM when using Step Functions with other AWS services, see [IAM Policies for Integrated Services](service-integration-iam-templates.md)\.
+For information on how to configure IAM when using Step Functions with other AWS services, see [IAM Policies for integrated services](service-integration-iam-templates.md)\.

@@ -12,7 +12,7 @@ You can choose from `OFF`, `ALL`, `ERROR`, or `FATAL`\. No event types log when 
 |  ExecutionStarted  | ✓ |  |  |  | 
 |  ExecutionSucceeded  | ✓ |  |  |  | 
 |  ExecutionTimedOut  | ✓ |  ✓  |  ✓  |  | 
-|  FailStateEntered  | ✓ |  |  ✓  |  | 
+|  FailStateEntered  | ✓ | ✓ |   |  | 
 |  LambdaFunctionFailed  | ✓ |  ✓  |  |  | 
 | LambdaFunctionScheduled | ✓ |  |  |  | 
 |  LambdaFunctionScheduleFailed  | ✓ |  ✓  |  |  | 

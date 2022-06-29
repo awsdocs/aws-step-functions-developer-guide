@@ -1,15 +1,15 @@
 # Creating a Lambda state machine for Step Functions using AWS CloudFormation<a name="tutorial-lambda-state-machine-cloudformation"></a>
 
-This tutorial shows you how to create a basic AWS Lambda function using AWS CloudFormation\. You use the AWS CloudFormation console and a YAML *template* to create the *stack* \(IAM roles, the Lambda function, and the state machine\)\. Then you use the AWS Step Functions console to start the state machine execution\. 
+This tutorial shows you how to create a basic AWS Lambda function using AWS CloudFormation\. You'll use the AWS CloudFormation console and a YAML template to create the *stack* \(IAM roles, the Lambda function, and the state machine\)\. Then, you'll use the AWS Step Functions console to start the state machine execution\. 
 
 For more information, see [Working with CloudFormation Templates](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-guide.html) and the `[AWS::StepFunctions::StateMachine](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-stepfunctions-statemachine.html)` resource in the *AWS CloudFormation User Guide*\.
 
 **Topics**
-+ [Step 1: Set up your AWS CloudFormation yemplate](#lambda-state-machine-cfn-step-1)
++ [Step 1: Set up your AWS CloudFormation template](#lambda-state-machine-cfn-step-1)
 + [Step 2: Use the AWS CloudFormation template to create a Lambda State Machine](#lambda-state-machine-cfn-step-2)
 + [Step 3: Start a State Machine execution](#lambda-state-machine-cfn-step-3)
 
-## Step 1: Set up your AWS CloudFormation yemplate<a name="lambda-state-machine-cfn-step-1"></a>
+## Step 1: Set up your AWS CloudFormation template<a name="lambda-state-machine-cfn-step-1"></a>
 
 Before you use the [example templates](#lambda-state-machine-cfn-step-2), you should understand how to declare the different parts of an AWS CloudFormation template\.
 
@@ -21,7 +21,7 @@ Before you use the [example templates](#lambda-state-machine-cfn-step-2), you sh
 
 ### To create an IAM role for Lambda<a name="lambda-state-machine-cfn-procedure-create-iam-role"></a>
 
-Define the trust policy associated with the IAM role for the Lambda function\.
+Define the trust policy associated with the IAM role for the Lambda function\. The following examples define a trust policy using either YAML or JSON\.
 
 ------
 #### [ YAML ]
@@ -65,7 +65,7 @@ LambdaExecutionRole:
 
 ### To create a Lambda function<a name="lambda-state-machine-cfn-create-function"></a>
 
-Define the following properties of the Lambda function that prints the message `Hello World`\.
+Define the following properties for a Lambda function that will print the message `Hello World`\.
 
 **Important**  
 Ensure that your Lambda function is under the same AWS account and AWS Region as your state machine\.
@@ -254,7 +254,7 @@ MyStateMachine:
 
 ## Step 2: Use the AWS CloudFormation template to create a Lambda State Machine<a name="lambda-state-machine-cfn-step-2"></a>
 
-After you understand the parts of the AWS CloudFormation template, you put them together and use the template to create an AWS CloudFormation stack\.
+Once you understand the components of the AWS CloudFormation template, you can put them together and use the template to create an AWS CloudFormation stack\.
 
 ### To create the Lambda state machine<a name="to-create-the-lam-state-machine"></a>
 
@@ -462,7 +462,7 @@ After you understand the parts of the AWS CloudFormation template, you put them 
 
 ## Step 3: Start a State Machine execution<a name="lambda-state-machine-cfn-step-3"></a>
 
-After you create your Lambda state machine, you start an execution\.
+After you create your Lambda state machine, you can start its execution\.
 
 ### To start the state machine execution<a name="to-start-the-state-machine-execution"></a>
 
@@ -472,7 +472,7 @@ After you create your Lambda state machine, you start an execution\.
 
    The **New execution** page is displayed\.
 
-1. \(Optional\) To help identify your execution, you can specify an ID for it in the **Enter an execution name** box\. If you don't enter an ID, Step Functions generates a unique ID automatically\.
+1. \(Optional\) To identify your execution, you can specify a name for it in the **Name** box\. By default, Step Functions generates a unique execution name automatically\.
 **Note**  
 Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with Amazon CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
 

@@ -1,8 +1,13 @@
 # Manage SageMaker with Step Functions<a name="connect-sagemaker"></a>
 
-Step Functions can control certain AWS services directly from the Amazon States Language\. For more information, see the following:
-+ [Service Integrations](concepts-service-integrations.md)
+Step Functions can control certain AWS services directly from the Amazon States Language\. For more information about working with AWS Step Functions and its integrations, see the following:
++ [Working with other services](concepts-service-integrations.md)
 + [Pass Parameters to a Service API](connect-parameters.md)
+
+**How the Optimized SageMaker integration is different than the SageMaker AWS SDK integration**  
+The [Run a Job \(\.sync\)](connect-to-resource.md#connect-sync) integration pattern is supported\.
+There are no optimizations for the [Request Response](connect-to-resource.md#connect-default) integration pattern\.
+The [Wait for a Callback with the Task Token](connect-to-resource.md#connect-wait-token) integration pattern is not supported\.
 
 Supported SageMaker APIs and syntax:
 + [https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateEndpoint.html](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateEndpoint.html)
@@ -236,10 +241,10 @@ The following includes a `Task` state that creates an Amazon SageMaker labeling 
 
 ```
 {
-  "StartAt": "SageMaker CreaateLabelingJob",
+  "StartAt": "SageMaker CreateLabelingJob",
   "TimeoutSeconds": 3600,
   "States": {
-    "SageMaker CreaateLabelingJob": {
+    "SageMaker CreateLabelingJob": {
       "Type": "Task",
       "Resource": "arn:aws:states:::sagemaker:createLabelingJob.sync",
       "Parameters": {
@@ -366,4 +371,4 @@ The following includes a `Task` state that creates an Amazon SageMaker processin
 }
 ```
 
-For information on how to configure IAM when using Step Functions with other AWS services, see [IAM Policies for Integrated Services](service-integration-iam-templates.md)\.
+For information on how to configure IAM when using Step Functions with other AWS services, see [IAM Policies for integrated services](service-integration-iam-templates.md)\.

@@ -2,7 +2,7 @@
 
 This tutorial shows you how to create a state machine with a Lambda function that can start a new execution, continuing your ongoing work in that new execution\.
 
-AWS Step Functions is designed to run workflows that have a finite duration and number of steps\. Executions have a maximum duration of one year, and a maximum of 25,000 events \(see [Quotas for Standard Workflows](limits.md)\)\. 
+AWS Step Functions is designed to run workflows that have a finite duration and number of steps\. Executions have a maximum duration of one year, and a maximum of 25,000 events \(see [Quotas](limits-overview.md)\)\. 
 
 However, you can create a state machine that uses an AWS Lambda function to start a new execution, before allowing the current execution to terminate\. This enables you to have a state machine that can break large jobs into smaller workflows, or to have a state machine that runs indefinitely\.
 

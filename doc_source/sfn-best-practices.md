@@ -5,7 +5,7 @@ The following best practices for implementing AWS Step Functions workflows can h
 **Topics**
 + [Use timeouts to avoid stuck executions](sfn-stuck-execution.md)
 + [Use Amazon S3 ARNs instead of passing large payloads](avoid-exec-failures.md)
-+ [Avoid Reaching the history quota](bp-history-limit.md)
++ [Avoid reaching the history quota](bp-history-limit.md)
 + [Handle Lambda service exceptions](bp-lambda-serviceexception.md)
 + [Avoid latency when polling for activity tasks](bp-activity-pollers.md)
 + [Choosing Standard or Express Workflows](bp-express.md)

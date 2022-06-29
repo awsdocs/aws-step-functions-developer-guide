@@ -3,7 +3,7 @@
 Before you get started with AWS Step Functions for the first time, complete the prerequisites that are listed on this page\.
 
 **Topics**
-+ [Create an AWS Account](#sfn-creating-aws-account)
++ [Create an Amazon Web Services Account](#sfn-creating-aws-account)
 + [Create an IAM User](#sfn-creating-iam-user)
 + [Create an access key for your IAM user](#sfn-getting-access-key-id-secret-access-key)
 
@@ -30,7 +30,7 @@ If you do not have an AWS account, complete the following steps to create one\.
 When you first create an Amazon Web Services \(AWS\) account, you begin with a single sign\-in identity\. That identity has complete access to all AWS services and resources in the account\. This identity is called the AWS account *root user*\. When you sign in, enter the email address and password that you used to create the account\.
 
 **Important**  
-We strongly recommend that you do not use the root user for your everyday tasks, even the administrative ones\. Instead, adhere to the [best practice of using the root user only to create your first IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#create-iam-users)\. Then securely lock away the root user credentials and use them to perform only a few account and service management tasks\. To view the tasks that require you to sign in as the root user, see [AWS Tasks That Require Root User](https://docs.aws.amazon.com/general/latest/gr/aws_tasks-that-require-root.html)\.
+We strongly recommend that you do not use the root user for your everyday tasks, even the administrative ones\. Instead, adhere to the [best practice of using the root user only to create your first IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#create-iam-users)\. Then securely lock away the root user credentials and use them to perform only a few account and service management tasks\. To view the tasks that require you to sign in as the root user, see [Tasks that require root user credentials](https://docs.aws.amazon.com/general/latest/gr/aws_tasks-that-require-root.html)\.
 
 For more information about root user and IAM user credentials, see [AWS Account Root User Credentials and IAM User Credentials\.](https://docs.aws.amazon.com/general/latest/gr/root-vs-iam.html)\.
 
