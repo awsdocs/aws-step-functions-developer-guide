@@ -24,7 +24,9 @@ Before you create your API Gateway API, you need to give API Gateway permission 
 
 1. On the **Select type of trusted entity** page, under **AWS service**, select **API Gateway** from the list, and then choose **Next: Permissions**\.
 
-1. On the **Attached permissions policy** page, choose **Next: Review**\.
+1. On the **Attached permissions policy** page, choose **Next: Tags**\.
+
+1. \(Optional\) On the **Add tags** page, enter any tags you want to add, then choose **Next: Review**\.
 
 1. On the **Review** page, enter `APIGatewayToStepFunctions` for **Role name**, and then choose **Create role**\.
 
@@ -54,9 +56,11 @@ After you create your IAM role, you can create your custom API Gateway API\.
 
 **To create the API**
 
-1. Navigate to the [Amazon API Gateway console](https://console.aws.amazon.com/apigateway/) and choose **Get Started**\.
+1. Open the [Amazon API Gateway console](https://console.aws.amazon.com/apigateway/)\.
 
-1. On the **Create new API** page, choose **New API**\.
+1. On the **REST API** pane, choose **Build**\.
+
+1. Choose **New API**\.
 
 1. In the **Settings** section, enter `StartExecutionAPI` for the **API name**, and then choose **Create API**\.
 

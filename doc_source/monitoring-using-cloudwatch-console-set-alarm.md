@@ -9,10 +9,11 @@ You can use Amazon CloudWatch alarms to perform actions\. For example, if you wa
 1. Choose **Metrics**, and on the **All Metrics** tab, choose **States**\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-cloudwatch-monitoring-states.png)
 
-   If you ran any executions recently, you will see up to three types of metrics:
+   If you ran any executions recently, you will see up to four types of metrics:
    +  **Execution Metrics** 
    +  **Activity Function Metrics** 
    +  **Lambda Function Metrics** 
+   +  **Service Integration Metrics** 
 
 1. Choose a metric type to see a list of metrics\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/step-functions/latest/dg/images/tutorial-cloudwatch-monitoring-list-metrics.png)

@@ -25,7 +25,7 @@ It can take up to 10 minutes for these resources and related IAM permissions to 
 
 1. On the **New execution** page, enter an execution name \(optional\), and then choose **Start Execution**\.
 
-1. \(Optional\) To help identify your execution, you can specify an ID for it in the **Enter an execution name** box\. If you don't enter an ID, Step Functions generates a unique ID automatically\.
+1. \(Optional\) To identify your execution, you can specify a name for it in the **Name** box\. By default, Step Functions generates a unique execution name automatically\.
 **Note**  
 Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with Amazon CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
 
@@ -37,9 +37,9 @@ Step Functions allows you to create state machine, execution, and activity names
 
 The state machine in this sample project integrates another state machine and AWS Lambda by passing parameters directly to those resources\.
 
-Browse through this example state machine to see how Step Functions calls the `[StartExecution](https://docs.aws.amazon.com/step-functions/latest/apireference/API_StartExecution.html)` API action for the other state machine\. It launches two instances of the other state machine in parallel: one using the [Run a Job](connect-to-resource.md#connect-sync) pattern and one using the [Wait for a Callback with the Task Token](connect-to-resource.md#connect-wait-token) pattern\.
+Browse through this example state machine to see how Step Functions calls the `[StartExecution](https://docs.aws.amazon.com/step-functions/latest/apireference/API_StartExecution.html)` API action for the other state machine\. It launches two instances of the other state machine in parallel: one using the [Run a Job \(\.sync\)](connect-to-resource.md#connect-sync) pattern and one using the [Wait for a Callback with the Task Token](connect-to-resource.md#connect-wait-token) pattern\.
 
-For more information about how AWS Step Functions can control other AWS services, see [Service Integrations with AWS Step Functions ](concepts-service-integrations.md)\.
+For more information about how AWS Step Functions can control other AWS services, see [Using AWS Step Functions with other services](concepts-service-integrations.md)\.
 
 ```
 {
@@ -108,4 +108,4 @@ For more information about how AWS Step Functions can control other AWS services
 }
 ```
 
-For information about how to configure IAM when using Step Functions with other AWS services, see [IAM Policies for Integrated Services](service-integration-iam-templates.md)\.
+For information about how to configure IAM when using Step Functions with other AWS services, see [IAM Policies for integrated services](service-integration-iam-templates.md)\.

@@ -17,15 +17,15 @@ Step Functions can start these workflow executions by calling its own API as an 
       "Input":{  
          "Comment":"Hello world!"
       },
-      "Retry":[  
-         {  
-            "ErrorEquals":[  
-               "StepFunctions.ExecutionLimitExceeded"
-            ]
-         }
-      ],
-      "End":true
-   }
+   },
+   "Retry":[  
+      {  
+        "ErrorEquals":[  
+            "StepFunctions.ExecutionLimitExceeded"
+        ]
+      }
+   ],
+   "End":true
 }
 ```
 
@@ -33,12 +33,12 @@ This `Task` state will start a new execution of the `HelloWorld` state machine, 
 
 **Note**  
 The `StartExecution` API action quotas can limit the number of executions that you can start\. Use the `Retry` on `StepFunctions.ExecutionLimitExceeded` to ensure your execution is started\. See the following\.  
-[Quotas Related to API Action Throttling](limits.md#service-limits-api-action-throttling)
+[Quotas related to API action throttling](limits-overview.md#service-limits-api-action-throttling-general)
 [Error handling in Step Functions](concepts-error-handling.md)
 
 ## Associate Workflow Executions<a name="nested-execution-startid"></a>
 
-To associate a started workflow execution with the execution that started it, pass the execution ID from the context object to the execution input\. You can access the ID from the context object from your `Task` state in a running execution\. Pass the execution ID by appending `.$` to the parameter name, and referencing the ID in the context object with `$$.Execution.Id`\.
+To associate a started workflow execution with the execution that started it, pass the execution ID from the [context object](input-output-contextobject.md) to the execution input\. You can access the ID from the context object from your `Task` state in a running execution\. Pass the execution ID by appending `.$` to the parameter name, and referencing the ID in the context object with `$$.Execution.Id`\.
 
 ```
 "AWS_STEP_FUNCTIONS_STARTED_BY_EXECUTION_ID.$": "$$.Execution.Id"
@@ -62,7 +62,7 @@ You can use a special parameter named `AWS_STEP_FUNCTIONS_STARTED_BY_EXECUTION_I
 ```
 
 For more information, see the following:
-+ [Service Integrations](concepts-service-integrations.md)
++ [Working with other services](concepts-service-integrations.md)
 + [Pass Parameters to a Service API](connect-parameters.md)
 + [Accessing the Context Object](input-output-contextobject.md#contextobject-access)
 + [AWS Step Functions](connect-stepfunctions.md)

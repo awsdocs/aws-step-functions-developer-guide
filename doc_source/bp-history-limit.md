@@ -1,5 +1,5 @@
-# Avoid Reaching the history quota<a name="bp-history-limit"></a>
+# Avoid reaching the history quota<a name="bp-history-limit"></a>
 
-AWS Step Functions has a hard quota of 25,000 entries in the execution history\. To avoid reaching this quota for long\-running executions, implement a pattern that uses an AWS Lambda function that can start a new execution of your state machine to split ongoing work across multiple workflow executions\.
+AWS Step Functions has a hard quota of 25,000 entries in the execution event history\. To avoid reaching this quota for long\-running executions, you can start a new state machine execution directly from the `Task` state of a running execution\. To start such nested workflow executions, use Step Functions' `[StartExecution](https://docs.aws.amazon.com/step-functions/latest/apireference/API_StartExecution.html)` API action in the parent state machine along with the necessary parameters\. For more information about using nested workflows, see [Start Workflow Executions from a Task State](concepts-nested-workflows.md)\.
 
-For more information, see the [Continuing as a New Execution](tutorial-continue-new.md) tutorial\.
+You can also implement a pattern that uses an AWS Lambda function that can start a new execution of your state machine to split ongoing work across multiple workflow executions\. For more information, see the [Continuing as a New Execution](tutorial-continue-new.md) tutorial\.

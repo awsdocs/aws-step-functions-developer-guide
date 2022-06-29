@@ -1,4 +1,4 @@
-# Document History<a name="document-history"></a>
+# Document history<a name="document-history"></a>
 
 This section lists major changes to the *AWS Step Functions Developer Guide*\.
 

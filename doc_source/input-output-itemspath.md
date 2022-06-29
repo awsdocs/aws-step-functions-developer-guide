@@ -66,4 +66,4 @@ For more information on `Map` states, see the following:
 + [Map State Example](amazon-states-language-map-state.md#map-state-examples)
 + [Using a Map State to Call Lambda Multiple Times](tutorial-creating-map-state-machine.md)
 + [Map State Input and Output Processing](amazon-states-language-map-state.md#amazon-states-language-map-state-output)
-+ [Dynamically Process Data with a Map State](sample-map-state.md)
++ [Dynamically process data with a Map state](sample-map-state.md)

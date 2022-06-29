@@ -98,6 +98,8 @@ You can see the following entry in the `template.yaml` file, which points to the
       DefinitionUri: statemachine/stock_trader.asl.json
 ```
 
+It can be helpful to keep the state machine definition as a separate file instead of embeddedding it in the AWS SAM template\. For example, tracking changes to the state machine definition is easier if you don't include the definition in the template\. You can use the Workflow Studio to create and maintain the state machine definition, and export the definition from the console directly to the Amazon States Language specification file without merging it into the template\.
+
 For more information about the sample application, see the `README.md` file in the project directory\.
 
 ## Step 2: Build Your Application<a name="tutorial-state-machine-using-sam-build"></a>

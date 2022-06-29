@@ -9,7 +9,7 @@ This sample project demonstrates using SageMaker to tune the hyperparameters of 
 In this project, Step Functions uses a Lambda function to seed an Amazon S3 bucket with a test dataset\. It then creates a hyperparameter tuning job using the [SageMaker service integration](connect-sagemaker.md)\. It then uses a Lambda function to extract the data path, saves the tuning model, extracts the model name, and then runs a batch transform job to perform inference in SageMaker\.
 
 For more information about SageMaker and Step Functions service integrations, see the following:
-+ [Service Integrations with AWS Step Functions ](concepts-service-integrations.md)
++ [Using AWS Step Functions with other services](concepts-service-integrations.md)
 + [Manage SageMaker with Step Functions](connect-sagemaker.md)
 
 **Note**  
@@ -45,7 +45,7 @@ It can take up to 10 minutes for these resources and related IAM permissions to 
 
 1. On the **New execution** page, enter an execution name \(optional\), and then choose **Start Execution**\.
 
-1. \(Optional\) To help identify your execution, you can specify an ID for it in the **Enter an execution name** box\. If you don't enter an ID, Step Functions generates a unique ID automatically\.
+1. \(Optional\) To identify your execution, you can specify a name for it in the **Name** box\. By default, Step Functions generates a unique execution name automatically\.
 **Note**  
 Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with Amazon CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
 
@@ -59,7 +59,7 @@ The state machine in this sample project integrates with SageMaker and AWS Lambd
 
 Browse through this example state machine to see how Step Functions controls Lambda and SageMaker\.
 
-For more information about how AWS Step Functions can control other AWS services, see [Service Integrations with AWS Step Functions ](concepts-service-integrations.md)\.
+For more information about how AWS Step Functions can control other AWS services, see [Using AWS Step Functions with other services](concepts-service-integrations.md)\.
 
 ```
 {
@@ -215,7 +215,7 @@ For more information about how AWS Step Functions can control other AWS services
 }
 ```
 
-For information about how to configure IAM when using Step Functions with other AWS services, see [IAM Policies for Integrated Services](service-integration-iam-templates.md)\.
+For information about how to configure IAM when using Step Functions with other AWS services, see [IAM Policies for integrated services](service-integration-iam-templates.md)\.
 
 ## IAM Examples<a name="sample-hyper-tuning-iam-example"></a>
 
@@ -328,4 +328,4 @@ The following IAM policy allows the Lambda function to seed the Amazon S3 bucket
 }
 ```
 
-For information about how to configure IAM when using Step Functions with other AWS services, see [IAM Policies for Integrated Services](service-integration-iam-templates.md)\.
+For information about how to configure IAM when using Step Functions with other AWS services, see [IAM Policies for integrated services](service-integration-iam-templates.md)\.

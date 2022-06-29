@@ -6,6 +6,9 @@ For more information, see the [Amazon States Language Specification](https://sta
 
 To create a state machine on the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/) using Amazon States Language, see [Getting Started](getting-started.md)\.
 
+**Note**  
+If you define your state machines outside the Step Functions' console, such as in an editor of your choice, you must save your state machine definitions with the extension *\.asl\.json*\.
+
 ## Example Amazon States Language Specification<a name="example-amazon-states-language-specification"></a>
 
 ```
