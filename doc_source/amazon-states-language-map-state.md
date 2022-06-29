@@ -143,7 +143,7 @@ For more information see the following\.
 
 For a map state, [`InputPath`](input-output-inputpath-params.md#input-output-inputpath) works as it does for other state types, selecting a subset of the input\.
 
-The input of a `Map` state must include a JSON array, and it will run the `Iterator` section once for each item in the array\. You specify where in the input to find this array using the [`ItemsPath`](input-output-itemspath.md) field\. If not specified, the value of `ItemsPath` is `$`, and the `Iterator` section expects that the array is the only input\. A `Map` state may also include an [`ItemsPath`](input-output-itemspath.md) field, whose value must be a [Reference Path](amazon-states-language-paths.md#amazon-states-language-reference-paths)\. The `ItemsPath` field selects where in the input to find the array to use for iterations\. The Reference Path is applied to the effective input \(after `InputPath` is applied\) and must identify a field whose value is a JSON array\.
+The input of a `Map` state must include a JSON array, and it will run the `Iterator` section once for each item in the array\. You specify the [`ItemsPath`](input-output-itemspath.md) field, which selects where in the input to find the array to be used for iterations\. If not specified, the default value of `ItemsPath` is `$`, and the `Iterator` section expects that the array is the only input\. If you specify the [`ItemsPath`](input-output-itemspath.md) field, its value must be a [Reference Path](amazon-states-language-paths.md#amazon-states-language-reference-paths), which is applied to the effective input \(after `InputPath` is applied\) and it must identify a field whose value is a JSON array\.
 
 The input to each iteration, by default, is a single element of the array field identified by the `ItemsPath` value, This may be overridden using the `Parameters` field\.
 
@@ -154,4 +154,4 @@ When complete, the output of the `Map` state is a JSON array, where each item is
 + [Map State Example with Parameters](#map-state-example-params)
 + [Input and Output Processing in Step Functions](concepts-input-output-filtering.md)
 + [Context Object Data for Map States](input-output-contextobject.md#contextobject-map)
-+ [Dynamically process data with a Map state](sample-map-state.md)
++ [Dynamically Process Data with a Map State](sample-map-state.md)
