@@ -25,7 +25,8 @@ The following Ruby code is the main entry point for this example Ruby activity w
  
  # The start method takes as argument the block that is the actual logic of your custom activity.
  activity.start do |input|
-   { result: :SUCCESS, echo: input['value'] }
+   { result: :SUCCESS, echo: input['value'] }                    
+ end
 ```
 
 The code includes defaults you can change to reference your activity, and to adapt it to your specific implementation\. This code takes as input the actual implementation logic, allows you to reference your specific activity and credentials, and enables you to configure the number of threads and heartbeat delay\. For more information and to download the code, see [Step Functions Ruby Activity Worker](https://github.com/aws-samples/step-functions-ruby-activity-worker)\.

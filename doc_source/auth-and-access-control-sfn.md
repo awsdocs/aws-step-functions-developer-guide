@@ -41,4 +41,4 @@ The following sections describe how to manage permissions for Step Functions\.
 + [How AWS Step Functions Works with IAM](procedure-create-iam-role.md)
 + [Creating Granular IAM Permissions for Non\-Admin Users](concept-create-iam-advanced.md)
 + [Amazon VPC Endpoints for Step Functions](vpc-endpoints.md)
-+ [IAM Policies for Integrated Services](service-integration-iam-templates.md)
++ [IAM Policies for integrated services](service-integration-iam-templates.md)

@@ -2,6 +2,9 @@
 
 Individual states can make decisions based on their input, perform actions, and pass output to other states\. In AWS Step Functions you define your workflows in the Amazon States Language\. The Step Functions console provides a graphical representation of that state machine to help visualize your application logic\.
 
+**Note**  
+If you define your state machines outside the Step Functions' console, such as in an editor of your choice, you must save your state machine definitions with the extension *\.asl\.json*\.
+
 States are elements in your state machine\. A state is referred to by its *name*, which can be any string, but which must be unique within the scope of the entire state machine\.
 
 States can perform a variety of functions in your state machine:
@@ -33,7 +36,7 @@ A `Choice` state may have more than one `Next`, but only one within each Choice 
 
 Certain state types require additional fields, or may redefine common field usage\.
 
-After you have created and executed Standard Workflows, you can access information about each state, its input and output, when it was active and for how long, by viewing the **Execution Details** page in the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/)\.
+After you have created and executed Standard Workflows, you can access information about each state, its input and output, when it was active and for how long, by viewing the **Execution Details** page in the [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/)\. For more information, see [Viewing and debugging executions on the Step Functions console](concepts-sm-exec-details-ui.md)
 
 After you have created and executed Express Workflows, and if logging is enabled, you can [access information about the execution in Amazon CloudWatch Logs](cw-logs.md)\.
 

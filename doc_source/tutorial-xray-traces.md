@@ -50,7 +50,7 @@ Your Lambda function will randomly throw errors or time out, producing example d
 **Important**  
 Ensure that your Lambda function is under the same AWS account and AWS Region as your state machine\.
 
-1. Open the [Lambda console](https://console.aws.amazon.com/lambda/home) and choose **Create a function**\.
+1. Open the [Lambda console](https://console.aws.amazon.com/lambda/home) and choose **Create function**\.
 
 1. In the **Create function** section, choose **Author from scratch**\.
 
@@ -216,7 +216,7 @@ After you create your state machine, start an execution\.
 
    The **New execution** page is displayed\.
 
-1. \(Optional\) To help identify your execution, you can specify an ID for it in the **Enter an execution name** box\. If you don't enter an ID, Step Functions generates a unique ID automatically\.
+1. \(Optional\) To identify your execution, you can specify a name for it in the **Name** box\. By default, Step Functions generates a unique execution name automatically\.
 **Note**  
 Step Functions allows you to create state machine, execution, and activity names that contain non\-ASCII characters\. These non\-ASCII names don't work with Amazon CloudWatch\. To ensure that you can track CloudWatch metrics, choose a name that uses only ASCII characters\.
 

@@ -7,15 +7,24 @@ Step Functions is based on state machines and tasks\. A state machine is a workf
 With Step Functions' built\-in controls, you examine the state of each step in your workflow to make sure that your application runs in order and as expected\. Depending on your use case, you can have Step Functions call AWS services, such as Lambda, to perform tasks\. You can create workflows that process and publish machine learning models\. You can have Step Functions control AWS services, such as [AWS Glue](https://aws.amazon.com/glue/), to create extract, transform, and load \(ETL\) workflows\. You also can create long\-running, automated workflows for applications that require human interaction\. 
 
 **Topics**
++ [AWS SDK and Optimized integrations](#welcome-integrations)
 + [Standard and Express workflows](#welcome-workflows)
 + [Use cases](#application)
 + [Service integrations](#welcome-integrations)
 + [Supported regions](#supported-regions)
 + [Is this your first time using Step Functions?](#welcome-overview)
 
+## AWS SDK and Optimized integrations<a name="welcome-integrations"></a>
+
+To call other AWS services, you can use Step Functions's AWS SDK integrations, or you can use one of Step Functions's Optimized integrations\.
++ The [AWS SDK integrations](supported-services-awssdk.md) let you call any of the over two hundred AWS services directly from your state machine, giving you access to over nine thousand API actions\.
++ [Step Functions's Optimized integrations](connect-supported-services.md) have been customized to simplify usage in your state machines\.
+
 ## Standard and Express workflows<a name="welcome-workflows"></a>
 
-Step Functions has two workflow types\. Standard workflows have exactly\-once workflow execution and can run for up to one year\. Express workflows have at\-least\-once workflow execution and can run for up to five minutes\. Executions are instances where you run your workflow to perform tasks\. Standard workflows are ideal for long\-running, auditable workflows, as they show execution history and visual debugging\. Express workflows are ideal for high\-event\-rate workloads, such as streaming data processing and IoT data ingestion\.
+Step Functions has two workflow types\. Standard workflows have exactly\-once workflow execution and can run for up to one year\. This means that each step in a Standard workflow will execute exactly\-once\. Express workflows, however, have at\-least\-once workflow execution and can run for up to five minutes\. This means that it's possible that one or more steps in an Express Workflow can execute more than once, while each step in the workflow executes at\-least\-once\.
+
+Executions are instances where you run your workflow to perform tasks\. Standard workflows are ideal for long\-running, auditable workflows, as they show execution history and visual debugging\. Express workflows are ideal for high\-event\-rate workloads, such as streaming data processing and IoT data ingestion\.
 
 ### Standard workflows<a name="welcome-standard"></a>
 + 2,000 per second execution rate
@@ -91,7 +100,7 @@ A customer converts a video file into five different display resolutions, so vie
 A customer orders three items, and you need to prepare each item for delivery\. You check each item's availability, gather each item, and then package each item for delivery\. Using a `Map` state, Step Functions has Lambda process each of your customer's items in parallel\. Once all of your customer's items are packaged for delivery, Step Functions goes to the next step in your workflow, which is to send your customer a confirmation email with tracking information\.
 
 To see a sample project that shows dynamic parallelism using a `Map` state, see the following:
-+ [Dynamically Process Data with a Map State](sample-map-state.md)
++ [Dynamically process data with a Map state](sample-map-state.md)
 
 ## Service integrations<a name="welcome-integrations"></a>
 
@@ -110,55 +119,23 @@ To see a sample project that shows dynamic parallelism using a `Map` state, see 
 **[Wait for a callback with a task token \(\.waitForTaskToken\)](connect-to-resource.md#connect-wait-token)**
 + Call a service with a task token, and have Step Functions wait until the task token returns with a callback\.
 
-The table below shows all of the supported service integrations and service integration patterns for Step Functions\.
+The table below shows the available service integrations and service integration patterns for Step Functions\.
+
+ Standard Workflows and Express Workflows support the same integrations but do not support the same integration patterns\. Express Workflows do not support Run a Job \(\.sync\) or Wait for Callback \(\.waitForTaskToken\)\. Optimized integrations pattern support is different for each integration\. For more information, see [Standard vs\. Express Workflows](concepts-standard-vs-express.md)\.
 
 ------
 #### [ Standard Workflows ]
 
 
-**Supported Service Integrations**  
-
-| Service | [Request Response](connect-to-resource.md#connect-default) | [Run a Job \(`.sync`\)](connect-to-resource.md#connect-sync) | [Wait for Callback \(`.waitForTaskToken`\)](connect-to-resource.md#connect-wait-token) | 
-| --- | --- | --- | --- | 
-| [Lambda](connect-lambda.md) | ✓ |  | ✓ | 
-| [AWS Batch](connect-batch.md) | ✓ | ✓ |  | 
-| [DynamoDB](connect-ddb.md) | ✓ |  |  | 
-| [Amazon ECS/AWS Fargate](connect-ecs.md) | ✓ | ✓ | ✓ | 
-| [Amazon SNS](connect-sns.md) | ✓ |  | ✓ | 
-| [Amazon SQS](connect-sqs.md) | ✓ |  | ✓ | 
-| [AWS Glue](connect-glue.md) | ✓ | ✓ |  | 
-| [SageMaker](connect-sagemaker.md) | ✓ | ✓ |  | 
-| [Amazon EMR](connect-emr.md) | ✓ | ✓ |  | 
-| [CodeBuild](connect-codebuild.md) | ✓ | ✓ |  | 
-| [Athena](connect-athena.md) | ✓ | ✓ |  | 
-| [Amazon EKS](connect-eks.md) | ✓ | ✓ |  | 
-| [API Gateway](connect-api-gateway.md) | ✓ |  | ✓ | 
-| [AWS Glue DataBrew](connect-databrew.md) | ✓ | ✓ |  | 
-| [AWS Step Functions](connect-stepfunctions.md) | ✓ | ✓ | ✓ | 
+**Supported service integrations**  
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/step-functions/latest/dg/welcome.html)
 
 ------
 #### [ Express Workflows ]
 
 
-**Supported Service Integrations**  
-
-| Service | [Request Response](connect-to-resource.md#connect-default) | [Run a Job \(`.sync`\)](connect-to-resource.md#connect-sync) | [Wait for Callback \(`.waitForTaskToken`\)](connect-to-resource.md#connect-wait-token) | 
-| --- | --- | --- | --- | 
-| [Lambda](connect-lambda.md) | ✓ |  |  | 
-| [AWS Batch](connect-batch.md) | ✓ |  |  | 
-| [DynamoDB](connect-ddb.md) | ✓ |  |  | 
-| [Amazon ECS/AWS Fargate](connect-ecs.md) | ✓ |  |  | 
-| [Amazon SNS](connect-sns.md) | ✓ |  |  | 
-| [Amazon SQS](connect-sqs.md) | ✓ |  |  | 
-| [AWS Glue](connect-glue.md) | ✓ |  |  | 
-| [SageMaker](connect-sagemaker.md) | ✓ |  |  | 
-| [Amazon EMR](connect-emr.md) | ✓ |  |  | 
-| [CodeBuild](connect-codebuild.md) | ✓ |  |  | 
-| [Athena](connect-athena.md) | ✓ |  |  | 
-| [Amazon EKS](connect-eks.md) | ✓ |  |  | 
-| [API Gateway](connect-api-gateway.md) | ✓ |  |  | 
-| [AWS Glue DataBrew](connect-databrew.md) | ✓ |  |  | 
-| [AWS Step Functions](connect-stepfunctions.md) | ✓ |  |  | 
+**Supported service integrations**  
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/step-functions/latest/dg/welcome.html)
 
 ------
 
@@ -170,5 +147,5 @@ Most AWS regions support Step Functions\. For a complete list of AWS regions whe
 
 If this is your first time using Step Functions, the following topics help you understand different parts of working with Step Functions, including how Step Functions combines with other AWS services:
 + [Tutorials for Step Functions](tutorials.md)
-+ [Sample Projects for Step Functions](create-sample-projects.md)
++ [Sample projects for Step Functions](create-sample-projects.md)
 + [AWS Step Functions Data Science SDK for Python](concepts-python-sdk.md)
