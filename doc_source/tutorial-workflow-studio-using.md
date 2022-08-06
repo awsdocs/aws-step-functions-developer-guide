@@ -225,8 +225,14 @@ In this step, you'll update your state machine by adding a `Result` field in the
 
 1. Choose the `Pass` state named **World** on the canvas, and then choose **Output**\.
 
-1. In the **Result** box, enter **"World has been updated\!"**\.
+1. In the **Result** box, enter as below (*Must be valid JSON*)
 
+ ```
+   {
+      "result": "World has been updated"
+   }
+   ```
+ 
 1. Choose **Apply and exit** to save the change and return to the **Edit `HelloWorld`** page\.
 
 1. \(Optional\) In the **Definition** area, view the updated Amazon States Language definition of your workflow\.
@@ -250,7 +256,9 @@ In this step, you'll update your state machine by adding a `Result` field in the
              "States": {
                "World": {
                  "Type": "Pass",
-                 "Result": "World has been updated!",
+                 "Result":  {
+                     "result": "World has been updated!"
+                  },
                  "End": true
                }
              }
