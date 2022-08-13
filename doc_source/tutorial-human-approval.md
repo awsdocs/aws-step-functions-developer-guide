@@ -414,13 +414,13 @@ Resources:
                 const taskToken = executionContext.Task.Token;
                 console.log('taskToken= ' + taskToken);
 
-                const apigwEndpint = event.APIGatewayEndpoint;
-                console.log('apigwEndpint = ' + apigwEndpint)
+                const apigwEndpoint = event.APIGatewayEndpoint;
+                console.log('apigwEndpoint = ' + apigwEndpoint)
 
-                const approveEndpoint = apigwEndpint + "/execution?action=approve&ex=" + executionName + "&sm=" + statemachineName + "&taskToken=" + encodeURIComponent(taskToken);
+                const approveEndpoint = apigwEndpoint + "/execution?action=approve&ex=" + executionName + "&sm=" + statemachineName + "&taskToken=" + encodeURIComponent(taskToken);
                 console.log('approveEndpoint= ' + approveEndpoint);
 
-                const rejectEndpoint = apigwEndpint + "/execution?action=reject&ex=" + executionName + "&sm=" + statemachineName + "&taskToken=" + encodeURIComponent(taskToken);
+                const rejectEndpoint = apigwEndpoint + "/execution?action=reject&ex=" + executionName + "&sm=" + statemachineName + "&taskToken=" + encodeURIComponent(taskToken);
                 console.log('rejectEndpoint= ' + rejectEndpoint);
 
                 const emailSnsTopic = "${SNSHumanApprovalEmailTopic}";
