@@ -14,7 +14,8 @@ The \.sync integration pattern is available\.
 Supported Amazon ECS/Fargate APIs and syntax:
 
 **Note**  
-Parameters in Step Functions are expressed in `PascalCase`, even when the native service API is `camelCase`\. 
+Parameters in Step Functions are expressed in `PascalCase`, even when the native service API is `camelCase`\. This holds for the contents of Parameters whose types are non-primitives. For example, consider `PlacementStrategy`, which is an Array of [PlacementStrategy](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_PlacementStrategy.html) objects. The properties of those objects should also be `PascalCase`.
+
 + [https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html) starts a new task using the specified task definition\.
   + [Request syntax](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html#API_RunTask_RequestSyntax)
   + Supported parameters: 
