@@ -146,9 +146,9 @@ Given a state machine with a simple `Map` state, we can inject information from 
     "ExampleMapState": {
       "Type": "Map",
       "Parameters": {
-               "ContextIndex.$": "$$.Map.Item.Index",
-               "ContextValue.$": "$$.Map.Item.Value"
-             },
+        "ContextIndex.$": "$$.Map.Item.Index",
+        "ContextValue.$": "$$.Map.Item.Value"
+      },
       "Iterator": {
          "StartAt": "TestPass",
          "States": {
