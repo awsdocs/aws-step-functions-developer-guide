@@ -10,22 +10,22 @@ Step Functions can start these workflow executions by calling its own API as an 
 
 ```
 {  
-   "Type":"Task",
-   "Resource":"arn:aws:states:::states:startExecution",
-   "Parameters":{  
-      "StateMachineArn":"arn:aws:states:us-east-1:123456789012:stateMachine:HelloWorld",
-      "Input":{  
-         "Comment":"Hello world!"
-      },
+   "Type": "Task",
+   "Resource": "arn:aws:states:::states:startExecution",
+   "Parameters": {
+      "StateMachineArn": "arn:aws:states:us-east-1:123456789012:stateMachine:HelloWorld",
+      "Input": {
+         "Comment": "Hello world!"
+      }
    },
-   "Retry":[  
-      {  
-        "ErrorEquals":[  
+   "Retry": [
+      {
+        "ErrorEquals": [
             "StepFunctions.ExecutionLimitExceeded"
         ]
       }
    ],
-   "End":true
+   "End": true
 }
 ```
 
@@ -48,10 +48,10 @@ You can use a special parameter named `AWS_STEP_FUNCTIONS_STARTED_BY_EXECUTION_I
 
 ```
 {  
-   "Type":"Task",
-   "Resource":"arn:aws:states:::states:startExecution",
-   "Parameters":{  
-      "StateMachineArn":"arn:aws:states:us-east-1:123456789012:stateMachine:HelloWorld",
+   "Type": "Task",
+   "Resource": "arn:aws:states:::states:startExecution",
+   "Parameters": {
+      "StateMachineArn": "arn:aws:states:us-east-1:123456789012:stateMachine:HelloWorld",
       "Input": {
         "Comment": "Hello world!",
         "AWS_STEP_FUNCTIONS_STARTED_BY_EXECUTION_ID.$": "$$.Execution.Id"
