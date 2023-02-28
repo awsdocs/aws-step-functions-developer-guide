@@ -167,7 +167,7 @@ You can then select the `resourceType` and `ClusterId` using `ResultSelector`:
     <some parameters>
   },
   "ResultSelector": {
-    "ClusterId.$": "$.output.ClusterId",
+    "ClusterId.$": "$.ClusterId",
     "ResourceType.$": "$.resourceType"
   },
   "ResultPath": "$.EMROutput",
