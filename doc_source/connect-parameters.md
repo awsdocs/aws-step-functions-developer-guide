@@ -18,7 +18,7 @@ You can also pass multiple parameters with static JSON\. As a more complete exam
 
 ```
 "Resource": "arn:aws:states:::sns:publish",
-  "Parameters": {
+"Parameters": {
      "TopicArn": "arn:aws:sns:us-east-1:123456789012:myTopic",
      "Message": "test message",
      "MessageAttributes": {
