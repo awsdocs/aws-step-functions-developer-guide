@@ -10,9 +10,9 @@ To use mocked service integrations, you must first create a mock configuration f
 
 A mock configuration is a JSON object containing the following top\-level fields:
 + `StateMachines` \- The fields of this object represent state machines configured to use mocked service integrations\.
-+ `MockedResponse` \- The fields of this object represent mocked responses for service integration calls\.
++ `MockedResponses` \- The fields of this object represent mocked responses for service integration calls\.
 
-The following is an example of a mock configuration file which includes a `StateMachine` definition and `MockedResponse`\.
+The following is an example of a mock configuration file which includes a `StateMachine` definition and `MockedResponses`\.
 
 ```
 {
@@ -127,7 +127,7 @@ The following example of a `TestCase` links two `Task` states to two `MockedResp
 
 #### MockedResponses<a name="mock-cfg-mckd-resp-sect"></a>
 
-`MockedResponses` is an object containing multiple mocked response objects with unique field names\. A mocked response object defines the successful result or error output for each invocation of a mocked Task state\. You specify the invocation number using individual integer strings, such as “0”, “1”, “2”, and “3” or an inclusive range of integers, such as “0\-1”, “2\-3”\.
+`MockedResponses` is an object containing multiple mocked response objects with unique field names\. A mocked response object defines the successful result or error output for each invocation of a mocked Task state\. You specify the invocation number using individual integer strings, such as `"0"`, `"1"`, `"2"`, and `"3"` or an inclusive range of integers, such as `"0\-1"`, `"2\-3`\.
 
 When you mock a Task, you must specify a mocked response for every invocation\. A response must contain a single field named `Return` or `Throw` whose value is the result or error output for the mocked Task invocation\. If you do not specify a mocked response, the state machine execution will fail\.
 
@@ -149,7 +149,7 @@ The following is an example of a `MockedResponse` with `Throw` and `Return` obje
 ```
 
 **Note**  
-If you are using a `Map` state, and want to ensure predictable responses for the `Map` state, set the value of `maxConcurrency` to 1\. If you set a value greater than 1, Step Functions Local will run multiple iterations concurrently, which will cause the overall execution order of states across iterations to be unpredictable\. This may further cause Step Functions Local to use different mocked responses for iteration states from one execution to the next\.
+If you are using a `Map` state, and want to ensure predictable responses for the `Map` state, set the value of `maxConcurrency` to `1`\. If you set a value greater than `1`, Step Functions Local will run multiple iterations concurrently, which will cause the overall execution order of states across iterations to be unpredictable\. This may further cause Step Functions Local to use different mocked responses for iteration states from one execution to the next\.
 
 ##### Return<a name="mock-cfg-resp-return"></a>
 
